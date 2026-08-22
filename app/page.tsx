@@ -115,7 +115,7 @@ export default function Home() {
         </div>
         <div className="contact-copy">
           <p>Share the system, the symptoms, and what a better outcome looks like. We’ll tell you candidly where we can help.</p>
-          <a className="button button-light" href="mailto:hello@netherwooddatapartners.com">hello@netherwooddatapartners.com</a>
+          <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a>
         </div>
       </section>
 
