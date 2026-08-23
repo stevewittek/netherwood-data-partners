@@ -5,6 +5,7 @@ GO
 
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
+SET QUOTED_IDENTIFIER ON;
 GO
 
 IF NOT EXISTS (SELECT 1 FROM web.SchemaMigrations WHERE MigrationId = '004_knowledge_location_index')
