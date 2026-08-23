@@ -41,6 +41,17 @@ credential decision for the operator; the repository does not contain a
 default. Keep the same value available for `SQL_SERVER_PASSWORD` in the ignored
 `backend/.env.local` file after setup.
 
+To generate and store a new runtime credential locally without printing it,
+run this once from the repository root:
+
+```bash
+backend/scripts/create-runtime-sql-credential.sh
+```
+
+The helper preserves other local settings, requires `.env.local` to be ignored,
+sets owner-only file permissions, and refuses to rotate an existing password.
+It prepares the credential but does not create the SQL login by itself.
+
 ```bash
 read -r -s -p "New ndp_web_app password: " NDP_APP_SQL_PASSWORD; echo
 export NDP_APP_SQL_PASSWORD

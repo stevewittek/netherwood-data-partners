@@ -4,8 +4,8 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## Repository and publishing
 
-- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. GitHub CLI authentication is active for `stevewittek`; reviewed backend/SQL commits through `493c6af` were pushed to `origin/main`.
-- GitHub Pages run `32637900379` completed successfully for `493c6af`. The deployed domain returned HTTP 200 with a `2026-08-23 11:55:39 UTC` modification time after the release.
+- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. GitHub CLI authentication is active for `stevewittek`; reviewed backend/SQL commits through `1d442d3` were pushed to `origin/main`.
+- GitHub Pages run `32638242752` completed successfully for `1d442d3`. The deployed domain returned HTTP 200 with a `2026-08-23 12:02:37 UTC` modification time after the release.
 - `pages-site/` reuses `app/page.tsx` and `app/globals.css`. GitHub Actions uses Node 22/pnpm to build `pages-dist` and publish GitHub Pages on every `main` push; `public/CNAME` defines the domain.
 - The public source contains a pending, uncommitted chat-widget change. It has not been pushed or deployed. The workflow and domain were not changed. Root requires Node >=22.13; host Node 18.19.1 was not upgraded.
 - A live HTTPS check found the expected title, brand, and contact email in the deployed bundle. The pending `Ask Netherwood` widget text is not present, confirming that unverified dynamic work was excluded from this deployment.
@@ -30,6 +30,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 - Committed and pushed SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, ordered migration ledger, 13-table initial `web` schema, five enforced retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
 - `backend/scripts/setup-sql-server.sh` refuses `sa`, validates the local endpoint, requires an exact apply confirmation, keeps both credentials out of command arguments, and performs separate administrator and runtime-login verification.
+- A new `ndp_web_app` runtime password was generated without display and stored with the SQL connection settings in ignored, untracked `backend/.env.local` at mode `0600`. The existing OpenAI key was preserved. The server login does not exist yet because the authorized setup principal remains unavailable.
 - The migration covers Visitors, VisitorSessions, PageViews, ChatSessions, ChatMessages, Contacts, Leads, BlogPosts, BlogImages, ApplicationConfiguration, DataRetentionPolicies, AuditLog, and SchemaMigrations with UTC timestamps, keys, constraints, and indexes.
 - The live read-only SQL preflight has **not** run because no authorized non-`sa` setup credential is available in the process environment. Consequently the instance-reported DATA/LOG defaults and whether `NDP_Web` already exists remain unverified, and no database, login, user, or server configuration was created or changed.
 
@@ -37,7 +38,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 1. Host Node is old: use the container, preserve host packages.
 2. SQL listens broadly: perform authorized firewall/reachability review; remediation requires approval.
-3. SQL setup access and protected mount free space/permissions are unavailable. Supply an authorized non-`sa` setup principal, run the documented read-only preflight, and review its output before setting the explicit apply confirmation. Never guess credentials or create `NDP_Web` before the preflight passes.
+3. The runtime credential is prepared, but SQL setup access and protected mount free space/permissions are unavailable. Supply an authorized non-`sa` setup principal, run the documented read-only preflight, and review its output before setting the explicit apply confirmation. Never guess credentials or create `NDP_Web` before the preflight passes.
 4. The OpenAI-backed chat increment is paused until the operator chooses whether to reuse the detected ignored `OPENAI_API_KEY` or create a new key. Do not make a paid request or deploy the widget before that decision and local verification.
 5. Do not expose Voyager publicly until local chat protections, database behavior, backend-down behavior, and network controls are verified.
 
@@ -54,7 +55,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 - `shellcheck`, `bash -n`, and `git diff --check` pass for the setup increment.
 - Inert-command gate tests verified successful preflight/apply control flow and verified refusal of `sa`, an invalid port, a short runtime password, and an incorrect apply confirmation. These tests do not claim live T-SQL execution.
 - The migration inventory contains all 13 expected tables; placeholder/secret review found no key or password value in the SQL scripts or documentation.
-- `backend/.env.local` remains ignored and untracked. Its secret values were not printed or used.
+- `backend/.env.local` remains ignored, untracked, and owner-only. It now contains the preserved OpenAI key plus the generated `ndp_web_app` connection settings; secret values were not printed.
 - The complete workflow was then tested against an isolated Microsoft SQL Server 2025 CU8 container reporting the same `17.0.4075.5` engine build as the installed host package. The container published only `127.0.0.1:11433`, stored all SQL files on a 2 GB tmpfs, and used no bind mount or Docker volume.
 - The live test proved new-database creation at `/var/opt/mssql/data/NDP_Web.mdf` and `/var/opt/mssql/logdata/NDP_Web_log.ldf`, all 13 tables, five retention policies, the migration ledger, dedicated login/role, a second idempotent apply, and standalone verification.
 - Runtime inserts across visitor, session, page-view, chat, contact, lead, and audit tables succeeded inside a transaction and were rolled back. Actual reads of blog/configuration data and a visitor delete were denied as required.
