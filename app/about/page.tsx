@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+
 import type { Metadata } from "next";
-import Link from "next/link";
 import ChatWidget from "../ChatWidget";
 import { Portrait } from "../components/Portrait";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
@@ -64,7 +65,7 @@ export default function AboutPage() {
               I founded Netherwood Data Partners to bring that experience directly to businesses that need practical help with their data without adding another layer of enterprise complexity.
             </p>
           </div>
-          <Link className="button button-primary" href="/#contact">Work With Me</Link>
+          <a className="button button-primary" href="/#contact">Work With Me</a>
         </div>
         <Portrait />
       </section>

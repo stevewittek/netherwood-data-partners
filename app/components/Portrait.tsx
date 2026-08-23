@@ -1,7 +1,8 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useState } from "react";
-import Image from "next/image";
 
 export function Portrait() {
   const [hasPortrait, setHasPortrait] = useState(true);
@@ -9,11 +10,9 @@ export function Portrait() {
   return (
     <div className={`portrait-frame${hasPortrait ? "" : " portrait-frame-empty"}`}>
       {hasPortrait ? (
-        <Image
+        <img
           src="/images/steven-wittek.jpg"
           alt="Steven Wittek, founder of Netherwood Data Partners"
-          fill
-          sizes="(max-width: 900px) 100vw, 40vw"
           onError={() => setHasPortrait(false)}
         />
       ) : (

@@ -4,6 +4,10 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## Repository and publishing
 
+- The public site now includes a dedicated `/about` biography page for Steven
+  Wittek, a shared primary navigation and footer, and a temporary founder image
+  at `public/images/steven-wittek.jpg`. The static Pages build emits
+  `pages-dist/about/index.html`, while the Vinext build exposes `/about`.
 - Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`.
   Local `main` was rebased onto `origin/main` commit `620d444` before this work
   and the complete reviewed Voyager/RAG increment through `2f8b09b` was pushed

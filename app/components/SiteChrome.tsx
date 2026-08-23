@@ -1,4 +1,4 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
 
 type SiteHeaderProps = {
   currentPage?: "home" | "about";
@@ -7,16 +7,16 @@ type SiteHeaderProps = {
 export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
   return (
     <header className="site-header">
-      <Link className="brand" href="/" aria-label="Netherwood Data Partners home">
+      <a className="brand" href="/" aria-label="Netherwood Data Partners home">
         <span className="brand-mark" aria-hidden="true">N</span>
         <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
-      </Link>
+      </a>
       <nav aria-label="Primary navigation">
-        <Link className="nav-about" href="/about" aria-current={currentPage === "about" ? "page" : undefined}>About</Link>
-        <Link href="/#services">Services</Link>
-        <Link href="/#insights">Insights</Link>
-        <Link href="/#approach">Approach</Link>
-        <Link className="nav-cta" href="/#contact">Start a conversation</Link>
+        <a className="nav-about" href="/about" aria-current={currentPage === "about" ? "page" : undefined}>About</a>
+        <a href="/#services">Services</a>
+        <a href="/#insights">Insights</a>
+        <a href="/#approach">Approach</a>
+        <a className="nav-cta" href="/#contact">Start a conversation</a>
       </nav>
     </header>
   );
@@ -25,10 +25,10 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
 export function SiteFooter() {
   return (
     <footer>
-      <Link className="brand footer-brand" href="/" aria-label="Netherwood Data Partners home">
+      <a className="brand footer-brand" href="/" aria-label="Netherwood Data Partners home">
         <span className="brand-mark" aria-hidden="true">N</span>
         <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
-      </Link>
+      </a>
       <p>Database engineering, performance & data services.</p>
       <p>© {new Date().getFullYear()} Netherwood Data Partners</p>
     </footer>
