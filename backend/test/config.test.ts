@@ -51,4 +51,26 @@ test("rejects partial or invalid configuration", () => {
   assert.throws(() => loadConfig({ CHAT_MAX_CONCURRENT: "0" }), /CHAT_MAX_CONCURRENT/);
   assert.throws(() => loadConfig({ CHAT_BUSY_RETRY_AFTER_SECONDS: "3601" }), /CHAT_BUSY_RETRY_AFTER_SECONDS/);
   assert.throws(() => loadConfig({ AI_PROVIDER: "github" }), /AI_PROVIDER/);
+  assert.throws(() => loadConfig({ ARTICLE_ADMIN_TOKEN: "too-short" }), /ARTICLE_ADMIN_TOKEN/);
+  assert.throws(() => loadConfig({
+    SQL_SERVER_HOST: "db.example",
+    SQL_SERVER_DATABASE: "NDP_Web",
+    SQL_SERVER_USER: "ndp_web_app",
+    SQL_SERVER_PASSWORD: "runtime-secret",
+    ARTICLE_ADMIN_TOKEN: "a".repeat(32),
+  }), /article-author configuration/);
+});
+
+test("loads article authoring only when both security layers are configured", () => {
+  const config = loadConfig({
+    SQL_SERVER_HOST: "db.example",
+    SQL_SERVER_DATABASE: "NDP_Web",
+    SQL_SERVER_USER: "ndp_web_app",
+    SQL_SERVER_PASSWORD: "runtime-secret",
+    SQL_ARTICLE_USER: "ndp_article_author",
+    SQL_ARTICLE_PASSWORD: "article-secret",
+    ARTICLE_ADMIN_TOKEN: "a".repeat(32),
+  });
+  assert.equal(config.articleSql?.user, "ndp_article_author");
+  assert.equal(config.articleAdminToken, "a".repeat(32));
 });

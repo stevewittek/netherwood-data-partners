@@ -104,6 +104,15 @@ run_runtime_sql() {
     -i "$SQL_DIR/verify_runtime_login.sql"
 }
 
+run_article_sql() {
+  SQLCMDPASSWORD="$NDP_ARTICLE_SQL_PASSWORD" "$SQLCMD_BIN" \
+    -S "tcp:${SQL_HOST},${SQL_PORT}" \
+    -U ndp_article_author \
+    -d NDP_Web \
+    -N -C -b -V 16 -l 15 -t 60 \
+    -i "$SQL_DIR/verify_article_login.sql"
+}
+
 run_sql "$SQL_DIR/preflight.sql"
 
 if [[ "$MODE" == "preflight" ]]; then
@@ -149,6 +158,20 @@ export AppPasswordHex="$app_password_hex"
 run_sql "$SQL_DIR/provision_app_login.sql"
 unset AppPasswordHex app_password_hex
 
+NDP_ARTICLE_SQL_PASSWORD="${NDP_ARTICLE_SQL_PASSWORD:-$(awk -F= '$1 == "SQL_ARTICLE_PASSWORD" { print substr($0, index($0, "=") + 1); exit }' "$RUNTIME_ENV_FILE")}"
+if [[ -n "$NDP_ARTICLE_SQL_PASSWORD" ]]; then
+  if (( ${#NDP_ARTICLE_SQL_PASSWORD} < 24 || ${#NDP_ARTICLE_SQL_PASSWORD} > 128 )); then
+    printf '%s\n' 'SQL_ARTICLE_PASSWORD must contain 24 to 128 characters.' >&2
+    exit 1
+  fi
+  article_password_hex="$(printf '%s' "$NDP_ARTICLE_SQL_PASSWORD" | iconv -f UTF-8 -t UTF-16LE | od -An -v -tx1 | tr -d ' \n')"
+  export ArticlePasswordHex="$article_password_hex"
+  run_sql "$SQL_DIR/provision_article_login.sql"
+  unset ArticlePasswordHex article_password_hex
+fi
+
 run_sql "$SQL_DIR/verify_database.sql"
 run_runtime_sql
+if [[ -n "$NDP_ARTICLE_SQL_PASSWORD" ]]; then run_article_sql; fi
+unset NDP_ARTICLE_SQL_PASSWORD
 printf '%s\n' 'NDP_Web schema and the least-privileged ndp_web_app login are verified.'

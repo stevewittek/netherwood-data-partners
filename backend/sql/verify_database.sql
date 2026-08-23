@@ -37,6 +37,14 @@ IF NOT EXISTS
 )
     THROW 51000, 'The knowledge location index hardening migration is not recorded.', 1;
 
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '005_articles_cms'
+)
+    THROW 51000, 'The articles CMS migration is not recorded.', 1;
+
 IF OBJECT_ID(N'web.PurgeExpiredData', N'P') IS NULL
     THROW 51000, 'The retention maintenance procedure is missing.', 1;
 
@@ -47,6 +55,7 @@ DECLARE @ExpectedTables table (TableName sysname PRIMARY KEY);
 INSERT @ExpectedTables(TableName)
 VALUES
     (N'ApplicationConfiguration'),
+    (N'ArticleDrafts'),
     (N'AuditLog'),
     (N'BlogImages'),
     (N'BlogPosts'),
@@ -87,10 +96,18 @@ IF NOT EXISTS
 DECLARE @ExpectedProcedures table (ProcedureName sysname PRIMARY KEY);
 INSERT @ExpectedProcedures(ProcedureName)
 VALUES
+    (N'ArchiveArticle'),
+    (N'GetAdminArticle'),
     (N'GetApprovedStructuredContent'),
+    (N'GetPublishedArticle'),
     (N'HideKnowledgeSource'),
+    (N'ListAdminArticles'),
     (N'ListIndexedKnowledgeSources'),
+    (N'ListPublishedArticleKnowledge'),
+    (N'ListPublishedArticles'),
+    (N'PublishArticle'),
     (N'ReplaceKnowledgeSource'),
+    (N'SaveArticleDraft'),
     (N'SearchChatbotKnowledge');
 
 IF EXISTS
@@ -113,6 +130,9 @@ IF NOT EXISTS
       AND role.name = N'web_runtime'
 )
     THROW 51000, 'ndp_web_app is not a member of web_runtime.', 1;
+
+IF DATABASE_PRINCIPAL_ID(N'web_article_author') IS NULL
+    THROW 51000, 'The article author role is missing.', 1;
 
 SELECT
     N'database_verified' AS VerificationStatus,

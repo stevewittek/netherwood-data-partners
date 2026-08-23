@@ -23,6 +23,9 @@ IF ISNULL(HAS_PERMS_BY_NAME(N'web.Visitors', N'OBJECT', N'SELECT'), 0) <> 1
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.GetApprovedStructuredContent', N'OBJECT', N'EXECUTE'), 0) <> 1
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.ReplaceKnowledgeSource', N'OBJECT', N'EXECUTE'), 0) <> 1
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.HideKnowledgeSource', N'OBJECT', N'EXECUTE'), 0) <> 1
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.ListPublishedArticles', N'OBJECT', N'EXECUTE'), 0) <> 1
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.GetPublishedArticle', N'OBJECT', N'EXECUTE'), 0) <> 1
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.ListPublishedArticleKnowledge', N'OBJECT', N'EXECUTE'), 0) <> 1
     THROW 51000, 'ndp_web_app lacks a required runtime permission.', 1;
 
 IF ISNULL(HAS_PERMS_BY_NAME(N'web.Visitors', N'OBJECT', N'DELETE'), 0) <> 0

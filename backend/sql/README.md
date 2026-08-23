@@ -70,9 +70,34 @@ silently undo a deliberate switch to `FULL` recovery.
 
 The runtime login is a member only of `web_runtime`. It can read/write the
 operational visitor, chat, contact, and lead tables needed by the API. It cannot
-delete records or access blog authoring, configuration, retention policy, or
-migration data. Blog authoring will receive a separate identity in a later
-phase.
+delete records or directly access article authoring, configuration, retention
+policy, or migration data. Migration `005` grants only fixed public article
+read procedures. Article authoring uses the separate `ndp_article_author`
+identity and `web_article_author` procedure-only role described in
+[`docs/ARTICLES_CMS.md`](../../docs/ARTICLES_CMS.md).
+
+## Articles CMS
+
+Migration `005_articles_cms.sql` extends the reserved `web.BlogPosts` model and
+adds `web.ArticleDrafts`. It provides draft/published/archived workflow,
+category and JSON tags, author, featured image, sanitized HTML, searchable
+plain text, UTC dates, a unique slug boundary, a filtered publication index,
+public metadata/detail procedures, authoring procedures, and a bounded future
+knowledge-export procedure. Published rows remain unchanged while an edit is
+saved in `ArticleDrafts`; publish promotes the draft atomically.
+
+Create authoring credentials only after making the operator credential
+decision:
+
+```bash
+backend/scripts/create-article-author-credentials.sh
+```
+
+The normal gated `apply` workflow detects `SQL_ARTICLE_PASSWORD` in the ignored
+local environment, provisions `ndp_article_author`, and verifies that it can
+execute only the article procedures and cannot directly read or modify either
+content table. If article credentials are absent, the schema and public reads
+can still be applied, but Voyager's admin routes remain disabled.
 
 ## Chatbot knowledge store
 
@@ -142,10 +167,12 @@ backend/scripts/setup-sql-server.sh verify
 - `preflight.sql` proves server defaults, permissions, and existing file paths.
 - `create_database.sql` creates only the named database and fixes safe baseline
   database options.
-- `migrations/` contains ordered, idempotent schema and retention migrations;
+- `migrations/` contains ordered, idempotent schema, article, and retention migrations;
   the setup wrapper runs them in filename order.
 - `provision_app_login.sql` creates the dedicated login and explicit grants.
 - `verify_database.sql` checks the migration, required tables, retention rules,
   and runtime role membership.
 - `verify_runtime_login.sql` connects as the application identity and proves
   required grants and prohibited permissions.
+- `provision_article_login.sql` and `verify_article_login.sql` establish and
+  prove the separate procedure-only authoring identity when explicitly enabled.

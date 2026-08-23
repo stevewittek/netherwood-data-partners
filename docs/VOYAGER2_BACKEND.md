@@ -23,7 +23,9 @@ On Voyager 2, Compose uses host networking only to reach the on-host SQL Server.
 3. Add server-side AI, controlled prompts, persistence, voluntary lead capture, and privacy-compatible first-party telemetry using random IDs and short-lived/keyed-hash IP abuse signals.
 4. Add static-site widget and verify backend-down behavior.
 5. Review protections; separately authorize tunnel/DNS/network changes.
-6. Later add authenticated rich content/image authoring and export published articles into the static workflow.
+6. Articles CMS v1 adds authenticated HTML authoring, published reads, and a
+   static snapshot export. Public Voyager exposure and automated export/deploy
+   remain separately gated.
 
 The dedicated ext4 mounts are intended for DATA and LOG, but capacity, access, SQL configuration, and existing files must be authorized and verified before database creation. Routine work must not alter disks, filesystems, mounts, or existing database files.
 
