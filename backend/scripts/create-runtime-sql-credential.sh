@@ -45,7 +45,7 @@ if [[ -s "$temporary_file" ]]; then
 fi
 
 printf '%s\n' \
-  'SQL_SERVER_HOST=host.docker.internal' \
+  'SQL_SERVER_HOST=localhost' \
   'SQL_SERVER_PORT=1433' \
   'SQL_SERVER_DATABASE=NDP_Web' \
   'SQL_SERVER_USER=ndp_web_app' \

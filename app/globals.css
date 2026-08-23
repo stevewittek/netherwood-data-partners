@@ -704,3 +704,19 @@ footer p:last-child {
   outline: 3px solid rgba(71, 105, 88, 0.9);
   outline-offset: 3px;
 }
+
+.chat-widget { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 20; }
+.chat-toggle { border: 0; border-radius: 999px; padding: .85rem 1.15rem; background: var(--ink); color: white; font: inherit; font-weight: 700; box-shadow: 0 8px 30px #0003; cursor: pointer; }
+.chat-toggle:focus-visible, .chat-panel textarea:focus-visible, .chat-panel button:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.chat-panel { position: absolute; right: 0; bottom: 3.75rem; width: min(22rem, calc(100vw - 2rem)); padding: 1rem; border: 1px solid #d6ddd9; border-radius: 1rem; background: white; color: var(--ink); box-shadow: 0 14px 45px #0003; }
+.chat-panel p { font-size: .9rem; line-height: 1.5; }
+.chat-panel label { display: block; margin: .75rem 0 .3rem; font-size: .85rem; font-weight: 700; }
+.chat-panel textarea { width: 100%; min-height: 6rem; padding: .65rem; border: 1px solid #9caaa5; border-radius: .5rem; font: inherit; resize: vertical; }
+.chat-panel button.button { margin-top: .65rem; border: 0; cursor: pointer; }
+.chat-panel button:disabled, .chat-panel textarea:disabled { cursor: wait; opacity: .65; }
+.chat-reply { max-height: 12rem; overflow: auto; padding: .7rem; border-radius: .5rem; background: #f1f5f3; font-size: .9rem; line-height: 1.5; white-space: pre-wrap; }
+.chat-notice { margin: .85rem 0 0; color: var(--ink-soft); font-size: .72rem !important; }
+
+@media (max-width: 600px) {
+  .chat-widget { right: 1rem; bottom: 1rem; }
+}

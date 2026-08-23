@@ -1,4 +1,4 @@
-import { ChatWidget } from "./components/ChatWidget";
+import ChatWidget from "./ChatWidget";
 
 const services = [
   {
@@ -216,8 +216,6 @@ export default function Home() {
         </div>
       </section>
 
-      <ChatWidget />
-
       <footer>
         <a className="brand footer-brand" href="#top">
           <span className="brand-mark" aria-hidden="true">N</span>
@@ -226,6 +224,7 @@ export default function Home() {
         <p>Database engineering, performance & data services.</p>
         <p>© {new Date().getFullYear()} Netherwood Data Partners</p>
       </footer>
+      <ChatWidget />
     </main>
   );
 }

@@ -97,7 +97,7 @@ Copy only the placeholder structure from `backend/.env.example` into the
 already ignored `backend/.env.local` and set:
 
 ```dotenv
-SQL_SERVER_HOST=host.docker.internal
+SQL_SERVER_HOST=localhost
 SQL_SERVER_PORT=1433
 SQL_SERVER_DATABASE=NDP_Web
 SQL_SERVER_USER=ndp_web_app

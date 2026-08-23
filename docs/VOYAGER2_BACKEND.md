@@ -12,7 +12,9 @@ The browser uses timeouts and non-blocking fallback. No render/build depends on 
 
 Use pinned Node 22 rather than changing host Node. Local Docker ports bind to `127.0.0.1`; router forwarding is prohibited. A reviewed outbound tunnel requires separate approval after local security/function verification.
 
-`GET /health` returns minimal process readiness without leaking dependencies. Future writes require bounded validated schemas, parameterized SQL, restricted origins, rate controls, safe errors/logs, timeouts, and documented retention.
+`GET /health` returns minimal process readiness without leaking dependencies. The current pending API increment applies bounded validated schemas, parameterized SQL, restricted origins, rate controls, safe errors/logs, timeouts, and documented retention to chat, page-view, and voluntary lead writes.
+
+On Voyager 2, Compose uses host networking only to reach the on-host SQL Server. The API process binds to `127.0.0.1`, publishes no Docker port, runs as the unprivileged Node user with all Linux capabilities dropped, and uses a read-only root filesystem. Do not change `HOST` to a wildcard address. Public access still requires a separately reviewed outbound tunnel; router port forwarding remains prohibited.
 
 ## Phases
 
