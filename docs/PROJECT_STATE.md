@@ -30,7 +30,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 - Committed and pushed SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, ordered migration ledger, 13-table initial `web` schema, five enforced retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
 - `backend/scripts/setup-sql-server.sh` refuses `sa`, validates the local endpoint, requires an exact apply confirmation, keeps both credentials out of command arguments, and performs separate administrator and runtime-login verification.
-- A new `ndp_web_app` runtime password was generated without display and stored with the SQL connection settings in ignored, untracked `backend/.env.local` at mode `0600`. The existing OpenAI key was preserved. The server login does not exist yet because the authorized setup principal remains unavailable.
+- A new `ndp_web_app` runtime password was generated without display and stored with the SQL connection settings in ignored, untracked `backend/.env.local` at mode `0600`. The existing OpenAI key was preserved. The operator reports that a dedicated setup login now exists; its credential has not yet been captured locally, so no host SQL connection or database change has occurred.
 - The migration covers Visitors, VisitorSessions, PageViews, ChatSessions, ChatMessages, Contacts, Leads, BlogPosts, BlogImages, ApplicationConfiguration, DataRetentionPolicies, AuditLog, and SchemaMigrations with UTC timestamps, keys, constraints, and indexes.
 - The live read-only SQL preflight has **not** run because no authorized non-`sa` setup credential is available in the process environment. Consequently the instance-reported DATA/LOG defaults and whether `NDP_Web` already exists remain unverified, and no database, login, user, or server configuration was created or changed.
 
@@ -38,7 +38,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 1. Host Node is old: use the container, preserve host packages.
 2. SQL listens broadly: perform authorized firewall/reachability review; remediation requires approval.
-3. The runtime credential is prepared, but SQL setup access and protected mount free space/permissions are unavailable. Supply an authorized non-`sa` setup principal, run the documented read-only preflight, and review its output before setting the explicit apply confirmation. Never guess credentials or create `NDP_Web` before the preflight passes.
+3. The runtime credential and setup login are prepared, but the setup password still needs to be captured through the owner-only ignored helper. Then run the documented read-only preflight and review its output before setting the explicit apply confirmation. Never guess credentials or create `NDP_Web` before the preflight passes.
 4. The OpenAI-backed chat increment is paused until the operator chooses whether to reuse the detected ignored `OPENAI_API_KEY` or create a new key. Do not make a paid request or deploy the widget before that decision and local verification.
 5. Do not expose Voyager publicly until local chat protections, database behavior, backend-down behavior, and network controls are verified.
 

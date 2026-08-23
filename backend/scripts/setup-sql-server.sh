@@ -9,6 +9,8 @@ readonly SQLCMD_BIN="${SQLCMD_BIN:-/opt/mssql-tools18/bin/sqlcmd}"
 readonly SQL_HOST="${NDP_SQL_ADMIN_HOST:-127.0.0.1}"
 readonly SQL_PORT="${NDP_SQL_ADMIN_PORT:-1433}"
 readonly MODE="${1:-preflight}"
+readonly SETUP_CREDENTIAL_FILE="${NDP_SQL_SETUP_CREDENTIAL_FILE:-${SCRIPT_DIR}/../.env.sql-setup}"
+readonly RUNTIME_ENV_FILE="${SCRIPT_DIR}/../.env.local"
 
 usage() {
   printf '%s\n' \
@@ -38,8 +40,40 @@ if [[ ! -x "$SQLCMD_BIN" ]]; then
   exit 1
 fi
 
-: "${NDP_SQL_ADMIN_USER:?Set NDP_SQL_ADMIN_USER to the authorized one-time setup principal.}"
-: "${NDP_SQL_ADMIN_PASSWORD:?Set NDP_SQL_ADMIN_PASSWORD without writing it to a repository file.}"
+read_encoded_credential() {
+  local key="$1"
+  local encoded
+  encoded="$(awk -F= -v key="$key" '$1 == key { print substr($0, index($0, "=") + 1); exit }' "$SETUP_CREDENTIAL_FILE")"
+  [[ -n "$encoded" && "$encoded" =~ ^[A-Za-z0-9+/]+={0,2}$ ]] || return 1
+  printf '%s' "$encoded" | base64 --decode
+}
+
+validate_secret_file() {
+  local path="$1"
+  local mode
+  if [[ -L "$path" || ! -f "$path" ]]; then
+    printf 'Credential file is missing or is a symlink: %s\n' "$path" >&2
+    return 1
+  fi
+  mode="$(stat -c '%a' "$path")"
+  if [[ ! "$mode" =~ ^[0-7]{3,4}$ ]] || (( (8#$mode & 8#077) != 0 )); then
+    printf 'Credential file must not be accessible by group or other users: %s\n' "$path" >&2
+    return 1
+  fi
+  if [[ "$(stat -c '%u' "$path")" != "$(id -u)" ]]; then
+    printf 'Credential file must be owned by the current user: %s\n' "$path" >&2
+    return 1
+  fi
+}
+
+if [[ -z "${NDP_SQL_ADMIN_USER:-}" || -z "${NDP_SQL_ADMIN_PASSWORD:-}" ]]; then
+  validate_secret_file "$SETUP_CREDENTIAL_FILE"
+  NDP_SQL_ADMIN_USER="$(read_encoded_credential NDP_SQL_ADMIN_USER_BASE64)"
+  NDP_SQL_ADMIN_PASSWORD="$(read_encoded_credential NDP_SQL_ADMIN_PASSWORD_BASE64)"
+fi
+
+: "${NDP_SQL_ADMIN_USER:?SQL setup user is missing.}"
+: "${NDP_SQL_ADMIN_PASSWORD:?SQL setup password is missing.}"
 
 if [[ "${NDP_SQL_ADMIN_USER,,}" == "sa" ]]; then
   printf '%s\n' 'Refusing to use sa. Supply a separately authorized one-time setup principal.' >&2
@@ -82,7 +116,12 @@ if [[ "$MODE" == "verify" ]]; then
   exit 0
 fi
 
-: "${NDP_APP_SQL_PASSWORD:?Set NDP_APP_SQL_PASSWORD for the dedicated ndp_web_app login.}"
+if [[ -z "${NDP_APP_SQL_PASSWORD:-}" ]]; then
+  validate_secret_file "$RUNTIME_ENV_FILE"
+  NDP_APP_SQL_PASSWORD="$(awk -F= '$1 == "SQL_SERVER_PASSWORD" { print substr($0, index($0, "=") + 1); exit }' "$RUNTIME_ENV_FILE")"
+fi
+
+: "${NDP_APP_SQL_PASSWORD:?Store the ndp_web_app password in backend/.env.local first.}"
 
 if [[ "${NDP_SQL_APPLY_CONFIRM:-}" != "NDP_Web" ]]; then
   printf '%s\n' 'Refusing to apply. Set NDP_SQL_APPLY_CONFIRM=NDP_Web after reviewing the preflight output.' >&2

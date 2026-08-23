@@ -22,12 +22,15 @@ principal with the two reported server permissions. Do not use the future
 From the repository root:
 
 ```bash
-read -r -p "Authorized SQL setup user: " NDP_SQL_ADMIN_USER
-read -r -s -p "SQL setup password: " NDP_SQL_ADMIN_PASSWORD; echo
-export NDP_SQL_ADMIN_USER NDP_SQL_ADMIN_PASSWORD
-
+backend/scripts/capture-sql-setup-credential.sh
 backend/scripts/setup-sql-server.sh preflight
 ```
+
+The capture helper prompts through the local terminal, stores base64-encoded
+credential fields in ignored `backend/.env.sql-setup` at mode `0600`, and never
+prints the password. Base64 is only a safe file format here, not encryption;
+owner-only permissions and Git exclusion provide the protection. Delete the
+temporary setup file after provisioning and disabling the setup login.
 
 The command connects only to `127.0.0.1:1433` by default. Override
 `NDP_SQL_ADMIN_HOST` or `NDP_SQL_ADMIN_PORT` only for an already approved local
@@ -53,8 +56,6 @@ sets owner-only file permissions, and refuses to rotate an existing password.
 It prepares the credential but does not create the SQL login by itself.
 
 ```bash
-read -r -s -p "New ndp_web_app password: " NDP_APP_SQL_PASSWORD; echo
-export NDP_APP_SQL_PASSWORD
 export NDP_SQL_APPLY_CONFIRM=NDP_Web
 
 backend/scripts/setup-sql-server.sh apply
@@ -107,7 +108,7 @@ Never put the setup principal, `sa`, or a plaintext password in a committed
 file. Unset the temporary shell variables after setup:
 
 ```bash
-unset NDP_SQL_ADMIN_USER NDP_SQL_ADMIN_PASSWORD NDP_APP_SQL_PASSWORD NDP_SQL_APPLY_CONFIRM
+unset NDP_SQL_APPLY_CONFIRM
 ```
 
 Re-run the non-destructive verification with the authorized setup principal:
