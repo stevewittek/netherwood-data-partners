@@ -87,6 +87,13 @@ nav a:focus-visible {
   color: var(--ink);
 }
 
+nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+}
+
 .nav-cta {
   border: 1px solid var(--ink);
   border-radius: 999px;
@@ -580,7 +587,7 @@ footer p:last-child {
 }
 
 @media (max-width: 980px) {
-  nav > a:not(.nav-cta) { display: none; }
+  nav > a:not(.nav-cta):not(.nav-about) { display: none; }
 
   .hero {
     grid-template-columns: 1fr;
