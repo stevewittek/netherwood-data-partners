@@ -6,14 +6,18 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 - Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`.
   Local `main` was rebased onto `origin/main` commit `620d444` before this work
-  and contains unpublished Voyager work through local RAG commit `8b67d96`, in
-  addition to the current citation/concurrency increment. None of it has been
-  pushed or deployed.
+  and the complete reviewed Voyager/RAG increment through `2f8b09b` was pushed
+  to `origin/main` on 2026-08-23. GitHub Pages workflow run `32645940189`
+  completed successfully for that commit.
 - GitHub Pages remains a static build. `pages-site/` reuses the public app and
   `.github/workflows/deploy-pages.yml` publishes `pages-dist`. The optional chat
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
   time, so Pages does not depend on Voyager, SQL Server, Docker, Ollama, or home
   Internet.
+- The live domain returned HTTP 200 after the deployment with a
+  `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
+  public HTML does not contain the chat widget because the GitHub
+  `VOYAGER_API_URL` variable remains unset. Voyager and Ollama were not exposed.
 - Host Node remains 18.19.1 and was not changed. Development and verification
   use pinned Node 22.13.1 containers.
 
@@ -130,8 +134,9 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   secret scan found no API token or password; the ignored local environment
   files remain owner-only at mode `0600`. Container inspection reconfirmed
   loopback host networking, read-only roots, all capabilities dropped,
-  `no-new-privileges`, and automatic restart policies. The completed work is
-  ready for its required local commit and has not been pushed.
+  `no-new-privileges`, and automatic restart policies. All checks passed before
+  deployment. No secret, credential, public tunnel, router, firewall, or DNS
+  setting was added by the deployment.
 
 ## Before connecting the public website
 
