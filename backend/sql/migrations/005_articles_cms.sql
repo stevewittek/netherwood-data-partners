@@ -15,61 +15,64 @@ IF NOT EXISTS (SELECT 1 FROM web.SchemaMigrations WHERE MigrationId = '005_artic
 BEGIN
     BEGIN TRANSACTION;
 
-    ALTER TABLE web.BlogPosts ADD
-        Category nvarchar(100) NOT NULL
-            CONSTRAINT DF_BlogPosts_Category DEFAULT N'General' WITH VALUES,
-        TagsJson nvarchar(2000) NOT NULL
-            CONSTRAINT DF_BlogPosts_TagsJson DEFAULT N'[]' WITH VALUES,
-        Author nvarchar(200) NOT NULL
-            CONSTRAINT DF_BlogPosts_Author DEFAULT N'Steven Wittek' WITH VALUES,
-        FeaturedImage nvarchar(2048) NULL,
-        PlainText nvarchar(max) NULL,
-        ContentType varchar(30) NOT NULL
-            CONSTRAINT DF_BlogPosts_ContentType DEFAULT 'article' WITH VALUES;
+    IF COL_LENGTH(N'web.BlogPosts', N'Category') IS NULL
+        EXEC(N'ALTER TABLE web.BlogPosts ADD
+            Category nvarchar(100) NOT NULL CONSTRAINT DF_BlogPosts_Category DEFAULT N''General'' WITH VALUES,
+            TagsJson nvarchar(2000) NOT NULL CONSTRAINT DF_BlogPosts_TagsJson DEFAULT N''[]'' WITH VALUES,
+            Author nvarchar(200) NOT NULL CONSTRAINT DF_BlogPosts_Author DEFAULT N''Steven Wittek'' WITH VALUES,
+            FeaturedImage nvarchar(2048) NULL,
+            PlainText nvarchar(max) NULL,
+            ContentType varchar(30) NOT NULL CONSTRAINT DF_BlogPosts_ContentType DEFAULT ''article'' WITH VALUES;');
 
-    ALTER TABLE web.BlogPosts ADD
-        CONSTRAINT CK_BlogPosts_Category CHECK (LEN(Category) > 0),
-        CONSTRAINT CK_BlogPosts_Author CHECK (LEN(Author) > 0),
-        CONSTRAINT CK_BlogPosts_TagsJson CHECK (ISJSON(TagsJson) = 1),
-        CONSTRAINT CK_BlogPosts_ContentType CHECK
-            (ContentType IN ('article', 'case-study', 'technical-guide', 'company-news', 'toolkit', 'service-announcement', 'knowledge-base'));
+    IF OBJECT_ID(N'web.CK_BlogPosts_Category', N'C') IS NULL
+        EXEC(N'ALTER TABLE web.BlogPosts ADD CONSTRAINT CK_BlogPosts_Category CHECK (LEN(Category) > 0);');
+    IF OBJECT_ID(N'web.CK_BlogPosts_Author', N'C') IS NULL
+        EXEC(N'ALTER TABLE web.BlogPosts ADD CONSTRAINT CK_BlogPosts_Author CHECK (LEN(Author) > 0);');
+    IF OBJECT_ID(N'web.CK_BlogPosts_TagsJson', N'C') IS NULL
+        EXEC(N'ALTER TABLE web.BlogPosts ADD CONSTRAINT CK_BlogPosts_TagsJson CHECK (ISJSON(TagsJson) = 1);');
+    IF OBJECT_ID(N'web.CK_BlogPosts_ContentType', N'C') IS NULL
+        EXEC(N'ALTER TABLE web.BlogPosts ADD CONSTRAINT CK_BlogPosts_ContentType CHECK
+            (ContentType IN (''article'', ''case-study'', ''technical-guide'', ''company-news'', ''toolkit'', ''service-announcement'', ''knowledge-base''));');
 
-    CREATE TABLE web.ArticleDrafts
-    (
-        ArticleId uniqueidentifier NOT NULL
-            CONSTRAINT PK_ArticleDrafts PRIMARY KEY,
-        Slug nvarchar(200) NOT NULL,
-        Title nvarchar(300) NOT NULL,
-        Summary nvarchar(1000) NOT NULL,
-        SanitizedHtml nvarchar(max) NOT NULL,
-        PlainText nvarchar(max) NOT NULL,
-        Category nvarchar(100) NOT NULL,
-        TagsJson nvarchar(2000) NOT NULL,
-        Author nvarchar(200) NOT NULL,
-        FeaturedImage nvarchar(2048) NULL,
-        CreatedAtUtc datetime2(3) NOT NULL,
-        ModifiedAtUtc datetime2(3) NOT NULL,
-        CONSTRAINT FK_ArticleDrafts_BlogPosts
-            FOREIGN KEY (ArticleId) REFERENCES web.BlogPosts(BlogPostId),
-        CONSTRAINT CK_ArticleDrafts_Slug
-            CHECK (LEN(Slug) > 0 AND Slug NOT LIKE N'%[^a-z0-9-]%'),
-        CONSTRAINT CK_ArticleDrafts_Title CHECK (LEN(Title) > 0),
-        CONSTRAINT CK_ArticleDrafts_Summary CHECK (LEN(Summary) > 0),
-        CONSTRAINT CK_ArticleDrafts_Html CHECK (LEN(SanitizedHtml) > 0),
-        CONSTRAINT CK_ArticleDrafts_PlainText CHECK (LEN(PlainText) > 0),
-        CONSTRAINT CK_ArticleDrafts_Category CHECK (LEN(Category) > 0),
-        CONSTRAINT CK_ArticleDrafts_Author CHECK (LEN(Author) > 0),
-        CONSTRAINT CK_ArticleDrafts_TagsJson CHECK (ISJSON(TagsJson) = 1),
-        CONSTRAINT CK_ArticleDrafts_ModifiedRange CHECK (ModifiedAtUtc >= CreatedAtUtc)
-    );
+    IF OBJECT_ID(N'web.ArticleDrafts', N'U') IS NULL
+    BEGIN
+        CREATE TABLE web.ArticleDrafts
+        (
+            ArticleId uniqueidentifier NOT NULL
+                CONSTRAINT PK_ArticleDrafts PRIMARY KEY,
+            Slug nvarchar(200) NOT NULL,
+            Title nvarchar(300) NOT NULL,
+            Summary nvarchar(1000) NOT NULL,
+            SanitizedHtml nvarchar(max) NOT NULL,
+            PlainText nvarchar(max) NOT NULL,
+            Category nvarchar(100) NOT NULL,
+            TagsJson nvarchar(2000) NOT NULL,
+            Author nvarchar(200) NOT NULL,
+            FeaturedImage nvarchar(2048) NULL,
+            CreatedAtUtc datetime2(3) NOT NULL,
+            ModifiedAtUtc datetime2(3) NOT NULL,
+            CONSTRAINT FK_ArticleDrafts_BlogPosts
+                FOREIGN KEY (ArticleId) REFERENCES web.BlogPosts(BlogPostId),
+            CONSTRAINT CK_ArticleDrafts_Slug
+                CHECK (LEN(Slug) > 0 AND Slug NOT LIKE N'%[^a-z0-9-]%'),
+            CONSTRAINT CK_ArticleDrafts_Title CHECK (LEN(Title) > 0),
+            CONSTRAINT CK_ArticleDrafts_Summary CHECK (LEN(Summary) > 0),
+            CONSTRAINT CK_ArticleDrafts_Html CHECK (LEN(SanitizedHtml) > 0),
+            CONSTRAINT CK_ArticleDrafts_PlainText CHECK (LEN(PlainText) > 0),
+            CONSTRAINT CK_ArticleDrafts_Category CHECK (LEN(Category) > 0),
+            CONSTRAINT CK_ArticleDrafts_Author CHECK (LEN(Author) > 0),
+            CONSTRAINT CK_ArticleDrafts_TagsJson CHECK (ISJSON(TagsJson) = 1),
+            CONSTRAINT CK_ArticleDrafts_ModifiedRange CHECK (ModifiedAtUtc >= CreatedAtUtc)
+        );
+        CREATE UNIQUE INDEX UX_ArticleDrafts_Slug ON web.ArticleDrafts(Slug);
+    END;
 
-    CREATE UNIQUE INDEX UX_ArticleDrafts_Slug ON web.ArticleDrafts(Slug);
-
-    DROP INDEX IX_BlogPosts_Status_PublishedAtUtc ON web.BlogPosts;
-    CREATE INDEX IX_BlogPosts_Status_PublishedAtUtc
+    IF EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N'web.BlogPosts') AND name = N'IX_BlogPosts_Status_PublishedAtUtc')
+        DROP INDEX IX_BlogPosts_Status_PublishedAtUtc ON web.BlogPosts;
+    EXEC(N'CREATE INDEX IX_BlogPosts_Status_PublishedAtUtc
         ON web.BlogPosts(Status, PublishedAtUtc DESC)
         INCLUDE (BlogPostId, Title, Slug, Summary, Category, Author, FeaturedImage, ModifiedAtUtc)
-        WHERE Status = 'published';
+        WHERE Status = ''published'';');
 
     INSERT web.SchemaMigrations(MigrationId) VALUES ('005_articles_cms');
     COMMIT TRANSACTION;
