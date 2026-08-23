@@ -1,6 +1,6 @@
 import sql from "mssql";
 import type { SqlConfig } from "./config.ts";
-import type { Article, ArticleAdminStore, ArticleInput, ArticleStatus, ArticleSummary } from "./articles.ts";
+import { sanitizeArticleHtml, type Article, type ArticleAdminStore, type ArticleInput, type ArticleStatus, type ArticleSummary } from "./articles.ts";
 
 export const ARTICLE_PROCEDURES = {
   listPublished: "web.ListPublishedArticles",
@@ -65,7 +65,7 @@ export function mapArticleSummary(row: Record<string, unknown>): ArticleSummary 
 export function mapArticle(row: Record<string, unknown>): Article {
   return {
     ...mapArticleSummary(row),
-    html: String(row.HtmlContent ?? ""),
+    html: sanitizeArticleHtml(String(row.HtmlContent ?? "")),
     plainText: String(row.PlainText ?? ""),
   };
 }
