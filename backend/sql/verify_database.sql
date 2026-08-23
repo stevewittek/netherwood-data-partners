@@ -13,6 +13,20 @@ IF NOT EXISTS
 )
     THROW 51000, 'The initial schema migration is not recorded.', 1;
 
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '002_retention_maintenance'
+)
+    THROW 51000, 'The retention maintenance migration is not recorded.', 1;
+
+IF OBJECT_ID(N'web.PurgeExpiredData', N'P') IS NULL
+    THROW 51000, 'The retention maintenance procedure is missing.', 1;
+
+IF DATABASE_PRINCIPAL_ID(N'web_maintenance') IS NULL
+    THROW 51000, 'The maintenance database role is missing.', 1;
+
 DECLARE @ExpectedTables table (TableName sysname PRIMARY KEY);
 INSERT @ExpectedTables(TableName)
 VALUES

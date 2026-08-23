@@ -62,6 +62,23 @@ delete records or access blog authoring, configuration, retention policy, or
 migration data. Blog authoring will receive a separate identity in a later
 phase.
 
+## Retention maintenance
+
+Ordered migrations install `web.PurgeExpiredData`, which applies the checked-in
+retention policies in batches of 1-10,000 rows. It clears expired keyed IP
+hashes and removes expired analytics, chats without retained leads, leads and
+orphaned contacts, and audit events in foreign-key-safe order.
+
+Only the database role `web_maintenance` receives execute permission; the
+runtime application role is explicitly denied. Setup does not create a
+maintenance login or schedule a job. Choose that operator identity and cadence
+only after backup/restore and monitoring procedures are approved. A maintenance
+session can run one bounded pass with:
+
+```sql
+EXEC web.PurgeExpiredData @AsOfUtc = NULL, @BatchSize = 1000;
+```
+
 ## 3. Configure the private API
 
 Copy only the placeholder structure from `backend/.env.example` into the
@@ -93,7 +110,8 @@ backend/scripts/setup-sql-server.sh verify
 - `preflight.sql` proves server defaults, permissions, and existing file paths.
 - `create_database.sql` creates only the named database and fixes safe baseline
   database options.
-- `migrations/` contains ordered, idempotent schema migrations.
+- `migrations/` contains ordered, idempotent schema and retention migrations;
+  the setup wrapper runs them in filename order.
 - `provision_app_login.sql` creates the dedicated login and explicit grants.
 - `verify_database.sql` checks the migration, required tables, retention rules,
   and runtime role membership.

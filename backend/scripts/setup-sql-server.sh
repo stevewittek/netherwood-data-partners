@@ -95,7 +95,15 @@ if (( ${#NDP_APP_SQL_PASSWORD} < 24 || ${#NDP_APP_SQL_PASSWORD} > 128 )); then
 fi
 
 run_sql "$SQL_DIR/create_database.sql"
-run_sql "$SQL_DIR/migrations/001_initial_schema.sql"
+
+migration_files=("$SQL_DIR"/migrations/[0-9][0-9][0-9]_*.sql)
+if [[ ! -e "${migration_files[0]}" ]]; then
+  printf '%s\n' 'No ordered SQL migrations were found.' >&2
+  exit 1
+fi
+for migration_file in "${migration_files[@]}"; do
+  run_sql "$migration_file"
+done
 
 app_password_hex="$(printf '%s' "$NDP_APP_SQL_PASSWORD" | iconv -f UTF-8 -t UTF-16LE | od -An -v -tx1 | tr -d ' \n')"
 export AppPasswordHex="$app_password_hex"

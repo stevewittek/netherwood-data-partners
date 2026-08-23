@@ -63,6 +63,7 @@ DENY SELECT, INSERT, UPDATE, DELETE ON web.DataRetentionPolicies TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.BlogPosts TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.BlogImages TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.SchemaMigrations TO web_runtime;
+DENY EXECUTE ON web.PurgeExpiredData TO web_runtime;
 GO
 
 SELECT

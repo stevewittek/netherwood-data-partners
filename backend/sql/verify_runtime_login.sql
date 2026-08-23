@@ -25,6 +25,7 @@ IF ISNULL(HAS_PERMS_BY_NAME(N'web.Visitors', N'OBJECT', N'DELETE'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.BlogPosts', N'OBJECT', N'SELECT'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.ApplicationConfiguration', N'OBJECT', N'SELECT'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.SchemaMigrations', N'OBJECT', N'SELECT'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.PurgeExpiredData', N'OBJECT', N'EXECUTE'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web', N'SCHEMA', N'ALTER'), 0) <> 0
     THROW 51000, 'ndp_web_app has a prohibited runtime permission.', 1;
 

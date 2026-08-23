@@ -4,7 +4,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## Repository and publishing
 
-- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. Local `main` contains three reviewed backend/SQL commits after `origin/main` at `fadd5b6`; `git pull --ff-only origin main` reported already up to date before the current edits.
+- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. Local `main` contains reviewed backend/SQL commits after `origin/main` at `fadd5b6`; `git pull --ff-only origin main` reported already up to date before the current edits.
 - The SQL setup and documentation are committed locally. A push was attempted and failed before upload because neither Git HTTPS credentials nor a GitHub CLI login is available on `voyager2`; the remote and live Pages deployment therefore remain unchanged.
 - `pages-site/` reuses `app/page.tsx` and `app/globals.css`. GitHub Actions uses Node 22/pnpm to build `pages-dist` and publish GitHub Pages on every `main` push; `public/CNAME` defines the domain.
 - The public source contains a pending, uncommitted chat-widget change. It has not been pushed or deployed. The workflow and domain were not changed. Root requires Node >=22.13; host Node 18.19.1 was not upgraded.
@@ -28,7 +28,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## SQL database preparation
 
-- Pending SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, migration ledger, 13-table initial `web` schema, five documented retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
+- Locally committed SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, ordered migration ledger, 13-table initial `web` schema, five enforced retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
 - `backend/scripts/setup-sql-server.sh` refuses `sa`, validates the local endpoint, requires an exact apply confirmation, keeps both credentials out of command arguments, and performs separate administrator and runtime-login verification.
 - The migration covers Visitors, VisitorSessions, PageViews, ChatSessions, ChatMessages, Contacts, Leads, BlogPosts, BlogImages, ApplicationConfiguration, DataRetentionPolicies, AuditLog, and SchemaMigrations with UTC timestamps, keys, constraints, and indexes.
 - The live read-only SQL preflight has **not** run because no authorized non-`sa` setup credential is available in the process environment. Consequently the instance-reported DATA/LOG defaults and whether `NDP_Web` already exists remain unverified, and no database, login, user, or server configuration was created or changed.
@@ -60,3 +60,4 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 - The live test proved new-database creation at `/var/opt/mssql/data/NDP_Web.mdf` and `/var/opt/mssql/logdata/NDP_Web_log.ldf`, all 13 tables, five retention policies, the migration ledger, dedicated login/role, a second idempotent apply, and standalone verification.
 - Runtime inserts across visitor, session, page-view, chat, contact, lead, and audit tables succeeded inside a transaction and were rolled back. Actual reads of blog/configuration data and a visitor delete were denied as required.
 - A deliberately added database file outside the approved directories caused preflight to fail. The test container and its tmpfs database were then removed; zero Docker volumes remain. This validates the scripts, not the untouched host SQL instance.
+- A second ordered migration adds the bounded `web.PurgeExpiredData` procedure and a login-free `web_maintenance` role. Live testing removed one complete expired visitor/session/page-view/chat/contact/lead/audit graph, reported one affected row in every category, and confirmed that `ndp_web_app` cannot execute maintenance. No maintenance credential or schedule was created.
