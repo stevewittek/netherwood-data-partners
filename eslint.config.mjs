@@ -35,6 +35,14 @@ const eslintConfig = defineConfig([
         version: "detect",
       },
     },
+    rules: {
+      // The production site is a Vite/GitHub Pages multi-page build. Full
+      // document links are required for its generated static routes.
+      "@next/next/no-html-link-for-pages": "off",
+      // Article images are remote/editor-managed and have no build-time
+      // dimensions or loader; the template still applies lazy loading.
+      "@next/next/no-img-element": "off",
+    },
   },
 ]);
 

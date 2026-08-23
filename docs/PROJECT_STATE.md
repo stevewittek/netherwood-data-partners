@@ -9,6 +9,10 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   and the complete reviewed Voyager/RAG increment through `2f8b09b` was pushed
   to `origin/main` on 2026-08-23. GitHub Pages workflow run `32645940189`
   completed successfully for that commit.
+- Local `main` now also contains the reviewed, unpushed Articles increment,
+  including backend commits `c741cc3`, `cc4bcf6`, and `da589f0`, the static
+  Articles UI, and this state update. Nothing from the Articles increment has
+  been pushed or publicly deployed.
 - GitHub Pages remains a static build. `pages-site/` reuses the public app and
   `.github/workflows/deploy-pages.yml` publishes `pages-dist`. The optional chat
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
@@ -20,6 +24,49 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   `VOYAGER_API_URL` variable remains unset. Voyager and Ollama were not exposed.
 - Host Node remains 18.19.1 and was not changed. Development and verification
   use pinned Node 22.13.1 containers.
+
+## Articles CMS v1
+
+- Migration `005_articles_cms` is applied to `NDP_Web`. It extends the reserved
+  `web.BlogPosts` model, adds `web.ArticleDrafts`, retains published content
+  while edits remain unpublished, and supports Draft, Published, and Archived
+  workflow. Category, JSON tags, author, featured image, sanitized HTML,
+  searchable plain text, UTC dates, content type, slug uniqueness, and a
+  filtered status/publication-date index are present.
+- Fixed procedures provide public list/detail reads, private list/detail/save/
+  publish/archive operations, and a bounded future article-knowledge export.
+  `ndp_web_app` can execute only the public procedures and still has no direct
+  article table access. The separate procedure-only `web_article_author` role
+  exists, but no `ndp_article_author` login, SQL author password, or publishing
+  API token was created; admin API routes therefore return `404` and are not
+  writable until Steven makes that credential decision.
+- The loopback-only Voyager API image was rebuilt and is healthy. Live checks
+  returned `200` with an empty published list and `404` for a missing/unpublished
+  slug; the disabled admin route also returned `404`. No sample or fake article
+  record was inserted.
+- The static site implements `/articles`, `/articles/{slug}`, and
+  `/admin/articles`. It includes the editorial index, controlled technical
+  article typography, credential-gated HTML editor, server-sanitized preview,
+  SEO/Article metadata, related content, contact CTA, browser last-good cache,
+  and an exported SQL snapshot fallback. The current verified export contains
+  zero articles because the database contains zero published articles.
+- A temporary local-only snapshot exercised the complete listing and article
+  template in headless Chromium at 1440x1000 and 390x844. Desktop and mobile
+  renders were visually reviewed, including navigation, editorial hierarchy,
+  code overflow, callouts, lists, tables, CTA, and footer. The snapshot was then
+  regenerated from SQL and the temporary article was confirmed absent.
+- The Pages build generates native files for the Articles index, admin route,
+  every exported slug, a no-index `404.html`, and `articles-sitemap.xml`.
+  `VITE_VOYAGER_API_URL` remains unset and no tunnel/DNS/router/public exposure
+  change was made. Publishing can update live API content without a source
+  edit or deployment once the separately approved HTTPS Voyager connection is
+  enabled; advancing the independent static copy still requires a later export
+  and normal Pages build/deploy.
+- Stored HTML is allowlist-sanitized before preview/save. Scripts, embeds,
+  inline events/styles, unsafe schemes, protocol-relative URLs, forms, and
+  unknown attributes are removed while technical headings, lists, links,
+  images, tables, code, blockquotes, rules, figures, and controlled callouts are
+  retained. Searchable text is derived from sanitized HTML.
 
 ## Host and private services
 
@@ -84,7 +131,8 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   login can list/search/replace/hide through bounded procedures and retrieve
   visible structured records; it is denied direct reads and writes to all three
   knowledge tables. The model cannot submit SQL or file paths.
-- Live verification reports 16 required tables, five knowledge procedures,
+- Live verification reports 17 required tables, five knowledge procedures plus
+  eight article procedures,
   five retention policies, and exact approved MDF/LDF paths. Existing visitor,
   chat, telemetry, leads, IP hashing, retention, parameterized SQL, and safe-log
   boundaries remain in place.
@@ -125,11 +173,13 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   vector retrieval, content hashing, supported extraction, file modifications
   and deletion, citations, visibility filtering, stored-procedure allowlisting,
   traversal/symlink rejection, prompt-injection treatment, and no-source
-  behavior. The pinned backend image passed 30 Node tests, strict TypeScript
+  behavior, plus article validation, XSS stripping, public metadata/detail
+  contracts, admin authentication, disabled-authoring behavior, and migration
+  permission/index boundaries. The pinned backend image passed 39 Node tests, strict TypeScript
   checking, and npm audit with zero known vulnerabilities.
 - Compose is healthy; `/health` and the Ollama version endpoint succeed locally.
   Re-ingestion is idempotent and the real local cited RAG check passed.
-- Root ESLint, the static Pages build, and the Vinext build passed under Node
+- Root ESLint, the static Pages build with generated Articles routes, and the Vinext build passed under Node
   22.13.1 with pinned pnpm 11.19.0. `git diff --check` passed. A tracked-content
   secret scan found no API token or password; the ignored local environment
   files remain owner-only at mode `0600`. Container inspection reconfirmed

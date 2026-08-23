@@ -69,14 +69,14 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Netherwood Data Partners home">
+        <a className="brand" href="/" aria-label="Netherwood Data Partners home">
           <span className="brand-mark" aria-hidden="true">N</span>
           <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
         </a>
         <nav aria-label="Primary navigation">
           <a href="#about">About</a>
           <a href="#services">Services</a>
-          <a href="#insights">Insights</a>
+          <a href="/articles">Articles</a>
           <a href="#approach">Approach</a>
           <a className="nav-cta" href="#contact">Start a conversation</a>
         </nav>
@@ -196,6 +196,7 @@ export default function Home() {
             We will share concise, useful notes on SQL Server performance, reliability, migration planning,
             and operational decision-making when the next issue or opportunity is worth publishing.
           </p>
+          <a className="article-read-link" href="/articles">Browse articles <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
@@ -217,7 +218,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top">
+        <a className="brand footer-brand" href="/">
           <span className="brand-mark" aria-hidden="true">N</span>
           <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
         </a>
