@@ -6,8 +6,9 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 - Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`.
   Local `main` was rebased onto `origin/main` commit `620d444` before this work
-  and contains three earlier unpublished Voyager commits: `6acff39`, `589376e`,
-  and `05b575c`. Nothing in the current local work has been pushed or deployed.
+  and contains unpublished Voyager work through local RAG commit `8b67d96`, in
+  addition to the current citation/concurrency increment. None of it has been
+  pushed or deployed.
 - GitHub Pages remains a static build. `pages-site/` reuses the public app and
   `.github/workflows/deploy-pages.yml` publishes `pages-dist`. The optional chat
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
@@ -111,11 +112,16 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 - Existing origin allowlisting, preflight restrictions, request/body/input
   limits, source rate limiting, keyed IP hashing, safe errors/logging,
   parameterized SQL, and bounded provider/server/browser timeouts remain.
+- The widget now renders numbered, clickable citations after validating titles,
+  types, and relative/HTTP(S) URLs. A single-flight backend guard defaults to
+  one active model generation and returns `503 chat_busy` with a 120-second
+  retry hint before recording or queueing excess work; the widget preserves the
+  visitor's question and shows a specific retry message.
 - Automated coverage includes Ollama chat and embeddings, mocked model errors,
   vector retrieval, content hashing, supported extraction, file modifications
   and deletion, citations, visibility filtering, stored-procedure allowlisting,
   traversal/symlink rejection, prompt-injection treatment, and no-source
-  behavior. The pinned backend image passed 29 Node tests, strict TypeScript
+  behavior. The pinned backend image passed 30 Node tests, strict TypeScript
   checking, and npm audit with zero known vulnerabilities.
 - Compose is healthy; `/health` and the Ollama version endpoint succeed locally.
   Re-ingestion is idempotent and the real local cited RAG check passed.
@@ -131,9 +137,10 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 1. Resolve and verify SQL Server network exposure and an approved tunnel policy;
    do not use router port forwarding or expose Ollama/SQL directly.
-2. Load-test `qwen3:4b` on this CPU-only host and decide whether its roughly
-   two-minute response time is acceptable. Add operational monitoring and a
-   scheduling policy for knowledge ingestion.
+2. Load-test the new single-flight behavior and `qwen3:4b` on this CPU-only host
+   under realistic traffic. Decide whether its roughly two-minute response time
+   is acceptable, then add operational monitoring and a scheduling policy for
+   knowledge ingestion.
 3. Review and approve the production knowledge corpus and every structured SQL
    record. Keep internal documents outside the approved root and visibility
    flag.

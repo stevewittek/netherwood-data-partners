@@ -18,6 +18,8 @@ test("loads a complete SQL configuration", () => {
   assert.equal(config.ollamaBaseUrl, "http://127.0.0.1:11434");
   assert.equal(config.ollamaModel, "qwen3:4b");
   assert.equal(config.ollamaEmbeddingModel, "nomic-embed-text");
+  assert.equal(config.chatMaxConcurrent, 1);
+  assert.equal(config.chatBusyRetryAfterSeconds, 120);
 });
 
 test("loads local RAG settings", () => {
@@ -46,5 +48,7 @@ test("rejects partial or invalid configuration", () => {
   assert.throws(() => loadConfig({ OLLAMA_BASE_URL: "file:///tmp/ollama" }), /http or https/);
   assert.throws(() => loadConfig({ KNOWLEDGE_ROOT: "relative/path" }), /absolute/);
   assert.throws(() => loadConfig({ RAG_MAX_DISTANCE: "2.1" }), /RAG_MAX_DISTANCE/);
+  assert.throws(() => loadConfig({ CHAT_MAX_CONCURRENT: "0" }), /CHAT_MAX_CONCURRENT/);
+  assert.throws(() => loadConfig({ CHAT_BUSY_RETRY_AFTER_SECONDS: "3601" }), /CHAT_BUSY_RETRY_AFTER_SECONDS/);
   assert.throws(() => loadConfig({ AI_PROVIDER: "github" }), /AI_PROVIDER/);
 });

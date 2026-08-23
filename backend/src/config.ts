@@ -19,6 +19,8 @@ export type Config = {
   ollamaModel?: string;
   ollamaEmbeddingModel: string;
   aiTimeoutMs: number;
+  chatMaxConcurrent: number;
+  chatBusyRetryAfterSeconds: number;
   ragResultLimit: number;
   ragMaxDistance: number;
   knowledgeRoot?: string;
@@ -101,6 +103,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     ollamaModel: env.OLLAMA_MODEL?.trim() || "qwen3:4b",
     ollamaEmbeddingModel: env.OLLAMA_EMBEDDING_MODEL?.trim() || "nomic-embed-text",
     aiTimeoutMs: integer(env.AI_TIMEOUT_MS, 600_000, "AI_TIMEOUT_MS", 5_000, 900_000),
+    chatMaxConcurrent: integer(env.CHAT_MAX_CONCURRENT, 1, "CHAT_MAX_CONCURRENT", 1, 10),
+    chatBusyRetryAfterSeconds: integer(env.CHAT_BUSY_RETRY_AFTER_SECONDS, 120, "CHAT_BUSY_RETRY_AFTER_SECONDS", 1, 3_600),
     ragResultLimit: integer(env.RAG_RESULT_LIMIT, 2, "RAG_RESULT_LIMIT", 1, 10),
     ragMaxDistance,
     knowledgeRoot,

@@ -17,6 +17,8 @@ const config: Config = {
   ollamaBaseUrl: "http://127.0.0.1:11434",
   ollamaEmbeddingModel: "nomic-embed-text",
   aiTimeoutMs: 60_000,
+  chatMaxConcurrent: 1,
+  chatBusyRetryAfterSeconds: 120,
   ragResultLimit: 5,
   ragMaxDistance: 0.65,
   ipAbuseHashSecret: "test-hash-secret",
@@ -165,6 +167,39 @@ test("rate limits requests by the short in-memory window", async () => {
     assert.equal(limited.status, 429);
     assert.equal(limited.headers.get("retry-after"), "60");
   }, { database: db.value, config: { ...config, rateLimit: 1 } });
+});
+
+test("rejects concurrent model work with a bounded busy response", async () => {
+  const db = database();
+  let releaseChat: (() => void) | undefined;
+  let markStarted: (() => void) | undefined;
+  const started = new Promise<void>((resolve) => { markStarted = resolve; });
+  const release = new Promise<void>((resolve) => { releaseChat = resolve; });
+  await withServer(async (base) => {
+    const request = () => fetch(base + "/api/chat", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ ...ids, message: "How can you help?" }),
+    });
+    const first = request();
+    await started;
+    const rejected = await request();
+    assert.equal(rejected.status, 503);
+    assert.equal(rejected.headers.get("retry-after"), "120");
+    assert.equal((await rejected.json() as { error: string }).error, "chat_busy");
+    assert.equal(db.calls.chatMessages.length, 1);
+    releaseChat?.();
+    assert.equal((await first).status, 200);
+  }, {
+    database: db.value,
+    chat: async () => {
+      markStarted?.();
+      await release;
+      return { responseId: "resp_concurrent", text: "Ready", model: "test-model" };
+    },
+  });
+  assert.equal(db.calls.chatMessages.length, 1);
+  assert.equal(db.calls.chatReplies.length, 1);
 });
 
 for (const scenario of [

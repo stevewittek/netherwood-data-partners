@@ -715,6 +715,12 @@ footer p:last-child {
 .chat-panel button.button { margin-top: .65rem; border: 0; cursor: pointer; }
 .chat-panel button:disabled, .chat-panel textarea:disabled { cursor: wait; opacity: .65; }
 .chat-reply { max-height: 12rem; overflow: auto; padding: .7rem; border-radius: .5rem; background: #f1f5f3; font-size: .9rem; line-height: 1.5; white-space: pre-wrap; }
+.chat-sources { margin-top: .75rem; padding-top: .7rem; border-top: 1px solid #d6ddd9; white-space: normal; }
+.chat-sources > strong { display: block; margin-bottom: .35rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--moss); }
+.chat-sources ol { display: grid; gap: .4rem; margin: 0; padding-left: 1.25rem; }
+.chat-sources li { padding-left: .15rem; }
+.chat-sources a { color: var(--moss); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.chat-sources span { display: block; color: var(--ink-soft); font-size: .72rem; }
 .chat-notice { margin: .85rem 0 0; color: var(--ink-soft); font-size: .72rem !important; }
 
 @media (max-width: 600px) {

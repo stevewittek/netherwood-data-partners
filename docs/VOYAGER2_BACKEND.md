@@ -56,6 +56,8 @@ OLLAMA_BASE_URL=http://127.0.0.1:11434
 OLLAMA_MODEL=qwen3:4b
 OLLAMA_EMBEDDING_MODEL=nomic-embed-text
 AI_TIMEOUT_MS=600000
+CHAT_MAX_CONCURRENT=1
+CHAT_BUSY_RETRY_AFTER_SECONDS=120
 RAG_RESULT_LIMIT=2
 RAG_MAX_DISTANCE=0.65
 KNOWLEDGE_ROOT=/knowledge
@@ -112,3 +114,13 @@ The verifier asks “What database performance services do you offer?” and pri
 only the final answer and approved citations. On the current CPU-only Voyager
 host, `qwen3:4b` can take roughly two minutes for this bounded answer, so the
 browser and API timeouts are deliberately longer than a cloud-provider timeout.
+
+The public widget validates the structured citation payload and renders a
+numbered list of approved source titles and links beneath the answer. It accepts
+only relative site paths and HTTP(S) URLs. Because Ollama is configured for one
+CPU generation at a time, Voyager also defaults to one active chat. Additional
+chat requests receive a bounded `503 chat_busy` response with `Retry-After: 120`
+before a chat record or model job is created; the widget preserves the question
+and asks the visitor to retry in about two minutes. Tune these limits only after
+measuring the production host rather than allowing Ollama's internal queue to
+grow.

@@ -99,6 +99,7 @@ export function createApp(deps: Deps = {}) {
   const chat = deps.chat ?? createConfiguredProvider(config, database);
   const now = deps.now ?? Date.now;
   const buckets = new Map<string, { start: number; count: number }>();
+  let activeChats = 0;
 
   const server = createServer(async (request, response) => {
     const requestId = randomUUID();
@@ -150,18 +151,29 @@ export function createApp(deps: Deps = {}) {
         const chatSessionId = uuid(body.chatSessionId);
         if (!message || !chatSessionId) return send(response, 400, { error: "invalid_message", requestId }, cors);
         if (!chat) return send(response, 503, { error: "chat_unavailable", requestId }, cors);
-        await database.recordChatMessage({ ...requestContext, chatSessionId, message });
-        const safetyIdentifier = requestContext.ipAbuseHash?.toString("hex");
-        const result = await chat(message, safetyIdentifier);
-        await database.recordChatReply({ chatSessionId, message: result.text, providerResponseId: result.responseId, now: new Date(now()) });
-        return send(response, 200, {
-          message: result.text,
-          answer: result.text,
-          sources: result.sources ?? [],
-          responseId: result.responseId,
-          chatSessionId,
-          requestId,
-        }, cors);
+        if (activeChats >= config.chatMaxConcurrent) {
+          return send(response, 503, { error: "chat_busy", requestId }, {
+            ...cors,
+            "retry-after": String(config.chatBusyRetryAfterSeconds),
+          });
+        }
+        activeChats += 1;
+        try {
+          await database.recordChatMessage({ ...requestContext, chatSessionId, message });
+          const safetyIdentifier = requestContext.ipAbuseHash?.toString("hex");
+          const result = await chat(message, safetyIdentifier);
+          await database.recordChatReply({ chatSessionId, message: result.text, providerResponseId: result.responseId, now: new Date(now()) });
+          return send(response, 200, {
+            message: result.text,
+            answer: result.text,
+            sources: result.sources ?? [],
+            responseId: result.responseId,
+            chatSessionId,
+            requestId,
+          }, cors);
+        } finally {
+          activeChats -= 1;
+        }
       }
 
       if (url.pathname === "/api/telemetry/page-view") {
