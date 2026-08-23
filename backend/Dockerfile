@@ -5,6 +5,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --include=dev
 COPY src ./src
 COPY test ./test
+COPY sql ./sql
 COPY tsconfig.json ./
 RUN npm test && npm run typecheck && npm prune --omit=dev
 

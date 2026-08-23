@@ -14,7 +14,11 @@ const config: Config = {
   aiProvider: "openai",
   openaiApiKey: "test-key",
   openaiModel: "test-model",
-  ollamaBaseUrl: "http://127.0.0.1:11434/v1",
+  ollamaBaseUrl: "http://127.0.0.1:11434",
+  ollamaEmbeddingModel: "nomic-embed-text",
+  aiTimeoutMs: 60_000,
+  ragResultLimit: 5,
+  ragMaxDistance: 0.65,
   ipAbuseHashSecret: "test-hash-secret",
   maxBodyBytes: 1_024,
   rateLimit: 10,
@@ -34,6 +38,11 @@ function database() {
     async recordChatMessage(input) { calls.chatMessages.push(input); },
     async recordChatReply(input) { calls.chatReplies.push(input); },
     async recordLead(input) { calls.leads.push(input); },
+    async searchKnowledge() { return []; },
+    async listKnowledgeSources() { return []; },
+    async listStructuredKnowledgeSources() { return []; },
+    async replaceKnowledgeSource() { return true; },
+    async hideKnowledgeSource() {},
     async close() {},
   };
   return { calls, value };
@@ -64,8 +73,10 @@ test("chat validates, persists, and returns the provider result", async () => {
       body: JSON.stringify({ ...ids, message: "How can you help?" }),
     });
     assert.equal(response.status, 200);
-    const body = await response.json() as { message: string; chatSessionId: string };
+    const body = await response.json() as { message: string; answer: string; sources: unknown[]; chatSessionId: string };
     assert.equal(body.message, "Hello");
+    assert.equal(body.answer, "Hello");
+    assert.deepEqual(body.sources, []);
     assert.equal(body.chatSessionId, chatSessionId);
     assert.equal(response.headers.get("access-control-allow-origin"), "https://www.netherwooddatapartners.com");
   }, {
@@ -178,7 +189,7 @@ for (const scenario of [
     }, {
       database: db.value,
       chat: async () => {
-        throw new ProviderError("github", scenario.code, scenario.code === "rate_limited" ? 30 : undefined);
+        throw new ProviderError("ollama", scenario.code, scenario.code === "rate_limited" ? 30 : undefined);
       },
     });
   });

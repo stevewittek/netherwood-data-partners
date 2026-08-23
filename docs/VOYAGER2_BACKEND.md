@@ -43,35 +43,72 @@ retention policies. The `ndp_web_app` runtime identity has no authoring,
 configuration, migration, or delete permissions. SQL setup credentials are
 temporary shell inputs and must never be copied into the API environment.
 
-## AI providers
+## Local cited RAG
 
-Voyager keeps one browser contract while selecting the server-side provider
-with `AI_PROVIDER`:
+Voyager uses Ollama on the same host by default and keeps OpenAI as an optional
+provider for future use. GitHub Models is not used. The browser contract remains
+compatible: chat replies still include `message` and now also include the same
+text as `answer` plus structured `sources` citations.
 
-- `openai` uses `OPENAI_API_KEY` and `OPENAI_MODEL` with the Responses API.
-- `github` uses `GITHUB_MODELS_TOKEN` and `GITHUB_MODELS_MODEL` with
-  `https://models.github.ai/inference/chat/completions`.
-- `ollama` uses `OLLAMA_BASE_URL` and `OLLAMA_MODEL` with the local
-  OpenAI-compatible Chat Completions API. Ollama is optional and is never
-  contacted unless explicitly selected.
+```dotenv
+AI_PROVIDER=ollama
+OLLAMA_BASE_URL=http://127.0.0.1:11434
+OLLAMA_MODEL=qwen3:4b
+OLLAMA_EMBEDDING_MODEL=nomic-embed-text
+AI_TIMEOUT_MS=600000
+RAG_RESULT_LIMIT=2
+RAG_MAX_DISTANCE=0.65
+KNOWLEDGE_ROOT=/knowledge
+```
 
-Provider credentials stay in ignored `backend/.env.local`. Authentication,
-rate-limit, timeout, malformed-response, and availability failures are reduced
-to safe internal error categories; raw provider bodies and credentials are
-never returned to the browser or written to logs.
+`OPENAI_API_KEY` and `OPENAI_MODEL` remain supported only when
+`AI_PROVIDER=openai`; no OpenAI key or billing is required for the default
+configuration. Secrets stay in ignored `backend/.env.local` and are never sent
+to the browser or logged.
 
-GitHub's historical inference contract required a fine-grained personal access
-token with the account permission **Models: Read-only** (`user_models=read`,
-described by the inference endpoint as `models: read`). GitHub's current
-documentation states that GitHub Models and its inference API were retired on
-2026-07-30, so the provider remains implemented and mock-tested for the
-requested contract but cannot be represented as a currently available service.
-
-After placing an eligible token and model in `.env.local`, the isolated live
-provider check is:
+Compose runs the official Ollama image with cloud access disabled, persistent
+model storage, automatic container restart, and a loopback-only listener. It
+does not publish an Internet-facing port. Install and verify the exact models:
 
 ```bash
 cd backend
-docker compose up -d --build
-docker compose exec -T api npm run verify:github
+docker compose pull ollama
+docker compose up -d ollama
+docker compose exec -T ollama ollama pull qwen3:4b
+docker compose exec -T ollama ollama pull nomic-embed-text
+docker compose exec -T ollama ollama list
 ```
+
+The application mounts only `company-knowledge/public` at `/knowledge` and
+never scans outside `KNOWLEDGE_ROOT`. Supported files are `.txt`, `.md`,
+`.html`, `.csv`, `.json`, `.pdf`, and `.docx`. Hidden entries, symlinks,
+unsupported files, oversized files, and path traversal are rejected. Files can
+provide a friendly title and optional public URL in Markdown-style frontmatter;
+otherwise a document title or filename is used.
+
+Run the idempotent scanner manually after approved content changes:
+
+```bash
+cd backend
+docker compose exec -T api npm run knowledge:ingest
+```
+
+It hashes source files, skips unchanged content, re-embeds modifications, and
+hides deleted sources. Structured database material is restricted to the
+allowlisted `web.GetApprovedStructuredContent` procedure and records explicitly
+marked `ChatbotVisible=1`. The runtime login cannot read or modify the knowledge
+tables directly. Retrieval uses the fixed `web.SearchChatbotKnowledge`
+procedure with exact cosine `VECTOR_DISTANCE` over `vector(768)` values; no
+preview vector index is enabled and the model can never generate arbitrary SQL.
+
+Perform one end-to-end local check with:
+
+```bash
+cd backend
+docker compose exec -T api npm run verify:rag
+```
+
+The verifier asks “What database performance services do you offer?” and prints
+only the final answer and approved citations. On the current CPU-only Voyager
+host, `qwen3:4b` can take roughly two minutes for this bounded answer, so the
+browser and API timeouts are deliberately longer than a cloud-provider timeout.

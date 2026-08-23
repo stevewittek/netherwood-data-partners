@@ -15,10 +15,13 @@ export type Config = {
   aiProvider: AiProviderName;
   openaiApiKey?: string;
   openaiModel: string;
-  githubModelsToken?: string;
-  githubModelsModel?: string;
   ollamaBaseUrl: string;
   ollamaModel?: string;
+  ollamaEmbeddingModel: string;
+  aiTimeoutMs: number;
+  ragResultLimit: number;
+  ragMaxDistance: number;
+  knowledgeRoot?: string;
   ipAbuseHashSecret?: string;
   sql?: SqlConfig;
   maxBodyBytes: number;
@@ -72,24 +75,35 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   if (ipAbuseHashSecret && ipAbuseHashSecret.length < 32) {
     throw new Error("IP_ABUSE_HASH_SECRET must contain at least 32 characters");
   }
-  const aiProvider = env.AI_PROVIDER?.trim().toLowerCase() || "openai";
-  if (!(["openai", "github", "ollama"] as string[]).includes(aiProvider)) {
-    throw new Error("AI_PROVIDER must be openai, github, or ollama");
+  const aiProvider = env.AI_PROVIDER?.trim().toLowerCase() || "ollama";
+  if (!(["openai", "ollama"] as string[]).includes(aiProvider)) {
+    throw new Error("AI_PROVIDER must be openai or ollama");
   }
-  const ollamaBaseUrl = (env.OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434/v1").replace(/\/$/, "");
+  const ollamaBaseUrl = (env.OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434").replace(/\/$/, "");
   const ollamaUrl = new URL(ollamaBaseUrl);
   if (!(ollamaUrl.protocol === "http:" || ollamaUrl.protocol === "https:")) {
     throw new Error("OLLAMA_BASE_URL must use http or https");
+  }
+  const ragMaxDistance = Number(env.RAG_MAX_DISTANCE ?? "0.65");
+  if (!Number.isFinite(ragMaxDistance) || ragMaxDistance < 0 || ragMaxDistance > 2) {
+    throw new Error("RAG_MAX_DISTANCE must be a number from 0 through 2");
+  }
+  const knowledgeRoot = env.KNOWLEDGE_ROOT?.trim() || undefined;
+  if (knowledgeRoot && !knowledgeRoot.startsWith("/")) {
+    throw new Error("KNOWLEDGE_ROOT must be an absolute path");
   }
   return {
     allowedOrigins: new Set(origins),
     aiProvider: aiProvider as AiProviderName,
     openaiApiKey: env.OPENAI_API_KEY?.trim() || undefined,
     openaiModel: env.OPENAI_MODEL?.trim() || "gpt-5.4-mini",
-    githubModelsToken: env.GITHUB_MODELS_TOKEN?.trim() || undefined,
-    githubModelsModel: env.GITHUB_MODELS_MODEL?.trim() || undefined,
     ollamaBaseUrl,
-    ollamaModel: env.OLLAMA_MODEL?.trim() || undefined,
+    ollamaModel: env.OLLAMA_MODEL?.trim() || "qwen3:4b",
+    ollamaEmbeddingModel: env.OLLAMA_EMBEDDING_MODEL?.trim() || "nomic-embed-text",
+    aiTimeoutMs: integer(env.AI_TIMEOUT_MS, 600_000, "AI_TIMEOUT_MS", 5_000, 900_000),
+    ragResultLimit: integer(env.RAG_RESULT_LIMIT, 2, "RAG_RESULT_LIMIT", 1, 10),
+    ragMaxDistance,
+    knowledgeRoot,
     ipAbuseHashSecret,
     sql: sqlConfig(env),
     maxBodyBytes: integer(env.MAX_BODY_BYTES, 16_384, "MAX_BODY_BYTES", 1_024, 1_048_576),

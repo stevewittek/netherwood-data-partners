@@ -2,8 +2,9 @@ import { randomUUID } from "node:crypto";
 
 export const CHAT_INSTRUCTIONS = `You are the Netherwood Data Partners website assistant. Be concise, accurate, and professional. Explain database and SQL Server topics clearly. Help visitors understand Netherwood services and qualify legitimate projects. Never invent pricing, guarantees, clients, credentials, or company facts. Ask for contact details only voluntarily and never request passwords, secrets, payment data, or sensitive personal data. If uncertain, recommend emailing contact@netherwooddatapartners.com.`;
 
-export type AiProviderName = "openai" | "github" | "ollama";
-export type ChatResult = { responseId: string; text: string; model: string };
+export type AiProviderName = "openai" | "ollama";
+export type SourceCitation = { title: string; type: "document" | "database"; url?: string };
+export type ChatResult = { responseId: string; text: string; model: string; sources?: SourceCitation[] };
 export type ChatProvider = (message: string, safetyIdentifier?: string) => Promise<ChatResult>;
 export type ProviderErrorCode = "authentication" | "rate_limited" | "timeout" | "malformed_response" | "unavailable";
 

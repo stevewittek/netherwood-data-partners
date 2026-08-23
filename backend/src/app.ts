@@ -96,7 +96,7 @@ function context(request: IncomingMessage, body: Record<string, unknown>, config
 export function createApp(deps: Deps = {}) {
   const config = deps.config ?? loadConfig();
   const database = deps.database ?? (config.sql ? createDatabase(config.sql) : undefined);
-  const chat = deps.chat ?? createConfiguredProvider(config);
+  const chat = deps.chat ?? createConfiguredProvider(config, database);
   const now = deps.now ?? Date.now;
   const buckets = new Map<string, { start: number; count: number }>();
 
@@ -154,7 +154,14 @@ export function createApp(deps: Deps = {}) {
         const safetyIdentifier = requestContext.ipAbuseHash?.toString("hex");
         const result = await chat(message, safetyIdentifier);
         await database.recordChatReply({ chatSessionId, message: result.text, providerResponseId: result.responseId, now: new Date(now()) });
-        return send(response, 200, { message: result.text, responseId: result.responseId, chatSessionId, requestId }, cors);
+        return send(response, 200, {
+          message: result.text,
+          answer: result.text,
+          sources: result.sources ?? [],
+          responseId: result.responseId,
+          chatSessionId,
+          requestId,
+        }, cors);
       }
 
       if (url.pathname === "/api/telemetry/page-view") {
@@ -208,7 +215,7 @@ export function createApp(deps: Deps = {}) {
     }
   });
 
-  server.requestTimeout = 35_000;
+  server.requestTimeout = Math.max(35_000, config.aiTimeoutMs + 10_000);
   server.headersTimeout = 10_000;
   server.keepAliveTimeout = 5_000;
   server.maxRequestsPerSocket = 100;

@@ -74,7 +74,7 @@ export default function ChatWidget() {
     setBusy(true);
     setReply("");
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 30_000);
+    const timeout = window.setTimeout(() => controller.abort(), 605_000);
     try {
       const response = await fetch(`${apiUrl}/api/chat`, {
         method: "POST",

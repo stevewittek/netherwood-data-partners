@@ -1,5 +1,13 @@
 import sql from "mssql";
 import type { SqlConfig } from "./config.ts";
+import {
+  KNOWLEDGE_PROCEDURES,
+  type KnowledgeMatch,
+  type KnowledgeStore,
+  type ReplaceKnowledgeSourceInput,
+  type StoredKnowledgeSource,
+  type StructuredKnowledgeSource,
+} from "./knowledge.ts";
 
 export type RequestContext = {
   visitorId: string;
@@ -26,7 +34,7 @@ export type LeadInput = RequestContext & {
   project: string;
 };
 
-export interface Database {
+export interface Database extends KnowledgeStore {
   ping(): Promise<void>;
   recordPageView(input: PageViewInput): Promise<void>;
   recordChatMessage(input: ChatMessageInput): Promise<void>;
@@ -190,6 +198,64 @@ VALUES(@contactId, @name, @email, @company, @phone, @now, @now);
 INSERT web.Leads(LeadId, ContactId, ChatSessionId, ProjectInformation, Status, CreatedAtUtc, ModifiedAtUtc)
 VALUES(@leadId, @contactId, @chatSessionId, @project, 'new', @now, @now);`);
       });
+    },
+    async searchKnowledge(embedding, limit, maxDistance) {
+      const request = (await pool()).request();
+      request.input("QueryEmbedding", sql.NVarChar(sql.MAX), JSON.stringify(embedding));
+      request.input("ResultLimit", sql.Int, limit);
+      request.input("MaxDistance", sql.Float, maxDistance);
+      const result = await request.execute(KNOWLEDGE_PROCEDURES.search);
+      return result.recordset.map((row: Record<string, unknown>): KnowledgeMatch => ({
+        sourceId: String(row.SourceId),
+        sourceType: row.SourceType === "database" ? "database" : "document",
+        displayName: String(row.DisplayName),
+        sourceUrl: typeof row.SourceUrl === "string" ? row.SourceUrl : undefined,
+        content: String(row.Content),
+        distance: Number(row.Distance),
+      }));
+    },
+    async listKnowledgeSources(sourceType) {
+      const request = (await pool()).request();
+      request.input("SourceType", sql.VarChar(20), sourceType);
+      const result = await request.execute(KNOWLEDGE_PROCEDURES.listSources);
+      return result.recordset.map((row: Record<string, unknown>): StoredKnowledgeSource => ({
+        sourceLocation: String(row.SourceLocation),
+        contentHashHex: Buffer.isBuffer(row.ContentHash) ? row.ContentHash.toString("hex") : "",
+        chatbotVisible: Boolean(row.ChatbotVisible),
+      }));
+    },
+    async listStructuredKnowledgeSources() {
+      const result = await (await pool()).request().execute(KNOWLEDGE_PROCEDURES.listStructured);
+      return result.recordset.map((row: Record<string, unknown>): StructuredKnowledgeSource => ({
+        sourceLocation: `sql:${String(row.ContentKey)}`,
+        displayName: String(row.DisplayName),
+        sourceUrl: typeof row.SourceUrl === "string" ? row.SourceUrl : undefined,
+        content: String(row.Content),
+        lastModifiedUtc: row.UpdatedUtc instanceof Date ? row.UpdatedUtc : new Date(String(row.UpdatedUtc)),
+      }));
+    },
+    async replaceKnowledgeSource(input: ReplaceKnowledgeSourceInput) {
+      const chunksJson = JSON.stringify(input.chunks.map((chunk) => ({
+        chunkNumber: chunk.chunkNumber,
+        content: chunk.content,
+        embedding: chunk.embedding,
+      })));
+      const request = (await pool()).request();
+      request.input("SourceType", sql.VarChar(20), input.sourceType);
+      request.input("DisplayName", sql.NVarChar(300), input.displayName);
+      request.input("SourceLocation", sql.NVarChar(800), input.sourceLocation);
+      request.input("SourceUrl", sql.NVarChar(2048), input.sourceUrl ?? null);
+      request.input("LastModifiedUtc", sql.DateTime2(3), input.lastModifiedUtc);
+      request.input("ContentHash", sql.VarBinary(32), input.contentHash);
+      request.input("ChunksJson", sql.NVarChar(sql.MAX), chunksJson);
+      const result = await request.execute(KNOWLEDGE_PROCEDURES.replace);
+      return Number(result.recordset[0]?.Changed ?? 0) === 1;
+    },
+    async hideKnowledgeSource(sourceType, sourceLocation) {
+      const request = (await pool()).request();
+      request.input("SourceType", sql.VarChar(20), sourceType);
+      request.input("SourceLocation", sql.NVarChar(800), sourceLocation);
+      await request.execute(KNOWLEDGE_PROCEDURES.hide);
     },
     async close() {
       if (!poolPromise) return;

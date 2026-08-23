@@ -14,19 +14,27 @@ test("loads a complete SQL configuration", () => {
   });
   assert.equal(config.sql?.server, "db.example");
   assert.equal(config.sql?.trustServerCertificate, false);
-  assert.equal(config.aiProvider, "openai");
-  assert.equal(config.ollamaBaseUrl, "http://127.0.0.1:11434/v1");
+  assert.equal(config.aiProvider, "ollama");
+  assert.equal(config.ollamaBaseUrl, "http://127.0.0.1:11434");
+  assert.equal(config.ollamaModel, "qwen3:4b");
+  assert.equal(config.ollamaEmbeddingModel, "nomic-embed-text");
 });
 
-test("loads GitHub Models and Ollama provider settings", () => {
-  const github = loadConfig({ AI_PROVIDER: "github", GITHUB_MODELS_TOKEN: "github-token", GITHUB_MODELS_MODEL: "openai/gpt-4.1" });
-  assert.equal(github.aiProvider, "github");
-  assert.equal(github.githubModelsToken, "github-token");
-  assert.equal(github.githubModelsModel, "openai/gpt-4.1");
-  const ollama = loadConfig({ AI_PROVIDER: "ollama", OLLAMA_BASE_URL: "http://localhost:11434/v1/", OLLAMA_MODEL: "llama3.2" });
+test("loads local RAG settings", () => {
+  const ollama = loadConfig({
+    AI_PROVIDER: "ollama",
+    OLLAMA_BASE_URL: "http://localhost:11434/",
+    OLLAMA_MODEL: "qwen3:4b",
+    OLLAMA_EMBEDDING_MODEL: "nomic-embed-text",
+    KNOWLEDGE_ROOT: "/knowledge",
+    RAG_RESULT_LIMIT: "4",
+    RAG_MAX_DISTANCE: "0.5",
+  });
   assert.equal(ollama.aiProvider, "ollama");
-  assert.equal(ollama.ollamaBaseUrl, "http://localhost:11434/v1");
-  assert.equal(ollama.ollamaModel, "llama3.2");
+  assert.equal(ollama.ollamaBaseUrl, "http://localhost:11434");
+  assert.equal(ollama.knowledgeRoot, "/knowledge");
+  assert.equal(ollama.ragResultLimit, 4);
+  assert.equal(ollama.ragMaxDistance, 0.5);
 });
 
 test("rejects partial or invalid configuration", () => {
@@ -36,4 +44,7 @@ test("rejects partial or invalid configuration", () => {
   assert.throws(() => loadConfig({ IP_ABUSE_HASH_SECRET: "too-short" }), /at least 32/);
   assert.throws(() => loadConfig({ AI_PROVIDER: "unknown" }), /AI_PROVIDER/);
   assert.throws(() => loadConfig({ OLLAMA_BASE_URL: "file:///tmp/ollama" }), /http or https/);
+  assert.throws(() => loadConfig({ KNOWLEDGE_ROOT: "relative/path" }), /absolute/);
+  assert.throws(() => loadConfig({ RAG_MAX_DISTANCE: "2.1" }), /RAG_MAX_DISTANCE/);
+  assert.throws(() => loadConfig({ AI_PROVIDER: "github" }), /AI_PROVIDER/);
 });

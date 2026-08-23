@@ -10,12 +10,17 @@
     "start": "node --experimental-strip-types src/server.ts",
     "test": "node --experimental-strip-types --test test/*.test.ts",
     "typecheck": "tsc -p tsconfig.json",
-    "verify:github": "node --experimental-strip-types src/verify-github-models.ts"
+    "knowledge:ingest": "node --experimental-strip-types src/ingest-knowledge.ts",
+    "verify:rag": "node --experimental-strip-types src/verify-rag.ts"
   },
   "dependencies": {
-    "mssql": "12.7.0"
+    "html-to-text": "10.0.1",
+    "mammoth": "1.12.1",
+    "mssql": "12.7.0",
+    "pdf-parse": "2.4.5"
   },
   "devDependencies": {
+    "@types/html-to-text": "9.0.4",
     "@types/mssql": "12.3.0",
     "@types/node": "22.19.19",
     "typescript": "5.9.3"
