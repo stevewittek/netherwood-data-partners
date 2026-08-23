@@ -65,6 +65,25 @@ const aboutPoints = [
   "We keep the focus on the system, the risk, and the practical path forward.",
 ];
 
+const engagements = [
+  {
+    label: "Performance triage",
+    body: "A focused investigation when a production database is slow, timing out, or behaving unpredictably.",
+  },
+  {
+    label: "Database health review",
+    body: "A structured look at performance, operations, recovery, capacity, and the risks your team should understand.",
+  },
+  {
+    label: "Project & migration support",
+    body: "Senior planning and hands-on help for upgrades, conversions, and changes that need careful sequencing.",
+  },
+  {
+    label: "Ongoing DBA support",
+    body: "Practical senior coverage for monitoring, troubleshooting, maintenance, and the work between larger projects.",
+  },
+];
+
 export default function Home() {
   return (
     <main>
@@ -85,7 +104,7 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow">SQL Server performance · reliability · data services</p>
-          <h1>Database problems solved by experienced senior hands.</h1>
+          <h1>SQL Server performance, reliability, and database engineering.</h1>
           <p className="hero-lede">
             Netherwood Data Partners helps organizations keep SQL Server and data systems fast, reliable,
             and easier to manage when the business depends on them.
@@ -95,24 +114,21 @@ export default function Home() {
             <a className="text-link" href="#services">See what we help with <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <aside className="signal-card" aria-label="Database health review">
-          <div className="signal-topline">
-            <span>Database health review</span>
-            <span className="status"><i aria-hidden="true" /> Active review</span>
+        <aside className="diagnostic-panel" aria-label="Illustration of a database diagnostic review">
+          <div className="diagnostic-heading">
+            <span className="technical-label">NDP / DIAGNOSTIC PATH</span>
+            <span className="status"><i aria-hidden="true" /> Illustrative</span>
           </div>
-          <div className="signal-visual" aria-hidden="true">
-            <span /><span /><span /><span /><span /><span /><span /><span />
+          <div className="diagnostic-flow">
+            <div className="flow-node"><span className="node-index">01</span><strong>Observe</strong><small>Query Store · waits</small></div>
+            <span className="flow-line" aria-hidden="true" />
+            <div className="flow-node"><span className="node-index">02</span><strong>Diagnose</strong><small>Plans · blocking</small></div>
+            <span className="flow-line" aria-hidden="true" />
+            <div className="flow-node"><span className="node-index">03</span><strong>Correct</strong><small>Indexes · config</small></div>
+            <span className="flow-line" aria-hidden="true" />
+            <div className="flow-node"><span className="node-index">04</span><strong>Validate</strong><small>Recovery · capacity</small></div>
           </div>
-          <ul className="signal-list" aria-label="Review areas">
-            <li>Performance bottlenecks</li>
-            <li>Blocking and waits</li>
-            <li>Query plans</li>
-            <li>Index strategy</li>
-            <li>Backup/recovery</li>
-            <li>Capacity</li>
-            <li>Configuration</li>
-            <li>Monitoring</li>
-          </ul>
+          <p className="diagnostic-note">A clear path from production evidence to a maintainable fix.</p>
         </aside>
       </section>
 
@@ -139,6 +155,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="engagements-band" id="engagements">
+        <div className="section engagements">
+          <div className="compact-heading">
+            <p className="eyebrow">How we can help</p>
+            <h2>Bring us the problem at the size it needs.</h2>
+          </div>
+          <div className="engagement-list">
+            {engagements.map((engagement, index) => (
+              <article className="engagement-row" key={engagement.label}>
+                <span className="service-number">0{index + 1}</span>
+                <h3>{engagement.label}</h3>
+                <p>{engagement.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section callout" id="when-to-call-us">
         <div className="section-heading compact-heading">
           <p className="eyebrow">When to call us</p>
@@ -146,7 +180,7 @@ export default function Home() {
         </div>
         <ul className="trigger-list" aria-label="Situations when clients call us">
           {triggerSituations.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}><span aria-hidden="true" />{item}</li>
           ))}
         </ul>
       </section>

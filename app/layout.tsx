@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   description: "Database engineering, SQL Server performance, migrations, reliability, reporting, and practical data services.",
   openGraph: {
     title: "Netherwood Data Partners",
-    description: "Dependable data systems. Clearer decisions.",
+    description: "SQL Server performance, reliability, and database engineering for organizations that depend on their data systems.",
     type: "website",
     images: [{ url: "/og.png", width: 1734, height: 907, alt: "Netherwood Data Partners — Dependable data systems. Clearer decisions." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Netherwood Data Partners",
-    description: "Dependable data systems. Clearer decisions.",
+    description: "SQL Server performance, reliability, and database engineering for organizations that depend on their data systems.",
     images: ["/og.png"],
   },
 };
