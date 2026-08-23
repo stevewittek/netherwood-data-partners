@@ -4,11 +4,11 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## Repository and publishing
 
-- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. Local `main` contains reviewed backend/SQL commits after `origin/main` at `fadd5b6`; `git pull --ff-only origin main` reported already up to date before the current edits.
-- The SQL setup and documentation are committed locally. A push was attempted and failed before upload because neither Git HTTPS credentials nor a GitHub CLI login is available on `voyager2`; the remote and live Pages deployment therefore remain unchanged.
+- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. GitHub CLI authentication is active for `stevewittek`; reviewed backend/SQL commits through `493c6af` were pushed to `origin/main`.
+- GitHub Pages run `32637900379` completed successfully for `493c6af`. The deployed domain returned HTTP 200 with a `2026-08-23 11:55:39 UTC` modification time after the release.
 - `pages-site/` reuses `app/page.tsx` and `app/globals.css`. GitHub Actions uses Node 22/pnpm to build `pages-dist` and publish GitHub Pages on every `main` push; `public/CNAME` defines the domain.
 - The public source contains a pending, uncommitted chat-widget change. It has not been pushed or deployed. The workflow and domain were not changed. Root requires Node >=22.13; host Node 18.19.1 was not upgraded.
-- A live HTTPS check returned HTTP 200 from GitHub Pages with the expected title, brand, and contact email in the deployed bundle. The pending `Ask Netherwood` widget text is not in the live bundle, confirming that the current production site is still the prior static release.
+- A live HTTPS check found the expected title, brand, and contact email in the deployed bundle. The pending `Ask Netherwood` widget text is not present, confirming that unverified dynamic work was excluded from this deployment.
 
 ## Host, storage, SQL, Docker
 
@@ -28,7 +28,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## SQL database preparation
 
-- Locally committed SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, ordered migration ledger, 13-table initial `web` schema, five enforced retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
+- Committed and pushed SQL artifacts define a read-only server preflight, explicit/idempotent `NDP_Web` creation, ordered migration ledger, 13-table initial `web` schema, five enforced retention policies, dedicated `ndp_web_app` login, and explicit `web_runtime` grants/denials.
 - `backend/scripts/setup-sql-server.sh` refuses `sa`, validates the local endpoint, requires an exact apply confirmation, keeps both credentials out of command arguments, and performs separate administrator and runtime-login verification.
 - The migration covers Visitors, VisitorSessions, PageViews, ChatSessions, ChatMessages, Contacts, Leads, BlogPosts, BlogImages, ApplicationConfiguration, DataRetentionPolicies, AuditLog, and SchemaMigrations with UTC timestamps, keys, constraints, and indexes.
 - The live read-only SQL preflight has **not** run because no authorized non-`sa` setup credential is available in the process environment. Consequently the instance-reported DATA/LOG defaults and whether `NDP_Web` already exists remain unverified, and no database, login, user, or server configuration was created or changed.
@@ -39,8 +39,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 2. SQL listens broadly: perform authorized firewall/reachability review; remediation requires approval.
 3. SQL setup access and protected mount free space/permissions are unavailable. Supply an authorized non-`sa` setup principal, run the documented read-only preflight, and review its output before setting the explicit apply confirmation. Never guess credentials or create `NDP_Web` before the preflight passes.
 4. The OpenAI-backed chat increment is paused until the operator chooses whether to reuse the detected ignored `OPENAI_API_KEY` or create a new key. Do not make a paid request or deploy the widget before that decision and local verification.
-5. GitHub deployment requires an authenticated user session on this host. Do not place a GitHub token in the repository or command history.
-6. Do not expose Voyager publicly until local chat protections, database behavior, backend-down behavior, and network controls are verified.
+5. Do not expose Voyager publicly until local chat protections, database behavior, backend-down behavior, and network controls are verified.
 
 ## Phase 1 verification result
 
