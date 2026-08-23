@@ -24,3 +24,19 @@ Use pinned Node 22 rather than changing host Node. Local Docker ports bind to `1
 6. Later add authenticated rich content/image authoring and export published articles into the static workflow.
 
 The dedicated ext4 mounts are intended for DATA and LOG, but capacity, access, SQL configuration, and existing files must be authorized and verified before database creation. Routine work must not alter disks, filesystems, mounts, or existing database files.
+
+## SQL Server operator workflow
+
+The checked-in SQL workflow is documented in
+[`backend/sql/README.md`](../backend/sql/README.md). Run its read-only
+`preflight` mode first with an authorized, one-time setup principal. It checks
+the instance defaults and any existing `NDP_Web` file locations from inside SQL
+Server. Only the separate `apply` mode can create the database or login, and it
+requires both a new runtime password and the explicit confirmation value
+`NDP_Web`.
+
+The initial migration covers visitors/sessions/page views, chat, contacts and
+leads, blog posts and image metadata, configuration, audit, and explicit data
+retention policies. The `ndp_web_app` runtime identity has no authoring,
+configuration, migration, or delete permissions. SQL setup credentials are
+temporary shell inputs and must never be copied into the API environment.

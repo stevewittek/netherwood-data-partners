@@ -1,0 +1,60 @@
+:on error exit
+
+USE NDP_Web;
+GO
+
+SET NOCOUNT ON;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '001_initial_schema'
+)
+    THROW 51000, 'The initial schema migration is not recorded.', 1;
+
+DECLARE @ExpectedTables table (TableName sysname PRIMARY KEY);
+INSERT @ExpectedTables(TableName)
+VALUES
+    (N'ApplicationConfiguration'),
+    (N'AuditLog'),
+    (N'BlogImages'),
+    (N'BlogPosts'),
+    (N'ChatMessages'),
+    (N'ChatSessions'),
+    (N'Contacts'),
+    (N'DataRetentionPolicies'),
+    (N'Leads'),
+    (N'PageViews'),
+    (N'SchemaMigrations'),
+    (N'Visitors'),
+    (N'VisitorSessions');
+
+IF EXISTS
+(
+    SELECT TableName FROM @ExpectedTables
+    EXCEPT
+    SELECT name FROM sys.tables WHERE schema_id = SCHEMA_ID(N'web')
+)
+    THROW 51000, 'One or more required web tables are missing.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.database_principals AS member
+    JOIN sys.database_role_members AS drm
+        ON drm.member_principal_id = member.principal_id
+    JOIN sys.database_principals AS role
+        ON role.principal_id = drm.role_principal_id
+    WHERE member.name = N'ndp_web_app'
+      AND role.name = N'web_runtime'
+)
+    THROW 51000, 'ndp_web_app is not a member of web_runtime.', 1;
+
+SELECT
+    N'database_verified' AS VerificationStatus,
+    DB_NAME() AS DatabaseName,
+    (SELECT COUNT(*) FROM @ExpectedTables) AS RequiredTableCount,
+    (SELECT COUNT(*) FROM web.DataRetentionPolicies) AS RetentionPolicyCount,
+    (SELECT MAX(AppliedAtUtc) FROM web.SchemaMigrations) AS LastMigrationAtUtc;
+GO

@@ -23,3 +23,10 @@ pnpm run build:pages
 The static production build is published by GitHub Pages. A private Sites release
 is kept as a fallback. Git history provides the rollback path: revert a commit or
 redeploy a prior saved version.
+
+## Private backend
+
+Voyager 2 provides optional chat, telemetry, and future authoring services. It
+is intentionally not required to render or publish the static site. See
+[`docs/VOYAGER2_BACKEND.md`](docs/VOYAGER2_BACKEND.md) for the architecture and
+[`backend/sql/README.md`](backend/sql/README.md) for the gated SQL Server setup.
