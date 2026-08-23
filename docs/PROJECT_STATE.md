@@ -4,7 +4,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 ## Repository and publishing
 
-- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. GitHub CLI authentication is active for `stevewittek`; reviewed backend/SQL commits through `078ac58` were pushed to `origin/main`. Local `main` additionally contains verified implementation commit `ee28753`, which is intentionally not pushed.
+- Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`. GitHub CLI authentication is active for `stevewittek`; reviewed backend/SQL commits through `078ac58` were pushed to `origin/main`. Local `main` additionally contains verified implementation commits `ee28753` and `f64fcec`, which are intentionally not pushed.
 - GitHub Pages run `32638242752` completed successfully for `1d442d3`. The deployed domain returned HTTP 200 with a `2026-08-23 12:02:37 UTC` modification time after the release.
 - `pages-site/` reuses `app/page.tsx` and `app/globals.css`. GitHub Actions uses Node 22/pnpm to build `pages-dist` and publish GitHub Pages on every `main` push; `public/CNAME` defines the domain.
 - Local commit `ee28753` contains the guarded chat widget and API changes. It has not been pushed or deployed. The widget is omitted unless the static build receives an explicitly configured `VOYAGER_API_URL` repository variable. Root requires Node >=22.13; host Node 18.19.1 was not upgraded.
@@ -23,7 +23,7 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 ## Phase 1 application
 
 - Permanent constraints and architecture are documented.
-- `backend/` contains a pinned Node 22.13.1 TypeScript API. Local commit `ee28753` adds guarded chat, page-view telemetry, and voluntary lead contracts; parameterized SQL persistence; a server-side Responses API client; strict configuration; and container build-time tests/type checks.
+- `backend/` contains a pinned Node 22.13.1 TypeScript API. Local commit `ee28753` adds guarded chat, page-view telemetry, and voluntary lead contracts; parameterized SQL persistence; a server-side Responses API client; strict configuration; and container build-time tests/type checks. The current local provider increment adds an internal provider interface, preserves OpenAI, and adds explicitly selected GitHub Models and optional local Ollama clients without changing the browser contract.
 - The committed local static-site widget uses first-party random visitor/session/chat identifiers, a bounded browser timeout, and a quiet email fallback. It is build-time gated and remains absent when no approved API URL exists. No tunnel or DNS integration exists.
 
 ## SQL database preparation
@@ -39,8 +39,8 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 1. Host Node is old: use the container, preserve host packages.
 2. SQL listens broadly: perform authorized firewall/reachability review; remediation requires approval.
 3. Keep the setup login enabled only while database-backed API development still needs migrations. After that work, disable it and remove `backend/.env.sql-setup`; retain the runtime credential only.
-4. The dedicated OpenAI key is installed, but two minimal live Responses API checks returned HTTP 429 with `insufficient_quota`. Add API billing/credits or raise the relevant Platform spend limit, then repeat the live chat check. Chat is not ready for exposure until this passes.
-5. Do not expose Voyager publicly until the OpenAI quota issue, live database write behavior, backend-down browser behavior, and network controls are verified. The GitHub `VOYAGER_API_URL` variable remains unset.
+4. The dedicated OpenAI key is installed, but two minimal live Responses API checks returned HTTP 429 with `insufficient_quota`. No purchase is authorized. GitHub's current documentation says GitHub Models and its inference API were retired on 2026-07-30, so the requested GitHub provider is implemented and mock-tested but is not a dependable live alternative. Optional local Ollama is implemented and requires no provider account, but no local model has been installed or live-tested.
+5. Do not expose Voyager publicly until a live AI provider, live database write behavior, backend-down browser behavior, and network controls are verified. The GitHub `VOYAGER_API_URL` variable remains unset.
 
 ## Phase 1 verification result
 
@@ -74,9 +74,17 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
 
 - A dedicated OpenAI API key and a separate keyed-IP HMAC secret are present only in ignored `backend/.env.local`; the file remains mode `0600`, and neither value was printed.
 - The backend now uses `mssql` 12.7.0 with parameterized requests and bounded transactions. It persists anonymous visitors/sessions/page views, chat sessions/messages, contacts, and voluntary leads through the existing least-privileged `ndp_web_app` grants. Session ownership mismatches are rejected in SQL before writes.
-- The API enforces exact JSON content types, a 16 KiB body default, UUID and field bounds, approved origins, preflight restrictions, a 30-request/minute in-memory source limit, safe error bodies/logs, a 35-second server request timeout, and 25-second OpenAI timeout. Raw IP addresses are not stored; only a seven-day keyed SHA-256 abuse hash is prepared when the local secret exists.
+- The API enforces exact JSON content types, a 16 KiB body default, UUID and field bounds, approved origins, preflight restrictions, a 30-request/minute in-memory source limit, safe error bodies/logs, a 35-second server request timeout, and 25-second provider timeouts. Raw IP addresses are not stored; only a seven-day keyed SHA-256 abuse hash is prepared when the local secret exists.
 - The Responses API request uses `gpt-5.4-mini`, controlled instructions, a 500-token ceiling, an opaque safety identifier, and `store: false`. Official OpenAI documentation was checked for the current request contract and model endpoint support.
-- The pinned container build passed 12 Node tests and strict TypeScript checking; npm reported zero known package vulnerabilities. Root ESLint, the GitHub Pages Vite build, the Vinext build, and a separate widget-enabled Vite build all passed under Node 22.13.1/pnpm 11.19.0.
+- The pinned container build passed 24 Node tests and strict TypeScript checking; mocked coverage includes GitHub Models normalization, authentication, rate limiting, timeout, and malformed responses plus the optional Ollama client. npm reported zero known package vulnerabilities. Root ESLint, the GitHub Pages Vite build, and the Vinext build all passed under Node 22.13.1/pnpm 11.19.0.
 - Compose is healthy and the host returns `GET /health` from `127.0.0.1:3000`. A read-only SQL ping from the running container succeeded against `NDP_Web` with the runtime identity. No API integration test inserted live database rows.
 - A deliberately unapproved browser origin returned HTTP 403. With no API URL configured, the static Pages build completes independently; with a temporary loopback URL, the widget-enabled build also completes.
 - Live OpenAI verification reached the service but returned `insufficient_quota`. No public API URL, tunnel, router, DNS, or GitHub environment-variable change was made, and local commit `ee28753` has not been pushed or deployed.
+
+## AI provider abstraction verification result
+
+- `AI_PROVIDER` explicitly selects `openai`, `github`, or `ollama`. Incomplete credentials leave the chat route safely unavailable without preventing the API or static site from starting.
+- OpenAI remains on the non-stored Responses API. GitHub Models uses the requested bearer-authenticated Chat Completions contract, and Ollama uses its optional loopback OpenAI-compatible endpoint. All three return the existing normalized Voyager reply shape.
+- Provider authentication, quota/rate-limit, timeout, malformed-response, and general availability failures map to bounded browser errors. Upstream response bodies and credentials are not logged or returned.
+- The provider increment passed all 24 backend tests, strict TypeScript checking, ESLint, the Pages build, the Vinext build, `git diff --check`, and a recreated healthy loopback-only Compose deployment. No paid/live model request was made.
+- GitHub's retired service was not claimed as live. The documented isolated verification command will use only values placed in ignored `backend/.env.local`; no GitHub Models token has been stored by this increment.

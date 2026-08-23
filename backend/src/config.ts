@@ -1,3 +1,5 @@
+import type { AiProviderName } from "./ai.ts";
+
 export type SqlConfig = {
   server: string;
   port: number;
@@ -10,8 +12,13 @@ export type SqlConfig = {
 
 export type Config = {
   allowedOrigins: Set<string>;
+  aiProvider: AiProviderName;
   openaiApiKey?: string;
   openaiModel: string;
+  githubModelsToken?: string;
+  githubModelsModel?: string;
+  ollamaBaseUrl: string;
+  ollamaModel?: string;
   ipAbuseHashSecret?: string;
   sql?: SqlConfig;
   maxBodyBytes: number;
@@ -65,10 +72,24 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   if (ipAbuseHashSecret && ipAbuseHashSecret.length < 32) {
     throw new Error("IP_ABUSE_HASH_SECRET must contain at least 32 characters");
   }
+  const aiProvider = env.AI_PROVIDER?.trim().toLowerCase() || "openai";
+  if (!(["openai", "github", "ollama"] as string[]).includes(aiProvider)) {
+    throw new Error("AI_PROVIDER must be openai, github, or ollama");
+  }
+  const ollamaBaseUrl = (env.OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434/v1").replace(/\/$/, "");
+  const ollamaUrl = new URL(ollamaBaseUrl);
+  if (!(ollamaUrl.protocol === "http:" || ollamaUrl.protocol === "https:")) {
+    throw new Error("OLLAMA_BASE_URL must use http or https");
+  }
   return {
     allowedOrigins: new Set(origins),
+    aiProvider: aiProvider as AiProviderName,
     openaiApiKey: env.OPENAI_API_KEY?.trim() || undefined,
     openaiModel: env.OPENAI_MODEL?.trim() || "gpt-5.4-mini",
+    githubModelsToken: env.GITHUB_MODELS_TOKEN?.trim() || undefined,
+    githubModelsModel: env.GITHUB_MODELS_MODEL?.trim() || undefined,
+    ollamaBaseUrl,
+    ollamaModel: env.OLLAMA_MODEL?.trim() || undefined,
     ipAbuseHashSecret,
     sql: sqlConfig(env),
     maxBodyBytes: integer(env.MAX_BODY_BYTES, 16_384, "MAX_BODY_BYTES", 1_024, 1_048_576),

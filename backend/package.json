@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node --experimental-strip-types src/server.ts",
     "test": "node --experimental-strip-types --test test/*.test.ts",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "verify:github": "node --experimental-strip-types src/verify-github-models.ts"
   },
   "dependencies": {
     "mssql": "12.7.0"

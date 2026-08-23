@@ -42,3 +42,36 @@ leads, blog posts and image metadata, configuration, audit, and explicit data
 retention policies. The `ndp_web_app` runtime identity has no authoring,
 configuration, migration, or delete permissions. SQL setup credentials are
 temporary shell inputs and must never be copied into the API environment.
+
+## AI providers
+
+Voyager keeps one browser contract while selecting the server-side provider
+with `AI_PROVIDER`:
+
+- `openai` uses `OPENAI_API_KEY` and `OPENAI_MODEL` with the Responses API.
+- `github` uses `GITHUB_MODELS_TOKEN` and `GITHUB_MODELS_MODEL` with
+  `https://models.github.ai/inference/chat/completions`.
+- `ollama` uses `OLLAMA_BASE_URL` and `OLLAMA_MODEL` with the local
+  OpenAI-compatible Chat Completions API. Ollama is optional and is never
+  contacted unless explicitly selected.
+
+Provider credentials stay in ignored `backend/.env.local`. Authentication,
+rate-limit, timeout, malformed-response, and availability failures are reduced
+to safe internal error categories; raw provider bodies and credentials are
+never returned to the browser or written to logs.
+
+GitHub's historical inference contract required a fine-grained personal access
+token with the account permission **Models: Read-only** (`user_models=read`,
+described by the inference endpoint as `models: read`). GitHub's current
+documentation states that GitHub Models and its inference API were retired on
+2026-07-30, so the provider remains implemented and mock-tested for the
+requested contract but cannot be represented as a currently available service.
+
+After placing an eligible token and model in `.env.local`, the isolated live
+provider check is:
+
+```bash
+cd backend
+docker compose up -d --build
+docker compose exec -T api npm run verify:github
+```

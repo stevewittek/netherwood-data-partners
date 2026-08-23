@@ -1,8 +1,9 @@
 import { createHmac, randomUUID } from "node:crypto";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import { ProviderError, type ChatProvider } from "./ai.ts";
 import { loadConfig, type Config } from "./config.ts";
 import { createDatabase, type Database, type RequestContext } from "./database.ts";
-import { createChatResponse, type ChatResult } from "./openai.ts";
+import { createConfiguredProvider } from "./providers.ts";
 
 const baseHeaders = {
   "cache-control": "no-store",
@@ -14,7 +15,7 @@ const apiRoutes = new Set(["/api/chat", "/api/telemetry/page-view", "/api/leads"
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export type ChatHandler = (message: string, key: string, model: string, safetyIdentifier?: string) => Promise<ChatResult>;
+export type ChatHandler = ChatProvider;
 
 type Deps = {
   config?: Config;
@@ -95,7 +96,7 @@ function context(request: IncomingMessage, body: Record<string, unknown>, config
 export function createApp(deps: Deps = {}) {
   const config = deps.config ?? loadConfig();
   const database = deps.database ?? (config.sql ? createDatabase(config.sql) : undefined);
-  const chat = deps.chat ?? createChatResponse;
+  const chat = deps.chat ?? createConfiguredProvider(config);
   const now = deps.now ?? Date.now;
   const buckets = new Map<string, { start: number; count: number }>();
 
@@ -148,10 +149,10 @@ export function createApp(deps: Deps = {}) {
         const message = text(body.message, 4_000);
         const chatSessionId = uuid(body.chatSessionId);
         if (!message || !chatSessionId) return send(response, 400, { error: "invalid_message", requestId }, cors);
-        if (!config.openaiApiKey) return send(response, 503, { error: "chat_unavailable", requestId }, cors);
+        if (!chat) return send(response, 503, { error: "chat_unavailable", requestId }, cors);
         await database.recordChatMessage({ ...requestContext, chatSessionId, message });
         const safetyIdentifier = requestContext.ipAbuseHash?.toString("hex");
-        const result = await chat(message, config.openaiApiKey, config.openaiModel, safetyIdentifier);
+        const result = await chat(message, safetyIdentifier);
         await database.recordChatReply({ chatSessionId, message: result.text, providerResponseId: result.responseId, now: new Date(now()) });
         return send(response, 200, { message: result.text, responseId: result.responseId, chatSessionId, requestId }, cors);
       }
@@ -190,6 +191,18 @@ export function createApp(deps: Deps = {}) {
       if (code === "too_large") return send(response, 413, { error: "payload_too_large", requestId }, cors);
       if (code === "invalid_json") return send(response, 400, { error: "invalid_json", requestId }, cors);
       if (code === "unsupported_media_type") return send(response, 415, { error: "unsupported_media_type", requestId }, cors);
+      if (error instanceof ProviderError) {
+        console.error(JSON.stringify({ event: "provider_failed", requestId, provider: error.provider, providerError: error.code }));
+        if (error.code === "authentication") return send(response, 503, { error: "chat_unavailable", requestId }, cors);
+        if (error.code === "rate_limited") {
+          const retry: Record<string, string> = error.retryAfterSeconds
+            ? { "retry-after": String(error.retryAfterSeconds) }
+            : {};
+          return send(response, 503, { error: "chat_unavailable", requestId }, { ...cors, ...retry });
+        }
+        if (error.code === "timeout") return send(response, 504, { error: "upstream_unavailable", requestId }, cors);
+        return send(response, 502, { error: "upstream_unavailable", requestId }, cors);
+      }
       console.error(JSON.stringify({ event: "request_failed", requestId, route: url.pathname, errorType: error instanceof Error ? error.name : "unknown" }));
       return send(response, 502, { error: "upstream_unavailable", requestId }, cors);
     }

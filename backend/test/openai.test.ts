@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { ProviderError } from "../src/ai.ts";
 import { createChatResponse } from "../src/openai.ts";
 
 test("creates a non-stored Responses API request", async () => {
@@ -21,7 +22,13 @@ test("creates a non-stored Responses API request", async () => {
 
 test("rejects unsuccessful or empty provider responses", async () => {
   const failed: typeof fetch = async () => new Response(JSON.stringify({ error: { message: "secret detail" } }), { status: 401 });
-  await assert.rejects(() => createChatResponse("Hello", "bad", "test", undefined, failed), /\(401\)/);
+  await assert.rejects(
+    () => createChatResponse("Hello", "bad", "test", undefined, failed),
+    (error: unknown) => error instanceof ProviderError && error.code === "authentication" && !error.message.includes("secret detail"),
+  );
   const empty: typeof fetch = async () => new Response(JSON.stringify({ id: "resp_empty", output: [] }), { status: 200 });
-  await assert.rejects(() => createChatResponse("Hello", "key", "test", undefined, empty), /no text/);
+  await assert.rejects(
+    () => createChatResponse("Hello", "key", "test", undefined, empty),
+    (error: unknown) => error instanceof ProviderError && error.code === "malformed_response",
+  );
 });

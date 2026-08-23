@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { ProviderError } from "../src/ai.ts";
 import { createApp, type ChatHandler } from "../src/app.ts";
 import type { Config } from "../src/config.ts";
 import type { ChatMessageInput, ChatReplyInput, Database, LeadInput, PageViewInput } from "../src/database.ts";
@@ -10,8 +11,10 @@ const chatSessionId = "33333333-3333-4333-8333-333333333333";
 const ids = { visitorId, sessionId, chatSessionId };
 const config: Config = {
   allowedOrigins: new Set(["https://www.netherwooddatapartners.com"]),
+  aiProvider: "openai",
   openaiApiKey: "test-key",
   openaiModel: "test-model",
+  ollamaBaseUrl: "http://127.0.0.1:11434/v1",
   ipAbuseHashSecret: "test-hash-secret",
   maxBodyBytes: 1_024,
   rateLimit: 10,
@@ -67,7 +70,7 @@ test("chat validates, persists, and returns the provider result", async () => {
     assert.equal(response.headers.get("access-control-allow-origin"), "https://www.netherwooddatapartners.com");
   }, {
     database: db.value,
-    chat: async (_message, _key, _model, safety) => {
+    chat: async (_message, safety) => {
       safetyIdentifier = safety;
       return { responseId: "resp_test", text: "Hello", model: "test-model" };
     },
@@ -152,3 +155,31 @@ test("rate limits requests by the short in-memory window", async () => {
     assert.equal(limited.headers.get("retry-after"), "60");
   }, { database: db.value, config: { ...config, rateLimit: 1 } });
 });
+
+for (const scenario of [
+  { code: "authentication" as const, expectedStatus: 503, expectedError: "chat_unavailable" },
+  { code: "rate_limited" as const, expectedStatus: 503, expectedError: "chat_unavailable" },
+  { code: "timeout" as const, expectedStatus: 504, expectedError: "upstream_unavailable" },
+  { code: "malformed_response" as const, expectedStatus: 502, expectedError: "upstream_unavailable" },
+]) {
+  test(`returns a safe response for provider ${scenario.code}`, async () => {
+    const db = database();
+    await withServer(async (base) => {
+      const response = await fetch(base + "/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...ids, message: "Hello" }),
+      });
+      assert.equal(response.status, scenario.expectedStatus);
+      const body = await response.json() as Record<string, unknown>;
+      assert.equal(body.error, scenario.expectedError);
+      assert.equal(JSON.stringify(body).includes("upstream secret"), false);
+      if (scenario.code === "rate_limited") assert.equal(response.headers.get("retry-after"), "30");
+    }, {
+      database: db.value,
+      chat: async () => {
+        throw new ProviderError("github", scenario.code, scenario.code === "rate_limited" ? 30 : undefined);
+      },
+    });
+  });
+}
