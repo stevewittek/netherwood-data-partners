@@ -71,20 +71,25 @@ silently undo a deliberate switch to `FULL` recovery.
 The runtime login is a member only of `web_runtime`. It can read/write the
 operational visitor, chat, contact, and lead tables needed by the API. It cannot
 delete records or directly access article authoring, configuration, retention
-policy, or migration data. Migration `005` grants only fixed public article
-read procedures. Article authoring uses the separate `ndp_article_author`
-identity and `web_article_author` procedure-only role described in
+policy, or migration data. The article migrations grant the runtime identity
+only the fixed public list/detail and bounded knowledge-export procedures, with
+no direct article-table access. Article authoring uses the separate
+`ndp_article_author` identity and `web_article_author` procedure-only role described in
 [`docs/ARTICLES_CMS.md`](../../docs/ARTICLES_CMS.md).
 
 ## Articles CMS
 
 Migration `005_articles_cms.sql` extends the reserved `web.BlogPosts` model and
-adds `web.ArticleDrafts`. It provides draft/published/archived workflow,
-category and JSON tags, author, featured image, sanitized HTML, searchable
-plain text, UTC dates, a unique slug boundary, a filtered publication index,
-public metadata/detail procedures, authoring procedures, and a bounded future
-knowledge-export procedure. Published rows remain unchanged while an edit is
-saved in `ArticleDrafts`; publish promotes the draft atomically.
+adds `web.ArticleDrafts`. Migration `006_articles_content_workflow.sql`
+completes SEO/featured metadata, search, unpublish, guarded deletion, filtered
+indexes, and procedure-only permission boundaries. Migration
+`007_starter_articles.sql` idempotently adds the ten provided starter articles
+from `sql/seeds/articles.seed.json`. Published rows remain unchanged while an
+edit is saved in `ArticleDrafts`; publish promotes the draft atomically.
+
+`validate_articles_migrations.sql` applies migrations 006 and 007 inside an
+outer transaction, validates the seed and metadata, and rolls everything back.
+It is a compile/smoke check, not a publishing command.
 
 Create authoring credentials only after making the operator credential
 decision:
@@ -167,10 +172,11 @@ backend/scripts/setup-sql-server.sh verify
 - `preflight.sql` proves server defaults, permissions, and existing file paths.
 - `create_database.sql` creates only the named database and fixes safe baseline
   database options.
-- `migrations/` contains ordered, idempotent schema, article, and retention migrations;
-  the setup wrapper runs them in filename order.
+- `migrations/` contains ordered, idempotent schema, article, and retention
+  migrations; the setup wrapper runs them in filename order.
 - `provision_app_login.sql` creates the dedicated login and explicit grants.
-- `verify_database.sql` checks the migration, required tables, retention rules,
+- `verify_database.sql` checks the migrations, required tables, article
+  columns/indexes/procedures, retention rules,
   and runtime role membership.
 - `verify_runtime_login.sql` connects as the application identity and proves
   required grants and prohibited permissions.

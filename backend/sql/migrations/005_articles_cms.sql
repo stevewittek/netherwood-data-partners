@@ -351,6 +351,8 @@ GO
 
 IF DATABASE_PRINCIPAL_ID(N'web_article_author') IS NULL
     CREATE ROLE web_article_author AUTHORIZATION dbo;
+IF DATABASE_PRINCIPAL_ID(N'web_runtime') IS NULL
+    CREATE ROLE web_runtime AUTHORIZATION dbo;
 GO
 
 GRANT EXECUTE ON web.ListPublishedArticles TO web_runtime;

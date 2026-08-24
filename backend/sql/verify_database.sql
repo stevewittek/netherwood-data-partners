@@ -45,6 +45,22 @@ IF NOT EXISTS
 )
     THROW 51000, 'The articles CMS migration is not recorded.', 1;
 
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '006_articles_content_workflow'
+)
+    THROW 51000, 'The articles content workflow migration is not recorded.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '007_starter_articles'
+)
+    THROW 51000, 'The starter articles migration is not recorded.', 1;
+
 IF OBJECT_ID(N'web.PurgeExpiredData', N'P') IS NULL
     THROW 51000, 'The retention maintenance procedure is missing.', 1;
 
@@ -84,6 +100,59 @@ IF NOT EXISTS
 (
     SELECT 1
     FROM sys.columns AS columnrow
+    WHERE columnrow.object_id = OBJECT_ID(N'web.BlogPosts')
+      AND columnrow.name = N'IsFeatured'
+      AND TYPE_NAME(columnrow.user_type_id) = N'bit'
+      AND columnrow.is_nullable = 0
+)
+    THROW 51000, 'BlogPosts.IsFeatured is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
+    WHERE columnrow.object_id = OBJECT_ID(N'web.ArticleDrafts')
+      AND columnrow.name = N'SeoDescription'
+      AND TYPE_NAME(columnrow.user_type_id) = N'nvarchar'
+      AND columnrow.max_length = 1000
+      AND columnrow.is_nullable = 1
+)
+    THROW 51000, 'ArticleDrafts.SeoDescription is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
+    WHERE columnrow.object_id = OBJECT_ID(N'web.ArticleDrafts')
+      AND columnrow.name = N'IsFeatured'
+      AND TYPE_NAME(columnrow.user_type_id) = N'bit'
+      AND columnrow.is_nullable = 0
+)
+    THROW 51000, 'ArticleDrafts.IsFeatured is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1 FROM sys.indexes
+    WHERE object_id = OBJECT_ID(N'web.BlogPosts')
+      AND name = N'IX_BlogPosts_Articles_Category_PublishedAtUtc'
+      AND has_filter = 1
+)
+    THROW 51000, 'The filtered public article category index is missing.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1 FROM sys.indexes
+    WHERE object_id = OBJECT_ID(N'web.BlogPosts')
+      AND name = N'UX_BlogPosts_SinglePublishedFeaturedArticle'
+      AND is_unique = 1
+      AND has_filter = 1
+)
+    THROW 51000, 'The single-featured-article index is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
     JOIN sys.tables AS tablerow ON tablerow.object_id = columnrow.object_id
     WHERE tablerow.schema_id = SCHEMA_ID(N'web')
       AND tablerow.name = N'KnowledgeChunks'
@@ -97,6 +166,7 @@ DECLARE @ExpectedProcedures table (ProcedureName sysname PRIMARY KEY);
 INSERT @ExpectedProcedures(ProcedureName)
 VALUES
     (N'ArchiveArticle'),
+    (N'DeleteArticle'),
     (N'GetAdminArticle'),
     (N'GetApprovedStructuredContent'),
     (N'GetPublishedArticle'),
@@ -108,7 +178,8 @@ VALUES
     (N'PublishArticle'),
     (N'ReplaceKnowledgeSource'),
     (N'SaveArticleDraft'),
-    (N'SearchChatbotKnowledge');
+    (N'SearchChatbotKnowledge'),
+    (N'UnpublishArticle');
 
 IF EXISTS
 (
@@ -116,7 +187,7 @@ IF EXISTS
     EXCEPT
     SELECT name FROM sys.procedures WHERE schema_id = SCHEMA_ID(N'web')
 )
-    THROW 51000, 'One or more chatbot knowledge procedures are missing.', 1;
+    THROW 51000, 'One or more required procedures are missing.', 1;
 
 IF NOT EXISTS
 (
@@ -138,7 +209,7 @@ SELECT
     N'database_verified' AS VerificationStatus,
     DB_NAME() AS DatabaseName,
     (SELECT COUNT(*) FROM @ExpectedTables) AS RequiredTableCount,
-    (SELECT COUNT(*) FROM @ExpectedProcedures) AS KnowledgeProcedureCount,
+    (SELECT COUNT(*) FROM @ExpectedProcedures) AS RequiredProcedureCount,
     (SELECT COUNT(*) FROM web.DataRetentionPolicies) AS RetentionPolicyCount,
     (SELECT MAX(AppliedAtUtc) FROM web.SchemaMigrations) AS LastMigrationAtUtc;
 GO

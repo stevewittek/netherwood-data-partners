@@ -205,15 +205,17 @@ VALUES(@leadId, @contactId, @chatSessionId, @project, 'new', @now, @now);`);
       const request = (await pool()).request();
       request.input("Category", sql.NVarChar(100), input.category ?? null);
       request.input("Tag", sql.NVarChar(50), input.tag ?? null);
+      request.input("Search", sql.NVarChar(200), input.search ?? null);
       request.input("Page", sql.Int, input.page);
       request.input("PageSize", sql.Int, input.pageSize);
       const result = await request.execute(ARTICLE_PROCEDURES.listPublished);
       const articles = result.recordset.map((row: Record<string, unknown>) => mapArticleSummary(row));
+      const recordsets = result.recordsets as unknown as Array<Array<Record<string, unknown>>>;
       return {
         articles,
         page: input.page,
         pageSize: input.pageSize,
-        total: Number(result.recordset[0]?.TotalCount ?? 0),
+        total: Number(recordsets[1]?.[0]?.TotalCount ?? result.recordset[0]?.TotalCount ?? 0),
       };
     },
     async getPublishedArticle(slug) {

@@ -9,7 +9,9 @@ export const ARTICLE_PROCEDURES = {
   getAdmin: "web.GetAdminArticle",
   saveDraft: "web.SaveArticleDraft",
   publish: "web.PublishArticle",
+  unpublish: "web.UnpublishArticle",
   archive: "web.ArchiveArticle",
+  delete: "web.DeleteArticle",
   listKnowledge: "web.ListPublishedArticleKnowledge",
 } as const;
 
@@ -17,6 +19,13 @@ export class ArticleConflictError extends Error {
   constructor() {
     super("article_conflict");
     this.name = "ArticleConflictError";
+  }
+}
+
+export class PublishedArticleDeleteError extends Error {
+  constructor() {
+    super("published_article_must_be_unpublished");
+    this.name = "PublishedArticleDeleteError";
   }
 }
 
@@ -46,7 +55,7 @@ function status(value: unknown): ArticleStatus {
 
 export function mapArticleSummary(row: Record<string, unknown>): ArticleSummary {
   return {
-    articleId: String(row.ArticleId),
+    articleId: String(row.ArticleId).toLowerCase(),
     title: String(row.Title),
     slug: String(row.Slug),
     summary: String(row.Summary ?? ""),
@@ -55,6 +64,8 @@ export function mapArticleSummary(row: Record<string, unknown>): ArticleSummary 
     author: String(row.Author),
     status: status(row.Status),
     featuredImage: typeof row.FeaturedImage === "string" ? row.FeaturedImage : undefined,
+    seoDescription: typeof row.SeoDescription === "string" ? row.SeoDescription : undefined,
+    isFeatured: Boolean(row.IsFeatured),
     publishedDate: optionalDate(row.PublishedDate),
     createdDate: date(row.CreatedDate),
     modifiedDate: date(row.ModifiedDate),
@@ -91,6 +102,9 @@ function poolConfig(config: SqlConfig): sql.config {
 function handleSqlError(error: unknown): never {
   if (error && typeof error === "object" && "number" in error && error.number === 51010) {
     throw new ArticleConflictError();
+  }
+  if (error && typeof error === "object" && "number" in error && error.number === 51012) {
+    throw new PublishedArticleDeleteError();
   }
   throw error;
 }
@@ -142,6 +156,8 @@ export function createArticleAdminDatabase(config: SqlConfig): ArticleAdminStore
       request.input("TagsJson", sql.NVarChar(2000), JSON.stringify(input.tags));
       request.input("Author", sql.NVarChar(200), input.author);
       request.input("FeaturedImage", sql.NVarChar(2048), input.featuredImage ?? null);
+      request.input("SeoDescription", sql.NVarChar(500), input.seoDescription ?? null);
+      request.input("IsFeatured", sql.Bit, input.isFeatured);
       request.input("Now", sql.DateTime2(3), now);
       try {
         const result = await request.execute(ARTICLE_PROCEDURES.saveDraft);
@@ -153,8 +169,21 @@ export function createArticleAdminDatabase(config: SqlConfig): ArticleAdminStore
     async publishArticle(articleId, now) {
       return executeArticle(ARTICLE_PROCEDURES.publish, articleId, now);
     },
+    async unpublishArticle(articleId, now) {
+      return executeArticle(ARTICLE_PROCEDURES.unpublish, articleId, now);
+    },
     async archiveArticle(articleId, now) {
       return executeArticle(ARTICLE_PROCEDURES.archive, articleId, now);
+    },
+    async deleteArticle(articleId) {
+      const request = (await pool()).request();
+      request.input("ArticleId", sql.UniqueIdentifier, articleId);
+      try {
+        const result = await request.execute(ARTICLE_PROCEDURES.delete);
+        return Boolean(result.recordset?.[0]?.Deleted);
+      } catch (error) {
+        return handleSqlError(error);
+      }
     },
     async close() {
       if (!poolPromise) return;

@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 type SiteHeaderProps = {
   currentPage?: "home" | "about" | "articles";
 };
@@ -14,7 +12,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
       <nav aria-label="Primary navigation">
         <a className="nav-about" href="/about" aria-current={currentPage === "about" ? "page" : undefined}>About</a>
         <a href="/#services">Services</a>
-        <a href="/articles" aria-current={currentPage === "articles" ? "page" : undefined}>Articles</a>
+        <a className="nav-articles" href="/articles" aria-current={currentPage === "articles" ? "page" : undefined}>Articles</a>
         <a href="/#approach">Approach</a>
         <a className="nav-cta" href="/#contact">Start a conversation</a>
       </nav>

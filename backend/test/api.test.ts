@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { ProviderError } from "../src/ai.ts";
 import { createApp, type ChatHandler } from "../src/app.ts";
+import { PublishedArticleDeleteError } from "../src/article-database.ts";
 import type { Config } from "../src/config.ts";
 import type { ChatMessageInput, ChatReplyInput, Database, LeadInput, PageViewInput } from "../src/database.ts";
 import type { Article, ArticleAdminStore, ArticleInput, ArticleSummary } from "../src/articles.ts";
@@ -80,6 +81,8 @@ const article: Article = {
   tags: ["performance", "Query Store"],
   author: "Steven Wittek",
   status: "Published",
+  seoDescription: "How to use Query Store evidence to isolate production regressions.",
+  isFeatured: false,
   createdDate: articleDate,
   modifiedDate: articleDate,
   publishedDate: articleDate,
@@ -91,22 +94,29 @@ function articleAdminStore(): ArticleAdminStore {
     async getAdminArticle(id) { return id === article.articleId ? article : undefined; },
     async saveArticleDraft(id: string, input: ArticleInput) { return { ...article, ...input, articleId: id, status: "Draft" }; },
     async publishArticle(id) { return id === article.articleId ? article : undefined; },
+    async unpublishArticle(id) { return id === article.articleId ? { ...article, status: "Draft", publishedDate: undefined } : undefined; },
     async archiveArticle(id) { return id === article.articleId ? { ...article, status: "Archived" } : undefined; },
+    async deleteArticle(id) { return id === article.articleId; },
     async close() {},
   };
 }
 
 test("lists published article metadata without returning every HTML body", async () => {
   const db = database();
-  db.value.listPublishedArticles = async ({ page, pageSize }) => ({ articles: [article], page, pageSize, total: 1 });
+  let filters: { category?: string; tag?: string; search?: string } = {};
+  db.value.listPublishedArticles = async ({ page, pageSize, ...input }) => {
+    filters = input;
+    return { articles: [article], page, pageSize, total: 1 };
+  };
   await withServer(async (base) => {
-    const response = await fetch(base + "/api/articles?category=SQL%20Server&tag=performance&page=1");
+    const response = await fetch(base + "/api/articles?category=SQL%20Server&tag=performance&search=Query%20Store&page=1");
     assert.equal(response.status, 200);
     assert.match(response.headers.get("cache-control") ?? "", /stale-if-error/);
     const body = await response.json() as { articles: Array<Record<string, unknown>> };
     assert.equal(body.articles[0].slug, article.slug);
     assert.equal("html" in body.articles[0], false);
   }, { database: db.value });
+  assert.deepEqual(filters, { category: "SQL Server", tag: "performance", search: "Query Store" });
 });
 
 test("returns only an available published article by slug", async () => {
@@ -145,10 +155,111 @@ test("admin article writes require a bearer token and validate HTML", async () =
   }, { config: securedConfig, database: db.value, articleAdmin: articleAdminStore() });
 });
 
+test("admin can create, edit, and publish an article", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  let stored: Article | undefined;
+  const store: ArticleAdminStore = {
+    async listAdminArticles() { return stored ? [stored] : []; },
+    async getAdminArticle(id) { return stored?.articleId === id ? stored : undefined; },
+    async saveArticleDraft(id, input, now) {
+      stored = {
+        ...input,
+        articleId: id,
+        status: "Draft",
+        createdDate: stored?.createdDate ?? now,
+        modifiedDate: now,
+      };
+      return stored;
+    },
+    async publishArticle(id, now) {
+      if (!stored || stored.articleId !== id) return undefined;
+      stored = { ...stored, status: "Published", publishedDate: now, modifiedDate: now };
+      return stored;
+    },
+    async unpublishArticle() { return undefined; },
+    async archiveArticle() { return undefined; },
+    async deleteArticle() { return false; },
+    async close() {},
+  };
+  const headers = {
+    authorization: "Bearer test-admin-token-that-is-at-least-32-characters",
+    "content-type": "application/json",
+  };
+  const draft = {
+    title: "A production checklist",
+    slug: "production-checklist",
+    summary: "Checks to run before changing a production SQL Server.",
+    category: "Operations",
+    tags: ["production", "change control"],
+    author: "Steven Wittek",
+    seoDescription: "A practical production SQL Server change checklist.",
+    isFeatured: false,
+    html: "<h2>Establish a baseline</h2><p>Record the current state first.</p>",
+  };
+
+  await withServer(async (base) => {
+    const created = await fetch(`${base}/api/admin/articles`, { method: "POST", headers, body: JSON.stringify(draft) });
+    assert.equal(created.status, 201);
+    const createdArticle = (await created.json() as { article: { articleId: string; title: string } }).article;
+    assert.match(createdArticle.articleId, /^[0-9a-f-]{36}$/);
+
+    const updated = await fetch(`${base}/api/admin/articles/${createdArticle.articleId}`, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({ ...draft, title: "A safer production checklist" }),
+    });
+    assert.equal(updated.status, 200);
+    assert.equal((await updated.json() as { article: { title: string } }).article.title, "A safer production checklist");
+
+    const missingUpdate = await fetch(`${base}/api/admin/articles/55555555-5555-4555-8555-555555555555`, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(draft),
+    });
+    assert.equal(missingUpdate.status, 404);
+
+    const published = await fetch(`${base}/api/admin/articles/${createdArticle.articleId}/publish`, { method: "POST", headers });
+    assert.equal(published.status, 200);
+    assert.equal((await published.json() as { article: { status: string } }).article.status, "Published");
+  }, { config: securedConfig, database: database().value, articleAdmin: store, now: () => articleDate.valueOf() });
+});
+
+test("admin can unpublish and delete an article through authenticated routes", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  const headers = { authorization: "Bearer test-admin-token-that-is-at-least-32-characters" };
+  await withServer(async (base) => {
+    const unpublished = await fetch(`${base}/api/admin/articles/${article.articleId}/unpublish`, { method: "POST", headers });
+    assert.equal(unpublished.status, 200);
+    assert.equal(((await unpublished.json()) as { article: { status: string } }).article.status, "Draft");
+
+    const deleted = await fetch(`${base}/api/admin/articles/${article.articleId}`, { method: "DELETE", headers });
+    assert.equal(deleted.status, 200);
+    assert.equal(((await deleted.json()) as { deleted: boolean }).deleted, true);
+
+    const missing = await fetch(`${base}/api/admin/articles/55555555-5555-4555-8555-555555555555`, { method: "DELETE", headers });
+    assert.equal(missing.status, 404);
+  }, { config: securedConfig, database: database().value, articleAdmin: articleAdminStore() });
+});
+
+test("admin delete refuses a published article with a safe conflict response", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  const store = articleAdminStore();
+  store.deleteArticle = async () => { throw new PublishedArticleDeleteError(); };
+  await withServer(async (base) => {
+    const response = await fetch(`${base}/api/admin/articles/${article.articleId}`, {
+      method: "DELETE",
+      headers: { authorization: "Bearer test-admin-token-that-is-at-least-32-characters" },
+    });
+    assert.equal(response.status, 409);
+    assert.equal((await response.json() as { error: string }).error, "article_must_be_unpublished");
+  }, { config: securedConfig, database: database().value, articleAdmin: store });
+});
+
 test("admin routes are absent when authoring credentials are disabled", async () => {
   await withServer(async (base) => {
     const response = await fetch(base + "/api/admin/articles", { headers: { authorization: "Bearer anything" } });
     assert.equal(response.status, 404);
+    assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow");
   }, { database: database().value });
 });
 

@@ -30,6 +30,15 @@ IF ISNULL(HAS_PERMS_BY_NAME(N'web.Visitors', N'OBJECT', N'SELECT'), 0) <> 1
 
 IF ISNULL(HAS_PERMS_BY_NAME(N'web.Visitors', N'OBJECT', N'DELETE'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.BlogPosts', N'OBJECT', N'SELECT'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.ArticleDrafts', N'OBJECT', N'SELECT'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.BlogImages', N'OBJECT', N'SELECT'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.ListAdminArticles', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.GetAdminArticle', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.SaveArticleDraft', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.PublishArticle', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.UnpublishArticle', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.ArchiveArticle', N'OBJECT', N'EXECUTE'), 0) <> 0
+   OR ISNULL(HAS_PERMS_BY_NAME(N'web.DeleteArticle', N'OBJECT', N'EXECUTE'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.ApplicationConfiguration', N'OBJECT', N'SELECT'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.SchemaMigrations', N'OBJECT', N'SELECT'), 0) <> 0
    OR ISNULL(HAS_PERMS_BY_NAME(N'web.PurgeExpiredData', N'OBJECT', N'EXECUTE'), 0) <> 0

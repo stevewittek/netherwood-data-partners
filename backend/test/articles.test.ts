@@ -31,6 +31,8 @@ test("article input is normalized and searchable plain text is derived", () => {
     category: "SQL Server",
     tags: ["Performance", "performance", "Query Store"],
     author: "Steven Wittek",
+    seoDescription: "A concise Query Store guide for production troubleshooting.",
+    isFeatured: true,
     featuredImage: "/images/query-store.png",
     html: "<h2>Baseline</h2><p>Capture the evidence.</p>",
   });
@@ -38,6 +40,8 @@ test("article input is normalized and searchable plain text is derived", () => {
   assert.deepEqual(article.tags, ["Performance", "Query Store"]);
   assert.match(article.plainText, /Baseline/i);
   assert.match(article.plainText, /Capture the evidence/);
+  assert.equal(article.isFeatured, true);
+  assert.match(article.seoDescription ?? "", /Query Store/);
 });
 
 test("article input rejects unsafe URLs and invalid slugs", () => {
@@ -51,14 +55,84 @@ test("article input rejects unsafe URLs and invalid slugs", () => {
     featuredImage: "javascript:alert(1)",
     html: "<p>Body</p>",
   }), /invalid_article/);
+  assert.throws(() => parseArticleInput({
+    title: "Title",
+    slug: "textless-article",
+    summary: "Summary",
+    category: "SQL Server",
+    tags: [],
+    author: "Steven",
+    html: "<p></p>",
+  }), (error: unknown) => (
+    error instanceof Error
+    && error.message === "invalid_article"
+    && "fields" in error
+    && (error.fields as Record<string, string>).html === "Article content must contain readable text"
+  ));
 });
 
 test("article migration uses indexed public reads and fixed author procedures", async () => {
   const migration = await readFile(new URL("../sql/migrations/005_articles_cms.sql", import.meta.url), "utf8");
+  const workflow = await readFile(new URL("../sql/migrations/006_articles_content_workflow.sql", import.meta.url), "utf8");
   assert.match(migration, /IX_BlogPosts_Status_PublishedAtUtc/);
   assert.match(migration, /WHERE Status = 'published'/);
+  assert.match(migration, /CREATE ROLE web_runtime/);
   assert.match(migration, /CREATE OR ALTER PROCEDURE web\.GetPublishedArticle/);
   assert.match(migration, /CREATE OR ALTER PROCEDURE web\.SaveArticleDraft/);
   assert.match(migration, /DENY SELECT, INSERT, UPDATE, DELETE ON web\.BlogPosts TO web_article_author/);
+  assert.match(workflow, /@Search nvarchar\(200\)/);
+  assert.match(workflow, /SELECT COUNT_BIG\(\*\) AS TotalCount/);
+  assert.match(workflow, /CREATE UNIQUE INDEX UX_BlogPosts_SinglePublishedFeaturedArticle/);
+  assert.match(workflow, /CREATE OR ALTER PROCEDURE web\.UnpublishArticle/);
+  assert.match(workflow, /CREATE OR ALTER PROCEDURE web\.DeleteArticle/);
+  assert.match(workflow, /THROW 51012/);
+  assert.match(workflow, /DENY EXECUTE ON web\.DeleteArticle TO web_runtime/);
   assert.doesNotMatch(migration, /EXEC\s*\(\s*@/i);
+  assert.doesNotMatch(workflow, /EXEC\s*\(\s*@/i);
+});
+
+test("starter article source, SQL seed, and available static snapshot stay aligned and sanitizer-safe", async () => {
+  const source = JSON.parse(await readFile(new URL("../sql/seeds/articles.seed.json", import.meta.url), "utf8")) as Array<Record<string, unknown>>;
+  let snapshot: { articles: Array<Record<string, unknown>> } | undefined;
+  try {
+    snapshot = JSON.parse(await readFile(new URL("../../pages-site/articles-snapshot.json", import.meta.url), "utf8")) as typeof snapshot;
+  } catch (error) {
+    if (!(error && typeof error === "object" && "code" in error && error.code === "ENOENT")) throw error;
+  }
+  const seedMigration = await readFile(new URL("../sql/migrations/007_starter_articles.sql", import.meta.url), "utf8");
+  const expectedTitles = [
+    "Why SQL Server Databases Slow Down Over Time",
+    "SQL Server Indexing Mistakes That Hurt Performance",
+    "Query Store: Finding the Queries That Are Breaking Your Database",
+    "Why NOLOCK Does Not Fix Blocking Problems",
+    "When Small Businesses Need a Database Consultant",
+    "Moving Legacy Applications to Modern SQL Server Platforms",
+    "Database Backups: What Companies Get Wrong",
+    "Azure SQL Migration Lessons",
+    "Performance Tuning Before Buying More Hardware",
+    "Database Health Checks Explained",
+  ];
+
+  assert.deepEqual(source.map((article) => article.title), expectedTitles);
+  assert.equal(source.filter((article) => article.isFeatured === true).length, 1);
+  if (snapshot) assert.equal(snapshot.articles.length, source.length);
+  for (const article of source) {
+    assert.equal(typeof article.articleId, "string");
+    assert.match(String(article.slug), /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+    assert.equal(typeof article.seoDescription, "string");
+    assert.ok(Array.isArray(article.tags) && article.tags.length >= 3);
+    const html = String(article.contentHTML);
+    assert.equal(sanitizeArticleHtml(html), html);
+    assert.ok(html.replace(/<[^>]+>/g, " ").trim().split(/\s+/).length >= 700);
+    const exported = snapshot?.articles.find((candidate) => candidate.articleId === article.articleId);
+    if (snapshot) {
+      assert.ok(exported);
+      assert.equal(exported.html, html);
+      assert.equal(exported.seoDescription, article.seoDescription);
+    }
+    assert.match(seedMigration, new RegExp(String(article.articleId), "i"));
+    assert.match(seedMigration, new RegExp(String(article.slug)));
+  }
+  assert.match(seedMigration, /MigrationId = '007_starter_articles'/);
+  assert.doesNotMatch(seedMigration, /EXEC\s*\(\s*@/i);
 });

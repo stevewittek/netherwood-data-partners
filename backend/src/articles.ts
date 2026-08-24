@@ -14,6 +14,8 @@ export type ArticleSummary = {
   author: string;
   status: ArticleStatus;
   featuredImage?: string;
+  seoDescription?: string;
+  isFeatured: boolean;
   publishedDate?: Date;
   createdDate: Date;
   modifiedDate: Date;
@@ -42,10 +44,12 @@ export type ArticleInput = {
   tags: string[];
   author: string;
   featuredImage?: string;
+  seoDescription?: string;
+  isFeatured: boolean;
 };
 
 export interface ArticleStore {
-  listPublishedArticles(input: { category?: string; tag?: string; page: number; pageSize: number }): Promise<ArticleList>;
+  listPublishedArticles(input: { category?: string; tag?: string; search?: string; page: number; pageSize: number }): Promise<ArticleList>;
   getPublishedArticle(slug: string): Promise<Article | undefined>;
 }
 
@@ -54,7 +58,9 @@ export interface ArticleAdminStore {
   getAdminArticle(articleId: string): Promise<Article | undefined>;
   saveArticleDraft(articleId: string, input: ArticleInput, now: Date): Promise<Article>;
   publishArticle(articleId: string, now: Date): Promise<Article | undefined>;
+  unpublishArticle(articleId: string, now: Date): Promise<Article | undefined>;
   archiveArticle(articleId: string, now: Date): Promise<Article | undefined>;
+  deleteArticle(articleId: string): Promise<boolean>;
   close(): Promise<void>;
 }
 
@@ -126,6 +132,18 @@ function requiredString(value: unknown, field: string, maximum: number, errors: 
   return trimmed;
 }
 
+function optionalString(value: unknown, field: string, maximum: number, errors: Record<string, string>): string | undefined {
+  if (value === undefined || value === null || value === "") return undefined;
+  if (typeof value !== "string") {
+    errors[field] = `Must be ${maximum} characters or fewer`;
+    return undefined;
+  }
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  if (trimmed.length > maximum) errors[field] = `Must be ${maximum} characters or fewer`;
+  return trimmed;
+}
+
 function optionalSafeUrl(value: unknown, errors: Record<string, string>): string | undefined {
   if (value === undefined || value === null || value === "") return undefined;
   if (typeof value !== "string" || value.length > 2_048) {
@@ -152,6 +170,9 @@ export function parseArticleInput(value: Record<string, unknown>): ArticleInput 
   const summary = requiredString(value.summary, "summary", 1_000, errors);
   const category = requiredString(value.category, "category", 100, errors);
   const author = requiredString(value.author, "author", 200, errors);
+  const seoDescription = optionalString(value.seoDescription, "seoDescription", 500, errors);
+  const isFeatured = value.isFeatured === undefined ? false : value.isFeatured;
+  if (typeof isFeatured !== "boolean") errors.isFeatured = "Must be true or false";
   const sourceHtml = requiredString(value.html, "html", 500_000, errors);
   const html = sourceHtml ? sanitizeArticleHtml(sourceHtml) : "";
   if (sourceHtml && !html) errors.html = "Article content must contain supported formatting";
@@ -171,8 +192,6 @@ export function parseArticleInput(value: Record<string, unknown>): ArticleInput 
     }
   }
   const featuredImage = optionalSafeUrl(value.featuredImage, errors);
-  if (Object.keys(errors).length > 0) throw new ArticleValidationError(errors);
-
   const plainText = convert(html, {
     wordwrap: false,
     selectors: [
@@ -180,7 +199,22 @@ export function parseArticleInput(value: Record<string, unknown>): ArticleInput 
       { selector: "img", format: "skip" },
     ],
   }).replace(/\n{3,}/g, "\n\n").trim();
-  return { title, slug, summary, html, plainText, category, tags, author, featuredImage };
+  if (sourceHtml && html && !plainText) errors.html = "Article content must contain readable text";
+  if (Object.keys(errors).length > 0) throw new ArticleValidationError(errors);
+
+  return {
+    title,
+    slug,
+    summary,
+    html,
+    plainText,
+    category,
+    tags,
+    author,
+    featuredImage,
+    seoDescription,
+    isFeatured: typeof isFeatured === "boolean" ? isFeatured : false,
+  };
 }
 
 export function articleJson(article: ArticleSummary | Article): Record<string, unknown> {
@@ -194,6 +228,8 @@ export function articleJson(article: ArticleSummary | Article): Record<string, u
     author: article.author,
     status: article.status,
     featuredImage: article.featuredImage,
+    seoDescription: article.seoDescription,
+    isFeatured: article.isFeatured,
     publishedDate: article.publishedDate?.toISOString(),
     createdDate: article.createdDate.toISOString(),
     modifiedDate: article.modifiedDate.toISOString(),

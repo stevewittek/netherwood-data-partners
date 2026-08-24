@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 import type { Metadata } from "next";
 import ChatWidget from "../ChatWidget";
 import { Portrait } from "../components/Portrait";

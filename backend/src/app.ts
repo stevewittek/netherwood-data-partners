@@ -1,6 +1,6 @@
 import { createHash, createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
-import { ArticleConflictError, createArticleAdminDatabase } from "./article-database.ts";
+import { ArticleConflictError, PublishedArticleDeleteError, createArticleAdminDatabase } from "./article-database.ts";
 import {
   ArticleValidationError,
   articleJson,
@@ -132,6 +132,19 @@ export function createApp(deps: Deps = {}) {
   const buckets = new Map<string, { start: number; count: number }>();
   let activeChats = 0;
 
+  function consumeRateLimit(client: string, current: number): number | undefined {
+    let bucket = buckets.get(client);
+    if (!bucket || current - bucket.start >= config.rateWindowMs) bucket = { start: current, count: 0 };
+    bucket.count += 1;
+    buckets.set(client, bucket);
+    if (buckets.size > 10_000) {
+      for (const [key, value] of buckets) if (current - value.start >= config.rateWindowMs) buckets.delete(key);
+    }
+    return bucket.count > config.rateLimit
+      ? Math.max(1, Math.ceil((config.rateWindowMs - (current - bucket.start)) / 1_000))
+      : undefined;
+  }
+
   const server = createServer(async (request, response) => {
     const requestId = randomUUID();
     const url = new URL(request.url ?? "/", "http://localhost");
@@ -147,7 +160,7 @@ export function createApp(deps: Deps = {}) {
       if (!origin || !config.allowedOrigins.has(origin)) return send(response, 403, { error: "origin_not_allowed", requestId });
       response.writeHead(204, {
         ...cors,
-        "access-control-allow-methods": isAdmin ? "GET,POST,PUT,OPTIONS" : "GET,POST,OPTIONS",
+        "access-control-allow-methods": isAdmin ? "GET,POST,PUT,DELETE,OPTIONS" : "GET,POST,OPTIONS",
         "access-control-allow-headers": isAdmin ? "authorization,content-type" : "content-type",
         "access-control-max-age": "600",
       });
@@ -161,12 +174,14 @@ export function createApp(deps: Deps = {}) {
         if (!database) return send(response, 503, { error: "service_unavailable", requestId }, cors);
         const category = url.searchParams.has("category") ? text(url.searchParams.get("category"), 100) : undefined;
         const tag = url.searchParams.has("tag") ? text(url.searchParams.get("tag"), 50) : undefined;
+        const search = url.searchParams.has("search") ? text(url.searchParams.get("search"), 200) : undefined;
         const page = pageNumber(url.searchParams.get("page"), 1, 1_000_000);
         const pageSize = pageNumber(url.searchParams.get("pageSize"), 10, 50);
-        if ((url.searchParams.has("category") && !category) || (url.searchParams.has("tag") && !tag) || !page || !pageSize) {
+        if ((url.searchParams.has("category") && !category) || (url.searchParams.has("tag") && !tag)
+          || (url.searchParams.has("search") && !search) || !page || !pageSize) {
           return send(response, 400, { error: "invalid_query", requestId }, cors);
         }
-        const result = await database.listPublishedArticles({ category, tag, page, pageSize });
+        const result = await database.listPublishedArticles({ category, tag, search, page, pageSize });
         return send(response, 200, {
           articles: result.articles.map(articleSummaryJson),
           page: result.page,
@@ -189,7 +204,20 @@ export function createApp(deps: Deps = {}) {
       }
 
       if (isAdmin) {
-        if (!articleAdmin || !config.articleAdminToken) return send(response, 404, { error: "not_found", requestId }, cors);
+        const retryAfter = consumeRateLimit(request.socket.remoteAddress ?? "unknown", now());
+        if (retryAfter !== undefined) {
+          return send(response, 429, { error: "rate_limited", requestId }, {
+            ...cors,
+            "retry-after": String(retryAfter),
+            "x-robots-tag": "noindex, nofollow",
+          });
+        }
+        if (!articleAdmin || !config.articleAdminToken) {
+          return send(response, 404, { error: "not_found", requestId }, {
+            ...cors,
+            "x-robots-tag": "noindex, nofollow",
+          });
+        }
         if (!authorized(request, config.articleAdminToken)) {
           return send(response, 401, { error: "unauthorized", requestId }, {
             ...cors,
@@ -202,7 +230,7 @@ export function createApp(deps: Deps = {}) {
           const articles = await articleAdmin.listAdminArticles();
           return send(response, 200, { articles: articles.map(articleSummaryJson), requestId }, adminHeaders);
         }
-        const match = url.pathname.match(/^\/api\/admin\/articles\/([0-9a-f-]{36})(?:\/(publish|archive))?$/i);
+        const match = url.pathname.match(/^\/api\/admin\/articles\/([0-9a-f-]{36})(?:\/(publish|unpublish|archive))?$/i);
         if (request.method === "GET" && match && !match[2] && uuid(match[1])) {
           const article = await articleAdmin.getAdminArticle(match[1]);
           return article
@@ -217,14 +245,25 @@ export function createApp(deps: Deps = {}) {
         if ((request.method === "POST" && url.pathname === "/api/admin/articles") || (request.method === "PUT" && match && !match[2])) {
           const articleId = request.method === "POST" ? randomUUID() : uuid(match?.[1]);
           if (!articleId) return send(response, 404, { error: "not_found", requestId }, adminHeaders);
+          if (request.method === "PUT" && !(await articleAdmin.getAdminArticle(articleId))) {
+            return send(response, 404, { error: "not_found", requestId }, adminHeaders);
+          }
           const body = await readJson(request, 600_000);
           const article = await articleAdmin.saveArticleDraft(articleId, parseArticleInput(body), new Date(now()));
           return send(response, request.method === "POST" ? 201 : 200, { article: articleJson(article), requestId }, adminHeaders);
         }
+        if (request.method === "DELETE" && match && !match[2] && uuid(match[1])) {
+          const deleted = await articleAdmin.deleteArticle(match[1]);
+          return deleted
+            ? send(response, 200, { deleted: true, requestId }, adminHeaders)
+            : send(response, 404, { error: "not_found", requestId }, adminHeaders);
+        }
         if (request.method === "POST" && match && match[2] && uuid(match[1])) {
           const article = match[2] === "publish"
             ? await articleAdmin.publishArticle(match[1], new Date(now()))
-            : await articleAdmin.archiveArticle(match[1], new Date(now()));
+            : match[2] === "unpublish"
+              ? await articleAdmin.unpublishArticle(match[1], new Date(now()))
+              : await articleAdmin.archiveArticle(match[1], new Date(now()));
           return article
             ? send(response, 200, { article: articleJson(article), requestId }, adminHeaders)
             : send(response, 404, { error: "not_found", requestId }, adminHeaders);
@@ -236,19 +275,12 @@ export function createApp(deps: Deps = {}) {
         return send(response, 404, { error: "not_found", requestId }, cors);
       }
 
-      const client = request.socket.remoteAddress ?? "unknown";
       const current = now();
-      let bucket = buckets.get(client);
-      if (!bucket || current - bucket.start >= config.rateWindowMs) bucket = { start: current, count: 0 };
-      bucket.count += 1;
-      buckets.set(client, bucket);
-      if (buckets.size > 10_000) {
-        for (const [key, value] of buckets) if (current - value.start >= config.rateWindowMs) buckets.delete(key);
-      }
-      if (bucket.count > config.rateLimit) {
+      const retryAfter = consumeRateLimit(request.socket.remoteAddress ?? "unknown", current);
+      if (retryAfter !== undefined) {
         return send(response, 429, { error: "rate_limited", requestId }, {
           ...cors,
-          "retry-after": String(Math.max(1, Math.ceil((config.rateWindowMs - (current - bucket.start)) / 1_000))),
+          "retry-after": String(retryAfter),
         });
       }
 
@@ -318,11 +350,15 @@ export function createApp(deps: Deps = {}) {
       return send(response, 202, { accepted: true, leadId, requestId }, cors);
     } catch (error) {
       const code = error instanceof Error ? error.message : "unknown";
-      if (code === "too_large") return send(response, 413, { error: "payload_too_large", requestId }, cors);
-      if (code === "invalid_json") return send(response, 400, { error: "invalid_json", requestId }, cors);
-      if (code === "unsupported_media_type") return send(response, 415, { error: "unsupported_media_type", requestId }, cors);
-      if (error instanceof ArticleValidationError) return send(response, 400, { error: "invalid_article", fields: error.fields, requestId }, cors);
-      if (error instanceof ArticleConflictError) return send(response, 409, { error: "slug_conflict", requestId }, cors);
+      const safeRouteHeaders = isAdmin ? { ...cors, "x-robots-tag": "noindex, nofollow" } : cors;
+      if (code === "too_large") return send(response, 413, { error: "payload_too_large", requestId }, safeRouteHeaders);
+      if (code === "invalid_json") return send(response, 400, { error: "invalid_json", requestId }, safeRouteHeaders);
+      if (code === "unsupported_media_type") return send(response, 415, { error: "unsupported_media_type", requestId }, safeRouteHeaders);
+      if (error instanceof ArticleValidationError) return send(response, 400, { error: "invalid_article", fields: error.fields, requestId }, safeRouteHeaders);
+      if (error instanceof ArticleConflictError) return send(response, 409, { error: "slug_conflict", requestId }, safeRouteHeaders);
+      if (error instanceof PublishedArticleDeleteError) {
+        return send(response, 409, { error: "article_must_be_unpublished", requestId }, safeRouteHeaders);
+      }
       if (error instanceof ProviderError) {
         console.error(JSON.stringify({ event: "provider_failed", requestId, provider: error.provider, providerError: error.code }));
         if (error.code === "authentication") return send(response, 503, { error: "chat_unavailable", requestId }, cors);
@@ -334,7 +370,7 @@ export function createApp(deps: Deps = {}) {
         return send(response, 502, { error: "upstream_unavailable", requestId }, cors);
       }
       console.error(JSON.stringify({ event: "request_failed", requestId, route: url.pathname, errorType: error instanceof Error ? error.name : "unknown" }));
-      return send(response, 502, { error: "upstream_unavailable", requestId }, cors);
+      return send(response, 502, { error: "upstream_unavailable", requestId }, safeRouteHeaders);
     }
   });
 

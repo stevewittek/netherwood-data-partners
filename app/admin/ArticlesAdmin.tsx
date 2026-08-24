@@ -14,6 +14,8 @@ type AdminArticle = {
   author: string;
   status: "Draft" | "Published" | "Archived";
   featuredImage?: string;
+  seoDescription?: string;
+  isFeatured: boolean;
   publishedDate?: string;
   createdDate: string;
   modifiedDate: string;
@@ -28,6 +30,8 @@ type EditorValue = {
   tags: string;
   author: string;
   featuredImage: string;
+  seoDescription: string;
+  isFeatured: boolean;
   html: string;
 };
 
@@ -40,6 +44,8 @@ const blankEditor: EditorValue = {
   tags: "",
   author: "Steven Wittek",
   featuredImage: "",
+  seoDescription: "",
+  isFeatured: false,
   html: "<p></p>",
 };
 
@@ -57,6 +63,8 @@ function editorFromArticle(article: AdminArticle): EditorValue {
     tags: article.tags.join(", "),
     author: article.author,
     featuredImage: article.featuredImage ?? "",
+    seoDescription: article.seoDescription ?? "",
+    isFeatured: article.isFeatured,
     html: article.html ?? "",
   };
 }
@@ -100,6 +108,7 @@ export default function ArticlesAdmin() {
     if (!response.ok) {
       if (body.fields) setFieldErrors(body.fields);
       if (response.status === 401) throw new Error("The publishing credential was not accepted.");
+      if (body.error === "article_must_be_unpublished") throw new Error("Unpublish this article before deleting it.");
       if (response.status === 409) throw new Error("That URL slug is already used by another article.");
       throw new Error(body.error === "not_found" ? "Article not found." : "Voyager could not complete the request.");
     }
@@ -137,6 +146,7 @@ export default function ArticlesAdmin() {
   async function editArticle(articleId: string, preview = false): Promise<void> {
     setBusy(true);
     setNotice("");
+    setFieldErrors({});
     try {
       const result = await request<{ article: AdminArticle }>(`/api/admin/articles/${articleId}`);
       setSelectedId(articleId);
@@ -156,6 +166,7 @@ export default function ArticlesAdmin() {
       ...editor,
       tags: editor.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       featuredImage: editor.featuredImage || undefined,
+      seoDescription: editor.seoDescription || undefined,
     };
   }
 
@@ -196,12 +207,15 @@ export default function ArticlesAdmin() {
     }
   }
 
-  async function changeStatus(articleId: string, action: "publish" | "archive"): Promise<void> {
+  async function changeStatus(articleId: string, action: "publish" | "unpublish" | "archive"): Promise<void> {
     setBusy(true);
     setNotice("");
     try {
       const result = await request<{ article: AdminArticle }>(`/api/admin/articles/${articleId}/${action}`, { method: "POST" });
-      setNotice(action === "publish" ? `Published “${result.article.title}”.` : `Archived “${result.article.title}”.`);
+      const expectedStatus = action === "publish" ? "Published" : action === "unpublish" ? "Draft" : "Archived";
+      if (result.article.status !== expectedStatus) throw new Error(`Voyager did not ${action} the article.`);
+      const verb = action === "publish" ? "Published" : action === "unpublish" ? "Unpublished" : "Archived";
+      setNotice(`${verb} “${result.article.title}”.`);
       await loadList();
       if (selectedId === articleId) {
         setEditor(editorFromArticle(result.article));
@@ -219,6 +233,30 @@ export default function ArticlesAdmin() {
     if (saved) await changeStatus(saved.articleId, "publish");
   }
 
+  async function deleteArticle(article: AdminArticle): Promise<void> {
+    if (article.status === "Published") {
+      setNotice("Unpublish this article before deleting it.");
+      return;
+    }
+    if (!window.confirm(`Permanently delete “${article.title}”? This cannot be undone.`)) return;
+    setBusy(true);
+    setNotice("");
+    try {
+      await request<{ deleted: true }>(`/api/admin/articles/${article.articleId}`, { method: "DELETE" });
+      setNotice(`Deleted “${article.title}”.`);
+      if (selectedId === article.articleId) {
+        setSelectedId(undefined);
+        setEditor(blankEditor);
+        setMode("list");
+      }
+      await loadList();
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "Unable to delete article.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   function update(field: keyof EditorValue, value: string): void {
     setEditor((current) => {
       const next = { ...current, [field]: value };
@@ -226,6 +264,8 @@ export default function ArticlesAdmin() {
       return next;
     });
   }
+
+  const selectedArticle = articles.find((article) => article.articleId === selectedId);
 
   if (!apiUrl) return (
     <main className="admin-page">
@@ -264,7 +304,7 @@ export default function ArticlesAdmin() {
       <div className="admin-workspace">
         <section className="admin-heading">
           <div><p className="eyebrow">Private publishing</p><h1>{mode === "list" ? "Articles" : selectedId ? "Edit article" : "New article"}</h1></div>
-          {mode === "list" ? <button className="button button-primary" type="button" onClick={newArticle}>New Article</button> : <button className="admin-back" type="button" onClick={() => setMode("list")}>← Article list</button>}
+          {mode === "list" ? <button className="button button-primary" type="button" onClick={newArticle} disabled={busy}>New Article</button> : <button className="admin-back" type="button" onClick={() => setMode("list")} disabled={busy}>← Article list</button>}
         </section>
         {notice ? <p className="admin-notice" role="status">{notice}</p> : null}
 
@@ -277,7 +317,7 @@ export default function ArticlesAdmin() {
                   <td><strong>{article.title}</strong>{article.hasUnpublishedChanges ? <span className="draft-change">Unpublished changes</span> : null}</td>
                   <td><span className={`status-label status-${article.status.toLowerCase()}`}>{article.status}</span></td>
                   <td>{article.category}</td><td>{isoLabel(article.modifiedDate)}</td><td>{isoLabel(article.publishedDate)}</td>
-                  <td><div className="admin-actions"><button onClick={() => void editArticle(article.articleId)}>Edit</button><button onClick={() => void editArticle(article.articleId, true)}>Preview</button>{article.status !== "Published" || article.hasUnpublishedChanges ? <button onClick={() => void changeStatus(article.articleId, "publish")}>Publish</button> : null}{article.status !== "Archived" ? <button onClick={() => void changeStatus(article.articleId, "archive")}>Archive</button> : null}</div></td>
+                  <td><div className="admin-actions"><button disabled={busy} onClick={() => void editArticle(article.articleId)}>Edit</button><button disabled={busy} onClick={() => void editArticle(article.articleId, true)}>Preview</button>{article.status === "Published" ? <button disabled={busy} onClick={() => void changeStatus(article.articleId, "unpublish")}>Unpublish</button> : <button disabled={busy} onClick={() => void changeStatus(article.articleId, "publish")}>Publish</button>}{article.status !== "Published" && article.status !== "Archived" ? <button disabled={busy} onClick={() => void changeStatus(article.articleId, "archive")}>Archive</button> : null}{article.status !== "Published" ? <button className="danger-action" disabled={busy} onClick={() => void deleteArticle(article)}>Delete</button> : null}</div></td>
                 </tr>
               ))}</tbody>
             </table>
@@ -291,17 +331,19 @@ export default function ArticlesAdmin() {
               <label>Title<input value={editor.title} onChange={(event) => update("title", event.target.value)} />{fieldErrors.title ? <small>{fieldErrors.title}</small> : null}</label>
               <label>URL slug<div className="slug-input"><span>/articles/</span><input value={editor.slug} onChange={(event) => { setSlugTouched(true); update("slug", event.target.value); }} /></div>{fieldErrors.slug ? <small>{fieldErrors.slug}</small> : null}</label>
               <label>Summary<textarea className="summary-field" value={editor.summary} onChange={(event) => update("summary", event.target.value)} />{fieldErrors.summary ? <small>{fieldErrors.summary}</small> : null}</label>
+              <label>SEO description <span>Optional; the summary is used when this is blank</span><textarea className="summary-field" maxLength={500} value={editor.seoDescription} onChange={(event) => update("seoDescription", event.target.value)} />{fieldErrors.seoDescription ? <small>{fieldErrors.seoDescription}</small> : null}</label>
               <div className="editor-grid"><label>Category<input value={editor.category} onChange={(event) => update("category", event.target.value)} /></label><label>Author<input value={editor.author} onChange={(event) => update("author", event.target.value)} /></label></div>
               <label>Tags <span>Comma separated</span><input value={editor.tags} onChange={(event) => update("tags", event.target.value)} />{fieldErrors.tags ? <small>{fieldErrors.tags}</small> : null}</label>
               <label>Featured image <span>Optional relative path or HTTPS URL</span><input value={editor.featuredImage} onChange={(event) => update("featuredImage", event.target.value)} />{fieldErrors.featuredImage ? <small>{fieldErrors.featuredImage}</small> : null}</label>
+              <label className="checkbox-field"><input type="checkbox" checked={editor.isFeatured} onChange={(event) => setEditor((current) => ({ ...current, isFeatured: event.target.checked }))} /><span>Feature this article on the Articles page</span></label>
             </div>
             <div className="content-editor">
-              <div className="editor-tabs" aria-label="Editing mode"><button type="button" disabled>Visual <span>Later</span></button><button type="button" className="active">HTML</button></div>
+              <div className="editor-tabs" aria-label="Editing mode"><button type="button" className="active">HTML</button></div>
               <label htmlFor="article-html">Article Content</label>
               <textarea id="article-html" spellCheck="false" value={editor.html} onChange={(event) => update("html", event.target.value)} />
               {fieldErrors.html ? <small>{fieldErrors.html}</small> : null}
             </div>
-            <div className="editor-buttons"><button className="button" type="submit" disabled={busy}>Save Draft</button><button className="button" type="button" onClick={() => void preview()} disabled={busy}>Preview</button><button className="button button-primary" type="button" onClick={() => void publishEditor()} disabled={busy}>Publish</button></div>
+            <div className="editor-buttons"><button className="button" type="submit" disabled={busy}>Save Draft</button><button className="button" type="button" onClick={() => void preview()} disabled={busy}>Preview</button>{selectedArticle?.status === "Published" ? <button className="button" type="button" onClick={() => void changeStatus(selectedArticle.articleId, "unpublish")} disabled={busy}>Unpublish</button> : null}<button className="button button-primary" type="button" onClick={() => void publishEditor()} disabled={busy}>Publish</button></div>
           </form>
         ) : null}
 
