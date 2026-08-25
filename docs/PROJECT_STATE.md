@@ -22,6 +22,12 @@ Last verified: 2026-08-23 UTC on `voyager2`. This records observed state, not pl
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   public HTML does not contain the chat widget because the GitHub
   `VOYAGER_API_URL` variable remains unset. Voyager and Ollama were not exposed.
+- Database Mail setup runners were prepared on 2026-08-25 under
+  `ops/database-mail/` for both Voyagers. They configure
+  `database@netherwooddatapartners.com` as the visible
+  sender through Namecheap SMTP and create the `Netherwood DBA` operator. The
+  configuration has not yet been applied to either server; no service restart or
+  external test email was performed from this workstation.
 - Host Node remains 18.19.1 and was not changed. Development and verification
   use pinned Node 22.13.1 containers.
 
