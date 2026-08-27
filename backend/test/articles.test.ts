@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { parseArticleInput, sanitizeArticleHtml } from "../src/articles.ts";
+import { normalizeArticleSlug, parseArticleInput, sanitizeArticleHtml } from "../src/articles.ts";
 
 test("article HTML sanitizer preserves technical formatting and removes scriptable markup", () => {
   const html = sanitizeArticleHtml(`
@@ -26,22 +26,53 @@ test("article HTML sanitizer preserves technical formatting and removes scriptab
 test("article input is normalized and searchable plain text is derived", () => {
   const article = parseArticleInput({
     title: "  Query Store Notes  ",
-    slug: "query-store-notes",
+    slug: "Query Store: Notes",
     summary: "A practical note.",
     category: "SQL Server",
     tags: ["Performance", "performance", "Query Store"],
     author: "Steven Wittek",
     seoDescription: "A concise Query Store guide for production troubleshooting.",
+    seoTitle: "Query Store Notes | Netherwood Data Partners",
+    publishedDate: "2026-08-27T12:30:00.000Z",
     isFeatured: true,
     featuredImage: "/images/query-store.png",
     html: "<h2>Baseline</h2><p>Capture the evidence.</p>",
   });
   assert.equal(article.title, "Query Store Notes");
+  assert.equal(article.slug, "query-store-notes");
   assert.deepEqual(article.tags, ["Performance", "Query Store"]);
   assert.match(article.plainText, /Baseline/i);
   assert.match(article.plainText, /Capture the evidence/);
   assert.equal(article.isFeatured, true);
   assert.match(article.seoDescription ?? "", /Query Store/);
+  assert.match(article.seoTitle ?? "", /Netherwood/);
+  assert.equal(article.publishedDate?.toISOString(), "2026-08-27T12:30:00.000Z");
+});
+
+test("article slugs normalize consistently and reject empty normalized values", () => {
+  assert.equal(
+    normalizeArticleSlug("How to Know When You Need a Fractional DBA"),
+    "how-to-know-when-you-need-a-fractional-dba",
+  );
+  assert.throws(() => parseArticleInput({
+    title: "Title",
+    slug: "💾💾💾",
+    summary: "Summary",
+    category: "SQL Server",
+    tags: [],
+    author: "Steven",
+    html: "<p>Body</p>",
+  }), /invalid_article/);
+  assert.throws(() => parseArticleInput({
+    title: "Title",
+    slug: "impossible-date",
+    summary: "Summary",
+    category: "SQL Server",
+    tags: [],
+    author: "Steven",
+    publishedDate: "2026-02-31T12:30:00.000Z",
+    html: "<p>Body</p>",
+  }), /invalid_article/);
 });
 
 test("article input rejects unsafe URLs and invalid slugs", () => {
@@ -69,11 +100,23 @@ test("article input rejects unsafe URLs and invalid slugs", () => {
     && "fields" in error
     && (error.fields as Record<string, string>).html === "Article content must contain readable text"
   ));
+  assert.throws(() => parseArticleInput({
+    title: "Title",
+    slug: "invalid-date",
+    summary: "Summary",
+    category: "SQL Server",
+    tags: [],
+    author: "Steven",
+    publishedDate: "2026-08-27 12:30",
+    html: "<p>Body</p>",
+  }), /invalid_article/);
 });
 
 test("article migration uses indexed public reads and fixed author procedures", async () => {
   const migration = await readFile(new URL("../sql/migrations/005_articles_cms.sql", import.meta.url), "utf8");
   const workflow = await readFile(new URL("../sql/migrations/006_articles_content_workflow.sql", import.meta.url), "utf8");
+  const metadata = await readFile(new URL("../sql/migrations/008_article_metadata_and_scheduling.sql", import.meta.url), "utf8");
+  const databaseAdapter = await readFile(new URL("../src/article-database.ts", import.meta.url), "utf8");
   assert.match(migration, /IX_BlogPosts_Status_PublishedAtUtc/);
   assert.match(migration, /WHERE Status = 'published'/);
   assert.match(migration, /CREATE ROLE web_runtime/);
@@ -87,8 +130,17 @@ test("article migration uses indexed public reads and fixed author procedures", 
   assert.match(workflow, /CREATE OR ALTER PROCEDURE web\.DeleteArticle/);
   assert.match(workflow, /THROW 51012/);
   assert.match(workflow, /DENY EXECUTE ON web\.DeleteArticle TO web_runtime/);
+  assert.match(metadata, /MigrationId = '008_article_metadata_and_scheduling'/);
+  assert.match(metadata, /ALTER TABLE web\.ArticleDrafts ADD SeoTitle nvarchar\(300\) NULL/);
+  assert.match(metadata, /ALTER TABLE web\.ArticleDrafts ADD PublishedAtUtc datetime2\(3\) NULL/);
+  assert.match(metadata, /ORDER BY post\.PublishedAtUtc DESC/);
+  assert.match(metadata, /OFFSET \(@Page - 1\) \* @PageSize ROWS FETCH NEXT @PageSize ROWS ONLY/);
+  assert.match(metadata, /PublishedAtUtc <= SYSUTCDATETIME\(\)/);
+  assert.match(databaseAdapter, /request\.input\("Slug", sql\.NVarChar\(200\), input\.slug\)/);
+  assert.match(databaseAdapter, /request\.input\("PublishedAtUtc", sql\.DateTime2\(3\), input\.publishedDate \?\? null\)/);
   assert.doesNotMatch(migration, /EXEC\s*\(\s*@/i);
   assert.doesNotMatch(workflow, /EXEC\s*\(\s*@/i);
+  assert.doesNotMatch(metadata, /EXEC\s*\(\s*@/i);
 });
 
 test("starter article source, SQL seed, and available static snapshot stay aligned and sanitizer-safe", async () => {

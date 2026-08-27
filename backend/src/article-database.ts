@@ -64,6 +64,7 @@ export function mapArticleSummary(row: Record<string, unknown>): ArticleSummary 
     author: String(row.Author),
     status: status(row.Status),
     featuredImage: typeof row.FeaturedImage === "string" ? row.FeaturedImage : undefined,
+    seoTitle: typeof row.SeoTitle === "string" ? row.SeoTitle : undefined,
     seoDescription: typeof row.SeoDescription === "string" ? row.SeoDescription : undefined,
     isFeatured: Boolean(row.IsFeatured),
     publishedDate: optionalDate(row.PublishedDate),
@@ -156,8 +157,10 @@ export function createArticleAdminDatabase(config: SqlConfig): ArticleAdminStore
       request.input("TagsJson", sql.NVarChar(2000), JSON.stringify(input.tags));
       request.input("Author", sql.NVarChar(200), input.author);
       request.input("FeaturedImage", sql.NVarChar(2048), input.featuredImage ?? null);
+      request.input("SeoTitle", sql.NVarChar(300), input.seoTitle ?? null);
       request.input("SeoDescription", sql.NVarChar(500), input.seoDescription ?? null);
       request.input("IsFeatured", sql.Bit, input.isFeatured);
+      request.input("PublishedAtUtc", sql.DateTime2(3), input.publishedDate ?? null);
       request.input("Now", sql.DateTime2(3), now);
       try {
         const result = await request.execute(ARTICLE_PROCEDURES.saveDraft);

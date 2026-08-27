@@ -61,6 +61,14 @@ IF NOT EXISTS
 )
     THROW 51000, 'The starter articles migration is not recorded.', 1;
 
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '008_article_metadata_and_scheduling'
+)
+    THROW 51000, 'The article metadata and scheduling migration is not recorded.', 1;
+
 IF OBJECT_ID(N'web.PurgeExpiredData', N'P') IS NULL
     THROW 51000, 'The retention maintenance procedure is missing.', 1;
 
@@ -129,6 +137,30 @@ IF NOT EXISTS
       AND columnrow.is_nullable = 0
 )
     THROW 51000, 'ArticleDrafts.IsFeatured is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
+    WHERE columnrow.object_id = OBJECT_ID(N'web.ArticleDrafts')
+      AND columnrow.name = N'SeoTitle'
+      AND TYPE_NAME(columnrow.user_type_id) = N'nvarchar'
+      AND columnrow.max_length = 600
+      AND columnrow.is_nullable = 1
+)
+    THROW 51000, 'ArticleDrafts.SeoTitle is missing or invalid.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
+    WHERE columnrow.object_id = OBJECT_ID(N'web.ArticleDrafts')
+      AND columnrow.name = N'PublishedAtUtc'
+      AND TYPE_NAME(columnrow.user_type_id) = N'datetime2'
+      AND columnrow.scale = 3
+      AND columnrow.is_nullable = 1
+)
+    THROW 51000, 'ArticleDrafts.PublishedAtUtc is missing or invalid.', 1;
 
 IF NOT EXISTS
 (

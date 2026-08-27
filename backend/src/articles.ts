@@ -14,6 +14,7 @@ export type ArticleSummary = {
   author: string;
   status: ArticleStatus;
   featuredImage?: string;
+  seoTitle?: string;
   seoDescription?: string;
   isFeatured: boolean;
   publishedDate?: Date;
@@ -44,8 +45,10 @@ export type ArticleInput = {
   tags: string[];
   author: string;
   featuredImage?: string;
+  seoTitle?: string;
   seoDescription?: string;
   isFeatured: boolean;
+  publishedDate?: Date;
 };
 
 export interface ArticleStore {
@@ -122,6 +125,11 @@ export function sanitizeArticleHtml(html: string): string {
   }).trim();
 }
 
+export function normalizeArticleSlug(value: string): string {
+  return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
 function requiredString(value: unknown, field: string, maximum: number, errors: Record<string, string>): string {
   if (typeof value !== "string" || value.trim().length === 0) {
     errors[field] = "Required";
@@ -144,6 +152,25 @@ function optionalString(value: unknown, field: string, maximum: number, errors: 
   return trimmed;
 }
 
+function optionalUtcDate(value: unknown, errors: Record<string, string>): Date | undefined {
+  if (value === undefined || value === null || value === "") return undefined;
+  const match = typeof value === "string" && value.length <= 35
+    ? /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?Z$/.exec(value)
+    : null;
+  if (!match) {
+    errors.publishedDate = "Must be an ISO 8601 UTC date";
+    return undefined;
+  }
+  const parsed = new Date(match[0]);
+  const canonical = `${match[1]}T${match[2]}:${match[3] ?? "00"}.${(match[4] ?? "").padEnd(3, "0")}Z`;
+  if (Number.isNaN(parsed.valueOf()) || parsed.toISOString() !== canonical
+    || parsed.getUTCFullYear() < 2000 || parsed.getUTCFullYear() > 2100) {
+    errors.publishedDate = "Must be a valid UTC date from 2000 through 2100";
+    return undefined;
+  }
+  return parsed;
+}
+
 function optionalSafeUrl(value: unknown, errors: Record<string, string>): string | undefined {
   if (value === undefined || value === null || value === "") return undefined;
   if (typeof value !== "string" || value.length > 2_048) {
@@ -163,14 +190,15 @@ function optionalSafeUrl(value: unknown, errors: Record<string, string>): string
 export function parseArticleInput(value: Record<string, unknown>): ArticleInput {
   const errors: Record<string, string> = {};
   const title = requiredString(value.title, "title", 300, errors);
-  const slug = requiredString(value.slug, "slug", 200, errors).toLowerCase();
-  if (slug && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
-    errors.slug = "Use lowercase letters, numbers and single hyphens";
-  }
+  const slugSource = requiredString(value.slug, "slug", 300, errors);
+  const slug = normalizeArticleSlug(slugSource);
+  if (slugSource && (!slug || slug.length > 200)) errors.slug = "Must produce a slug of 1 to 200 letters, numbers, or hyphens";
   const summary = requiredString(value.summary, "summary", 1_000, errors);
   const category = requiredString(value.category, "category", 100, errors);
   const author = requiredString(value.author, "author", 200, errors);
+  const seoTitle = optionalString(value.seoTitle, "seoTitle", 300, errors);
   const seoDescription = optionalString(value.seoDescription, "seoDescription", 500, errors);
+  const publishedDate = optionalUtcDate(value.publishedDate, errors);
   const isFeatured = value.isFeatured === undefined ? false : value.isFeatured;
   if (typeof isFeatured !== "boolean") errors.isFeatured = "Must be true or false";
   const sourceHtml = requiredString(value.html, "html", 500_000, errors);
@@ -212,8 +240,10 @@ export function parseArticleInput(value: Record<string, unknown>): ArticleInput 
     tags,
     author,
     featuredImage,
+    seoTitle,
     seoDescription,
     isFeatured: typeof isFeatured === "boolean" ? isFeatured : false,
+    publishedDate,
   };
 }
 
@@ -228,13 +258,19 @@ export function articleJson(article: ArticleSummary | Article): Record<string, u
     author: article.author,
     status: article.status,
     featuredImage: article.featuredImage,
+    seoTitle: article.seoTitle,
     seoDescription: article.seoDescription,
     isFeatured: article.isFeatured,
     publishedDate: article.publishedDate?.toISOString(),
     createdDate: article.createdDate.toISOString(),
     modifiedDate: article.modifiedDate.toISOString(),
     ...(article.hasUnpublishedChanges === undefined ? {} : { hasUnpublishedChanges: article.hasUnpublishedChanges }),
-    ...("html" in article ? { html: article.html, plainText: article.plainText } : {}),
+    ...("html" in article ? {
+      html: article.html,
+      plainText: article.plainText,
+      metaTitle: article.seoTitle ?? article.title,
+      metaDescription: article.seoDescription ?? article.summary,
+    } : {}),
   };
 }
 

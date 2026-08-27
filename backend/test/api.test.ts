@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { ProviderError } from "../src/ai.ts";
 import { createApp, type ChatHandler } from "../src/app.ts";
-import { PublishedArticleDeleteError } from "../src/article-database.ts";
+import { ArticleConflictError, PublishedArticleDeleteError } from "../src/article-database.ts";
 import type { Config } from "../src/config.ts";
 import type { ChatMessageInput, ChatReplyInput, Database, LeadInput, PageViewInput } from "../src/database.ts";
 import type { Article, ArticleAdminStore, ArticleInput, ArticleSummary } from "../src/articles.ts";
@@ -26,6 +26,8 @@ const config: Config = {
   ipAbuseHashSecret: "test-hash-secret",
   maxBodyBytes: 1_024,
   rateLimit: 10,
+  articleRateLimit: 100,
+  adminRateLimit: 10,
   rateWindowMs: 60_000,
 };
 
@@ -81,6 +83,7 @@ const article: Article = {
   tags: ["performance", "Query Store"],
   author: "Steven Wittek",
   status: "Published",
+  seoTitle: "Query Store performance analysis | Netherwood Data Partners",
   seoDescription: "How to use Query Store evidence to isolate production regressions.",
   isFeatured: false,
   createdDate: articleDate,
@@ -125,8 +128,45 @@ test("returns only an available published article by slug", async () => {
   await withServer(async (base) => {
     const found = await fetch(base + "/api/articles/" + article.slug);
     assert.equal(found.status, 200);
-    assert.equal(((await found.json()) as { article: { html: string } }).article.html, article.html);
+    const body = (await found.json()) as { article: { html: string; metaTitle: string; metaDescription: string } };
+    assert.equal(body.article.html, article.html);
+    assert.equal(body.article.metaTitle, article.seoTitle);
+    assert.equal(body.article.metaDescription, article.seoDescription);
     assert.equal((await fetch(base + "/api/articles/draft-article")).status, 404);
+  }, { database: db.value });
+});
+
+test("validates pagination and passes injection-like search text as one literal value", async () => {
+  const db = database();
+  let captured: { search?: string; page: number; pageSize: number } | undefined;
+  db.value.listPublishedArticles = async (input) => {
+    captured = { search: input.search, page: input.page, pageSize: input.pageSize };
+    return { articles: [article], page: input.page, pageSize: input.pageSize, total: 3 };
+  };
+  const search = "query%' OR 1=1;--_[";
+  await withServer(async (base) => {
+    const query = new URLSearchParams({ search, page: "2", pageSize: "1" });
+    const response = await fetch(`${base}/api/articles?${query}`);
+    assert.equal(response.status, 200);
+    const body = await response.json() as { page: number; pageSize: number; total: number; articles: ArticleSummary[] };
+    assert.deepEqual({ page: body.page, pageSize: body.pageSize, total: body.total }, { page: 2, pageSize: 1, total: 3 });
+    assert.equal(body.articles[0].slug, article.slug);
+    assert.equal((await fetch(`${base}/api/articles?page=0&pageSize=100`)).status, 400);
+  }, { database: db.value });
+  assert.deepEqual(captured, { search, page: 2, pageSize: 1 });
+});
+
+test("public article routes fail safely when SQL Server is unavailable", async () => {
+  const db = database();
+  db.value.listPublishedArticles = async () => {
+    throw new Error("connect ECONNREFUSED sql.example password=must-not-leak");
+  };
+  await withServer(async (base) => {
+    const response = await fetch(base + "/api/articles");
+    assert.equal(response.status, 502);
+    const raw = await response.text();
+    assert.match(raw, /upstream_unavailable/);
+    assert.doesNotMatch(raw, /sql\.example|password|ECONNREFUSED/);
   }, { database: db.value });
 });
 
@@ -135,6 +175,11 @@ test("admin article writes require a bearer token and validate HTML", async () =
   const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
   await withServer(async (base) => {
     assert.equal((await fetch(base + "/api/admin/articles")).status, 401);
+    assert.equal((await fetch(base + "/api/admin/articles", {
+      method: "POST",
+      headers: { authorization: "Bearer incorrect-token", "content-type": "application/json" },
+      body: "{}",
+    })).status, 401);
     const headers = {
       authorization: "Bearer test-admin-token-that-is-at-least-32-characters",
       "content-type": "application/json",
@@ -153,6 +198,32 @@ test("admin article writes require a bearer token and validate HTML", async () =
     const body = await preview.json() as { html: string };
     assert.equal(body.html, "<p>Safe</p>");
   }, { config: securedConfig, database: db.value, articleAdmin: articleAdminStore() });
+});
+
+test("duplicate normalized slugs return conflict without replacing an article", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  const store = articleAdminStore();
+  store.saveArticleDraft = async () => { throw new ArticleConflictError(); };
+  await withServer(async (base) => {
+    const response = await fetch(base + "/api/admin/articles", {
+      method: "POST",
+      headers: {
+        authorization: "Bearer test-admin-token-that-is-at-least-32-characters",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Existing URL",
+        slug: "Existing URL",
+        summary: "A duplicate normalized slug.",
+        category: "SQL Server",
+        tags: [],
+        author: "Steven Wittek",
+        html: "<p>Do not overwrite the existing row.</p>",
+      }),
+    });
+    assert.equal(response.status, 409);
+    assert.equal((await response.json() as { error: string }).error, "slug_conflict");
+  }, { config: securedConfig, database: database().value, articleAdmin: store });
 });
 
 test("admin can create, edit, and publish an article", async () => {
@@ -239,6 +310,33 @@ test("admin can unpublish and delete an article through authenticated routes", a
     const missing = await fetch(`${base}/api/admin/articles/55555555-5555-4555-8555-555555555555`, { method: "DELETE", headers });
     assert.equal(missing.status, 404);
   }, { config: securedConfig, database: database().value, articleAdmin: articleAdminStore() });
+});
+
+test("unpublish and archive remove an article from the public API", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  const db = database();
+  let visible = true;
+  db.value.getPublishedArticle = async (slug) => visible && slug === article.slug ? article : undefined;
+  const store = articleAdminStore();
+  store.unpublishArticle = async (id) => {
+    if (id !== article.articleId) return undefined;
+    visible = false;
+    return { ...article, status: "Draft", publishedDate: undefined };
+  };
+  store.archiveArticle = async (id) => {
+    if (id !== article.articleId) return undefined;
+    visible = false;
+    return { ...article, status: "Archived" };
+  };
+  const headers = { authorization: "Bearer test-admin-token-that-is-at-least-32-characters" };
+  await withServer(async (base) => {
+    assert.equal((await fetch(`${base}/api/articles/${article.slug}`)).status, 200);
+    assert.equal((await fetch(`${base}/api/admin/articles/${article.articleId}/unpublish`, { method: "POST", headers })).status, 200);
+    assert.equal((await fetch(`${base}/api/articles/${article.slug}`)).status, 404);
+    visible = true;
+    assert.equal((await fetch(`${base}/api/admin/articles/${article.articleId}/archive`, { method: "POST", headers })).status, 200);
+    assert.equal((await fetch(`${base}/api/articles/${article.slug}`)).status, 404);
+  }, { config: securedConfig, database: db.value, articleAdmin: store });
 });
 
 test("admin delete refuses a published article with a safe conflict response", async () => {
@@ -365,6 +463,22 @@ test("rate limits requests by the short in-memory window", async () => {
     assert.equal(limited.status, 429);
     assert.equal(limited.headers.get("retry-after"), "60");
   }, { database: db.value, config: { ...config, rateLimit: 1 } });
+});
+
+test("uses separate stronger admin and bounded public article rate limits", async () => {
+  const securedConfig = {
+    ...config,
+    articleAdminToken: "test-admin-token-that-is-at-least-32-characters",
+    articleRateLimit: 1,
+    adminRateLimit: 1,
+  };
+  await withServer(async (base) => {
+    assert.equal((await fetch(base + "/api/articles")).status, 200);
+    assert.equal((await fetch(base + "/api/articles")).status, 429);
+    const headers = { authorization: "Bearer test-admin-token-that-is-at-least-32-characters" };
+    assert.equal((await fetch(base + "/api/admin/articles", { headers })).status, 200);
+    assert.equal((await fetch(base + "/api/admin/articles", { headers })).status, 429);
+  }, { config: securedConfig, database: database().value, articleAdmin: articleAdminStore() });
 });
 
 test("rejects concurrent model work with a bounded busy response", async () => {

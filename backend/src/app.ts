@@ -132,15 +132,16 @@ export function createApp(deps: Deps = {}) {
   const buckets = new Map<string, { start: number; count: number }>();
   let activeChats = 0;
 
-  function consumeRateLimit(client: string, current: number): number | undefined {
-    let bucket = buckets.get(client);
+  function consumeRateLimit(client: string, current: number, limit: number, scope: string): number | undefined {
+    const key = `${scope}:${client}`;
+    let bucket = buckets.get(key);
     if (!bucket || current - bucket.start >= config.rateWindowMs) bucket = { start: current, count: 0 };
     bucket.count += 1;
-    buckets.set(client, bucket);
+    buckets.set(key, bucket);
     if (buckets.size > 10_000) {
       for (const [key, value] of buckets) if (current - value.start >= config.rateWindowMs) buckets.delete(key);
     }
-    return bucket.count > config.rateLimit
+    return bucket.count > limit
       ? Math.max(1, Math.ceil((config.rateWindowMs - (current - bucket.start)) / 1_000))
       : undefined;
   }
@@ -170,6 +171,21 @@ export function createApp(deps: Deps = {}) {
     if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok" }, cors);
 
     try {
+      if (request.method === "GET" && (url.pathname === "/api/articles" || url.pathname.startsWith("/api/articles/"))) {
+        const retryAfter = consumeRateLimit(
+          request.socket.remoteAddress ?? "unknown",
+          now(),
+          config.articleRateLimit,
+          "public-articles",
+        );
+        if (retryAfter !== undefined) {
+          return send(response, 429, { error: "rate_limited", requestId }, {
+            ...cors,
+            "retry-after": String(retryAfter),
+          });
+        }
+      }
+
       if (request.method === "GET" && url.pathname === "/api/articles") {
         if (!database) return send(response, 503, { error: "service_unavailable", requestId }, cors);
         const category = url.searchParams.has("category") ? text(url.searchParams.get("category"), 100) : undefined;
@@ -204,7 +220,12 @@ export function createApp(deps: Deps = {}) {
       }
 
       if (isAdmin) {
-        const retryAfter = consumeRateLimit(request.socket.remoteAddress ?? "unknown", now());
+        const retryAfter = consumeRateLimit(
+          request.socket.remoteAddress ?? "unknown",
+          now(),
+          config.adminRateLimit,
+          "article-admin",
+        );
         if (retryAfter !== undefined) {
           return send(response, 429, { error: "rate_limited", requestId }, {
             ...cors,
@@ -276,7 +297,12 @@ export function createApp(deps: Deps = {}) {
       }
 
       const current = now();
-      const retryAfter = consumeRateLimit(request.socket.remoteAddress ?? "unknown", current);
+      const retryAfter = consumeRateLimit(
+        request.socket.remoteAddress ?? "unknown",
+        current,
+        config.rateLimit,
+        "browser-posts",
+      );
       if (retryAfter !== undefined) {
         return send(response, 429, { error: "rate_limited", requestId }, {
           ...cors,

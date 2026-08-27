@@ -16,6 +16,7 @@ export type PublicArticle = {
   author: string;
   status: "Published";
   featuredImage?: string;
+  seoTitle?: string;
   seoDescription?: string;
   isFeatured: boolean;
   publishedDate: string;
@@ -38,6 +39,7 @@ function isArticle(value: unknown): value is PublicArticle {
     && typeof article.summary === "string" && typeof article.category === "string"
     && Array.isArray(article.tags) && article.tags.every((tag) => typeof tag === "string")
     && typeof article.author === "string" && article.status === "Published"
+    && (article.seoTitle === undefined || typeof article.seoTitle === "string")
     && (article.seoDescription === undefined || typeof article.seoDescription === "string")
     && typeof article.isFeatured === "boolean"
     && typeof article.publishedDate === "string" && typeof article.modifiedDate === "string"
@@ -143,7 +145,7 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
   useEffect(() => {
     const canonicalPath = article ? `/articles/${article.slug}` : requestedSlug ? `/articles/${requestedSlug}` : "/articles";
     const title = article
-      ? `${article.title} | Netherwood Data Partners`
+      ? article.seoTitle || `${article.title} | Netherwood Data Partners`
       : requestedSlug && noindex
         ? "Article not found | Netherwood Data Partners"
         : "Articles & Field Notes | Netherwood Data Partners";

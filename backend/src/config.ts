@@ -30,6 +30,8 @@ export type Config = {
   articleAdminToken?: string;
   maxBodyBytes: number;
   rateLimit: number;
+  articleRateLimit: number;
+  adminRateLimit: number;
   rateWindowMs: number;
 };
 
@@ -133,6 +135,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     articleAdminToken,
     maxBodyBytes: integer(env.MAX_BODY_BYTES, 16_384, "MAX_BODY_BYTES", 1_024, 1_048_576),
     rateLimit: integer(env.RATE_LIMIT, 30, "RATE_LIMIT", 1, 10_000),
+    articleRateLimit: integer(env.ARTICLE_RATE_LIMIT, 120, "ARTICLE_RATE_LIMIT", 1, 10_000),
+    adminRateLimit: integer(env.ADMIN_RATE_LIMIT, 10, "ADMIN_RATE_LIMIT", 1, 1_000),
     rateWindowMs: integer(env.RATE_WINDOW_MS, 60_000, "RATE_WINDOW_MS", 1_000, 3_600_000),
   };
 }

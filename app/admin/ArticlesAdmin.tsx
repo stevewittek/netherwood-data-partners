@@ -14,6 +14,7 @@ type AdminArticle = {
   author: string;
   status: "Draft" | "Published" | "Archived";
   featuredImage?: string;
+  seoTitle?: string;
   seoDescription?: string;
   isFeatured: boolean;
   publishedDate?: string;
@@ -30,8 +31,10 @@ type EditorValue = {
   tags: string;
   author: string;
   featuredImage: string;
+  seoTitle: string;
   seoDescription: string;
   isFeatured: boolean;
+  publishedDate: string;
   html: string;
 };
 
@@ -44,8 +47,10 @@ const blankEditor: EditorValue = {
   tags: "",
   author: "Steven Wittek",
   featuredImage: "",
+  seoTitle: "",
   seoDescription: "",
   isFeatured: false,
+  publishedDate: "",
   html: "<p></p>",
 };
 
@@ -63,8 +68,10 @@ function editorFromArticle(article: AdminArticle): EditorValue {
     tags: article.tags.join(", "),
     author: article.author,
     featuredImage: article.featuredImage ?? "",
+    seoTitle: article.seoTitle ?? "",
     seoDescription: article.seoDescription ?? "",
     isFeatured: article.isFeatured,
+    publishedDate: article.publishedDate?.slice(0, 16) ?? "",
     html: article.html ?? "",
   };
 }
@@ -166,7 +173,9 @@ export default function ArticlesAdmin() {
       ...editor,
       tags: editor.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
       featuredImage: editor.featuredImage || undefined,
+      seoTitle: editor.seoTitle || undefined,
       seoDescription: editor.seoDescription || undefined,
+      publishedDate: editor.publishedDate ? `${editor.publishedDate}:00.000Z` : undefined,
     };
   }
 
@@ -331,8 +340,10 @@ export default function ArticlesAdmin() {
               <label>Title<input value={editor.title} onChange={(event) => update("title", event.target.value)} />{fieldErrors.title ? <small>{fieldErrors.title}</small> : null}</label>
               <label>URL slug<div className="slug-input"><span>/articles/</span><input value={editor.slug} onChange={(event) => { setSlugTouched(true); update("slug", event.target.value); }} /></div>{fieldErrors.slug ? <small>{fieldErrors.slug}</small> : null}</label>
               <label>Summary<textarea className="summary-field" value={editor.summary} onChange={(event) => update("summary", event.target.value)} />{fieldErrors.summary ? <small>{fieldErrors.summary}</small> : null}</label>
+              <label>SEO title <span>Optional; the article title is used when this is blank</span><input maxLength={300} value={editor.seoTitle} onChange={(event) => update("seoTitle", event.target.value)} />{fieldErrors.seoTitle ? <small>{fieldErrors.seoTitle}</small> : null}</label>
               <label>SEO description <span>Optional; the summary is used when this is blank</span><textarea className="summary-field" maxLength={500} value={editor.seoDescription} onChange={(event) => update("seoDescription", event.target.value)} />{fieldErrors.seoDescription ? <small>{fieldErrors.seoDescription}</small> : null}</label>
               <div className="editor-grid"><label>Category<input value={editor.category} onChange={(event) => update("category", event.target.value)} /></label><label>Author<input value={editor.author} onChange={(event) => update("author", event.target.value)} /></label></div>
+              <label>Publication date <span>Optional, in UTC; publishing uses the current time when blank</span><input type="datetime-local" step="60" value={editor.publishedDate} onChange={(event) => update("publishedDate", event.target.value)} />{fieldErrors.publishedDate ? <small>{fieldErrors.publishedDate}</small> : null}</label>
               <label>Tags <span>Comma separated</span><input value={editor.tags} onChange={(event) => update("tags", event.target.value)} />{fieldErrors.tags ? <small>{fieldErrors.tags}</small> : null}</label>
               <label>Featured image <span>Optional relative path or HTTPS URL</span><input value={editor.featuredImage} onChange={(event) => update("featuredImage", event.target.value)} />{fieldErrors.featuredImage ? <small>{fieldErrors.featuredImage}</small> : null}</label>
               <label className="checkbox-field"><input type="checkbox" checked={editor.isFeatured} onChange={(event) => setEditor((current) => ({ ...current, isFeatured: event.target.checked }))} /><span>Feature this article on the Articles page</span></label>

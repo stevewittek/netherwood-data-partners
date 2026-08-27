@@ -10,11 +10,18 @@ GO
 
 :r migrations/006_articles_content_workflow.sql
 :r migrations/007_starter_articles.sql
+:r migrations/008_article_metadata_and_scheduling.sql
 
 IF NOT EXISTS (SELECT 1 FROM web.SchemaMigrations WHERE MigrationId = '006_articles_content_workflow')
     THROW 51000, 'Migration 006 was not recorded during validation.', 1;
 IF NOT EXISTS (SELECT 1 FROM web.SchemaMigrations WHERE MigrationId = '007_starter_articles')
     THROW 51000, 'Migration 007 was not recorded during validation.', 1;
+IF NOT EXISTS (SELECT 1 FROM web.SchemaMigrations WHERE MigrationId = '008_article_metadata_and_scheduling')
+    THROW 51000, 'Migration 008 was not recorded during validation.', 1;
+
+IF COL_LENGTH(N'web.ArticleDrafts', N'SeoTitle') IS NULL
+   OR COL_LENGTH(N'web.ArticleDrafts', N'PublishedAtUtc') IS NULL
+    THROW 51000, 'Article draft metadata or publication date columns are missing.', 1;
 
 DECLARE @ExpectedStarterIds table (ArticleId uniqueidentifier PRIMARY KEY);
 INSERT @ExpectedStarterIds(ArticleId)
@@ -50,6 +57,10 @@ IF NOT EXISTS
       AND LEN(COALESCE(SeoDescription, N'')) > 0
 )
     THROW 51000, 'Starter searchable content or SEO metadata is missing.', 1;
+
+IF OBJECT_DEFINITION(OBJECT_ID(N'web.ListPublishedArticles')) NOT LIKE N'%PublishedAtUtc <= SYSUTCDATETIME()%'
+   OR OBJECT_DEFINITION(OBJECT_ID(N'web.GetPublishedArticle')) NOT LIKE N'%PublishedAtUtc <= SYSUTCDATETIME()%'
+    THROW 51000, 'Public procedures do not exclude future-dated articles.', 1;
 
 IF @@TRANCOUNT <> 1
     THROW 51000, 'Article migration validation changed the outer transaction boundary.', 1;
