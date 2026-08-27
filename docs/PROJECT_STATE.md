@@ -18,10 +18,19 @@ observed state, not plans.
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
   time, so Pages does not depend on Voyager, SQL Server, Docker, Ollama, or home
   Internet.
-- The existing public deployment was not changed. The GitHub
+- The Articles work did not change the existing public deployment. The live
+  domain returned HTTP 200 after the prior deployment with a
+  `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
+  public HTML does not contain the chat widget because the GitHub
   `VOYAGER_API_URL` variable and static `VITE_VOYAGER_API_URL` remain unset, so
   the deployed site is not connected to Voyager and contains no API secret.
   Voyager, Ollama, and SQL Server were not exposed.
+- Database Mail setup runners were prepared on 2026-08-25 under
+  `ops/database-mail/` for both Voyagers. They configure
+  `database@netherwooddatapartners.com` as the visible
+  sender through Namecheap SMTP and create the `Netherwood DBA` operator. The
+  configuration has not yet been applied to either server; no service restart or
+  external test email was performed from this workstation.
 - Host Node remains 18.19.1 and was not changed. Development and verification
   use pinned Node 22.13.1 containers.
 
