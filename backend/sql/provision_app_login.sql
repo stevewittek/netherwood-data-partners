@@ -56,12 +56,20 @@ GRANT SELECT, INSERT ON web.ChatMessages TO web_runtime;
 GRANT SELECT, INSERT, UPDATE ON web.Contacts TO web_runtime;
 GRANT SELECT, INSERT, UPDATE ON web.Leads TO web_runtime;
 GRANT INSERT ON web.AuditLog TO web_runtime;
+GRANT EXECUTE ON web.SearchChatbotKnowledge TO web_runtime;
+GRANT EXECUTE ON web.ListIndexedKnowledgeSources TO web_runtime;
+GRANT EXECUTE ON web.GetApprovedStructuredContent TO web_runtime;
+GRANT EXECUTE ON web.ReplaceKnowledgeSource TO web_runtime;
+GRANT EXECUTE ON web.HideKnowledgeSource TO web_runtime;
 
 DENY DELETE ON SCHEMA::web TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.ApplicationConfiguration TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.DataRetentionPolicies TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.BlogPosts TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.BlogImages TO web_runtime;
+DENY SELECT, INSERT, UPDATE, DELETE ON web.KnowledgeSources TO web_runtime;
+DENY SELECT, INSERT, UPDATE, DELETE ON web.KnowledgeChunks TO web_runtime;
+DENY SELECT, INSERT, UPDATE, DELETE ON web.ChatbotStructuredContent TO web_runtime;
 DENY SELECT, INSERT, UPDATE, DELETE ON web.SchemaMigrations TO web_runtime;
 DENY EXECUTE ON web.PurgeExpiredData TO web_runtime;
 GO

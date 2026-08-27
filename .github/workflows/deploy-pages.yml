@@ -36,6 +36,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build static site
         run: pnpm run build:pages
+        env:
+          VITE_VOYAGER_API_URL: ${{ vars.VOYAGER_API_URL }}
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website

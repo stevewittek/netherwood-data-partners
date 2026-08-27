@@ -21,6 +21,22 @@ IF NOT EXISTS
 )
     THROW 51000, 'The retention maintenance migration is not recorded.', 1;
 
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '003_chatbot_knowledge'
+)
+    THROW 51000, 'The chatbot knowledge migration is not recorded.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM web.SchemaMigrations
+    WHERE MigrationId = '004_knowledge_location_index'
+)
+    THROW 51000, 'The knowledge location index hardening migration is not recorded.', 1;
+
 IF OBJECT_ID(N'web.PurgeExpiredData', N'P') IS NULL
     THROW 51000, 'The retention maintenance procedure is missing.', 1;
 
@@ -36,9 +52,12 @@ VALUES
     (N'BlogPosts'),
     (N'ChatMessages'),
     (N'ChatSessions'),
+    (N'ChatbotStructuredContent'),
     (N'Contacts'),
     (N'DataRetentionPolicies'),
     (N'Leads'),
+    (N'KnowledgeChunks'),
+    (N'KnowledgeSources'),
     (N'PageViews'),
     (N'SchemaMigrations'),
     (N'Visitors'),
@@ -51,6 +70,36 @@ IF EXISTS
     SELECT name FROM sys.tables WHERE schema_id = SCHEMA_ID(N'web')
 )
     THROW 51000, 'One or more required web tables are missing.', 1;
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM sys.columns AS columnrow
+    JOIN sys.tables AS tablerow ON tablerow.object_id = columnrow.object_id
+    WHERE tablerow.schema_id = SCHEMA_ID(N'web')
+      AND tablerow.name = N'KnowledgeChunks'
+      AND columnrow.name = N'Embedding'
+      AND TYPE_NAME(columnrow.user_type_id) = N'vector'
+      AND columnrow.vector_dimensions = 768
+)
+    THROW 51000, 'KnowledgeChunks.Embedding is not VECTOR(768).', 1;
+
+DECLARE @ExpectedProcedures table (ProcedureName sysname PRIMARY KEY);
+INSERT @ExpectedProcedures(ProcedureName)
+VALUES
+    (N'GetApprovedStructuredContent'),
+    (N'HideKnowledgeSource'),
+    (N'ListIndexedKnowledgeSources'),
+    (N'ReplaceKnowledgeSource'),
+    (N'SearchChatbotKnowledge');
+
+IF EXISTS
+(
+    SELECT ProcedureName FROM @ExpectedProcedures
+    EXCEPT
+    SELECT name FROM sys.procedures WHERE schema_id = SCHEMA_ID(N'web')
+)
+    THROW 51000, 'One or more chatbot knowledge procedures are missing.', 1;
 
 IF NOT EXISTS
 (
@@ -69,6 +118,7 @@ SELECT
     N'database_verified' AS VerificationStatus,
     DB_NAME() AS DatabaseName,
     (SELECT COUNT(*) FROM @ExpectedTables) AS RequiredTableCount,
+    (SELECT COUNT(*) FROM @ExpectedProcedures) AS KnowledgeProcedureCount,
     (SELECT COUNT(*) FROM web.DataRetentionPolicies) AS RetentionPolicyCount,
     (SELECT MAX(AppliedAtUtc) FROM web.SchemaMigrations) AS LastMigrationAtUtc;
 GO
