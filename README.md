@@ -46,9 +46,12 @@ commit, or site deployment.
 Ten initial consulting articles are installed by an idempotent SQL seed and
 included in the tracked outage snapshot. The public index supports featured
 content, categories, and search; the private desk supports drafts, sanitized
-HTML preview, SEO metadata, publish/unpublish, archive, and guarded deletion.
+HTML preview, SEO metadata, editable UTC publication dates,
+publish/unpublish, archive, and guarded deletion.
 
 Authoring is disabled unless both the separate article-author SQL identity and
 the API publishing token are configured. See
 [`docs/ARTICLES_CMS.md`](docs/ARTICLES_CMS.md) for setup, security, publishing,
 preview, export, and recovery details.
+Voyager 1 integration details and response contracts are in
+[`docs/VOYAGER1_ARTICLES_INTEGRATION.md`](docs/VOYAGER1_ARTICLES_INTEGRATION.md).

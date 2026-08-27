@@ -1,6 +1,6 @@
 # Project state
 
-Last verified: 2026-08-24 UTC on `feature/articles-content-system`. This records
+Last verified: 2026-08-27 UTC on `voyager2-articles-platform`. This records
 observed state, not plans.
 
 ## Repository and publishing
@@ -9,10 +9,12 @@ observed state, not plans.
   `/articles/{slug}` pages, and `/admin/articles`, all using the existing shared
   navigation, footer, typography, responsive rules, and branding.
 - Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`.
-  `origin/main` is commit `b00f894`. The requested feature branch merged that
-  current main line at `2f06566`, preserving the About page while completing
-  the Articles system. The feature branch has not been pushed or publicly
-  deployed.
+  `origin/main` is commit `e6fdd55`. Work began from the clean
+  `feature/penny-pincher` checkout at `1033a5a`; the newest appropriate Articles
+  baseline was `3521f8b`. The new `voyager2-articles-platform` branch merged
+  current `origin/main` at `2747620`, preserving both the completed Articles
+  work and the newer Database Mail operations files. No public website
+  deployment was performed.
 - GitHub Pages remains a static build. `pages-site/` reuses the public app and
   `.github/workflows/deploy-pages.yml` publishes `pages-dist`. The optional chat
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
@@ -36,12 +38,19 @@ observed state, not plans.
 
 ## Articles content system
 
-- Ordered migrations `005_articles_cms`, `006_articles_content_workflow`, and
-  `007_starter_articles` are applied to `NDP_Web`. The physical
+- Ordered migrations `005_articles_cms`, `006_articles_content_workflow`,
+  `007_starter_articles`, and `008_article_metadata_and_scheduling` are applied
+  to `NDP_Web` and were verified before the storage incident described below.
+  Current database durability and availability require storage recovery before
+  they can be reconfirmed. The physical
   `web.BlogPosts`/`web.ArticleDrafts` model supplies the requested article ID,
   title, slug, summary, sanitized HTML, category, JSON tags, author, featured
   image, SEO description, UTC publication/modification/creation dates, and
   publication state. Published content stays unchanged while edits are staged.
+- Drafts now carry optional SEO titles and UTC publication dates. Publish uses
+  the current UTC time when no date is supplied; future-dated published rows
+  remain absent from public detail, list, search, and knowledge-export results
+  until due.
 - Public search and category/date indexes support the listing path. A unique
   filtered index enforces at most one published featured article. Slugs remain
   unique, and state/date, JSON, length, and relational constraints remain in
@@ -58,10 +67,13 @@ observed state, not plans.
   `web_article_author` role exists, but no `ndp_article_author` login, SQL author
   password, or publishing API token was created. Admin API routes intentionally
   return `404` until the owner makes that credential decision.
-- The loopback-only API image was rebuilt and is healthy. Live checks returned
-  ten published rows, one featured row, the expected newest slug, searchable
-  results, complete detail HTML/plain text/tags/SEO metadata, and lowercase
-  stable UUIDs. The disabled admin API returned `404` with no-index headers.
+- The loopback-only API image was rebuilt and its process health remains
+  healthy. Before the storage incident, live checks returned ten published
+  rows, three-row pagination, the expected newest slug, complete detail HTML,
+  short stale-if-error caching, and restricted CORS. The disabled admin API
+  returned `404`; an unapproved origin returned `403`, and the allowlisted
+  local preflight returned `204`. With SQL Server down, article reads now fail
+  safely as `502 upstream_unavailable` while `/health` remains `200`.
 - The public index provides a featured insight, newest-first cards, category
   filtering, and search. Detail pages include author/date metadata, related
   article ranking, controlled technical typography, and a contact CTA. The
@@ -84,19 +96,31 @@ observed state, not plans.
   protocol-relative URLs, forms, and unknown attributes are removed while the
   required technical-writing elements remain. Searchable plain text is derived
   only from sanitized HTML.
+- Public article reads and private admin requests use separate bounded rate
+  limits; the stronger admin default is ten requests per source per minute.
+  Slugs are normalized before uniqueness checks, and SEO title/description are
+  exposed under both the existing SEO names and detail-response meta aliases.
 
 ## Host and private services
 
 - Host: Lenovo ThinkPad T460s, Ubuntu 24.04.4 LTS, 7.5 GiB RAM plus 4 GiB swap,
   Intel i5-6300U CPU, no usable discrete GPU.
-- SQL Server 2025 is enabled and active at build `17.0.4075.5`, Enterprise
-  Developer Edition. `NDP_Web` data remains at
-  `/var/opt/mssql/data/NDP_Web.mdf` and log data at
-  `/var/opt/mssql/logdata/NDP_Web_log.ldf`.
-- SQL still listens more broadly than loopback at TCP 1433/1434. Firewall state
-  is not verified without privilege. No firewall, router, DNS, tunnel, or SQL
-  listener setting was changed in this work; public Voyager exposure remains
-  prohibited until that posture is separately reviewed.
+- SQL Server 2025 build `17.0.4075.5`, Enterprise Developer Edition, failed at
+  `2026-08-27 19:27:50 UTC` after repeated automatic restart attempts. At
+  `19:22:27 UTC`, its error log recorded OS error 1117 (I/O device error) while
+  flushing `NDP_Web`, followed by unavailable data/log files and the same write
+  failure against `master`. The service is currently failed and TCP 1433 is no
+  longer listening.
+- `/var/opt/mssql/data` and `/var/opt/mssql/logdata` still appear mounted from
+  `/dev/sdb1` and `/dev/sdc1`, but `lsblk` no longer reports either underlying
+  device; only the unrelated system disk and unmounted `/dev/sdd`/`/dev/sde`
+  remain visible. No restart, repair, restore, mount, filesystem, database-file,
+  or device operation was attempted. Storage ownership/recovery is an explicit
+  operator blocker.
+- Firewall state is not verified without privilege. No firewall, router, DNS,
+  tunnel, SQL listener setting, mount, or device configuration was changed in
+  this work; public Voyager exposure remains prohibited until that posture is
+  separately reviewed.
 - Docker 29.7.2 is enabled. Compose runs Voyager and the official Ollama image
   as restartable services. Both bind only to loopback: API at
   `127.0.0.1:3000`, Ollama at `127.0.0.1:11434`. The API remains non-root,
@@ -148,10 +172,10 @@ observed state, not plans.
   login can list/search/replace/hide through bounded procedures and retrieve
   visible structured records; it is denied direct reads and writes to all three
   knowledge tables. The model cannot submit SQL or file paths.
-- Live verification reports 17 required tables, five knowledge procedures plus
+- Pre-incident live verification reported 17 required tables, five knowledge procedures plus
   ten article procedures, five retention policies, the separate bounded purge
   procedure, and exact approved MDF/LDF paths. The most recent recorded
-  migration time is `2026-08-24 01:58:32.289 UTC`. Existing visitor, chat,
+  migration time is `2026-08-27 19:10:40.806 UTC`. Existing visitor, chat,
   telemetry, leads, IP hashing, retention, parameterized SQL, and safe-log
   boundaries remain in place.
 - Five explicitly visible database examples are indexed: SQL Server performance
@@ -194,36 +218,52 @@ observed state, not plans.
   behavior. Article coverage includes validation/XSS stripping, search and
   public metadata/detail contracts, authentication and disabled-authoring
   behavior, create/edit/publish/unpublish/delete flows, seed/snapshot/sanitizer
-  alignment, and migration permission/index boundaries. The pinned backend
-  image passed all 43 Node tests, strict TypeScript checking, and npm audit with
-  zero known vulnerabilities.
-- Compose is healthy; `/health` and the Ollama version endpoint succeed locally.
-  Re-ingestion is idempotent and the real local cited RAG check passed.
+  alignment, and migration permission/index boundaries. Additional Articles
+  coverage verifies normalized slugs, strict UTC dates, conflicts, metadata,
+  public/detail contracts, pagination, injection-like values, SQL outage
+  handling, visibility transitions, and separate rate limits. The pinned
+  backend image passed all 49 Node tests, strict TypeScript checking, and npm
+  audit with zero known vulnerabilities.
+- The API and Ollama containers are healthy; API `/health` succeeds locally.
+  SQL-backed article, chat, telemetry, lead, knowledge, and ingestion operations
+  are unavailable until host storage and SQL Server are recovered. Earlier
+  re-ingestion was idempotent and the real local cited RAG check passed.
 - Root ESLint, the static Pages build with ten generated native article routes,
-  and the Vinext build passed under Node 22.13.1. SQL migrations 006/007 passed
-  the rollback validation before the gated live apply, and the live database
-  verification passed afterward. `git diff --check` and the final tracked-file
+  and the Vinext build passed under Node 22.13.1. SQL migrations 006-008
+  passed rollback validation before the gated live apply. A separate
+  rollback-only database integration test passed create, draft visibility,
+  metadata, publish, future-date exclusion, unpublish, archive, delete,
+  duplicate slug, and rollback checks. Live database verification passed
+  afterward and before the later OS-level storage failure. `git diff --check`
+  and the final tracked-file
   secret scan passed. Ignored local environment files remain owner-only at mode
   `0600`. Container inspection reconfirmed loopback
   host networking, read-only roots, all capabilities dropped,
-  `no-new-privileges`, and automatic restart policies. No deployment was
-  performed from this branch, and no secret, credential, public tunnel, router,
-  firewall, or DNS setting was added.
+  `no-new-privileges`, and automatic restart policies. The refreshed API image
+  was deployed only to the existing `127.0.0.1:3000` service. No secret,
+  credential, public tunnel, router, firewall, DNS setting, or public website
+  integration was added.
 
 ## Before connecting the public website
 
-1. Resolve and verify SQL Server network exposure and an approved tunnel policy;
+1. Recover and diagnose the missing `/dev/sdb1` DATA and `/dev/sdc1` LOG
+   devices using an approved storage procedure. Preserve both filesystems and
+   database files; do not initialize, format, repair, detach/attach, or restore
+   over them without a reviewed recovery plan and backups. Re-establish SQL
+   Server only after the devices and mounts are healthy, then run database
+   consistency, migration, runtime-login, and API verification.
+2. Resolve and verify SQL Server network exposure and an approved tunnel policy;
    do not use router port forwarding or expose Ollama/SQL directly.
-2. Load-test the new single-flight behavior and `qwen3:4b` on this CPU-only host
+3. Load-test the new single-flight behavior and `qwen3:4b` on this CPU-only host
    under realistic traffic. Decide whether its roughly two-minute response time
    is acceptable, then add operational monitoring and a scheduling policy for
    knowledge ingestion.
-3. Review and approve the production knowledge corpus and every structured SQL
+4. Review and approve the production knowledge corpus and every structured SQL
    record. Keep internal documents outside the approved root and visibility
    flag.
-4. Establish/test database and Ollama-volume backup/restore plus retention
+5. Establish/test database and Ollama-volume backup/restore plus retention
    operations. Disable the temporary SQL setup login and remove the ignored
    setup credential when schema work is complete.
-5. Only after local security review, set the static build's `VOYAGER_API_URL`
+6. Only after local security review, set the static build's `VOYAGER_API_URL`
    to an approved HTTPS endpoint and test backend-down behavior. It remains
    unset now.

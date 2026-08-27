@@ -39,8 +39,11 @@ efficient filtered publication index, fixed public/admin procedures, and the
 `web_article_author` role. Migration `006_articles_content_workflow.sql` adds
 SEO-aware drafts, explicit featured selection, public search, unpublish, and
 guarded deletion. Migration `007_starter_articles.sql` idempotently installs
-the ten provided starter articles. API field names keep clients independent of
-the physical legacy table names.
+the ten provided production-ready starter articles. Migration
+`008_article_metadata_and_scheduling.sql` adds draft SEO titles and editable
+UTC publication dates, and keeps future-dated published records out of public
+reads until their publication time. API field names keep clients independent
+of the physical legacy table names.
 
 Saving an edit to an already published article writes `ArticleDrafts`; the
 currently published row does not change. Publish atomically promotes that
@@ -70,6 +73,10 @@ admin requests share the bounded source rate limiter.
 
 Public responses use a short cache lifetime plus `stale-if-error`. Admin
 responses are `no-store` and carry `X-Robots-Tag: noindex, nofollow`.
+Public article reads default to 120 requests per source per minute; admin
+authentication and operations use the stronger default of 10 per minute.
+Configure these with `ARTICLE_RATE_LIMIT`, `ADMIN_RATE_LIMIT`, and
+`RATE_WINDOW_MS` without weakening the existing general write limit.
 
 ## HTML safety
 
@@ -126,9 +133,11 @@ approval; router port forwarding and public SQL Server access are prohibited.
 
 1. Open `/admin/articles`, enter the publishing credential, and choose **New
    Article**.
-2. Enter metadata and HTML. The suggested slug remains editable. SEO
-   description is optional (summary is the fallback), and the featured option
-   controls the lead article on the public index.
+2. Enter metadata and HTML. The suggested normalized slug remains editable.
+   SEO title and description are optional (article title and summary are the
+   fallbacks), and the featured option controls the lead article on the public
+   index. Publication date is an optional UTC value; publishing uses the
+   current time when it is blank, and a future value remains private until due.
 3. **Preview** sends the draft through the same server sanitizer and renders it
    inside the actual article typography without creating a public URL.
 4. **Save Draft** persists without publishing. On an existing live article it

@@ -86,10 +86,17 @@ indexes, and procedure-only permission boundaries. Migration
 `007_starter_articles.sql` idempotently adds the ten provided starter articles
 from `sql/seeds/articles.seed.json`. Published rows remain unchanged while an
 edit is saved in `ArticleDrafts`; publish promotes the draft atomically.
+Migration `008_article_metadata_and_scheduling.sql` adds draft SEO-title and
+UTC publication-date fields, updates all fixed article procedures, and prevents
+future-dated publications from appearing before their scheduled time.
 
-`validate_articles_migrations.sql` applies migrations 006 and 007 inside an
+`validate_articles_migrations.sql` applies migrations 006 through 008 inside an
 outer transaction, validates the seed and metadata, and rolls everything back.
 It is a compile/smoke check, not a publishing command.
+`test_articles_platform.sql` exercises draft creation, public exclusion,
+publish, future-date exclusion, unpublish, archive, guarded delete, duplicate
+slug rejection, metadata, and injection-like text inside rollback-only
+transactions.
 
 Create authoring credentials only after making the operator credential
 decision:
