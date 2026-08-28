@@ -23,15 +23,13 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v5
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
+      - name: Set up pnpm and Node.js
+        uses: pnpm/setup@v2
         with:
           version: 11.19.0
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: pnpm
+          runtime: node@22
+          cache: true
+          install: false
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build static site
@@ -39,7 +37,7 @@ jobs:
         env:
           VITE_VOYAGER_API_URL: ${{ vars.VOYAGER_API_URL }}
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload website
         uses: actions/upload-pages-artifact@v5
         with:
