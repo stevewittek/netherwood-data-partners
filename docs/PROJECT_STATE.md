@@ -1,6 +1,6 @@
 # Project state
 
-Last verified: 2026-08-27 UTC on `voyager2-articles-platform`. This records
+Last verified: 2026-08-28 UTC on `voyager2-articles-platform`. This records
 observed state, not plans.
 
 ## Repository and publishing
@@ -9,21 +9,23 @@ observed state, not plans.
   `/articles/{slug}` pages, and `/admin/articles`, all using the existing shared
   navigation, footer, typography, responsive rules, and branding.
 - Canonical remote: `https://github.com/stevewittek/netherwood-data-partners.git`.
-  `origin/main` is commit `e6fdd55`. Work began from the clean
+  Before the 2026-08-28 Articles release, `origin/main` was commit `e6fdd55`.
+  Work began from the clean
   `feature/penny-pincher` checkout at `1033a5a`; the newest appropriate Articles
   baseline was `3521f8b`. The new `voyager2-articles-platform` branch merged
   current `origin/main` at `2747620`, preserving both the completed Articles
-  work and the newer Database Mail operations files. No public website
-  deployment was performed.
+  work and the newer Database Mail operations files. The release fast-forwards
+  `main` to this lineage and publishes through the existing Pages workflow.
 - GitHub Pages remains a static build. `pages-site/` reuses the public app and
   `.github/workflows/deploy-pages.yml` publishes `pages-dist`. The optional chat
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
   time, so Pages does not depend on Voyager, SQL Server, Docker, Ollama, or home
   Internet.
-- The Articles work did not change the existing public deployment. The live
-  domain returned HTTP 200 after the prior deployment with a
+- Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
-  public HTML does not contain the chat widget because the GitHub
+  Articles release keeps the public site static and adds the Articles index,
+  native article detail routes, and disconnected private-desk shell. The public
+  HTML does not contain the chat widget because the GitHub
   `VOYAGER_API_URL` variable and static `VITE_VOYAGER_API_URL` remain unset, so
   the deployed site is not connected to Voyager and contains no API secret.
   Voyager, Ollama, and SQL Server were not exposed.
@@ -40,9 +42,8 @@ observed state, not plans.
 
 - Ordered migrations `005_articles_cms`, `006_articles_content_workflow`,
   `007_starter_articles`, and `008_article_metadata_and_scheduling` are applied
-  to `NDP_Web` and were verified before the storage incident described below.
-  Current database durability and availability require storage recovery before
-  they can be reconfirmed. The physical
+  to `NDP_Web` and were reconfirmed after the storage recovery described below.
+  The physical
   `web.BlogPosts`/`web.ArticleDrafts` model supplies the requested article ID,
   title, slug, summary, sanitized HTML, category, JSON tags, author, featured
   image, SEO description, UTC publication/modification/creation dates, and
@@ -68,12 +69,13 @@ observed state, not plans.
   password, or publishing API token was created. Admin API routes intentionally
   return `404` until the owner makes that credential decision.
 - The loopback-only API image was rebuilt and its process health remains
-  healthy. Before the storage incident, live checks returned ten published
+  healthy. Live checks return ten published
   rows, three-row pagination, the expected newest slug, complete detail HTML,
   short stale-if-error caching, and restricted CORS. The disabled admin API
   returned `404`; an unapproved origin returned `403`, and the allowlisted
-  local preflight returned `204`. With SQL Server down, article reads now fail
-  safely as `502 upstream_unavailable` while `/health` remains `200`.
+  local preflight returned `204`. During the SQL outage, article reads failed
+  safely as `502 upstream_unavailable` while `/health` remained `200`; after
+  recovery the database-backed article endpoint returned HTTP 200 again.
 - The public index provides a featured insight, newest-first cards, category
   filtering, and search. Detail pages include author/date metadata, related
   article ranking, controlled technical typography, and a contact CTA. The
@@ -105,22 +107,25 @@ observed state, not plans.
 
 - Host: Lenovo ThinkPad T460s, Ubuntu 24.04.4 LTS, 7.5 GiB RAM plus 4 GiB swap,
   Intel i5-6300U CPU, no usable discrete GPU.
-- SQL Server 2025 build `17.0.4075.5`, Enterprise Developer Edition, failed at
-  `2026-08-27 19:27:50 UTC` after repeated automatic restart attempts. At
-  `19:22:27 UTC`, its error log recorded OS error 1117 (I/O device error) while
-  flushing `NDP_Web`, followed by unavailable data/log files and the same write
-  failure against `master`. The service is currently failed and TCP 1433 is no
-  longer listening.
-- `/var/opt/mssql/data` and `/var/opt/mssql/logdata` still appear mounted from
-  `/dev/sdb1` and `/dev/sdc1`, but `lsblk` no longer reports either underlying
-  device; only the unrelated system disk and unmounted `/dev/sdd`/`/dev/sde`
-  remain visible. No restart, repair, restore, mount, filesystem, database-file,
-  or device operation was attempted. Storage ownership/recovery is an explicit
-  operator blocker.
-- Firewall state is not verified without privilege. No firewall, router, DNS,
-  tunnel, SQL listener setting, mount, or device configuration was changed in
-  this work; public Voyager exposure remains prohibited until that posture is
-  separately reviewed.
+- SQL Server 2025 build `17.0.4075.5`, Enterprise Developer Edition, is active
+  and listening on TCP 1433. `master`, `model`, `msdb`, and `tempdb` now use
+  explicit local paths under `/var/opt/mssql/data`. `NDP_Web` uses
+  `/var/opt/mssql/userdata/NDP_Web.mdf` and
+  `/var/opt/mssql/userlog/NDP_Web_log.ldf`; new user databases default to those
+  USB-backed data and log paths.
+- The USB enclosure disconnected both filesystems together at 19:22 UTC and
+  again at 21:12 UTC. The devices later re-enumerated under new `/dev/sdX`
+  names while stale mounts retained the dead devices. Both ext4 journals were
+  recovered with `e2fsck`, the filesystems were remounted by UUID, and the SQL
+  metadata was moved to role-specific paths. A cold restart, disposable default
+  database, full `DBCC CHECKDB (N'NDP_Web')`, runtime-login check, schema check,
+  and database-backed API read all passed. Local and on-volume pre-cutover file
+  copies were retained for recovery rather than deleted.
+- UFW still denies incoming and routed traffic by default. The existing LAN-only
+  SQL rule remains; one additional rule permits only the `caplab-net` Docker
+  subnet on its bridge to reach the host's Docker-gateway address on TCP 1433.
+  SQL Server, Prometheus, Grafana, the API, and Ollama were not exposed publicly;
+  no router, DNS, or tunnel change was made.
 - Docker 29.7.2 is enabled. Compose runs Voyager and the official Ollama image
   as restartable services. Both bind only to loopback: API at
   `127.0.0.1:3000`, Ollama at `127.0.0.1:11434`. The API remains non-root,
@@ -172,7 +177,7 @@ observed state, not plans.
   login can list/search/replace/hide through bounded procedures and retrieve
   visible structured records; it is denied direct reads and writes to all three
   knowledge tables. The model cannot submit SQL or file paths.
-- Pre-incident live verification reported 17 required tables, five knowledge procedures plus
+- Post-recovery live verification reported 17 required tables, five knowledge procedures plus
   ten article procedures, five retention policies, the separate bounded purge
   procedure, and exact approved MDF/LDF paths. The most recent recorded
   migration time is `2026-08-27 19:10:40.806 UTC`. Existing visitor, chat,
@@ -224,10 +229,10 @@ observed state, not plans.
   handling, visibility transitions, and separate rate limits. The pinned
   backend image passed all 49 Node tests, strict TypeScript checking, and npm
   audit with zero known vulnerabilities.
-- The API and Ollama containers are healthy; API `/health` succeeds locally.
-  SQL-backed article, chat, telemetry, lead, knowledge, and ingestion operations
-  are unavailable until host storage and SQL Server are recovered. Earlier
-  re-ingestion was idempotent and the real local cited RAG check passed.
+- The API and Ollama containers are healthy; API `/health` and a SQL-backed
+  article read succeed locally. SQL schema, migration, runtime-login, and
+  consistency checks pass after recovery. Earlier re-ingestion was idempotent
+  and the real local cited RAG check passed.
 - Root ESLint, the static Pages build with ten generated native article routes,
   and the Vinext build passed under Node 22.13.1. SQL migrations 006-008
   passed rollback validation before the gated live apply. A separate
@@ -246,12 +251,11 @@ observed state, not plans.
 
 ## Before connecting the public website
 
-1. Recover and diagnose the missing `/dev/sdb1` DATA and `/dev/sdc1` LOG
-   devices using an approved storage procedure. Preserve both filesystems and
-   database files; do not initialize, format, repair, detach/attach, or restore
-   over them without a reviewed recovery plan and backups. Re-establish SQL
-   Server only after the devices and mounts are healthy, then run database
-   consistency, migration, runtime-login, and API verification.
+1. Replace or stabilize the shared USB enclosure/cable/power path and establish
+   tested database backups and restores. The system-database split keeps the SQL
+   engine bootable without USB, but `NDP_Web` is correctly unavailable when
+   either user-data drive is absent; UUID mounts do not make unstable hardware
+   durable.
 2. Resolve and verify SQL Server network exposure and an approved tunnel policy;
    do not use router port forwarding or expose Ollama/SQL directly.
 3. Load-test the new single-flight behavior and `qwen3:4b` on this CPU-only host
