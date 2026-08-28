@@ -208,6 +208,12 @@ observed state, not plans.
 
 ## Security and verification status
 
+- A read-only `CI` workflow now runs independently of the existing Pages
+  deployment on pushes to `main`, pull requests targeting `main`, and manual
+  dispatches. Its initial push run (`33178872123`) completed successfully on
+  2026-08-28: the Node 22/pnpm 11.19.0 Site job passed frozen installation,
+  lint, test, and static Pages build steps, while the Node 22 Backend job passed
+  `npm ci`, all tests, and strict TypeScript checking.
 - Existing origin allowlisting, preflight restrictions, request/body/input
   limits, source rate limiting, keyed IP hashing, safe errors/logging,
   parameterized SQL, and bounded provider/server/browser timeouts remain.
