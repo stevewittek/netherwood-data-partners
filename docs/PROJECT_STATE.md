@@ -277,3 +277,18 @@ observed state, not plans.
 6. Only after local security review, set the static build's `VOYAGER_API_URL`
    to an approved HTTPS endpoint and test backend-down behavior. It remains
    unset now.
+
+## Launch governance audit (2026-09-02)
+
+- `origin/main` was pulled and confirmed at `b431beb` before the audit.
+- Production Home, About, Articles, ten article routes, mobile containment,
+  robots, and sitemaps were inspected. The public site remained independent of
+  Voyager; production contact was still email-only.
+- The separate local commit `f982599` on `codex/formspark-contact` implements
+  the Formspark contact form and records passing build/lint checks, but it was
+  not on `origin/main` or production. Notification recipient, end-to-end email
+  delivery, and final visual QA remained launch checks.
+- Launch source-of-truth documents were added under `docs/`, with concise agent
+  rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
+  CSS, content, backend, infrastructure, or production configuration was
+  changed by the governance task.

@@ -1,0 +1,242 @@
+# Launch audit
+
+- Audit date: 2026-09-02
+- Launch deadline: Friday, 2026-09-04
+- Repository baseline: clean `origin/main` at `b431beb` after
+  `git pull --ff-only origin main`
+- Production: `https://netherwooddatapartners.com`
+
+## Scope and evidence
+
+This audit reviewed the production home, About, Articles, and missing Tools
+routes at desktop and 390px mobile; current React pages and shared components;
+`app/globals.css` and `app/about/about.css`; Vite/GitHub Pages generation;
+metadata, sitemap, robots, package scripts, recent Git history, backend
+boundaries, and the separate Formspark branch.
+
+Production currently renders the homepage, About page, Articles index, and ten
+native article routes. The homepage and mobile layout had no horizontal page
+overflow in the inspected view. Primary navigation and current CTAs resolve to
+real pages, home anchors, or the business email. `robots.txt`, `sitemap.xml`,
+and `articles-sitemap.xml` are deployed. The public site renders without
+Voyager.
+
+Priority definitions:
+
+- **P0:** blocks production availability or leaves no working contact path.
+- **P1:** required for a credible Friday launch.
+- **P2:** worthwhile launch polish after P1 is stable.
+- **P3:** post-launch capability or maintenance work.
+
+## Formspark status
+
+Formspark has been implemented but has not landed on `main` and is not in
+production.
+
+- Local branch: `codex/formspark-contact`
+- Commit: `f982599` (`Add Formspark contact form`)
+- Files: `app/components/ContactForm.tsx`, `app/page.tsx`,
+  `app/globals.css`, and `docs/PROJECT_STATE.md`
+- Behavior: direct static POST to Formspark, JSON enhancement with a 15-second
+  timeout, required name/email/message fields, native validation, honeypot,
+  sending/success/error states, privacy sentence, and visible email fallback.
+- Recorded checks on that branch: root lint, static Pages build and route
+  generation, Vinext build, local HTTP render, `git diff --check`, and a tracked
+  secret-pattern scan passed under pinned Node 22.13.1/pnpm 11.19.0.
+- Still unverified: intended notification recipient, actual end-to-end email
+  delivery, live/free-tier submission behavior, and desktop/mobile visual QA.
+
+Do not recreate the component or copy its changes by hand. Rebase or cherry-pick
+the existing commit into the integration branch after checking that no newer
+Formspark work exists.
+
+## P0 — production or contact blockers
+
+No active P0 was found. Production is available and the homepage, About page,
+and article CTA retain a working `mailto:contact@netherwooddatapartners.com`
+path. Formspark failure therefore does not eliminate contact.
+
+Escalate immediately to P0 if a candidate deployment breaks the homepage,
+removes the email fallback, returns an error for `/#contact`, exposes secrets,
+or makes static rendering depend on Voyager.
+
+## P1 — required for Friday
+
+### P1.1 Land and verify the Formspark contact flow
+
+The new form exists only at `f982599`; production has zero forms. Integrate the
+existing commit without duplicating it, review the public action endpoint as
+expected public configuration, and perform one controlled test submission.
+Confirm the exact business inbox receives it, the submission appears in the
+Formspark dashboard, spam protection remains enabled, and the free allowance is
+understood. Verify the error state without removing the email fallback.
+
+Files: `app/components/ContactForm.tsx`, `app/page.tsx`, `app/globals.css`.
+
+### P1.2 Resolve the production typography mismatch through a scoped task
+
+`app/layout.tsx` configures Manrope as `--font-display` and DM Sans as
+`--font-body`, but the GitHub Pages entry bypasses that Next layout. Live
+inspection found both variables empty and both body and headings using the
+Tailwind/system sans stack. This can make local/Next renders differ from the
+deployed site and is a likely source of perceived stylesheet drift.
+
+Files: `app/layout.tsx`, `pages-site/main.tsx`,
+`pages-site/about/main.tsx`, `app/globals.css`.
+
+This is a protected typography change. First decide whether the approved
+Manrope/DM Sans pair or the current system stack is the final production choice,
+then capture before/after desktop and mobile screenshots. Do not alter other
+spacing or type sizes in the same task.
+
+### P1.3 Verify every public identity and experience claim
+
+The About page states "more than 15 years" and the homepage refers to
+"experienced database professionals" and "senior database professionals."
+Those may be true, but the repository contains no approval record and the
+plural wording may imply a staffed firm. The owner must approve the exact claim
+and working-model language. Remove or narrow anything that cannot be supported;
+do not invent a replacement.
+
+Files: `app/about/page.tsx`, `pages-site/about/index.html`, `app/page.tsx`.
+
+### P1.4 Make an explicit founder-image decision
+
+`public/images/steven-wittek.jpg` was introduced by commit `907d3b5` as a
+temporary portrait. Production shows a highly stylized "Optimizer" image that
+can read as AI-generated advertising rather than a real specialist consultant.
+For launch, the owner must explicitly approve it or supply a real professional
+portrait. Any replacement is a protected visual task with desktop/mobile
+screenshots and crop/alt-text verification.
+
+Files: `public/images/steven-wittek.jpg`, `app/components/Portrait.tsx`,
+`app/about/about.css`.
+
+### P1.5 Align static metadata for Home and About
+
+The Pages templates and Next metadata have drifted. The live home page has no
+canonical link; Home and About social descriptions differ between
+`pages-site/*.html` and `app/layout.tsx`/`app/about/page.tsx`. The generator adds
+canonical and robots metadata for Articles, admin, and 404 routes but not the
+two base HTML entries.
+
+Files: `pages-site/index.html`, `pages-site/about/index.html`,
+`app/layout.tsx`, `app/about/page.tsx`,
+`scripts/generate-static-pages.mjs`.
+
+Choose one factual title/description set per page, add correct canonicals, and
+verify the built HTML rather than relying on the unused Next layout.
+
+### P1.6 Complete launch validation on the exact release candidate
+
+Run the root lint, Vinext production build, static Pages build, generated-route
+checks, keyboard/form review, 390px/768px/desktop responsive checks, internal
+link crawl, and a tracked-file secret scan after all P1 commits are integrated.
+Verify the deployed commit after GitHub Pages finishes. Friday is QA and freeze,
+not a design session.
+
+## P2 — launch polish
+
+### P2.1 Navigation differs from the preferred information architecture
+
+Current order is About, Services, Articles, Approach, and Start a conversation.
+Services, Approach, and Contact are home anchors. There is no visible Home link
+and no Tools page. The preferred target is Home, Services, Tools, Articles,
+About, Contact, but changing shared navigation is protected. Do not add Tools
+until `/tools` contains something useful; production currently renders the
+no-index 404 there.
+
+File: `app/components/SiteChrome.tsx`.
+
+### P2.2 Mobile navigation is dense
+
+At 390px the header fits without horizontal overflow, but it presents the N
+mark, About, Articles, and the full Start a conversation CTA in one row. Verify
+touch targets and 320-390px behavior before deciding whether a focused
+navigation task is needed.
+
+Files: `app/components/SiteChrome.tsx`, `app/globals.css`.
+
+### P2.3 Stylesheet ownership has drifted
+
+`app/globals.css` is more than 1,100 lines and contains base, homepage, chat,
+articles, and private admin styles. It defines `.chat-widget` twice: the earlier
+block applies container width/margin/padding while the later block changes it
+to fixed positioning. Broad element selectors (`nav`, `footer`, `h1`-`h3`,
+`a`) increase accidental cross-page changes. About styles are separately owned
+by `app/about/about.css`, while article/admin styles remain global.
+
+Do not reorganize this before Friday unless a P1 fix cannot be made safely.
+Later, separate page/feature ownership and add a visual regression harness.
+
+Files: `app/globals.css`, `app/about/about.css`.
+
+### P2.4 Current gradients conflict with the approved direction
+
+The live body grid, diagnostic grid, portrait fallback grid, and featured
+article wash use CSS gradients. They are current production behavior, not an
+invitation for broad cleanup. Retire them only through explicit, individually
+reviewable visual changes after P1 is complete.
+
+Files: `app/globals.css`, `app/about/about.css`.
+
+### P2.5 Contact treatment is inconsistent across pages
+
+The Formspark branch upgrades only the homepage. About and article detail keep
+mailto CTAs. That is functional and preserves resilience, but the wording and
+route back to the main form should be reviewed for a consistent conversion
+path after the form lands.
+
+Files: `app/about/page.tsx`, `app/articles/Articles.tsx`,
+`app/components/SiteChrome.tsx`.
+
+### P2.6 Finish accessibility and privacy review
+
+Visible focus styling, reduced-motion handling, labels, alt text, and mobile
+table/code containment exist. The repository has no recorded end-to-end
+keyboard/assistive-technology audit and no public privacy page. Before inviting
+traffic, review focus order, heading structure, contrast, form errors, touch
+targets, and whether the short Formspark privacy statement and any disclosure
+are sufficient for the actual business. This is an owner/legal-content decision,
+not permission for an agent to invent a policy.
+
+## P3 — post-launch
+
+### P3.1 Create the Tools area and publish Query Vault when ready
+
+There is no `/tools` route or tooling download today. Build a useful index and
+real Query Vault release later; include platform requirements, version,
+security/support limits, documentation, checksum or signed release mechanism,
+and a contact path. This must not block Friday.
+
+### P3.2 Add deeper service pages and owner-approved packages
+
+The homepage covers the core services and four engagement shapes. Dedicated
+service pages, deliverables, qualification criteria, and a-la-carte packages
+can follow after the owner confirms real scope and commercial terms.
+
+### P3.3 Establish analytics only with an approved privacy boundary
+
+No general production analytics package is present. Voyager telemetry is
+optional and currently unset in the Pages build. If analytics is added, use
+first-party, minimal collection with a documented purpose and retention period;
+never make it a rendering dependency.
+
+### P3.4 Harden optional Voyager operations before public connection
+
+The static site is correctly independent of Voyager. Keep it that way. The
+existing project-state warnings about storage reliability, backups/restores,
+load testing, monitoring, knowledge review, and approved HTTPS exposure must be
+resolved before setting `VOYAGER_API_URL`. Do not use router port forwarding or
+expose SQL Server/Ollama directly.
+
+## Confirmed non-findings
+
+- No broad visual change is required to restore basic production usability.
+- No broken primary navigation or CTA target was observed on Home, About, or
+  Articles.
+- No production dependency on Voyager was observed; the chat widget is absent
+  when the URL is unset.
+- Articles have a tracked static fallback and ten current native routes.
+- No fake customer statistics, testimonials, client logos, certifications,
+  awards, SLAs, or guarantees were found in the public pages reviewed.
