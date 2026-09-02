@@ -1,4 +1,5 @@
 import ChatWidget from "./ChatWidget";
+import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 
 const services = [
@@ -233,10 +234,11 @@ export default function Home() {
             Share the platform, the symptoms, and the urgency. If you have a rough size or timeline, include it.
             We will tell you candidly whether we can help and what makes the most sense next.
           </p>
-          <div className="contact-meta">
-            <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a>
-            <p>Helpful context: database platform, issue/project, urgency, approximate environment size if known.</p>
-          </div>
+          <ContactForm />
+          <p className="contact-email-fallback">
+            Prefer email? Write to{" "}
+            <a href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a>.
+          </p>
         </div>
       </section>
 

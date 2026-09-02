@@ -576,23 +576,142 @@ h1 {
   line-height: 1.65;
 }
 
-.contact-meta {
-  display: grid;
-  gap: 18px;
-}
-
-.contact-meta p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: #d2ddd7;
-}
-
 .button-light {
   width: fit-content;
   background: var(--lime);
   color: var(--ink);
+}
+
+.contact-form {
+  display: grid;
+  gap: 22px;
+  margin-top: 34px;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.contact-field {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-field label {
+  color: white;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+}
+
+.contact-field label span {
+  color: #9eaea7;
+  font-weight: 500;
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 13px 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-field select {
+  color-scheme: dark;
+}
+
+.contact-field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-field input:hover,
+.contact-field select:hover,
+.contact-field textarea:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus {
+  border-color: var(--lime);
+  background: rgba(255, 255, 255, 0.12);
+  outline: 3px solid rgba(195, 220, 114, 0.2);
+  outline-offset: 1px;
+}
+
+.contact-copy .contact-field-hint,
+.contact-copy .contact-privacy,
+.contact-copy .contact-form-status p,
+.contact-copy .contact-email-fallback {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contact-copy .contact-field-hint,
+.contact-copy .contact-privacy {
+  color: #aebdb6;
+}
+
+.contact-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.contact-form-actions .button {
+  border: 0;
+  cursor: pointer;
+}
+
+.contact-form-actions .button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
+.contact-honeypot {
+  display: none !important;
+}
+
+.contact-form-status {
+  min-height: 0;
+}
+
+.contact-form-status--success,
+.contact-form-status--error {
+  border-left: 3px solid var(--lime);
+  padding: 12px 14px;
+}
+
+.contact-form-status--success {
+  background: rgba(195, 220, 114, 0.12);
+}
+
+.contact-form-status--error {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contact-form-status a,
+.contact-email-fallback a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.contact-copy .contact-email-fallback {
+  margin-top: 24px;
+  color: #d2ddd7;
 }
 
 .chat-widget {
@@ -784,6 +903,15 @@ footer p:last-child {
 
   .contact-copy {
     padding-top: 0;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-actions {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .button-light {

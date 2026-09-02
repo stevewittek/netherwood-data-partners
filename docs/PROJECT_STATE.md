@@ -1,6 +1,6 @@
 # Project state
 
-Last verified: 2026-08-28 UTC on `voyager2-articles-platform`. This records
+Last verified: 2026-09-02 UTC on `codex/formspark-contact`. This records
 observed state, not plans.
 
 ## Repository and publishing
@@ -21,6 +21,17 @@ observed state, not plans.
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
   time, so Pages does not depend on Voyager, SQL Server, Docker, Ollama, or home
   Internet.
+- The home-page contact section posts directly to the public Formspark endpoint
+  for the `Netherwood Data Partners Contact` form. It remains a static-site
+  integration and requires no private key, local backend, or runtime secret.
+  JavaScript submissions expose clear sending, success, timeout, and error
+  states, and the rendered form retains a native POST action. The existing
+  contact email remains visible as a fallback.
+- Formspark's automatic spam filter was observed as active for the form. The
+  site also sends Formspark's supported `_honeypot` field. The dashboard reports
+  one active notification recipient; the owner still needs to confirm that it
+  is the intended business inbox before launch. No test lead was submitted to
+  the live form or deducted from the free allowance during verification.
 - Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   Articles release keeps the public site static and adds the Articles index,
@@ -239,6 +250,12 @@ observed state, not plans.
   article read succeed locally. SQL schema, migration, runtime-login, and
   consistency checks pass after recovery. Earlier re-ingestion was idempotent
   and the real local cited RAG check passed.
+- On 2026-09-02, the contact-form change passed root ESLint, the static Pages
+  build and generated-route export, the Vinext production build, a local HTTP
+  render, `git diff --check`, and a tracked-content secret-pattern scan under
+  pinned Node 22.13.1/pnpm 11.19.0. Interactive desktop/mobile browser QA was
+  attempted but the browser's administrator policy check was unavailable, so
+  that visual check remains to be repeated before merging.
 - Root ESLint, the static Pages build with ten generated native article routes,
   and the Vinext build passed under Node 22.13.1. SQL migrations 006-008
   passed rollback validation before the gated live apply. A separate
