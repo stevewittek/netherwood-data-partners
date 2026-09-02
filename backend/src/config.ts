@@ -26,8 +26,12 @@ export type Config = {
   knowledgeRoot?: string;
   ipAbuseHashSecret?: string;
   sql?: SqlConfig;
+  articleSql?: SqlConfig;
+  articleAdminToken?: string;
   maxBodyBytes: number;
   rateLimit: number;
+  articleRateLimit: number;
+  adminRateLimit: number;
   rateWindowMs: number;
 };
 
@@ -62,6 +66,14 @@ function sqlConfig(env: NodeJS.ProcessEnv): SqlConfig | undefined {
   };
 }
 
+function articleSqlConfig(env: NodeJS.ProcessEnv, base?: SqlConfig): SqlConfig | undefined {
+  const user = env.SQL_ARTICLE_USER?.trim();
+  const password = env.SQL_ARTICLE_PASSWORD;
+  if (!user && !password) return undefined;
+  if (!user || !password || !base) throw new Error("SQL article-author configuration is incomplete");
+  return { ...base, user, password };
+}
+
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   const origins = (env.ALLOWED_ORIGINS ?? "http://localhost:5173,http://127.0.0.1:5173")
     .split(",")
@@ -94,6 +106,15 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   if (knowledgeRoot && !knowledgeRoot.startsWith("/")) {
     throw new Error("KNOWLEDGE_ROOT must be an absolute path");
   }
+  const sql = sqlConfig(env);
+  const articleAdminToken = env.ARTICLE_ADMIN_TOKEN?.trim() || undefined;
+  if (articleAdminToken && articleAdminToken.length < 32) {
+    throw new Error("ARTICLE_ADMIN_TOKEN must contain at least 32 characters");
+  }
+  const articleSql = articleSqlConfig(env, sql);
+  if ((articleAdminToken && !articleSql) || (!articleAdminToken && articleSql)) {
+    throw new Error("ARTICLE_ADMIN_TOKEN and SQL article-author configuration must be set together");
+  }
   return {
     allowedOrigins: new Set(origins),
     aiProvider: aiProvider as AiProviderName,
@@ -109,9 +130,13 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     ragMaxDistance,
     knowledgeRoot,
     ipAbuseHashSecret,
-    sql: sqlConfig(env),
+    sql,
+    articleSql,
+    articleAdminToken,
     maxBodyBytes: integer(env.MAX_BODY_BYTES, 16_384, "MAX_BODY_BYTES", 1_024, 1_048_576),
     rateLimit: integer(env.RATE_LIMIT, 30, "RATE_LIMIT", 1, 10_000),
+    articleRateLimit: integer(env.ARTICLE_RATE_LIMIT, 120, "ARTICLE_RATE_LIMIT", 1, 10_000),
+    adminRateLimit: integer(env.ADMIN_RATE_LIMIT, 10, "ADMIN_RATE_LIMIT", 1, 1_000),
     rateWindowMs: integer(env.RATE_WINDOW_MS, 60_000, "RATE_WINDOW_MS", 1_000, 3_600_000),
   };
 }

@@ -219,6 +219,7 @@ export default function Home() {
             We will share concise, useful notes on SQL Server performance, reliability, migration planning,
             and operational decision-making when the next issue or opportunity is worth publishing.
           </p>
+          <a className="article-read-link" href="/articles">Browse articles <span aria-hidden="true">→</span></a>
         </div>
       </section>
 

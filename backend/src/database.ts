@@ -1,5 +1,7 @@
 import sql from "mssql";
 import type { SqlConfig } from "./config.ts";
+import { ARTICLE_PROCEDURES, mapArticle, mapArticleSummary } from "./article-database.ts";
+import type { ArticleStore } from "./articles.ts";
 import {
   KNOWLEDGE_PROCEDURES,
   type KnowledgeMatch,
@@ -34,7 +36,7 @@ export type LeadInput = RequestContext & {
   project: string;
 };
 
-export interface Database extends KnowledgeStore {
+export interface Database extends KnowledgeStore, ArticleStore {
   ping(): Promise<void>;
   recordPageView(input: PageViewInput): Promise<void>;
   recordChatMessage(input: ChatMessageInput): Promise<void>;
@@ -198,6 +200,30 @@ VALUES(@contactId, @name, @email, @company, @phone, @now, @now);
 INSERT web.Leads(LeadId, ContactId, ChatSessionId, ProjectInformation, Status, CreatedAtUtc, ModifiedAtUtc)
 VALUES(@leadId, @contactId, @chatSessionId, @project, 'new', @now, @now);`);
       });
+    },
+    async listPublishedArticles(input) {
+      const request = (await pool()).request();
+      request.input("Category", sql.NVarChar(100), input.category ?? null);
+      request.input("Tag", sql.NVarChar(50), input.tag ?? null);
+      request.input("Search", sql.NVarChar(200), input.search ?? null);
+      request.input("Page", sql.Int, input.page);
+      request.input("PageSize", sql.Int, input.pageSize);
+      const result = await request.execute(ARTICLE_PROCEDURES.listPublished);
+      const articles = result.recordset.map((row: Record<string, unknown>) => mapArticleSummary(row));
+      const recordsets = result.recordsets as unknown as Array<Array<Record<string, unknown>>>;
+      return {
+        articles,
+        page: input.page,
+        pageSize: input.pageSize,
+        total: Number(recordsets[1]?.[0]?.TotalCount ?? result.recordset[0]?.TotalCount ?? 0),
+      };
+    },
+    async getPublishedArticle(slug) {
+      const request = (await pool()).request();
+      request.input("Slug", sql.NVarChar(200), slug);
+      const result = await request.execute(ARTICLE_PROCEDURES.getPublished);
+      const row = result.recordset[0] as Record<string, unknown> | undefined;
+      return row ? mapArticle(row) : undefined;
     },
     async searchKnowledge(embedding, limit, maxDistance) {
       const request = (await pool()).request();

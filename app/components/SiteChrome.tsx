@@ -1,7 +1,5 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 type SiteHeaderProps = {
-  currentPage?: "home" | "about";
+  currentPage?: "home" | "about" | "articles";
 };
 
 export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
@@ -14,7 +12,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
       <nav aria-label="Primary navigation">
         <a className="nav-about" href="/about" aria-current={currentPage === "about" ? "page" : undefined}>About</a>
         <a href="/#services">Services</a>
-        <a href="/#insights">Insights</a>
+        <a className="nav-articles" href="/articles" aria-current={currentPage === "articles" ? "page" : undefined}>Articles</a>
         <a href="/#approach">Approach</a>
         <a className="nav-cta" href="/#contact">Start a conversation</a>
       </nav>
@@ -29,7 +27,7 @@ export function SiteFooter() {
         <span className="brand-mark" aria-hidden="true">N</span>
         <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
       </a>
-      <p>Database engineering, performance & data services.</p>
+      <p>Database engineering, performance &amp; data services.</p>
       <p>© {new Date().getFullYear()} Netherwood Data Partners</p>
     </footer>
   );

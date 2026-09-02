@@ -5,8 +5,8 @@ GO
 
 SET NOCOUNT ON;
 
-DECLARE @ExpectedDataPath nvarchar(4000) = N'/var/opt/mssql/data/';
-DECLARE @ExpectedLogPath nvarchar(4000) = N'/var/opt/mssql/logdata/';
+DECLARE @ExpectedDataPath nvarchar(4000) = N'/var/opt/mssql/userdata/';
+DECLARE @ExpectedLogPath nvarchar(4000) = N'/var/opt/mssql/userlog/';
 DECLARE @ActualDataPath nvarchar(4000) =
     CONVERT(nvarchar(4000), SERVERPROPERTY('InstanceDefaultDataPath'));
 DECLARE @ActualLogPath nvarchar(4000) =
@@ -30,10 +30,10 @@ IF @ActualDataPath IS NULL OR @ActualLogPath IS NULL
     THROW 51000, 'SQL Server did not report both instance default paths.', 1;
 
 IF LOWER(@ActualDataPath) <> LOWER(@ExpectedDataPath)
-    THROW 51000, 'InstanceDefaultDataPath is not /var/opt/mssql/data/. Stop before database creation.', 1;
+    THROW 51000, 'InstanceDefaultDataPath is not /var/opt/mssql/userdata/. Stop before database creation.', 1;
 
 IF LOWER(@ActualLogPath) <> LOWER(@ExpectedLogPath)
-    THROW 51000, 'InstanceDefaultLogPath is not /var/opt/mssql/logdata/. Stop before database creation.', 1;
+    THROW 51000, 'InstanceDefaultLogPath is not /var/opt/mssql/userlog/. Stop before database creation.', 1;
 
 IF ISNULL(HAS_PERMS_BY_NAME(NULL, NULL, 'CREATE ANY DATABASE'), 0) <> 1
     THROW 51000, 'The setup principal lacks CREATE ANY DATABASE.', 1;

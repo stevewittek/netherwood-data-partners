@@ -56,5 +56,24 @@ services:
       retries: 6
       start_period: 10s
 
+  articles-export:
+    profiles: ["tools"]
+    build: { context: . }
+    env_file:
+      - path: .env.local
+        required: true
+    environment:
+      SQL_SERVER_HOST: localhost
+      SQL_SERVER_PORT: 1433
+    init: true
+    network_mode: host
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    volumes:
+      - ../pages-site:/export
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    command: ["node", "--experimental-strip-types", "src/export-articles.ts", "/export/articles-snapshot.json"]
+
 volumes:
   ollama_data:

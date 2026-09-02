@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 
 export default defineConfig({
   root: "pages-site",
-  base: "./",
+  base: "/",
   publicDir: "../public",
   plugins: [react()],
   build: {
