@@ -10,13 +10,13 @@ completed release check.
 
 ## Wednesday, September 2 — establish truth and resolve decisions
 
-- [ ] Merge this governance branch after review so every agent can read the
-  source-of-truth files.
-- [ ] Confirm `main` is clean and current with `origin/main`; list active
+- [x] Integrate the governance commit into the candidate so every agent can
+  read the source-of-truth files.
+- [x] Confirm `main` is clean and current with `origin/main`; list active
   branches before starting integration.
-- [ ] Preserve the existing Formspark work at `codex/formspark-contact`
+- [x] Preserve the existing Formspark work at `codex/formspark-contact`
   (`f982599`). Do not recreate or overwrite it.
-- [ ] Decide how to integrate `f982599` into the release candidate (rebase,
+- [x] Decide how to integrate `f982599` into the release candidate (rebase,
   cherry-pick, or merge after confirming no newer Formspark commit exists).
 - [ ] In Formspark, verify the form name, automatic spam protection, free-plan
   limit, and exact notification recipient. Do not expose account credentials.
@@ -38,9 +38,9 @@ completed release check.
 
 ### Contact and conversion
 
-- [ ] Integrate the existing Formspark commit without duplicating its component
+- [x] Integrate the existing Formspark commit without duplicating its component
   or action endpoint.
-- [ ] Build and serve the exact release candidate locally.
+- [x] Build and serve the exact release candidate locally.
 - [ ] Submit one clearly labeled test inquiry through the candidate form.
 - [ ] Confirm Formspark records the inquiry and the intended business inbox
   receives the notification, including sender/reply-to behavior.
@@ -48,11 +48,11 @@ completed release check.
   success, timeout/error, and reset behavior.
 - [ ] Confirm the visible email fallback still works when JavaScript is
   unavailable and when Formspark is unavailable.
-- [ ] Confirm the contact path works without Voyager, SQL Server, Docker,
+- [x] Confirm the contact path works without Voyager, SQL Server, Docker,
   Ollama, a tunnel, or home-hosted services.
 - [ ] Review the form privacy sentence and any required disclosure with the
   owner; do not invent legal claims.
-- [ ] Verify all Home, About, Articles, header, and footer CTAs lead to the
+- [x] Verify all Home, About, Articles, header, and footer CTAs lead to the
   intended contact path.
 
 ### Content and credibility
@@ -77,7 +77,7 @@ completed release check.
   change and compare Home, About, Articles index, one article, and Contact.
 - [ ] Repeat at 390px and 768px. Also spot-check 320px if the full navigation
   remains visible there.
-- [ ] Confirm no horizontal document overflow, clipped text, overlap, broken
+- [x] Confirm no horizontal document overflow, clipped text, overlap, broken
   image crop, or off-screen control.
 - [ ] Navigate the whole public flow with keyboard only; verify visible focus,
   logical focus order, and usable form errors/status messages.
@@ -92,29 +92,29 @@ completed release check.
 
 - [ ] Align Home/About title, description, Open Graph, Twitter, robots, and
   canonical metadata in the static output.
-- [ ] Confirm every article has a unique title, description, canonical URL,
+- [x] Confirm every article has a unique title, description, canonical URL,
   Article JSON-LD, publication date, modification date, and author.
 - [ ] Verify `public/CNAME`, favicon, `og.png`, and social-image dimensions.
-- [ ] Verify generated `robots.txt` allows public pages, disallows `/admin/`,
+- [x] Verify generated `robots.txt` allows public pages, disallows `/admin/`,
   and references both sitemaps.
-- [ ] Verify `sitemap.xml` and `articles-sitemap.xml` contain only canonical,
+- [x] Verify `sitemap.xml` and `articles-sitemap.xml` contain only canonical,
   successful public routes and all ten articles.
-- [ ] Crawl internal links in the built `pages-dist`; fix broken navigation,
+- [x] Crawl internal links in the built `pages-dist`; fix broken navigation,
   anchors, article links, images, and downloads.
-- [ ] Confirm the Tools nav item remains absent until `/tools` is a useful page.
-- [ ] Run `pnpm install --frozen-lockfile` with Node 22.13 or newer and pnpm
+- [x] Confirm the Tools nav item remains absent until `/tools` is a useful page.
+- [x] Run `pnpm install --frozen-lockfile` with Node 22.13 or newer and pnpm
   11.19.0.
-- [ ] Run `pnpm lint`.
-- [ ] Run `pnpm test` (the configured Vinext production build).
-- [ ] Run `pnpm build:pages` and inspect generated Home, About, Articles,
+- [x] Run `pnpm lint`.
+- [x] Run `pnpm test` (the configured Vinext production build).
+- [x] Run `pnpm build:pages` and inspect generated Home, About, Articles,
   article detail, admin, 404, robots, and sitemap artifacts.
-- [ ] Run `git diff --check` and review the entire release diff.
-- [ ] Scan tracked changes for secrets, tokens, private email credentials,
+- [x] Run `git diff --check` and review the entire release diff.
+- [x] Scan tracked changes for secrets, tokens, private email credentials,
   tunnel keys, and `.env` data. A public Formspark action URL is expected; no
   private credential belongs in browser code.
-- [ ] If analytics is present in the candidate, verify consent/privacy behavior,
+- [x] If analytics is present in the candidate, verify consent/privacy behavior,
   purpose, retention, production delivery, and outage safety. If absent, record
-  "not present"; analytics is not a Friday blocker.
+  "not present"; analytics is not a Friday blocker. Result: not present.
 
 ## Friday, September 4 — freeze, deploy, and smoke test
 

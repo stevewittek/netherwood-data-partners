@@ -9,10 +9,11 @@
 ## Scope and evidence
 
 This audit reviewed the production home, About, Articles, and missing Tools
-routes at desktop and 390px mobile; current React pages and shared components;
+routes at desktop and 390px mobile; the integration candidate at desktop,
+768px, and 390px; current React pages and shared components;
 `app/globals.css` and `app/about/about.css`; Vite/GitHub Pages generation;
 metadata, sitemap, robots, package scripts, recent Git history, backend
-boundaries, and the separate Formspark branch.
+boundaries, and the preserved Formspark branch.
 
 Production currently renders the homepage, About page, Articles index, and ten
 native article routes. The homepage and mobile layout had no horizontal page
@@ -30,11 +31,14 @@ Priority definitions:
 
 ## Formspark status
 
-Formspark has been implemented but has not landed on `main` and is not in
-production.
+Formspark is integrated into the focused candidate, but has not landed on
+`main` and is not in production.
 
-- Local branch: `codex/formspark-contact`
-- Commit: `f982599` (`Add Formspark contact form`)
+- Preserved source branch and commit: `codex/formspark-contact` at `f982599`
+  (`Add Formspark contact form`)
+- Candidate branch and cherry-pick: `codex/friday-launch-integration` at
+  `9aaf05c`; the commit occurs exactly once in the candidate history.
+- No newer Formspark commit or alternate component/endpoint was found.
 - Files: `app/components/ContactForm.tsx`, `app/page.tsx`,
   `app/globals.css`, and `docs/PROJECT_STATE.md`
 - Behavior: direct static POST to Formspark, JSON enhancement with a 15-second
@@ -43,12 +47,29 @@ production.
 - Recorded checks on that branch: root lint, static Pages build and route
   generation, Vinext build, local HTTP render, `git diff --check`, and a tracked
   secret-pattern scan passed under pinned Node 22.13.1/pnpm 11.19.0.
+- Candidate visual QA: before/after contact and full-page evidence was captured
+  at desktop, 768px, and 390px. The final candidate showed no horizontal
+  overflow on Home, About, Articles, or one article route at any width. The CSS
+  diff adds contact-specific selectors; `.button-light` was moved without
+  changing its declarations. About, Articles, shared navigation, and layout
+  source files are unchanged by the Formspark commit.
+- Candidate behavior QA: empty required fields and invalid email use native
+  browser validation; `message` retains `minLength=20`; the error state and
+  email fallback rendered; the source contains an in-flight guard, timeout,
+  success state, and reset-on-success. A native POST remains available when
+  `fetch` is absent, and the static shell now exposes a `noscript` email path.
+- Two placeholder-only requests were inadvertently attempted because synthetic
+  browser input did not engage the expected `minLength` dirty-state behavior.
+  Formspark returned the error state both times. No successful lead or delivery
+  was confirmed and no account setting was changed. Do not attempt another live
+  submission without immediate owner confirmation.
 - Still unverified: intended notification recipient, actual end-to-end email
-  delivery, live/free-tier submission behavior, and desktop/mobile visual QA.
+  delivery, successful submission/reset behavior, dashboard receipt,
+  free-tier allowance impact, and real-keyboard short-message validation.
 
-Do not recreate the component or copy its changes by hand. Rebase or cherry-pick
-the existing commit into the integration branch after checking that no newer
-Formspark work exists.
+Do not recreate the component, action endpoint, or original commit. Continue
+from the focused integration branch and preserve the owner confirmation gate
+for the remaining live test.
 
 ## P0 — production or contact blockers
 
@@ -64,9 +85,8 @@ or makes static rendering depend on Voyager.
 
 ### P1.1 Land and verify the Formspark contact flow
 
-The new form exists only at `f982599`; production has zero forms. Integrate the
-existing commit without duplicating it, review the public action endpoint as
-expected public configuration, and perform one controlled test submission.
+The new form exists in the integration candidate; production still has zero
+forms. After owner confirmation, perform one controlled test submission.
 Confirm the exact business inbox receives it, the submission appears in the
 Formspark dashboard, spam protection remains enabled, and the free allowance is
 understood. Verify the error state without removing the email fallback.

@@ -1,7 +1,7 @@
 # Project state
 
-Last verified: 2026-09-02 UTC on `codex/formspark-contact`. This records
-observed state, not plans.
+Last verified: 2026-09-02 UTC on `codex/friday-launch-integration`. This
+records observed state, not plans.
 
 ## Repository and publishing
 
@@ -30,8 +30,13 @@ observed state, not plans.
 - Formspark's automatic spam filter was observed as active for the form. The
   site also sends Formspark's supported `_honeypot` field. The dashboard reports
   one active notification recipient; the owner still needs to confirm that it
-  is the intended business inbox before launch. No test lead was submitted to
-  the live form or deducted from the free allowance during verification.
+  is the intended business inbox before launch. During local candidate QA, two
+  placeholder-only requests were inadvertently attempted while exercising the
+  browser's synthetic `minLength` behavior; both produced the form's error
+  state. No successful lead or email delivery was confirmed, no Formspark
+  account setting was changed, and any free-plan allowance effect remains
+  unknown. Do not make another live submission without immediate owner
+  confirmation.
 - Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   Articles release keeps the public site static and adds the Articles index,
@@ -301,10 +306,21 @@ observed state, not plans.
 - Production Home, About, Articles, ten article routes, mobile containment,
   robots, and sitemaps were inspected. The public site remained independent of
   Voyager; production contact was still email-only.
-- The separate local commit `f982599` on `codex/formspark-contact` implements
-  the Formspark contact form and records passing build/lint checks, but it was
-  not on `origin/main` or production. Notification recipient, end-to-end email
-  delivery, and final visual QA remained launch checks.
+- The original Formspark commit `f982599` remains preserved on
+  `codex/formspark-contact`. No newer Formspark work was found. It was
+  cherry-picked exactly once into `codex/friday-launch-integration` as
+  `9aaf05c`, after governance commit `5acea14` was integrated as `7a82024`.
+  Neither integration commit is on `origin/main` or production.
+- Candidate screenshots were captured before and after at desktop, 768px, and
+  390px. Home, About, Articles, and one article route were checked at all three
+  widths with no document overflow. The public form has one rendered instance,
+  a native POST action, required name/email/message fields, honeypot, visible
+  email fallback, and no Voyager widget or runtime dependency.
+- A narrow fallback follow-up leaves native POST behavior available when
+  `fetch` is unavailable and adds a static `noscript` email path. Empty and
+  invalid-email browser validation passed. A true live success/reset/delivery
+  check, the intended notification recipient, and a real-keyboard short-message
+  check remain owner-gated launch checks.
 - Launch source-of-truth documents were added under `docs/`, with concise agent
   rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
   CSS, content, backend, infrastructure, or production configuration was
