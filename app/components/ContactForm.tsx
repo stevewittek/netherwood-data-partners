@@ -13,6 +13,8 @@ export default function ContactForm() {
   const submissionInFlight = useRef(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    if (typeof window.fetch !== "function") return;
+
     event.preventDefault();
 
     if (submissionInFlight.current) return;
