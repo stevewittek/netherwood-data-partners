@@ -18,11 +18,14 @@ screenshots and responsive checks. Do not opportunistically normalize CSS.
 
 ## Typography
 
-- Intended display face: Manrope through `--font-display`, declared in
-  `app/layout.tsx`. Headings, the brand, and selected labels use it in
-  `app/globals.css`.
-- Intended body face: DM Sans through `--font-body`, also declared in
-  `app/layout.tsx`.
+- Approved display face: self-hosted Manrope through `--font-display`,
+  declared in `app/globals.css`. Headings, the brand, and selected labels use
+  it throughout the static Pages and Next/Vinext builds.
+- Approved body face: self-hosted DM Sans through `--font-body`, also declared
+  in `app/globals.css`.
+- The tracked Latin and Latin Extended variable-font files live under
+  `public/fonts/manrope/` and `public/fonts/dm-sans/`; their license is
+  `public/fonts/LICENSES.txt`. The public site does not contact a font CDN.
 - Technical text uses the existing system monospace stack on
   `.technical-label`, `.node-index`, `.article-content code`, and
   `.article-content pre code`.
@@ -32,12 +35,10 @@ screenshots and responsive checks. Do not opportunistically normalize CSS.
 - Eyebrows use `.eyebrow`: 12px, weight 800, uppercase, `0.11em` tracking, and
   `--moss` on light surfaces or `--lime` on dark surfaces.
 
-Approved choice: Manrope for display and DM Sans for body because those faces
-are explicitly configured in `app/layout.tsx`. Current GitHub Pages entries
-(`pages-site/main.tsx` and `pages-site/about/main.tsx`) do not execute that
-layout, so the live site currently resolves both variables to empty values and
-uses the Tailwind/system sans stack. Retire this mismatch in a dedicated,
-screenshot-verified typography task; do not fix it as part of unrelated work.
+Approved choice: Manrope for display and DM Sans for body. The 2026-09-02
+launch task removed the production mismatch by defining the variables and
+font faces in the shared stylesheet. Do not change the families, files,
+weights, type sizes, or tracking through unrelated work.
 
 ## Color
 
@@ -179,9 +180,10 @@ text. Use `object-fit: cover` only when the crop has been checked at desktop and
 mobile. Article images should support the subject, not decorate empty space.
 
 `public/images/steven-wittek.jpg` is a temporary, highly stylized founder image
-introduced by commit `907d3b5`. It is not the approved final portrait. Replacing
-it requires an explicitly selected real image plus before/after and responsive
-review; do not synthesize or swap it incidentally.
+introduced by commit `907d3b5`. The owner approved retaining it for the Friday
+launch while preparing a real professional portrait; it is not the final
+portrait. Replacing it requires an explicitly selected real image plus
+before/after and responsive review; do not synthesize or swap it incidentally.
 
 ## Motion
 
@@ -193,7 +195,6 @@ motion that delays reading or contact.
 
 ## Inconsistencies to retire in scoped work
 
-- Static production does not receive the intended font variables.
 - `app/globals.css` combines public, article, admin, and chat rules and contains
   two `.chat-widget` definitions with competing layout assumptions.
 - Broad selectors such as `nav`, `footer`, `h1`, `h2`, `h3`, and `a` increase

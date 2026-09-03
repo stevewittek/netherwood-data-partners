@@ -69,8 +69,14 @@ Formspark is integrated into the focused candidate, but has not landed on
   configured recipient at 20:24:57 EDT with the submitted business address as
   `Reply-To`. The allowance changed from 250 to 247: two recovered submissions
   plus the new accepted test.
-- Still unverified: real-keyboard short-message validation and the final
-  production-domain smoke test after deployment.
+- A 2026-09-02 browser QA pass found that the automation surface could bypass
+  native `minLength` enforcement. One short placeholder request reached
+  Formspark and was rejected into the existing error state. The candidate now
+  also enforces the trimmed 20-character minimum inside the enhanced submit
+  handler; the same browser path was repeated and stopped locally with a clear
+  validation message and no submission. Native HTML validation remains in
+  place for the non-JavaScript fallback.
+- Still unverified: the final production-domain smoke test after deployment.
 
 Do not recreate the component, action endpoint, or original commit. Continue
 from the focused integration branch and preserve the owner confirmation gate
@@ -100,57 +106,57 @@ Files: `app/components/ContactForm.tsx`, `app/page.tsx`, `app/globals.css`.
 
 ### P1.2 Resolve the production typography mismatch through a scoped task
 
-`app/layout.tsx` configures Manrope as `--font-display` and DM Sans as
-`--font-body`, but the GitHub Pages entry bypasses that Next layout. Live
-inspection found both variables empty and both body and headings using the
-Tailwind/system sans stack. This can make local/Next renders differ from the
-deployed site and is a likely source of perceived stylesheet drift.
+Resolved in the launch candidate with the owner's approval. Manrope and DM
+Sans are self-hosted under `public/fonts/`, and `app/globals.css` defines the
+shared font faces and `--font-display`/`--font-body` variables for both static
+Pages and Next/Vinext output. The site makes no font-CDN request.
 
 Files: `app/layout.tsx`, `pages-site/main.tsx`,
-`pages-site/about/main.tsx`, `app/globals.css`.
+`pages-site/about/main.tsx`, `app/globals.css`, `public/fonts/`.
 
-This is a protected typography change. First decide whether the approved
-Manrope/DM Sans pair or the current system stack is the final production choice,
-then capture before/after desktop and mobile screenshots. Do not alter other
-spacing or type sizes in the same task.
+Before/after Home, About, Articles, and article-detail screenshots were saved
+at desktop, 768px, and 390px. The built pages reported DM Sans on body text,
+Manrope on headings, loaded font faces, no broken images, and no horizontal
+overflow. No spacing, type-size, color, navigation, or layout change was mixed
+into the task.
 
 ### P1.3 Verify every public identity and experience claim
 
-The About page states "more than 15 years" and the homepage refers to
-"experienced database professionals" and "senior database professionals."
-Those may be true, but the repository contains no approval record and the
-plural wording may imply a staffed firm. The owner must approve the exact claim
-and working-model language. Remove or narrow anything that cannot be supported;
-do not invent a replacement.
+Resolved in the launch candidate. The owner confirmed that Steven began
+working in the field in 2009, supporting the "more than 15 years" personal
+experience claim. The owner also confirmed that Netherwood is currently a
+founder-led, one-person consultancy. The homepage now uses first-person and
+founder-led language instead of implying multiple database professionals, and
+states that any additional specialty is discussed before it is brought into
+an engagement.
 
 Files: `app/about/page.tsx`, `pages-site/about/index.html`, `app/page.tsx`.
 
 ### P1.4 Make an explicit founder-image decision
 
 `public/images/steven-wittek.jpg` was introduced by commit `907d3b5` as a
-temporary portrait. Production shows a highly stylized "Optimizer" image that
-can read as AI-generated advertising rather than a real specialist consultant.
-For launch, the owner must explicitly approve it or supply a real professional
-portrait. Any replacement is a protected visual task with desktop/mobile
-screenshots and crop/alt-text verification.
+temporary portrait. The owner approved retaining it for the Friday launch and
+will prepare a real professional photograph. The launch task does not alter the
+image, crop, component, or alt text. Treat the eventual replacement as a
+post-launch protected visual task with desktop/mobile verification.
 
 Files: `public/images/steven-wittek.jpg`, `app/components/Portrait.tsx`,
 `app/about/about.css`.
 
 ### P1.5 Align static metadata for Home and About
 
-The Pages templates and Next metadata have drifted. The live home page has no
-canonical link; Home and About social descriptions differ between
-`pages-site/*.html` and `app/layout.tsx`/`app/about/page.tsx`. The generator adds
-canonical and robots metadata for Articles, admin, and 404 routes but not the
-two base HTML entries.
+Resolved in the launch candidate. Home and About now use factual,
+company-focused title and description sets across static Pages and Next
+metadata. The static templates include matching Open Graph, Twitter, and
+canonical values for `https://netherwooddatapartners.com/` and
+`https://netherwooddatapartners.com/about`.
 
 Files: `pages-site/index.html`, `pages-site/about/index.html`,
 `app/layout.tsx`, `app/about/page.tsx`,
 `scripts/generate-static-pages.mjs`.
 
-Choose one factual title/description set per page, add correct canonicals, and
-verify the built HTML rather than relying on the unused Next layout.
+The built HTML metadata check passed for both pages; article metadata remains
+unchanged.
 
 ### P1.6 Complete launch validation on the exact release candidate
 

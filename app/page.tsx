@@ -62,9 +62,9 @@ const principles = [
 ];
 
 const aboutPoints = [
-  "Senior database professionals remain close to the work.",
-  "We help teams make informed technical decisions without the noise of large anonymous support queues.",
-  "We keep the focus on the system, the risk, and the practical path forward.",
+  "I remain directly involved from the first investigation through the final handoff.",
+  "When a project needs another specialty, I discuss that scope with you before bringing additional expertise into the work.",
+  "The focus stays on the system, the risk, and the practical path forward.",
 ];
 
 const engagements = [
@@ -195,12 +195,12 @@ export default function Home() {
       <section className="section about" id="about">
         <div className="section-heading compact-heading">
           <p className="eyebrow">About</p>
-          <h2>Senior expertise, directly involved.</h2>
+          <h2>Experienced database engineering, directly involved.</h2>
         </div>
         <div className="about-panel">
           <p>
-            Work is performed by experienced database professionals who stay close to the technical detail,
-            the business constraints, and the eventual operating model.
+            Netherwood is a founder-led database consultancy. I stay close to the technical detail,
+            the business constraints, and the eventual operating model throughout the work.
           </p>
           <ul>
             {aboutPoints.map((point) => (

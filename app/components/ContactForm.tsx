@@ -5,6 +5,7 @@ import type { FormEvent } from "react";
 
 const FORMSPARK_ACTION_URL = "https://submit-form.com/5bzGZaPs6";
 const SUBMISSION_TIMEOUT_MS = 15_000;
+const MINIMUM_MESSAGE_LENGTH = 20;
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
 
@@ -18,9 +19,19 @@ export default function ContactForm() {
     event.preventDefault();
 
     if (submissionInFlight.current) return;
-    submissionInFlight.current = true;
 
     const form = event.currentTarget;
+    const message = form.elements.namedItem("message");
+
+    if (message instanceof HTMLTextAreaElement && message.value.trim().length < MINIMUM_MESSAGE_LENGTH) {
+      message.setCustomValidity(`Please enter at least ${MINIMUM_MESSAGE_LENGTH} characters.`);
+      message.reportValidity();
+      return;
+    }
+
+    if (message instanceof HTMLTextAreaElement) message.setCustomValidity("");
+    submissionInFlight.current = true;
+
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), SUBMISSION_TIMEOUT_MS);
 
@@ -117,8 +128,9 @@ export default function ContactForm() {
           aria-describedby="contact-message-hint"
           id="contact-message"
           maxLength={4000}
-          minLength={20}
+          minLength={MINIMUM_MESSAGE_LENGTH}
           name="message"
+          onInput={(event) => event.currentTarget.setCustomValidity("")}
           required
           rows={6}
         />
@@ -141,7 +153,9 @@ export default function ContactForm() {
         <button className="button button-light" disabled={isSubmitting} type="submit">
           {isSubmitting ? "Sending…" : "Send inquiry"}
         </button>
-        <p className="contact-privacy">Your details are used only to respond to this inquiry.</p>
+        <p className="contact-privacy">
+          Your inquiry is sent through Formspark so we can respond. Netherwood does not sell your information or use it for advertising.
+        </p>
       </div>
 
       <div

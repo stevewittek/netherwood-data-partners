@@ -1,31 +1,23 @@
 import type { Metadata } from "next";
-import { DM_Sans, Manrope } from "next/font/google";
 import "./globals.css";
-
-const display = Manrope({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const body = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://netherwooddatapartners.com"),
-  title: "Netherwood Data Partners | Database Engineering & Data Services",
-  description: "Database engineering, SQL Server performance, migrations, reliability, reporting, and practical data services.",
+  icons: { icon: "/favicon.svg" },
+  title: "Netherwood Data Partners | Database Consulting & Engineering",
+  description: "Database consulting for SQL Server performance, reliability, migrations, Azure modernization, development, integration, reporting, and ongoing DBA support.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Netherwood Data Partners",
-    description: "SQL Server performance, reliability, and database engineering for organizations that depend on their data systems.",
+    title: "Netherwood Data Partners | Database Consulting & Engineering",
+    description: "Practical database consulting and engineering for organizations that depend on reliable data systems.",
+    url: "/",
     type: "website",
     images: [{ url: "/og.png", width: 1734, height: 907, alt: "Netherwood Data Partners — Dependable data systems. Clearer decisions." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Netherwood Data Partners",
-    description: "SQL Server performance, reliability, and database engineering for organizations that depend on their data systems.",
+    title: "Netherwood Data Partners | Database Consulting & Engineering",
+    description: "Practical database consulting and engineering for organizations that depend on reliable data systems.",
     images: ["/og.png"],
   },
 };
@@ -33,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable}`}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

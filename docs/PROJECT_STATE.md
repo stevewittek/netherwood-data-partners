@@ -262,9 +262,9 @@ records observed state, not plans.
 - On 2026-09-02, the contact-form change passed root ESLint, the static Pages
   build and generated-route export, the Vinext production build, a local HTTP
   render, `git diff --check`, and a tracked-content secret-pattern scan under
-  pinned Node 22.13.1/pnpm 11.19.0. Interactive desktop/mobile browser QA was
-  attempted but the browser's administrator policy check was unavailable, so
-  that visual check remains to be repeated before merging.
+  pinned Node 22.13.1/pnpm 11.19.0. Interactive browser QA was later completed
+  on the integrated launch candidate at desktop, 768px, 390px, and a 320px
+  home-page spot check.
 - Root ESLint, the static Pages build with ten generated native article routes,
   and the Vinext build passed under Node 22.13.1. SQL migrations 006-008
   passed rollback validation before the gated live apply. A separate
@@ -324,7 +324,21 @@ records observed state, not plans.
   `fetch` is unavailable and adds a static `noscript` email path. Empty and
   invalid-email browser validation passed. The owner-approved live candidate
   test confirmed success, reset, Formspark Inbox receipt, notification delivery,
-  and correct `Reply-To`. A real-keyboard short-message check remains pending.
+  and correct `Reply-To`. A later browser QA attempt exposed that automation
+  could bypass native `minLength`; one short placeholder request reached
+  Formspark and was rejected. The enhanced handler now applies the trimmed
+  20-character minimum independently, and the repeated path stopped locally
+  with the expected validation message and no request.
+- The owner confirmed that Steven began working in the field in 2009 and that
+  Netherwood is currently a founder-led, one-person consultancy. Plural
+  professional wording was narrowed accordingly. The temporary founder image
+  is approved for the Friday launch while a real portrait is prepared.
+- The launch candidate self-hosts Manrope and DM Sans for both static Pages and
+  Next/Vinext paths, with tracked OFL licensing and no font-CDN request. Home
+  and About use aligned company-focused title, description, Open Graph,
+  Twitter, and canonical metadata. Responsive browser checks at desktop,
+  768px, and 390px reported the intended computed fonts, one `h1`, no broken
+  images, and no horizontal overflow on Home, About, Articles, and one article.
 - Launch source-of-truth documents were added under `docs/`, with concise agent
   rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
   CSS, content, backend, infrastructure, or production configuration was

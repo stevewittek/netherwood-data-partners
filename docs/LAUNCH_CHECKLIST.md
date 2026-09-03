@@ -20,15 +20,15 @@ completed release check.
   cherry-pick, or merge after confirming no newer Formspark commit exists).
 - [x] In Formspark, verify the form name, automatic spam protection, free-plan
   limit, and exact notification recipient. Do not expose account credentials.
-- [ ] Owner-approve or revise the public claims identified in
+- [x] Owner-approve or revise the public claims identified in
   `docs/LAUNCH_AUDIT.md`, especially "more than 15 years" and plural
   professional/team language.
-- [ ] Owner-approve the current temporary founder image or supply the exact real
+- [x] Owner-approve the current temporary founder image or supply the exact real
   portrait to use. Treat replacement as a scoped visual task.
-- [ ] Choose the production typography outcome: intended Manrope/DM Sans or the
+- [x] Choose the production typography outcome: intended Manrope/DM Sans or the
   current system stack. Create a narrow implementation task with screenshots;
   do not combine it with layout cleanup.
-- [ ] Choose one Home/About metadata set and approve canonical URLs.
+- [x] Choose one Home/About metadata set and approve canonical URLs.
 - [ ] Confirm the Friday navigation scope. Tools/Query Vault is explicitly not
   a blocker; do not add a dead Tools link.
 - [ ] Confirm the business email works by sending and receiving a normal direct
@@ -44,44 +44,44 @@ completed release check.
 - [x] Submit one clearly labeled test inquiry through the candidate form.
 - [x] Confirm Formspark records the inquiry and the intended business inbox
   receives the notification, including sender/reply-to behavior.
-- [ ] Confirm required-field, invalid-email, short-message, double-submit,
+- [x] Confirm required-field, invalid-email, short-message, double-submit,
   success, timeout/error, and reset behavior.
-- [ ] Confirm the visible email fallback still works when JavaScript is
+- [x] Confirm the visible email fallback still works when JavaScript is
   unavailable and when Formspark is unavailable.
 - [x] Confirm the contact path works without Voyager, SQL Server, Docker,
   Ollama, a tunnel, or home-hosted services.
-- [ ] Review the form privacy sentence and any required disclosure with the
+- [x] Review the form privacy sentence and any required disclosure with the
   owner; do not invent legal claims.
 - [x] Verify all Home, About, Articles, header, and footer CTAs lead to the
   intended contact path.
 
 ### Content and credibility
 
-- [ ] Confirm the hero states the concrete database-engineering offer and the
+- [x] Confirm the hero states the concrete database-engineering offer and the
   primary service areas remain accurate.
-- [ ] Confirm every biography, location, experience, service, technology, and
+- [x] Confirm every biography, location, experience, service, technology, and
   availability statement is factual and owner-approved.
-- [ ] Confirm there are no invented employees, testimonials, logos, clients,
+- [x] Confirm there are no invented employees, testimonials, logos, clients,
   counts, certifications, awards, years-in-business claims, SLAs, guarantees,
   packages, prices, or response times.
-- [ ] Confirm the selected founder image is genuine/approved, correctly cropped,
+- [x] Confirm the selected founder image is genuine/approved, correctly cropped,
   optimized, and has accurate alt text.
-- [ ] Proofread visible copy as a human reader. Remove generic consulting/AI
+- [x] Proofread visible copy as a human reader. Remove generic consulting/AI
   language listed in `docs/BRAND_VOICE.md`.
 - [ ] Open all ten published article routes; verify title, author/date,
   formatting, related links, and contact CTA.
 
 ### Responsive and accessibility
 
-- [ ] Capture desktop before/after screenshots for every protected visual
+- [x] Capture desktop before/after screenshots for every protected visual
   change and compare Home, About, Articles index, one article, and Contact.
-- [ ] Repeat at 390px and 768px. Also spot-check 320px if the full navigation
+- [x] Repeat at 390px and 768px. Also spot-check 320px if the full navigation
   remains visible there.
 - [x] Confirm no horizontal document overflow, clipped text, overlap, broken
   image crop, or off-screen control.
 - [ ] Navigate the whole public flow with keyboard only; verify visible focus,
   logical focus order, and usable form errors/status messages.
-- [ ] Verify one `h1` per page, logical heading order, real labels, meaningful
+- [x] Verify one `h1` per page, logical heading order, real labels, meaningful
   alt text, and no color-only instructions.
 - [ ] Check text, control, link, and focus contrast on light and dark surfaces.
 - [ ] Enable reduced motion and confirm no required information depends on
@@ -90,11 +90,11 @@ completed release check.
 
 ### SEO, links, and build
 
-- [ ] Align Home/About title, description, Open Graph, Twitter, robots, and
+- [x] Align Home/About title, description, Open Graph, Twitter, robots, and
   canonical metadata in the static output.
 - [x] Confirm every article has a unique title, description, canonical URL,
   Article JSON-LD, publication date, modification date, and author.
-- [ ] Verify `public/CNAME`, favicon, `og.png`, and social-image dimensions.
+- [x] Verify `public/CNAME`, favicon, `og.png`, and social-image dimensions.
 - [x] Verify generated `robots.txt` allows public pages, disallows `/admin/`,
   and references both sitemaps.
 - [x] Verify `sitemap.xml` and `articles-sitemap.xml` contain only canonical,

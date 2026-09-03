@@ -39,6 +39,10 @@ leverage innovative solutions to optimize your data ecosystem."
 - On service pages, "Netherwood" is the safest default. "We" may represent the
   firm, but it must not imply employees, staffing depth, or capabilities that
   have not been verified.
+- Netherwood is currently a founder-led, one-person consultancy. Steven remains
+  directly involved in the work. If an engagement needs another specialty,
+  describe additional expertise only as a scoped, client-discussed option; do
+  not imply a standing team.
 - Refer to the reader as "you" when describing a recognizable problem or next
   step. Do not manufacture intimacy or overuse rhetorical questions.
 - Describe engagement types plainly. Do not promise a package, response time,
@@ -103,11 +107,13 @@ may invent or infer:
   guarantees;
 - geographic coverage, availability, pricing, packages, or service capacity.
 
-Existing copy is not proof merely because it is in the repository. In
-particular, the About-page claim "more than 15 years" and plural phrases such
-as "experienced database professionals" require owner confirmation before the
-Friday launch. If evidence is unavailable, narrow or remove the claim; do not
-replace it with another unsupported claim.
+Existing copy is not proof merely because it is in the repository. The owner
+confirmed on 2026-09-02 that Steven began working in the field in 2009, so
+"more than 15 years" is approved when it describes Steven's experience rather
+than Netherwood's age. The owner also confirmed that Netherwood is currently a
+one-person firm; avoid plural professional/team wording that suggests
+employees. If evidence for another claim is unavailable, narrow or remove it;
+do not invent a replacement.
 
 Technical claims in articles should distinguish general guidance from advice
 for a specific system. Never imply that a tool, health check, or article can

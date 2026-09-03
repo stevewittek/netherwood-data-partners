@@ -104,9 +104,11 @@ article markup, author/date metadata, and a contact CTA.
 
 ### About
 
-Make the founder and working model legible without pretending to be a large
-consultancy. Use only verified biography and claims. A real professional
-portrait is preferred; the current temporary stylized asset is not final.
+Make the founder-led, currently one-person working model legible without
+pretending to be a large consultancy. Steven remains directly involved; any
+additional specialty is discussed and scoped with the client. Use only
+verified biography and claims. The owner approved the current temporary
+stylized portrait for Friday while preparing a real professional replacement.
 
 ### Contact
 
@@ -114,7 +116,10 @@ The contact path must never depend on Voyager. The preferred launch flow is a
 static Formspark form with native POST fallback, accessible state messaging,
 basic spam protection, and a visible
 `contact@netherwooddatapartners.com` mail link. If Formspark is unavailable,
-the email link remains usable. Do not send contact details to the chat service.
+the email link remains usable. The form must state that the inquiry passes
+through Formspark, that Netherwood uses it to respond, and that Netherwood does
+not sell inquiry information or use it for advertising. Do not send contact
+details to the chat service.
 
 ## Conversion path
 
