@@ -29,14 +29,18 @@ records observed state, not plans.
   contact email remains visible as a fallback.
 - Formspark's automatic spam filter was observed as active for the form. The
   site also sends Formspark's supported `_honeypot` field. The dashboard reports
-  one active notification recipient; the owner still needs to confirm that it
-  is the intended business inbox before launch. During local candidate QA, two
-  placeholder-only requests were inadvertently attempted while exercising the
-  browser's synthetic `minLength` behavior; both produced the form's error
-  state. No successful lead or email delivery was confirmed, no Formspark
-  account setting was changed, and any free-plan allowance effect remains
-  unknown. Do not make another live submission without immediate owner
-  confirmation.
+  one active notification recipient. On 2026-09-02, four test-like submissions
+  were found in the Spam queue: two placeholder-only QA attempts and two owner
+  tests whose message contained a second, mismatched email address. With owner
+  approval, only the two owner tests were marked as non-spam; the QA placeholders
+  remain quarantined. No spam-protection setting was changed.
+- One owner-approved candidate submission at 20:24 EDT was accepted with the
+  automatic filter still enabled. The site displayed its success state and
+  reset the form, the submission appeared in the Formspark Inbox, and the
+  notification reached the configured recipient at 20:24:57 EDT with the
+  submitted business address as `Reply-To`. The workspace allowance changed
+  from 250 to 247 because the two recovered submissions and the new accepted
+  test each count once.
 - Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   Articles release keeps the public site static and adds the Articles index,
@@ -318,9 +322,9 @@ records observed state, not plans.
   email fallback, and no Voyager widget or runtime dependency.
 - A narrow fallback follow-up leaves native POST behavior available when
   `fetch` is unavailable and adds a static `noscript` email path. Empty and
-  invalid-email browser validation passed. A true live success/reset/delivery
-  check, the intended notification recipient, and a real-keyboard short-message
-  check remain owner-gated launch checks.
+  invalid-email browser validation passed. The owner-approved live candidate
+  test confirmed success, reset, Formspark Inbox receipt, notification delivery,
+  and correct `Reply-To`. A real-keyboard short-message check remains pending.
 - Launch source-of-truth documents were added under `docs/`, with concise agent
   rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
   CSS, content, backend, infrastructure, or production configuration was

@@ -18,7 +18,7 @@ completed release check.
   (`f982599`). Do not recreate or overwrite it.
 - [x] Decide how to integrate `f982599` into the release candidate (rebase,
   cherry-pick, or merge after confirming no newer Formspark commit exists).
-- [ ] In Formspark, verify the form name, automatic spam protection, free-plan
+- [x] In Formspark, verify the form name, automatic spam protection, free-plan
   limit, and exact notification recipient. Do not expose account credentials.
 - [ ] Owner-approve or revise the public claims identified in
   `docs/LAUNCH_AUDIT.md`, especially "more than 15 years" and plural
@@ -41,8 +41,8 @@ completed release check.
 - [x] Integrate the existing Formspark commit without duplicating its component
   or action endpoint.
 - [x] Build and serve the exact release candidate locally.
-- [ ] Submit one clearly labeled test inquiry through the candidate form.
-- [ ] Confirm Formspark records the inquiry and the intended business inbox
+- [x] Submit one clearly labeled test inquiry through the candidate form.
+- [x] Confirm Formspark records the inquiry and the intended business inbox
   receives the notification, including sender/reply-to behavior.
 - [ ] Confirm required-field, invalid-email, short-message, double-submit,
   success, timeout/error, and reset behavior.

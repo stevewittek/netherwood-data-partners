@@ -58,18 +58,23 @@ Formspark is integrated into the focused candidate, but has not landed on
   email fallback rendered; the source contains an in-flight guard, timeout,
   success state, and reset-on-success. A native POST remains available when
   `fetch` is absent, and the static shell now exposes a `noscript` email path.
-- Two placeholder-only requests were inadvertently attempted because synthetic
-  browser input did not engage the expected `minLength` dirty-state behavior.
-  Formspark returned the error state both times. No successful lead or delivery
-  was confirmed and no account setting was changed. Do not attempt another live
-  submission without immediate owner confirmation.
-- Still unverified: intended notification recipient, actual end-to-end email
-  delivery, successful submission/reset behavior, dashboard receipt,
-  free-tier allowance impact, and real-keyboard short-message validation.
+- Four test-like requests were found in Formspark's Spam queue: two
+  placeholder-only QA attempts and two owner tests whose body contained a
+  second, mismatched email address. With owner approval, only the two owner
+  tests were marked as non-spam; the QA placeholders remain quarantined. The
+  automatic filter remained enabled and no form setting was changed.
+- An owner-approved candidate test at 20:24 EDT succeeded with a normal message
+  and the automatic filter still enabled. The form displayed success and reset,
+  Formspark recorded the submission in Inbox, and its notification reached the
+  configured recipient at 20:24:57 EDT with the submitted business address as
+  `Reply-To`. The allowance changed from 250 to 247: two recovered submissions
+  plus the new accepted test.
+- Still unverified: real-keyboard short-message validation and the final
+  production-domain smoke test after deployment.
 
 Do not recreate the component, action endpoint, or original commit. Continue
 from the focused integration branch and preserve the owner confirmation gate
-for the remaining live test.
+for the final production-domain smoke test.
 
 ## P0 — production or contact blockers
 
@@ -85,11 +90,11 @@ or makes static rendering depend on Voyager.
 
 ### P1.1 Land and verify the Formspark contact flow
 
-The new form exists in the integration candidate; production still has zero
-forms. After owner confirmation, perform one controlled test submission.
-Confirm the exact business inbox receives it, the submission appears in the
-Formspark dashboard, spam protection remains enabled, and the free allowance is
-understood. Verify the error state without removing the email fallback.
+The integration candidate passed an owner-approved end-to-end test: success and
+reset rendered, Formspark Inbox receipt and email delivery were confirmed, the
+submitted email became `Reply-To`, the automatic filter remained enabled, and
+the allowance impact was recorded. Production still has zero forms; repeat one
+owner-approved smoke test only after the exact candidate is deployed.
 
 Files: `app/components/ContactForm.tsx`, `app/page.tsx`, `app/globals.css`.
 
