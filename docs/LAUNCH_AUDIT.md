@@ -92,6 +92,13 @@ Escalate immediately to P0 if a candidate deployment breaks the homepage,
 removes the email fallback, returns an error for `/#contact`, exposes secrets,
 or makes static rendering depend on Voyager.
 
+The separate business-email fallback test was sent successfully from
+`steven.wittek@gmail.com` to `contact@netherwooddatapartners.com` at 22:41 EDT
+on 2026-09-02. The connected Gmail account showed the Sent message but no
+inbound copy during the initial delivery check. Receipt in the actual business
+mailbox or forwarding destination remains a P1 verification item; Formspark's
+successful notification delivery does not prove this route.
+
 ## P1 — required for Friday
 
 ### P1.1 Land and verify the Formspark contact flow

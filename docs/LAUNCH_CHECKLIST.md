@@ -32,7 +32,11 @@ completed release check.
 - [ ] Confirm the Friday navigation scope. Tools/Query Vault is explicitly not
   a blocker; do not add a dead Tools link.
 - [ ] Confirm the business email works by sending and receiving a normal direct
-  email outside Formspark.
+  email outside Formspark. A labeled message was sent from the connected Gmail
+  account to `contact@netherwooddatapartners.com` at 22:41 EDT on 2026-09-02;
+  Gmail confirmed the Sent copy, but no delivered copy had appeared in that
+  Gmail inbox after the initial check. Confirm receipt in the actual business
+  mailbox or forwarding destination before checking this item.
 
 ## Thursday, September 3 — integrate P1 work and verify the candidate
 

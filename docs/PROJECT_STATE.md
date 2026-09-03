@@ -41,6 +41,11 @@ records observed state, not plans.
   submitted business address as `Reply-To`. The workspace allowance changed
   from 250 to 247 because the two recovered submissions and the new accepted
   test each count once.
+- A direct fallback-email test was sent from `steven.wittek@gmail.com` to
+  `contact@netherwooddatapartners.com` at 22:41 EDT on 2026-09-02, outside
+  Formspark. Gmail recorded the Sent message. No delivered copy appeared in the
+  connected Gmail inbox during the initial check, so receipt in the business
+  mailbox or its forwarding destination is not yet confirmed.
 - Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   Articles release keeps the public site static and adds the Articles index,
