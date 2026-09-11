@@ -94,6 +94,12 @@ This import deliberately starts from GitHub main; it does not incorporate the
 seven launch commits or any dirty release-candidate work. Choose the intended
 release baseline and publication authority before preparing a release.
 
+At the final status check, the separate publication worktree had advanced
+outside this task to `21fc005acfbfb2c2d266c2c5f7ee3ea44ccd12bd` and was clean,
+tracking `origin/codex/publication-release-candidate`. The dirty-state review
+above describes its state when this task began. This task did not commit or
+push that branch. Recheck it before any future integration.
+
 Owner decisions remain: singular versus plural Azure title; repository-write
 authentication; API recreation; optional refresh timer; and authoring access.
 Immediately before any eventual snapshot approval, obtain a fresh public-only
