@@ -1,9 +1,30 @@
 {
   "format": "netherwood.public-articles/v1",
-  "generatedAt": "2026-09-11T12:51:11.789Z",
-  "articleCount": 10,
-  "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+  "generatedAt": "2026-09-11T13:07:38.785Z",
+  "articleCount": 11,
+  "contentDigest": "c07627e4b0dd8963ebf32846892fd84d7d49070bef96753a51fad95fd3694d96",
   "articles": [
+    {
+      "articleId": "c54a0a41-1e75-49f4-a848-6f196e8f6ded",
+      "title": "Controlled Publication Verification",
+      "slug": "controlled-publication-verification-20260911",
+      "summary": "Controlled publication acceptance fixture: draft-v1.",
+      "category": "Publication Verification",
+      "tags": [
+        "release verification"
+      ],
+      "author": "Netherwood release verification",
+      "status": "Published",
+      "seoDescription": "Controlled publication acceptance fixture: draft-v1.",
+      "isFeatured": false,
+      "publishedDate": "2026-09-11T13:07:26.950Z",
+      "createdDate": "2026-09-11T13:06:30.390Z",
+      "modifiedDate": "2026-09-11T13:07:26.950Z",
+      "html": "<h2>Controlled publication verification</h2><p>This temporary release fixture records draft-v1.</p>",
+      "plainText": "CONTROLLED PUBLICATION VERIFICATION\n\nThis temporary release fixture records draft-v1.",
+      "metaTitle": "Controlled Publication Verification",
+      "metaDescription": "Controlled publication acceptance fixture: draft-v1."
+    },
     {
       "articleId": "5c914054-7d6a-5bb4-89e9-7fa3093cae76",
       "title": "Why SQL Server Databases Slow Down Over Time",
