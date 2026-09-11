@@ -1,7 +1,10 @@
 # Current launch and publication checklist
 
-Application merge: `60110be306340bd8d654a3da071f57a8687b1827` from PR #1,
-2026-09-11T11:11:38Z. Later documentation-only updates are separate.
+Application merge: `60110be306340bd8d654a3da071f57a8687b1827` from PR #1.
+Production source: `16a133f7d82bb807f3c230514f325604bac84190` after
+PR #4 fixed dynamic-publication test coverage. Current production run:
+`34605108714`; content: `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`;
+digest: `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
 Evidence and limits: [PUBLICATION_VERIFICATION.md](PUBLICATION_VERIFICATION.md).
 Merge, CI and review-image evidence:
 [post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
@@ -55,8 +58,8 @@ Code merge and passing checks do not complete production integration.
 - [x] Synchronize clean Mac/Voyager 2 review checkouts to the application merge,
   preserving original worktrees and Voyager 2's dirty document hashes.
 - [x] Build Voyager 2 review image `ndp-publication-review:60110be`: 60 tests,
-  zero skips and strict type checking passed. The image is not running; public
-  chat, authoring and both timers remain off.
+  zero skips and strict type checking passed. The identical reviewed image is
+  now the healthy loopback-only API; public chat remains off.
 - [x] Review and reconcile the actual Voyager 1 runbook, client templates and
   acceptance report. Preserve its acceptance result as historical evidence.
 
@@ -64,23 +67,23 @@ Code merge and passing checks do not complete production integration.
 
 - [x] Review and reconcile the actual Voyager 1 runbook, client templates and
   acceptance report. Voyager 2's original/imported code reconciliation is complete.
-- [ ] Approve the private authoring path and required service configuration.
-  The existing desk is disabled, not ready for login.
-- [ ] Approve the captured singular Azure article title, or correct it in SQL and
-  supply a new validated export. Do not silently edit the static copy.
+- [x] Approve and activate the private authoring path with separate protected
+  credentials, procedure-only SQL access and a loopback-only reviewed API.
+- [x] Approve the captured singular Azure article title and release the SQL value.
 - [ ] Confirm receipt of the existing direct business-email test in its actual
   destination mailbox. Authorize any additional send separately if needed.
-- [ ] Review/apply/test the prepared SQL procedure and narrow grant on Voyager 2,
+- [x] Review/apply/test the prepared SQL procedure and narrow grant on Voyager 2,
   including isolated schedule/removal/concurrent-update fixtures.
-- [ ] Approve the release, repository publication credential and activation plan;
-  production deploy/activation only after the gates above are satisfied.
-  The repository merge is complete; no production activation occurred.
-- [ ] Verify the deployed commit and manifest; run a controlled approved draft,
+- [x] Approve the release, repository publication credential and activation plan;
+  production publication is gated by `NDP_PUBLICATION_ENABLED`.
+- [x] Verify the deployed commit and manifest; run a controlled approved draft,
   publish/edit, scheduled publication and withdrawal through SQL to the website,
   including fresh/returning browsers and matching AI publication state.
-- [ ] Save the successful release artifact and practice the approved rollback
-  procedure. Confirm old content is acceptable before restoring any artifact.
-- [ ] Enable the 15-minute production timer only after the controlled cycle passes.
+- [x] Save the successful release artifact and practice the approved rollback
+  procedure. Artifact `10265914128` was redeployed by run `34607709999`;
+  the gates were restored and run `34607819131` confirmed latest-state parity.
+- [x] Enable the 15-minute production timer only after the controlled cycle passes.
+  It is enabled and active; the timer-owned 14:04:27Z cycle passed at 14:04:34Z.
 - [ ] For a later chat release, require approved HTTPS endpoint, retrieval-time
   SQL visibility/version enforcement, measured latency/load/citations, unsupported
   questions, injection and backend-down tests. Chat is not needed for site launch.

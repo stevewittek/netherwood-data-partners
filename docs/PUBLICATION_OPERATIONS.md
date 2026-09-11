@@ -15,14 +15,17 @@ client-lifecycle decisions remain subject to the explicit owner gates in
 
 ## Current boundary
 
-The application merge passed Site, Backend and Backend Windows in CI run
-`34592830620`; Windows passed 60 tests with zero skips. Publication run
-`34592830561` was skipped. Pages still serves `b431beb`, deployment `6223598061`.
-Voyager 2's clean review checkout and Docker image are verified at the
-application merge; the image is built, not running. See
-[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
-The clean review checkouts may receive documentation-only fast-forwards without
-changing the tested application revision or requiring an image rebuild.
+The production website serves source
+`16a133f7d82bb807f3c230514f325604bac84190` and content
+`b6cbdcb0f5b8eb460096db84d5084f4ae4165770`. Publication run
+`34605108714` restored the intended ten-article digest
+`ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
+Chat is disabled. The reviewed API image is running healthy and loopback-only;
+private authoring, SQL export and AI reconciliation are active. Rollback run
+`34607709999` passed, the deployment gates were restored, and the persistent
+15-minute timer is enabled and active. Its first timer-owned cycle passed at
+14:04:34Z. See
+[production evidence](evidence/2026-09-11/production-release.json).
 
 SQL on Voyager 2 owns article content and publication state. GitHub Pages owns
 public availability. After activation, the prepared workflow builds only a
@@ -34,11 +37,10 @@ Formspark remains the existing independent contact service, with visible
 The owner/editor approves facts and publication; the Voyager 2 operator owns
 private authoring/export and backend health; the release operator owns GitHub
 runs and website acceptance. These are responsibilities, not claims of staff.
-The private authoring desk is currently disabled: admin returned 404 on
-September 11, and Voyager 2 reports no author login/user or authoring settings.
-The steps below describe the existing supported desk after its separately
-approved activation; there is no usable editor sign-in yet. Do not
-create a competing database or copy production credentials to Voyager 1/Mac.
+The private authoring desk is configured with separate protected credentials,
+procedure-only SQL access and a loopback-only API. Admin requests without the
+bearer token return 401. Credentials remain in a mode-600 local environment
+file and are never copied to Git, Voyager 1, browser code or logs.
 
 ## Business and client operations
 
@@ -105,10 +107,9 @@ validation/build -> Pages release -> matching deployed article knowledge`
   fields, unsafe HTML/URLs, drafts, not-yet-due rows, duplicate IDs/slugs, malformed
   metadata and corrupt/truncated artifacts fail closed.
 - `backend/sql/publication-export.sql` prepares one bounded, serializable
-  public-set read with one UTC eligibility cutoff. It requires a reviewed
-  procedure and the exact EXECUTE grant to existing `ndp_web_app`. It has **not
-  been applied or SQL-tested on Voyager 2**. It replaces the race-prone paged
-  export, without granting direct table reads or creating a login.
+  public-set read with one UTC eligibility cutoff. It was rollback-tested and
+  applied on Voyager 2 with the exact EXECUTE grant to existing `ndp_web_app`.
+  It replaces the race-prone paged export without granting direct table reads.
 - `backend/src/export-articles.ts` retries a complete export three times with
   1/4-second backoff. It writes the candidate atomically only after validation.
   Candidates live under ignored `pages-site/.publication-candidates/`; no
@@ -139,8 +140,8 @@ validation/build -> Pages release -> matching deployed article knowledge`
   you whether the asynchronous website deployment succeeded: inspect its run.
 - Failure evidence: systemd journal stage + safe structured exporter/knowledge
   logs, GitHub failed step and run summary, and deployed `publication.json`.
-  Configure the operator's existing GitHub notification preference after owner
-  approval; this task has not changed notification settings or sent alerts.
+  Repository notification settings were not changed and no alert, form or email
+  was sent during the release.
 
 ## AI currency and limits
 
@@ -234,60 +235,26 @@ release cannot resurrect a removed article from those caches. There is no
 service worker. Full page content still needs JavaScript; the no-JavaScript
 contact email remains available.
 
-## Remaining production activation checklist (not executed)
+## Current activation status
 
-- Review and reconcile the actual Voyager 1 business/runbook files after
-  transfer. Voyager 2's code reconciliation is complete. Keep the merged
-  deployment-aware cycle; do not
-  wholesale apply Voyager 2's old snapshot-to-main publisher or refresh timer.
-- Approve whether the exported title "Azure SQL Migration Lesson" is intended.
-  If plural is intended, correct SQL through an approved authoring operation and
-  supply a fresh validated export. Do not edit only the snapshot.
-- Approve private authoring activation if the desk is the chosen editor path.
-  Existing `backend/scripts/create-article-author-credentials.sh` and the
-  reviewed setup preflight/apply path are described in `ARTICLES_CMS.md`; they
-  create credentials/grants and require an API restart. None were run here.
-  Preserve the old runtime image and validate its approved replacement before
-  restart; no public networking change is needed for private authoring.
-- The repository merge is complete. Review the recorded checks and resolve
-  remaining production gates before deployment or runtime activation.
-- On Voyager 2, preserve its dirty original checkout. The clean detached review
-  checkout is `/home/nasa/netherwood-release-review-60110be`; its reviewed image
-  is `ndp-publication-review:60110be`, built with 60 passing tests, zero skips
-  and strict type checking. Verify the selected approved source, configuration,
-  tooling and private runtime identity before any activation.
-- Approve/apply/test `web.ExportPublishedArticles` and its narrow existing-user
-  grant. Do a read-only comparison with SQL and run rollback-only fixtures on an
-  isolated database. The completed image build does not apply this procedure
-  or grant. Keep shared services and SQL/API/Ollama networking unchanged until
-  their separately approved activation steps.
-- Approve an existing or new repository-scoped publication credential with
-  Contents read/write and Actions write for dispatch, preserving main branch
-  protection. A deploy key alone cannot perform this API dispatch. Use the
-  approved OS credential store with `gh` and verify unattended access as the
-  service user. Keep the local environment file for non-secret flags and paths;
-  never put credentials in Git, unit files, browser code or command output.
-  No credential or notification configuration has been created or changed.
-- Set local `NDP_PUBLICATION_ENABLED=true` only for the approved initialization.
-  Export a fresh candidate with the reviewed tool, then run
-  `node --experimental-strip-types scripts/publish-article-export.ts <candidate> --initialize`.
-  This creates only the content branch; it requests no deployment and never
-  writes main. After initialization use the same command without `--initialize`.
-- After the remaining release approvals, set **repository**
-  `NDP_PUBLICATION_ENABLED=true` only as part of the approved release. The
-  workflow otherwise stays disabled,
-  including main pushes. Dispatch the reviewed content commit and verify it.
-- Place the prepared service/timer under the user's systemd units only after
-  approving the actual immutable checkout path and local protected environment
-  file. Test one manual cycle before enabling the timer. Do not use the older
-  V2 refresh-only timer simultaneously.
-- Verify a controlled approved publication end to end: draft unchanged,
-  publish/edit (including unchanged timestamp), due schedule, withdrawal,
-  fresh/returning browsers, website outage independence and AI state/citations.
-  Use a separately approved publication; no test article has been published.
-- Confirm direct business-mail receipt from the prior test. Any new production
-  form/email smoke test needs explicit authorization. Existing evidence is
-  documented in the release verification report.
+- Voyager 1 business documents are reconciled. Voyager 2's original dirty
+  checkout remains preserved; production runs from the clean
+  `/home/nasa/netherwood-publication-release` checkout.
+- The singular SQL title is approved. The export procedure and narrow runtime
+  grant are applied and tested. Private authoring uses separate protected
+  credentials; the reviewed API image is healthy and loopback-only.
+- The content branch and repository publication gate are active. The full
+  draft, publish, edit, schedule, due, unpublish and archive lifecycle passed.
+  Both temporary records are archived, absent publicly and hidden from AI.
+- The rollback artifact is retained and inspected. Rehearsal `34607709999`
+  redeployed the approved artifact, after which the rollback gate was closed and
+  publication restored. Repeat the same gated sequence for any future rollback.
+- The user timer is enabled and active. Its first timer-triggered no-change cycle
+  reported matching deployed/SQL digests and `publication_knowledge_current`.
+- Confirm direct business-mail receipt from the prior test separately. Any new
+  production form or email test requires separate authorization.
+- Keep public chat disabled until HTTPS endpoint, retrieval-time revocation,
+  citation, unsupported-question, injection, load and CPU-latency gates pass.
 
 Repository tooling: Node 22.13+ (local checks used bundled 24.19.0), pnpm
 11.19.0, frozen pnpm install and `npm ci --prefix backend`. Run `pnpm lint`,

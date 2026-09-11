@@ -1,6 +1,47 @@
 # Project state
 
-## Application merge and review synchronization — September 11
+## Production release and lifecycle acceptance - September 11
+
+Netherwood Data Partners is live at `https://netherwooddatapartners.com` from
+source commit `16a133f7d82bb807f3c230514f325604bac84190`. The current public
+manifest records content commit `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`,
+digest `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`,
+ten articles, chat disabled, and successful publication run `34605108714`.
+The retained `website-release` artifact is ID `10265914128`, 2,079,772 bytes,
+and expires 2026-10-11T13:35:40Z.
+
+The release applied and rollback-tested `web.ExportPublishedArticles` and its
+narrow EXECUTE grant to the existing runtime user. Private authoring now uses
+separate protected credentials and the loopback-only API. The reviewed API
+image is running healthy as
+`sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e`.
+No public backend, network, DNS, router or firewall change was made.
+
+Controlled acceptance covered private draft, initial publish, edited draft
+remaining private, edited publish, future-dated publish, due transition,
+unpublish and archive. Successful Pages runs were `34603017803`, `34603535109`,
+`34604675813` and `34605108714`. The final AI reconciliation scanned ten,
+left ten unchanged, hid both temporary sources and failed zero, with deployed
+and SQL digests equal to the production digest. Fresh Chrome showed the removed
+route immediately; a returning profile retained its prior HTTP-cached page
+until a network refresh, after which it showed the authoritative 404. Fully
+offline and already-open copies remain outside server-side revocation.
+
+At 13:37:56Z the host cleanly stopped SQL Server and at 13:41Z externally
+restarted SQL and Docker. The website remained available. The cycle failed
+closed during the interval and succeeded without intervention after recovery.
+No release command restarted those host services.
+
+Rollback run `34607709999` successfully redeployed the exact selected
+`34605108714` artifact. The rollback gate was closed, automatic publication
+was restored, and normal restoration run `34607819131` confirmed there was no
+newer content to deploy. The persistent 15-minute timer is enabled and active.
+Its first timer-owned cycle completed at 14:04:34Z with matching SQL/deployed
+digests, ten unchanged articles, current AI knowledge and zero failures; its
+next scheduled trigger was 14:15:00Z. Public chat remains disabled because
+endpoint, retrieval-time revocation and CPU-latency readiness are not accepted.
+
+## Historical pre-production merge and review synchronization
 
 [PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1) merged at
 2026-09-11T11:11:38Z. Its application merge commit is
@@ -36,7 +77,7 @@ four actual uncommitted documents still await transfer. No SQL permissions,
 credentials or public exposure changed. See
 [post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
 
-## Merged application — production release still pending
+## Historical pre-production application state
 
 **Merged code; not deployed and not integration-complete.** The application
 merge preserves `f96bc08` and its seven launch commits. Existing worktrees and
