@@ -22,6 +22,7 @@ function store(matches = [match]): KnowledgeStore {
     },
     async listKnowledgeSources() { return []; },
     async listStructuredKnowledgeSources() { return []; },
+    async listPublishedArticleKnowledgeSources() { return []; },
     async replaceKnowledgeSource() { return true; },
     async hideKnowledgeSource() {},
   };

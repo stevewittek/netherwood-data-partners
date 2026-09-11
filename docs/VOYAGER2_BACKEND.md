@@ -61,7 +61,7 @@ AI_TIMEOUT_MS=600000
 CHAT_MAX_CONCURRENT=1
 CHAT_BUSY_RETRY_AFTER_SECONDS=120
 RAG_RESULT_LIMIT=2
-RAG_MAX_DISTANCE=0.65
+RAG_MAX_DISTANCE=0.35
 KNOWLEDGE_ROOT=/knowledge
 ```
 
@@ -100,8 +100,11 @@ docker compose exec -T api npm run knowledge:ingest
 It hashes source files, skips unchanged content, re-embeds modifications, and
 hides deleted sources. Structured database material is restricted to the
 allowlisted `web.GetApprovedStructuredContent` procedure and records explicitly
-marked `ChatbotVisible=1`. The runtime login cannot read or modify the knowledge
-tables directly. Retrieval uses the fixed `web.SearchChatbotKnowledge`
+marked `ChatbotVisible=1`. Published article knowledge comes only from the fixed
+`web.ListPublishedArticleKnowledge` procedure; ingestion refreshes public edits
+and hides chunks after unpublish/archive or when a publication is not yet due.
+The runtime login cannot read or modify the knowledge tables directly.
+Retrieval uses the fixed `web.SearchChatbotKnowledge`
 procedure with exact cosine `VECTOR_DISTANCE` over `vector(768)` values; no
 preview vector index is enabled and the model can never generate arbitrary SQL.
 
@@ -114,13 +117,16 @@ docker compose exec -T api npm run verify:rag
 
 The verifier asks “What database performance services do you offer?” and prints
 only the final answer and approved citations. On the current CPU-only Voyager
-host, `qwen3:4b` can take roughly two minutes for this bounded answer, so the
+host, `qwen3:4b` takes roughly two to three minutes for a bounded answer, so the
 browser and API timeouts are deliberately longer than a cloud-provider timeout.
 
 The public widget validates the structured citation payload and renders a
 numbered list of approved source titles and links beneath the answer. It accepts
 only relative site paths and HTTP(S) URLs. Because Ollama is configured for one
-CPU generation at a time, Voyager also defaults to one active chat. Additional
+CPU generation at a time, Voyager also defaults to one active chat. The 0.35
+retrieval distance default was selected from local supported/unsupported probes
+so unrelated questions normally take the deterministic no-source path without
+starting the model. Additional
 chat requests receive a bounded `503 chat_busy` response with `Retry-After: 120`
 before a chat record or model job is created; the widget preserves the question
 and asks the visitor to retry in about two minutes. Tune these limits only after

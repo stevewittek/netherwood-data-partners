@@ -23,6 +23,23 @@ export type StructuredKnowledgeSource = {
   lastModifiedUtc: Date;
 };
 
+export type PublishedArticleKnowledgeSource = {
+  articleId: string;
+  title: string;
+  slug: string;
+  sourceUrl: string;
+  summary: string;
+  plainText: string;
+  category: string;
+  tags: string[];
+  author: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  isFeatured: boolean;
+  publishedDate: Date;
+  modifiedDate: Date;
+};
+
 export type KnowledgeChunkInput = {
   chunkNumber: number;
   content: string;
@@ -43,6 +60,7 @@ export interface KnowledgeStore {
   searchKnowledge(embedding: number[], limit: number, maxDistance: number): Promise<KnowledgeMatch[]>;
   listKnowledgeSources(sourceType: KnowledgeSourceType): Promise<StoredKnowledgeSource[]>;
   listStructuredKnowledgeSources(): Promise<StructuredKnowledgeSource[]>;
+  listPublishedArticleKnowledgeSources(): Promise<PublishedArticleKnowledgeSource[]>;
   replaceKnowledgeSource(input: ReplaceKnowledgeSourceInput): Promise<boolean>;
   hideKnowledgeSource(sourceType: KnowledgeSourceType, sourceLocation: string): Promise<void>;
 }

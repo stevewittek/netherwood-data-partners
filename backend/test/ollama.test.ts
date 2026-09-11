@@ -51,3 +51,18 @@ test("rejects malformed local chat and embedding responses", async () => {
     (error: unknown) => error instanceof ProviderError && error.code === "malformed_response",
   );
 });
+
+test("classifies bounded Ollama timeouts and backend connection failures", async () => {
+  const stalled: typeof fetch = async (_input, init) => new Promise<Response>((_resolve, reject) => {
+    init?.signal?.addEventListener("abort", () => reject(new DOMException("aborted", "AbortError")), { once: true });
+  });
+  await assert.rejects(
+    () => createOllamaEmbeddingClient({ baseUrl: "http://127.0.0.1:11434", model: "nomic-embed-text", timeoutMs: 5, fetcher: stalled })(["test"]),
+    (error: unknown) => error instanceof ProviderError && error.code === "timeout",
+  );
+  const unavailable: typeof fetch = async () => { throw new TypeError("connection refused"); };
+  await assert.rejects(
+    () => createOllamaEmbeddingClient({ baseUrl: "http://127.0.0.1:9", model: "nomic-embed-text", timeoutMs: 100, fetcher: unavailable })(["test"]),
+    (error: unknown) => error instanceof ProviderError && error.code === "unavailable" && !error.message.includes("connection refused"),
+  );
+});

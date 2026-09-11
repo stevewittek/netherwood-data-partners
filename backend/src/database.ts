@@ -6,6 +6,7 @@ import {
   KNOWLEDGE_PROCEDURES,
   type KnowledgeMatch,
   type KnowledgeStore,
+  type PublishedArticleKnowledgeSource,
   type ReplaceKnowledgeSourceInput,
   type StoredKnowledgeSource,
   type StructuredKnowledgeSource,
@@ -258,6 +259,30 @@ VALUES(@leadId, @contactId, @chatSessionId, @project, 'new', @now, @now);`);
         sourceUrl: typeof row.SourceUrl === "string" ? row.SourceUrl : undefined,
         content: String(row.Content),
         lastModifiedUtc: row.UpdatedUtc instanceof Date ? row.UpdatedUtc : new Date(String(row.UpdatedUtc)),
+      }));
+    },
+    async listPublishedArticleKnowledgeSources() {
+      const result = await (await pool()).request().execute(ARTICLE_PROCEDURES.listKnowledge);
+      return result.recordset.map((row: Record<string, unknown>): PublishedArticleKnowledgeSource => ({
+        articleId: String(row.ArticleId).toLowerCase(),
+        title: String(row.Title),
+        slug: String(row.Slug),
+        sourceUrl: String(row.Url),
+        summary: String(row.Summary),
+        plainText: String(row.PlainText),
+        category: String(row.Category),
+        tags: (() => {
+          try {
+            const value = JSON.parse(String(row.TagsJson));
+            return Array.isArray(value) ? value.filter((tag): tag is string => typeof tag === "string") : [];
+          } catch { return []; }
+        })(),
+        author: String(row.Author),
+        seoTitle: typeof row.SeoTitle === "string" ? row.SeoTitle : undefined,
+        seoDescription: typeof row.SeoDescription === "string" ? row.SeoDescription : undefined,
+        isFeatured: Boolean(row.IsFeatured),
+        publishedDate: row.PublishedDate instanceof Date ? row.PublishedDate : new Date(String(row.PublishedDate)),
+        modifiedDate: row.ModifiedDate instanceof Date ? row.ModifiedDate : new Date(String(row.ModifiedDate)),
       }));
     },
     async replaceKnowledgeSource(input: ReplaceKnowledgeSourceInput) {
