@@ -49,6 +49,7 @@ function database() {
     async searchKnowledge() { return []; },
     async listKnowledgeSources() { return []; },
     async listStructuredKnowledgeSources() { return []; },
+    async listPublishedArticleKnowledgeSources() { return []; },
     async replaceKnowledgeSource() { return true; },
     async hideKnowledgeSource() {},
     async close() {},
@@ -519,6 +520,7 @@ for (const scenario of [
   { code: "rate_limited" as const, expectedStatus: 503, expectedError: "chat_unavailable" },
   { code: "timeout" as const, expectedStatus: 504, expectedError: "upstream_unavailable" },
   { code: "malformed_response" as const, expectedStatus: 502, expectedError: "upstream_unavailable" },
+  { code: "unavailable" as const, expectedStatus: 502, expectedError: "upstream_unavailable" },
 ]) {
   test(`returns a safe response for provider ${scenario.code}`, async () => {
     const db = database();
