@@ -1,10 +1,11 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { validateArticleSnapshot } from "./validate-article-snapshot.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const output = resolve(root, "pages-dist");
 const template = await readFile(resolve(output, "index.html"), "utf8");
-const snapshot = JSON.parse(await readFile(resolve(root, "pages-site/articles-snapshot.json"), "utf8"));
+const snapshot = validateArticleSnapshot(JSON.parse(await readFile(resolve(root, "pages-site/articles-snapshot.json"), "utf8")));
 const articles = Array.isArray(snapshot.articles) ? snapshot.articles : [];
 const siteUrl = "https://netherwooddatapartners.com";
 const defaultImage = `${siteUrl}/og.png`;

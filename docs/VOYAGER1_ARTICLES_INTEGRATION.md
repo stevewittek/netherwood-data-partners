@@ -13,6 +13,12 @@ back to the tracked static article snapshot. If Voyager 2, SQL Server, Docker,
 the tunnel, or home Internet is unavailable, the marketing site and exported
 articles remain available; only newer dynamic content is unavailable.
 
+Static transfer uses the `netherwood.public-articles/v1` JSON contract described
+in `ops/articles/README.md`. Voyager supplies only the ignored, public-only
+candidate. The Mac task validates its count/content digest and isolated Pages
+build before promoting it to `pages-site/articles-snapshot.json`; no SQL or
+authoring credential is transferred.
+
 ## Public endpoints
 
 `GET /api/articles?page=1&pageSize=10` returns published, due articles newest

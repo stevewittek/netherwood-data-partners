@@ -40,6 +40,7 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+/pages-site/.publication-candidates/
 !.env.example
 !**/.env.example
 /.pnpm-store/
