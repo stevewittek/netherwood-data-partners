@@ -1,36 +1,53 @@
 # Project state
 
-## September 11 morning reconciliation
+## Application merge and review synchronization — September 11
 
-The owner has requested the repository merge. The chosen baseline remains the
-Mac publication implementation; Voyager 2's original/review histories are
-reconciled with its 0.35 retrieval default and failure tests, preserving one
-article ingester and one publisher. Local backend checks now pass 60 tests.
-The Windows symlink fixture is isolated and Windows CI is included.
+[PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1) merged at
+2026-09-11T11:11:38Z. Its application merge commit is
+`60110be306340bd8d654a3da071f57a8687b1827`; later documentation-only commits do
+not change that application baseline. The merged implementation reconciles
+Voyager 2's histories, 0.35 retrieval default and failure tests while preserving
+one article ingester and one publisher.
+
+[Merge CI run 34592830620](https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830620)
+passed Site, Backend and Backend Windows. Windows passed all 60 tests with zero
+skips, as it also did in PR run `34592561393`.
 See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md) for exact source
 commits, selected/superseded changes and the three-machine status.
 
-Voyager 2 was reverified healthy and unchanged, with authoring off and both
-timers inactive. Voyager 1's summary is now available, but its four actual
-uncommitted documents are still awaiting transfer. Repository merge approval
-does not activate production: Pages remains on b431beb until a separately
-approved release. No SQL permissions, credentials, services or public exposure
-were changed by reconciliation.
+The Mac publication review checkout was fast-forwarded to the application merge
+before opening this documentation-only follow-up. Voyager 2's new clean,
+detached review checkout under `/home/nasa/netherwood-release-review-60110be`
+was tested at the same application commit. Review checkouts may advance through
+documentation-only updates; the tested application revision remains `60110be`.
+Its original checkout remains at
+`417f2e8`, with its dirty document hashes unchanged. The reviewed Docker image
+`ndp-publication-review:60110be` built successfully with 60 tests, zero skips and
+strict type checking. Its image ID is
+`sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e`.
+It is **built, not running**. An earlier offline attempt stopped at an npm cache
+miss; the normal build then installed locked dependencies and passed.
 
-## Current release candidate — verified 2026-09-11 UTC
+[Publication run 34592830561](https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830561)
+was skipped. Public Pages remains at `b431beb58dccefb8e092c179a1a8517caa78c484`,
+deployment `6223598061`. Authoring, public chat and both timers remain off;
+existing services were not restarted. Voyager 1's summary is available, but its
+four actual uncommitted documents still await transfer. No SQL permissions,
+credentials or public exposure changed. See
+[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
 
-**Local candidate; not released and not integration-complete.** Branch
-`codex/publication-release-candidate` preserves `f96bc08` and its seven launch
-commits. Remote `main` and the verified live Pages deployment remain
-`b431beb58dccefb8e092c179a1a8517caa78c484`. The three original worktrees and the
-unrelated Database Mail modification were preserved; no pull/reset/clean was
-used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
+## Merged application — production release still pending
+
+**Merged code; not deployed and not integration-complete.** The application
+merge preserves `f96bc08` and its seven launch commits. Existing worktrees and
+the unrelated Database Mail modification were preserved. See
+[pre-release verification evidence](PUBLICATION_VERIFICATION.md) and the
 [combined operations guide](PUBLICATION_OPERATIONS.md).
 
 - Actual production cause: the deployed workflow builds its tracked August 24
   snapshot without exporting SQL. Both inspected public API/chat build values
   are empty. Ten live article routes remain independently available.
-- Candidate: a validated, complete public SQL export controls every article
+- Prepared behavior: a validated, complete public SQL export controls every article
   surface, route, related link, metadata record and sitemap. Captured Voyager 2
   export: 2026-09-11T03:04:30.209Z, ten articles, digest
   `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
@@ -55,19 +72,18 @@ used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
   removed or changed article sources before embeddings. Chat and its telemetry
   remain disabled. Retrieval-time visibility protection and acceptable measured
   endpoint behavior are still required before any chat activation.
-- Voyager 2 current local commits are `9f9a4ca` and `417f2e8` (not pushed).
+- Voyager 2's original checkout preserves `9f9a4ca` and `417f2e8`; the clean
+  application review checkout and new image are recorded above.
   Health is 200, authoring is 404, its newly built API image is not running and
   its timer is absent/inactive. Ten article knowledge sources are indexed, but
   website-digest agreement is pending; cited answers took 143.8–176.1 seconds.
 - The new SQL export procedure/grant and scheduled units have not been applied
-  or activated. Final Voyager handoffs, live SQL fixtures, approved release and
+  or activated. The actual Voyager 1 files, live SQL fixtures, approved release and
   controlled post-release publication/withdrawal are outstanding gates.
-- Supported local runtime: bundled Node 24.19.0 and pnpm 11.19.0. Host runtime and
-  services were not changed. Docker daemon was unavailable locally; no Docker
-  image build or live SQL mutation is claimed.
-- [Draft PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1)
-  contains the candidate. Hosted CI passed Site and Backend on implementation
-  commit `21fc005`; production remains at `b431beb` with activation unset.
+- Supported Mac verification runtime: bundled Node 24.19.0 and pnpm 11.19.0.
+  The Docker build ran on Voyager 2, not the Mac. No live SQL mutation or runtime
+  activation is claimed. The merge CI and image-build results above supplement
+  the earlier candidate verification; they do not prove a live publication.
 
 ## Historical state — not current release sign-off
 

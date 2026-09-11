@@ -1,9 +1,12 @@
 # Current launch and publication checklist
 
-Verified locally on 2026-09-11 UTC for `codex/publication-release-candidate`.
+Application merge: `60110be306340bd8d654a3da071f57a8687b1827` from PR #1,
+2026-09-11T11:11:38Z. Later documentation-only updates are separate.
 Evidence and limits: [PUBLICATION_VERIFICATION.md](PUBLICATION_VERIFICATION.md).
+Merge, CI and review-image evidence:
+[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
 Operating steps: [PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md).
-A local pass does not complete production integration.
+Code merge and passing checks do not complete production integration.
 
 ## Candidate implementation and verification
 
@@ -44,16 +47,25 @@ A local pass does not complete production integration.
 - [x] Incorporate the measured retrieval default and backend failure coverage.
 - [x] Isolate the Windows-only symlink privilege limitation without skipping file
   filtering or traversal assertions; add Windows backend CI.
-- [x] Record the owner's request to merge the reviewed repository changes while
-  production activation remains gated.
+- [x] Merge the reviewed repository changes through PR #1; application commit
+  `60110be`. Publication run `34592830561` was skipped, and Pages remains at
+  `b431beb`, deployment `6223598061`.
+- [x] Verify merge CI `34592830620`: Site, Backend and Backend Windows passed.
+  Windows passed 60 tests with zero skips, including PR run `34592561393`.
+- [x] Synchronize clean Mac/Voyager 2 review checkouts to the application merge,
+  preserving original worktrees and Voyager 2's dirty document hashes.
+- [x] Build Voyager 2 review image `ndp-publication-review:60110be`: 60 tests,
+  zero skips and strict type checking passed. The image is not running; public
+  chat, authoring and both timers remain off.
 - [ ] Review the actual Voyager 1 business/runbook files after transfer. Its
   completion summary has been received and reconciled, but is not the files.
 
 ## Required before production acceptance
 
-- [ ] Reconcile missing Voyager 1 business/runbook handoff and captured Voyager 2
-  commits `9f9a4ca`/`417f2e8`; approve the private authoring activation and service
-  configuration. The current authoring desk is disabled, not ready for login.
+- [ ] Review and reconcile the actual Voyager 1 business/runbook files after
+  transfer. Voyager 2's original/imported code reconciliation is complete.
+- [ ] Approve the private authoring path and required service configuration.
+  The existing desk is disabled, not ready for login.
 - [ ] Approve the captured singular Azure article title, or correct it in SQL and
   supply a new validated export. Do not silently edit the static copy.
 - [ ] Confirm receipt of the existing direct business-email test in its actual
@@ -62,7 +74,7 @@ A local pass does not complete production integration.
   including isolated schedule/removal/concurrent-update fixtures.
 - [ ] Approve the release, repository publication credential and activation plan;
   production deploy/activation only after the gates above are satisfied.
-  Repository merge is now owner-authorized; no activation occurred.
+  The repository merge is complete; no production activation occurred.
 - [ ] Verify the deployed commit and manifest; run a controlled approved draft,
   publish/edit, scheduled publication and withdrawal through SQL to the website,
   including fresh/returning browsers and matching AI publication state.
