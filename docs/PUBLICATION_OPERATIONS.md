@@ -2,8 +2,11 @@
 
 This is the combined Mac release guide, reconciled with Voyager 2 local commits
 `9f9a4ca063ea2bce42b75eac25dfe636206d37ba` and
-`417f2e86b3dcf018ba3e09789c8fb454ec2a1979` and its current September 11 status. A finished Voyager 1 business/QA handoff has **not** arrived;
-its owner/runbook details must still be reconciled. Do not mistake this guide
+`417f2e86b3dcf018ba3e09789c8fb454ec2a1979` and its current September 11 status. Voyager 1's completion summary has
+arrived, but its actual runbook/templates
+and acceptance documents have not been transferred; those details still need
+review. See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md).
+Do not mistake this guide
 for an approved commercial policy or a completed production integration.
 
 ## Current boundary
@@ -214,8 +217,9 @@ contact email remains available.
   create credentials/grants and require an API restart. None were run here.
   Preserve the old runtime image and validate its approved replacement before
   restart; no public networking change is needed for private authoring.
-- Review the draft PR, candidate evidence and all P1 items. Approve release
-  merge/deploy only after the remaining gates are resolved.
+- The September 11 owner request authorizes merging the reconciled repository
+  through PR #1 while publication remains disabled. Review evidence and resolve
+  remaining production gates before deployment/activation.
 - On Voyager 2, preserve its dirty main checkout. Prepare a separate reviewed
   release checkout at the approved candidate commit; verify Node/pnpm/gh,
   existing Docker images/config and private runtime identity before changes.
@@ -235,8 +239,9 @@ contact email remains available.
   `node --experimental-strip-types scripts/publish-article-export.ts <candidate> --initialize`.
   This creates only the content branch; it requests no deployment and never
   writes main. After initialization use the same command without `--initialize`.
-- Merge the reviewed PR and set **repository** `NDP_PUBLICATION_ENABLED=true`
-  only as part of the approved release. The workflow otherwise stays disabled,
+- After the repository merge and remaining release approvals, set **repository**
+  `NDP_PUBLICATION_ENABLED=true` only as part of the approved release. The
+  workflow otherwise stays disabled,
   including main pushes. Dispatch the reviewed content commit and verify it.
 - Place the prepared service/timer under the user's systemd units only after
   approving the actual immutable checkout path and local protected environment
@@ -264,8 +269,9 @@ The Voyager 2 source contract and public capture are reused. This candidate
 adds a coherent SQL export procedure, a data-only branch (no writes to main),
 validated hosted builds and deployed-version knowledge coupling. It intentionally
 does not activate or copy the competing `publication-sync.sh`/refresh-only
-workflow. The final backend release should reconcile the improved retrieval
-threshold and tests separately while retaining this publication contract.
+workflow. The September 11 reconciliation incorporates the improved retrieval threshold
+and failure tests while retaining this publication contract. Runtime activation
+is still separate from the repository merge.
 Voyager 1's existing API-integration reference from the Voyager 2 repository is
 available, but it is not the missing Voyager 1 business/QA runbook.
 

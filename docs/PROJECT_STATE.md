@@ -1,5 +1,22 @@
 # Project state
 
+## September 11 morning reconciliation
+
+The owner has requested the repository merge. The chosen baseline remains the
+Mac publication implementation; Voyager 2's original/review histories are
+reconciled with its 0.35 retrieval default and failure tests, preserving one
+article ingester and one publisher. Local backend checks now pass 60 tests.
+The Windows symlink fixture is isolated and Windows CI is included.
+See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md) for exact source
+commits, selected/superseded changes and the three-machine status.
+
+Voyager 2 was reverified healthy and unchanged, with authoring off and both
+timers inactive. Voyager 1's summary is now available, but its four actual
+uncommitted documents are still awaiting transfer. Repository merge approval
+does not activate production: Pages remains on b431beb until a separately
+approved release. No SQL permissions, credentials, services or public exposure
+were changed by reconciliation.
+
 ## Current release candidate — verified 2026-09-11 UTC
 
 **Local candidate; not released and not integration-complete.** Branch

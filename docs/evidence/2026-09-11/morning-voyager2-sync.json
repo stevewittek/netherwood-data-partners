@@ -1,0 +1,89 @@
+{
+  "capturedAt": "2026-09-11T11:03:39.354476+00:00",
+  "repository": "/home/nasa/netherwood-data-partners",
+  "worktrees": 1,
+  "branch": "main",
+  "head": "417f2e86b3dcf018ba3e09789c8fb454ec2a1979",
+  "parent": "9f9a4ca063ea2bce42b75eac25dfe636206d37ba",
+  "base": "b431beb58dccefb8e092c179a1a8517caa78c484",
+  "localChanges": [
+    "docs/PROJECT_STATE.md modified",
+    "docs/VOYAGER2_LAUNCH_STATUS.md untracked"
+  ],
+  "changesSinceLastNight": "none observed",
+  "liveChecks": {
+    "health": 200,
+    "admin": 404,
+    "publicArticleCount": 10,
+    "azureTitle": "Azure SQL Migration Lesson",
+    "timers": {
+      "ndp-articles-refresh.timer": "not-found/inactive",
+      "ndp-publication.timer": "not-found/inactive"
+    },
+    "apiImage": "sha256:f988324af08604881cac57459df4698fb854585dbc8eac307ad42775c99f42d0",
+    "apiStarted": "2026-08-27T21:34:47.083611256Z",
+    "apiHealth": "healthy",
+    "builtImage": "sha256:c18758f025c6f2dfc534102b301b1b881362ae7318f6121a59b8430e425a9eb8",
+    "listeners": [
+      "127.0.0.1:3000",
+      "127.0.0.1:11434"
+    ]
+  },
+  "files": [
+    {
+      "path": "committed-work-review.patch",
+      "sha256": "07f9a5dd9382908968574be788d5d52a751a9fd8c06c0962ef8ddf39bb9118fd",
+      "bytes": 75864
+    },
+    {
+      "path": "docs/ARTICLES_CMS.md",
+      "sha256": "187edd2979a9124fbf0369e44257fcb8bec43ab56d2408a43f7f4407ef7faf0f",
+      "bytes": 10029
+    },
+    {
+      "path": "docs/PROJECT_STATE.md",
+      "sha256": "055fd9a547d4aa2b4e8c80a6164536b0776d368a66a463bf9e54d485b9b3a180",
+      "bytes": 22465
+    },
+    {
+      "path": "docs/VOYAGER1_ARTICLES_INTEGRATION.md",
+      "sha256": "187dd0eddd0db1e5720087ff76522fd75aedc5473229b39dc89a6a0c4a6ac3be",
+      "bytes": 5023
+    },
+    {
+      "path": "docs/VOYAGER2_BACKEND.md",
+      "sha256": "c5c0c01f01dbd631bfd5253a802678e70dde6389899c41bc6f5ab4f028ace0bf",
+      "bytes": 7509
+    },
+    {
+      "path": "docs/VOYAGER2_LAUNCH_STATUS.md",
+      "sha256": "af69582e53f41891713be3a8998187ce6a4e2da299823d9e93aedf31dd801eff",
+      "bytes": 17393
+    },
+    {
+      "path": "documents.tar",
+      "sha256": "fcf7af374b14b7d07914fda5bb3d6880117e50cb0e1d4556ee62b130549ab603",
+      "bytes": 81920
+    },
+    {
+      "path": "ops/articles/README.md",
+      "sha256": "40d68be0362a25db69915a6a8eeec81564d9130e9c20d482553cadc77b7053a3",
+      "bytes": 4780
+    },
+    {
+      "path": "ops/articles/ndp-articles-refresh.service",
+      "sha256": "e820c7466dba3a9eaafe2a2148af300454e61b5552c635427288ac5040ea478f",
+      "bytes": 363
+    },
+    {
+      "path": "ops/articles/ndp-articles-refresh.timer",
+      "sha256": "3ae3e331ac8125dead79b0505b0c6dfd60d31cab255523531a68bff5c35d78ac",
+      "bytes": 236
+    },
+    {
+      "path": "ops/articles/publication-sync.sh",
+      "sha256": "dcec928b5060ba7b5d4a35ad91bfa8dedb6ede7094f966dfdbf4e4446dd2b86e",
+      "bytes": 3407
+    }
+  ]
+}

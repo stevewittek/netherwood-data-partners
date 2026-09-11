@@ -37,6 +37,18 @@ A local pass does not complete production integration.
   pass after narrow corrections; contact focus is checked after its transition.
   This scoped review does not claim complete WCAG certification.
 
+## September 11 repository reconciliation
+
+- [x] Reconcile Voyager 2 original/imported commits with the selected publication
+  design; retain one article ingester and one publication cycle.
+- [x] Incorporate the measured retrieval default and backend failure coverage.
+- [x] Isolate the Windows-only symlink privilege limitation without skipping file
+  filtering or traversal assertions; add Windows backend CI.
+- [x] Record the owner's request to merge the reviewed repository changes while
+  production activation remains gated.
+- [ ] Review the actual Voyager 1 business/runbook files after transfer. Its
+  completion summary has been received and reconciled, but is not the files.
+
 ## Required before production acceptance
 
 - [ ] Reconcile missing Voyager 1 business/runbook handoff and captured Voyager 2
@@ -49,7 +61,8 @@ A local pass does not complete production integration.
 - [ ] Review/apply/test the prepared SQL procedure and narrow grant on Voyager 2,
   including isolated schedule/removal/concurrent-update fixtures.
 - [ ] Approve the release, repository publication credential and activation plan;
-  merge/deploy only after the gates above are satisfied. No activation occurred.
+  production deploy/activation only after the gates above are satisfied.
+  Repository merge is now owner-authorized; no activation occurred.
 - [ ] Verify the deployed commit and manifest; run a controlled approved draft,
   publish/edit, scheduled publication and withdrawal through SQL to the website,
   including fresh/returning browsers and matching AI publication state.

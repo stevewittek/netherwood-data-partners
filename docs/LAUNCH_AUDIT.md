@@ -14,7 +14,7 @@ statements below. See [verification](PUBLICATION_VERIFICATION.md).
 | P1 | Cross-page contact anchor could open above the form after React mounts | Fixed; keyboard activation and responsive contact evidence pass locally. |
 | P1 | Contact/article filter boundaries and dark focus rings had insufficient contrast; article lists lost markers | Narrow CSS fixes with before/after captures and responsive review; solid-palette and separate grid/control/focus checks pass after corrections. |
 | P1 for chat only | Endpoint/readiness and current-source retrieval are not approved/proven | Chat/telemetry explicitly disabled; website release does not depend on AI. |
-| Release gate | Final handoff/SQL tests/editorial approval/controlled publication absent | Do not merge, deploy, activate, or call integration complete yet. |
+| Release gate | Final handoff/SQL tests/editorial approval/controlled publication absent | Repository merge is owner-authorized; deployment/activation and full integration completion remain gated. |
 
 No broad visual redesign, new business claim, new contact send, SQL mutation,
 credential creation, network exposure change or production job activation was
