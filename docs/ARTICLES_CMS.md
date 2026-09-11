@@ -2,29 +2,25 @@
 
 ## Architecture
 
-SQL Server in `NDP_Web` is the source of truth. Voyager exposes current
-published data through `GET /api/articles` and `GET /api/articles/{slug}`. The
-static site uses the live API when `VITE_VOYAGER_API_URL` is configured, keeps
-the last successful response in that visitor's browser, and falls back to
-`pages-site/articles-snapshot.json` when Voyager is unavailable.
+SQL Server in `NDP_Web` is the source of truth. The private/public Voyager API
+continues to expose eligible SQL rows, but the public Pages candidate always
+uses one validated full public export. Its route bodies, index, metadata,
+related links and sitemaps cannot diverge through a live API or browser cache.
+The export is a release artifact, never a second authoring store.
 
-The snapshot is deliberately a reliability layer, not a second authoring
-store. The hardened `articles-export` Compose tool replaces it from SQL data,
-and the Pages build generates the Articles index, one route per exported slug,
-a no-index router fallback, article metadata/structured data, `sitemap.xml`,
-`articles-sitemap.xml`, and `robots.txt`. A new
-publication appears immediately through Voyager; a later snapshot export and
-normal Pages build advances the backend-independent copy, pre-generated slug
-routes, and searchable snapshot. When the static build has an approved,
-reachable Voyager URL, no source edit is needed per article.
+The candidate's prepared automation evaluates all public rows every 15 minutes,
+including future publications becoming due and removals. It retains the last
+successful website if export/build fails. See
+[PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md) for the combined runbook,
+approval gates, expected 15–30 minute healthy interval and rollback.
+The new export procedure, grants and timer have not been applied or activated.
 
 ```text
-admin browser -> authenticated Voyager API -> web_article_author procedures
-                                              -> NDP_Web BlogPosts/ArticleDrafts
-
-public browser -> static Articles route -> live Voyager public procedures
-                         |                     failure
-                         +-> browser cache -> exported static snapshot
+approved private authoring -> authenticated Voyager API -> fixed author procedures
+                                                       -> SQL articles/drafts
+SQL complete public set -> validated export -> content-only Git branch
+                       -> hosted build -> independent static Pages release
+SQL current set + deployed export -> matching article knowledge (chat disabled)
 ```
 
 The existing `web.BlogPosts` table remains the main article record. Its fields
@@ -152,27 +148,17 @@ in a senior database-consultant voice. `backend/sql/seeds/articles.seed.json`
 is the one-time source for those artifacts; ordinary future authoring happens
 through the private desk, not by editing that file.
 
-## Refresh the outage snapshot
+## Refresh the public release and AI knowledge
 
-Run the one-shot hardened Compose tool on Voyager after approved publications
-or on a later schedule:
+Use the approved cycle and activation steps in
+[PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md). The new export writes
+an ignored candidate atomically, validates the public-only contract and never
+writes directly to `main`. The build imports that same candidate before any
+output directory is cleared. Do not run the old seed generator as an article
+update, edit snapshot text manually, or run two competing refresh timers.
 
-```bash
-docker compose -f backend/compose.yaml run --rm articles-export
-```
-
-Then run `pnpm run build:pages` to verify the emitted routes. Deploying that
-snapshot is not required for the live API publication, but it is what advances
-the backend-independent copy and makes a new slug a native `200` GitHub Pages
-route with build-time SEO metadata. Automating export/build/deploy requires a
-separately approved private-to-GitHub credential and is intentionally not
-introduced in version one.
-
-## Future knowledge use
-
-`web.ListPublishedArticleKnowledge` returns article ID, title, slug, relative
-public URL, summary, sanitized plain text, category, JSON tags, author, SEO and
-featured metadata, publication date, and modification date. The runtime login
-can execute this bounded procedure. A future ingestion pass can reuse it
-without allowing model-generated SQL or coupling the publishing UI to an AI
-provider.
+The existing bounded `web.ListPublishedArticleKnowledge` API remains available.
+The candidate article ingestion instead reconciles current SQL and the deployed
+full export by article version. It hides removed/stale article sources before
+embedding and preserves unrelated business knowledge. Chat remains disabled
+until current-source retrieval and measured endpoint behavior are approved.

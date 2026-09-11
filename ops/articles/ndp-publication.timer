@@ -1,0 +1,10 @@
+[Unit]
+Description=Evaluate edits, scheduled publications and removals every 15 minutes
+[Timer]
+OnBootSec=5min
+OnCalendar=*:0/15
+AccuracySec=30s
+Persistent=true
+Unit=ndp-publication.service
+[Install]
+WantedBy=timers.target

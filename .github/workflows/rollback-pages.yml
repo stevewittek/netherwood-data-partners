@@ -1,0 +1,49 @@
+name: Roll back website
+on:
+  workflow_dispatch:
+    inputs:
+      successful_run_id:
+        description: 'Successful Publish website run with a retained website-release artifact'
+        type: string
+        required: true
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  rollback:
+    if: github.ref == 'refs/heads/main' && vars.NDP_ROLLBACK_APPROVED == 'true' && vars.NDP_PUBLICATION_ENABLED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: github-pages
+    steps:
+      - name: Verify source release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.successful_run_id }}
+        run: |
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" > /tmp/release-run.json
+          jq -e '.conclusion == "success" and .head_branch == "main" and .path == ".github/workflows/deploy-pages.yml"' /tmp/release-run.json
+      - name: Download previously verified complete website
+        uses: actions/download-artifact@v4
+        with:
+          name: website-release
+          path: pages-dist
+          run-id: ${{ inputs.successful_run_id }}
+          github-token: ${{ github.token }}
+      - name: Verify release files
+        run: |
+          test -s pages-dist/index.html
+          test -s pages-dist/publication.json
+          test -s pages-dist/articles-snapshot.json
+          cat pages-dist/publication.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: pages-dist
+      - uses: actions/deploy-pages@v5

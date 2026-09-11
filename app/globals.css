@@ -653,7 +653,7 @@ h1 {
 .contact-field select,
 .contact-field textarea {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.08);
   color: white;
@@ -1186,6 +1186,8 @@ footer p:last-child {
 .article-content p { margin: 0 0 1.45em; }
 .article-content ul,
 .article-content ol { margin: 0 0 1.6em; padding-left: 1.4em; }
+.article-content ul { list-style: disc; }
+.article-content ol { list-style: decimal; }
 .article-content li { margin: .42em 0; padding-left: .3em; }
 .article-content a { color: #315f4d; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .article-content blockquote { margin: 2em 0; padding: 4px 0 4px 28px; border-left: 4px solid var(--lime); color: var(--ink-soft); font-size: 1.12em; }

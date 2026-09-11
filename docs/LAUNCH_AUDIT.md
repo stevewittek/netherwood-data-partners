@@ -1,5 +1,28 @@
 # Launch audit
 
+## Current finding — 2026-09-11 UTC
+
+No new public-availability P0 was found. The live Pages source is still
+`b431beb`; the candidate is on `codex/publication-release-candidate` and has
+not been released. The following findings supersede older present-tense
+statements below. See [verification](PUBLICATION_VERIFICATION.md).
+
+| Priority | Finding | Current disposition |
+| --- | --- | --- |
+| P1 | Deployed articles use the old tracked export, not current SQL publication state | Cause verified from deployed commit/workflow/bundles. Candidate provides complete validated export and disabled automation; live procedure/release/e2e remain pending. |
+| P1 | Launch candidate including Formspark is not deployed | Existing delivery reread successfully. Keep independent email fallback; direct business-mail receipt still unconfirmed. |
+| P1 | Cross-page contact anchor could open above the form after React mounts | Fixed; keyboard activation and responsive contact evidence pass locally. |
+| P1 | Contact field outlines had insufficient contrast; article lists lost their markers | Narrow CSS fixes with before/after captures and responsive review; solid-palette automated checks pass. Decorative-grid contrast remains a manual review limitation. |
+| P1 for chat only | Endpoint/readiness and current-source retrieval are not approved/proven | Chat/telemetry explicitly disabled; website release does not depend on AI. |
+| Release gate | Final handoff/SQL tests/editorial approval/controlled publication absent | Do not merge, deploy, activate, or call integration complete yet. |
+
+No broad visual redesign, new business claim, new contact send, SQL mutation,
+credential creation, network exposure change or production job activation was
+performed. Preserve the prior approved founder image, fonts, factual copy,
+Formspark component and navigation.
+
+## Historical September 2 audit
+
 - Audit date: 2026-09-02
 - Launch deadline: Friday, 2026-09-04
 - Repository baseline: clean `origin/main` at `b431beb` after

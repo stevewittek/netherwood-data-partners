@@ -1,14 +1,18 @@
 # Netherwood Data Partners site architecture
 
-Status: launch information architecture based on `origin/main` at `b431beb` and
-production inspected on 2026-09-02.
+Status: candidate architecture verified 2026-09-11. Actual production remains
+`b431beb`; candidate changes below are not yet released. See
+[publication operations](PUBLICATION_OPERATIONS.md).
 
 ## Publishing boundary
 
 GitHub Pages is the public production channel. `pages-site/` supplies the Vite
 entries, `vite.pages.config.ts` builds `pages-dist`, and
 `scripts/generate-static-pages.mjs` creates article routes, sitemaps, robots,
-and the 404 page. A push to `main` runs `.github/workflows/deploy-pages.yml`.
+and the 404 page. The candidate workflow accepts main pushes or a publication
+dispatch only when repository `NDP_PUBLICATION_ENABLED=true`. It imports the
+latest validated content-only branch by immutable commit before building.
+Production activation is pending explicit approval.
 
 The public site, service information, contact path, and published articles must
 work when Voyager, SQL Server, Docker, Ollama, tunnels, home Internet, or AI are
@@ -98,7 +102,9 @@ only when `/tools` returns a useful page.
 ### Articles
 
 Articles demonstrate judgment through useful, technically accurate guidance.
-The index must work from the tracked static snapshot when Voyager is down.
+The index and every detail use the same validated SQL export embedded in the
+static release, independently of Voyager. A missing article or empty export is
+authoritative; legacy browser storage cannot override it.
 Every detail page needs a unique title, description, canonical URL, safe
 article markup, author/date metadata, and a contact CTA.
 
@@ -138,11 +144,15 @@ collector, or required step.
 ## Data and dependency flow
 
 - Public UI: static React/Vite output on GitHub Pages.
-- Articles: live API when explicitly configured, then browser last-good cache,
-  then tracked `pages-site/articles-snapshot.json`.
+- Articles: SQL public-set export -> immutable content branch -> one validated
+  static release. No public article API/localStorage fallback.
+- Release proof: `publication.json` and `articles-snapshot.json` carry matching
+  content digests. Failed publication preserves the last good Pages deployment.
 - Contact: Formspark directly from the static page; business email fallback.
-- Chat and telemetry: optional `VITE_VOYAGER_API_URL`; absent in the current
-  production build.
+- Chat and telemetry: disabled. The existing widget additionally requires
+  `VITE_PUBLIC_CHAT_ENABLED=true` and a separately approved reachable HTTPS
+  endpoint. Knowledge reconciliation only admits exact versions shared by
+  current SQL and the deployed export; retrieval-time protection is pending.
 - Private authoring: Voyager and SQL Server, isolated from basic public-site
   availability.
 

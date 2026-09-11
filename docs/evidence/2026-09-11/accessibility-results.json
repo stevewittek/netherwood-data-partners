@@ -1,0 +1,151 @@
+[
+  {
+    "route": "/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 77
+      }
+    ]
+  },
+  {
+    "route": "/about/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 29
+      }
+    ]
+  },
+  {
+    "route": "/articles/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 74
+      }
+    ]
+  },
+  {
+    "route": "/articles/why-sql-server-databases-slow-down-over-time/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 53
+      }
+    ]
+  },
+  {
+    "route": "/articles/sql-server-indexing-mistakes-that-hurt-performance/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 48
+      }
+    ]
+  },
+  {
+    "route": "/articles/query-store-finding-the-queries-that-are-breaking-your-database/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 59
+      }
+    ]
+  },
+  {
+    "route": "/articles/why-nolock-does-not-fix-blocking-problems/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 49
+      }
+    ]
+  },
+  {
+    "route": "/articles/when-small-businesses-need-a-database-consultant/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 49
+      }
+    ]
+  },
+  {
+    "route": "/articles/moving-legacy-applications-to-modern-sql-server-platforms/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 56
+      }
+    ]
+  },
+  {
+    "route": "/articles/database-backups-what-companies-get-wrong/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 57
+      }
+    ]
+  },
+  {
+    "route": "/articles/azure-sql-migration-lessons/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 53
+      }
+    ]
+  },
+  {
+    "route": "/articles/performance-tuning-before-buying-more-hardware/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 56
+      }
+    ]
+  },
+  {
+    "route": "/articles/database-health-checks-explained/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 59
+      }
+    ]
+  },
+  {
+    "route": "/admin/articles/",
+    "solidPaletteViolations": [],
+    "violations": [],
+    "incomplete": []
+  }
+]

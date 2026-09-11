@@ -1,5 +1,59 @@
 # Project state
 
+## Current release candidate — verified 2026-09-11 UTC
+
+**Local candidate; not released and not integration-complete.** Branch
+`codex/publication-release-candidate` preserves `f96bc08` and its seven launch
+commits. Remote `main` and the verified live Pages deployment remain
+`b431beb58dccefb8e092c179a1a8517caa78c484`. The three original worktrees and the
+unrelated Database Mail modification were preserved; no pull/reset/clean was
+used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
+[combined operations guide](PUBLICATION_OPERATIONS.md).
+
+- Actual production cause: the deployed workflow builds its tracked August 24
+  snapshot without exporting SQL. Both inspected public API/chat build values
+  are empty. Ten live article routes remain independently available.
+- Candidate: a validated, complete public SQL export controls every article
+  surface, route, related link, metadata record and sitemap. Captured Voyager 2
+  export: 2026-09-11T03:04:30.209Z, ten articles, digest
+  `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
+  The SQL title "Azure SQL Migration Lesson" is singular while production is
+  plural; approve that captured editorial change before releasing it.
+- Publication automation is prepared and disabled. A private 15-minute full-set
+  export, content-only Git branch and hosted validation/build/deploy detect
+  edits, due schedules and removals. Healthy operational expectation is roughly
+  15–30 minutes including measured ten-minute Pages cache lifetime; no SLA.
+- Legacy live-article/localStorage fallback is removed. The new release treats
+  an empty export or absent slug as authoritative. Failed export/build retains
+  the last good release. Offline copies and old open tabs cannot be revoked.
+- Existing Formspark is reused. Its prior inbox receipt was reread on September
+  11; no new message or form was sent. Direct business-mail receipt remains
+  unconfirmed in the connected Gmail evidence.
+- Current responsive/browser checks cover all ten articles plus Home/About/index
+  at 1440/768/390 and 320px spot checks. Focused fixes restore cross-page contact
+  scrolling, article list markers and contact-field boundary contrast, with
+  before/after evidence. Branding, layout and navigation are retained.
+- AI reconciliation follows the deployed/current-SQL intersection and hides
+  removed or changed article sources before embeddings. Chat and its telemetry
+  remain disabled. Retrieval-time visibility protection and acceptable measured
+  endpoint behavior are still required before any chat activation.
+- Voyager 2 current local commits are `9f9a4ca` and `417f2e8` (not pushed).
+  Health is 200, authoring is 404, its newly built API image is not running and
+  its timer is absent/inactive. Ten article knowledge sources are indexed, but
+  website-digest agreement is pending; cited answers took 143.8–176.1 seconds.
+- The new SQL export procedure/grant and scheduled units have not been applied
+  or activated. Final Voyager handoffs, live SQL fixtures, approved release and
+  controlled post-release publication/withdrawal are outstanding gates.
+- Supported local runtime: bundled Node 24.19.0 and pnpm 11.19.0. Host runtime and
+  services were not changed. Docker daemon was unavailable locally; no Docker
+  image build or live SQL mutation is claimed.
+
+## Historical state — not current release sign-off
+
+The following is retained as dated history. Statements about live API fallback,
+old captures, host versions, deployments, credentials and prior checkmarks must
+not override the current evidence above.
+
 Last verified: 2026-09-02 UTC on `codex/friday-launch-integration`. This
 records observed state, not plans.
 

@@ -29,13 +29,19 @@ jobs:
           cache: true
           install: false
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm install --frozen-lockfile
+          npm ci --prefix backend
       - name: Lint
         run: pnpm run lint
+      - name: Publication tests
+        run: pnpm test:publication
       - name: Test
         run: pnpm run test
       - name: Build static site
-        run: pnpm run build:pages
+        run: |
+          pnpm run build:pages
+          node scripts/check-pages.mjs
 
   backend:
     name: Backend

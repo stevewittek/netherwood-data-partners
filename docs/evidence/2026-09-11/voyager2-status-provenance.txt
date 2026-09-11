@@ -1,0 +1,16 @@
+2026-09-11T03:26:27Z
+## main...origin/main [ahead 2]
+ M docs/PROJECT_STATE.md
+?? docs/VOYAGER2_LAUNCH_STATUS.md
+417f2e86b3dcf018ba3e09789c8fb454ec2a1979 2026-09-11T03:24:05+00:00 Ingest published articles into cited knowledge
+9f9a4ca063ea2bce42b75eac25dfe636206d37ba 2026-09-11T03:24:00+00:00 Add staged article publication pipeline
+055fd9a547d4aa2b4e8c80a6164536b0776d368a66a463bf9e54d485b9b3a180  docs/PROJECT_STATE.md
+187edd2979a9124fbf0369e44257fcb8bec43ab56d2408a43f7f4407ef7faf0f  docs/ARTICLES_CMS.md
+187dd0eddd0db1e5720087ff76522fd75aedc5473229b39dc89a6a0c4a6ac3be  docs/VOYAGER1_ARTICLES_INTEGRATION.md
+c5c0c01f01dbd631bfd5253a802678e70dde6389899c41bc6f5ab4f028ace0bf  docs/VOYAGER2_BACKEND.md
+40d68be0362a25db69915a6a8eeec81564d9130e9c20d482553cadc77b7053a3  ops/articles/README.md
+health=200
+admin=404
+not-found
+inactive
+backend-api-1|f988324af086|f8e632ec7308

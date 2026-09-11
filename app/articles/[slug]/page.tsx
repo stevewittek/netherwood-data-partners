@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: ArticleRouteProps): Promise<M
     };
   }
 
-  const title = `${article.title} | Netherwood Data Partners`;
+  const title = article.seoTitle || `${article.title} | Netherwood Data Partners`;
   const description = article.seoDescription || article.summary;
   const images = [article.featuredImage || "/og.png"];
   return {

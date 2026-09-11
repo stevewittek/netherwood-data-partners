@@ -9,12 +9,16 @@
   "scripts": {
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "build:pages": "vite build --config vite.pages.config.ts && node scripts/generate-static-pages.mjs",
+    "build:pages": "pnpm articles:validate && vite build --config vite.pages.config.ts && node --experimental-strip-types scripts/generate-static-pages.mjs",
     "articles:generate": "node scripts/generate-article-artifacts.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "pnpm run build",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern pages-dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "articles:validate": "node --experimental-strip-types scripts/prepare-publication.ts",
+    "articles:import": "node --experimental-strip-types scripts/prepare-publication.ts",
+    "test:publication": "node --experimental-strip-types --test backend/test/article-snapshot.test.ts backend/test/publication-release.test.ts && node --test test/publication-pipeline.test.mjs",
+    "preview:pages": "node scripts/preview-pages.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

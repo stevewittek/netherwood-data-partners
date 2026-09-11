@@ -4,25 +4,61 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      content_commit:
+        description: 'Optional immutable commit on ndp-publication-content (blank uses latest)'
+        required: false
+        type: string
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
+# Shared with rollback. Never interrupt an in-flight Pages deployment.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build-and-publish:
+  release:
+    if: github.ref == 'refs/heads/main' && vars.NDP_PUBLICATION_ENABLED == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VITE_VOYAGER_API_URL: ''
+      VITE_PUBLIC_CHAT_ENABLED: 'false'
     steps:
-      - name: Check out source
+      - name: Check out trusted website source
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Resolve immutable public content
+        id: content
+        env:
+          REQUESTED_COMMIT: ${{ inputs.content_commit }}
+        run: |
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/ndp-publication-content" --jq .object.sha)
+          if [[ -n "$REQUESTED_COMMIT" && "$REQUESTED_COMMIT" != "$latest" ]]; then
+            echo 'Superseded publication request; latest content will be retried by the publisher.' >&2
+            exit 1
+          fi
+          [[ "$latest" =~ ^[0-9a-f]{40}$ ]]
+          echo "commit=$latest" >> "$GITHUB_OUTPUT"
+          echo "NDP_CONTENT_COMMIT=$latest" >> "$GITHUB_ENV"
+      - name: Fetch public data only
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.content.outputs.commit }}
+          path: .publication-input
+          sparse-checkout: articles-snapshot.json
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
       - name: Set up pnpm and Node.js
         uses: pnpm/setup@v2
         with:
@@ -30,18 +66,68 @@ jobs:
           runtime: node@22
           cache: true
           install: false
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Build static site
-        run: pnpm run build:pages
-        env:
-          VITE_VOYAGER_API_URL: ${{ vars.VOYAGER_API_URL }}
+      - name: Install locked dependencies
+        run: |
+          pnpm install --frozen-lockfile
+          npm ci --prefix backend
+      - name: Import validated public export
+        run: pnpm articles:import .publication-input/articles-snapshot.json
+      - name: Detect content or website change
+        id: change
+        run: |
+          needed=$(node scripts/publication-release.mjs check)
+          [[ "$needed" == 'true' || "$needed" == 'false' ]]
+          echo "needed=$needed" >> "$GITHUB_OUTPUT"
+      - name: Validate and build release
+        if: steps.change.outputs.needed == 'true'
+        run: |
+          pnpm lint
+          pnpm test:publication
+          npm test --prefix backend
+          npm run typecheck --prefix backend
+          pnpm test
+          pnpm build:pages
+          node scripts/check-pages.mjs
+          git diff --check
+      - name: Preserve exact release for rollback
+        if: steps.change.outputs.needed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-release
+          path: pages-dist
+          retention-days: 30
+          if-no-files-found: error
       - name: Configure Pages
+        if: steps.change.outputs.needed == 'true'
         uses: actions/configure-pages@v6
       - name: Upload website
+        if: steps.change.outputs.needed == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: pages-dist
+      - name: Reject superseded content before release
+        if: steps.change.outputs.needed == 'true'
+        run: |
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/ndp-publication-content" --jq .object.sha)
+          source=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+          [[ "$source" == "$GITHUB_SHA" ]] || { echo "New website source superseded this build." >&2; exit 1; }
+          [[ "$latest" == "$NDP_CONTENT_COMMIT" ]] || { echo 'A newer export superseded this build; existing Pages release retained.' >&2; exit 1; }
       - name: Publish
+        if: steps.change.outputs.needed == 'true'
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Record release result
+        if: always()
+        env:
+          RESULT: ${{ job.status }}
+          CHANGED: ${{ steps.change.outputs.needed }}
+        run: |
+          {
+            echo "Publication result: $RESULT"
+            echo "Website source: $GITHUB_SHA"
+            echo "Public content commit: ${NDP_CONTENT_COMMIT:-unresolved}"
+            echo "Update needed: ${CHANGED:-not determined}"
+            echo 'No successful Publish step means the previous Pages release remains in place.'
+            echo 'Inspect the failed step, fix it, then run the publisher again. No SQL or AI secret is used here.'
+            if [[ -f pages-dist/publication.json ]]; then cat pages-dist/publication.json; fi
+          } >> "$GITHUB_STEP_SUMMARY"
