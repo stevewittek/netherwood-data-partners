@@ -1,5 +1,34 @@
 # Project state
 
+## Mac article import verification, 2026-09-11 UTC
+
+The two Voyager article commits were imported into the isolated Mac branch
+`codex/voyager2-article-ai-review`, based on freshly verified `origin/main`
+`b431beb58dccefb8e092c179a1a8517caa78c484`. The imported code tip
+`d8f807702f010bea999f41a1625373711683219c` has exactly the same Git tree as
+Voyager's `417f2e86b3dcf018ba3e09789c8fb454ec2a1979`. Other Mac worktrees,
+including the dirty publication release candidate, were preserved.
+
+On this Mac, 56 backend tests, strict TypeScript, ESLint, Vinext build, Pages
+build, snapshot validation, and checks of all ten native article routes passed.
+These checks used available Node 24.19.0 and local dependencies with matching
+lockfiles; they do not repeat the handoff's Node 22 Docker or live SQL tests.
+The legacy snapshot remains byte-for-byte unchanged with the plural Azure
+title and generatedAt `2026-08-24T02:11:34.373Z`.
+
+The publication wrapper is not ready for activation on this Mac: `flock` is
+absent, Docker is not running, and its Linux build container would receive
+Darwin native dependencies. Review also found that the publisher builds a
+mutable working tree and does not recheck the approved digest against the
+staged snapshot. See [the import review](MAC_ARTICLE_IMPORT_REVIEW.md) for
+evidence, remaining integration decisions, and validation limits.
+
+No push, deployment, candidate promotion, credential change, database change,
+timer activation, or service restart was performed. Host and SQL observations
+below are historical; this Mac import rechecked only Voyager Git/bundle state.
+
+## Earlier project verification
+
 Last verified: 2026-08-28 UTC on `voyager2-articles-platform`. This records
 observed state, not plans.
 
