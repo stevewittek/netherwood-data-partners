@@ -1,21 +1,25 @@
 # Netherwood Data Partners brand voice
 
-## Positioning
+## Positioning — owner direction, September 11, 2026
 
-Netherwood Data Partners provides senior database engineering for businesses
-that depend on their data. The primary work is SQL Server performance and
-troubleshooting, database health and reliability assessments, migrations and
-upgrades, cloud and Azure modernization, database development and integration,
-and ongoing DBA support.
+Netherwood helps small businesses with software setup, inherited systems,
+legacy data migration, practical troubleshooting, reporting and support after
+a change. Lead with the business owner's situation: buying an office or shop,
+changing software, moving records, reducing workarounds or helping staff.
 
-The audience includes small and midsize businesses as well as larger
-organizations whose internal team does not have enough database depth or
-capacity for the problem at hand.
+SQL Server and database engineering remain Steven's technical depth. They
+belong in the supporting explanation and About page, not as a prerequisite
+for understanding the main offer. Preserve the site's structure and branding.
+Additional specialties can be coordinated with the client's agreement; do not
+claim a formal Online Computers or software-vendor partnership.
+
+See SMALL_BUSINESS_POSITIONING.md for research and CHIROPRACTIC_PILOT.md for
+the proposed first evidence project. That pilot is not a completed client story.
 
 ## Voice
 
-Write like an experienced engineer speaking directly to a business and its
-technical team.
+Write like an experienced systems consultant speaking directly to a business
+owner, with technical detail available for their IT or software provider.
 
 - Human: use natural sentences, concrete situations, and contractions when
   they improve the cadence.
@@ -65,10 +69,10 @@ understand the work. Explain uncommon terms in plain language.
 
 Use specific, low-pressure language:
 
-- Discuss your database challenge
+- Tell me what you need help with
 - Tell us what is getting in the way
 - Start a conversation
-- Describe the system and the symptoms
+- Describe your business and what you want to change
 
 Avoid fake urgency, countdowns, aggressive sales language, and promises of an
 instant diagnosis. Keep the visible business email as a fallback wherever a

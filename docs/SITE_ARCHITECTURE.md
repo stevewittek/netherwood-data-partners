@@ -1,7 +1,7 @@
 # Netherwood Data Partners site architecture
 
-Status: candidate architecture verified 2026-09-11. Actual production remains
-`b431beb`; candidate changes below are not yet released. See
+Status: publication is live following the September 11 release at `58136f8`.
+The owner has requested small-business positioning with the same structure. See
 [publication operations](PUBLICATION_OPERATIONS.md).
 
 ## Publishing boundary
@@ -12,7 +12,8 @@ entries, `vite.pages.config.ts` builds `pages-dist`, and
 and the 404 page. The candidate workflow accepts main pushes or a publication
 dispatch only when repository `NDP_PUBLICATION_ENABLED=true`. It imports the
 latest validated content-only branch by immutable commit before building.
-Production activation is pending explicit approval.
+Production publication is active. Preserve the release gate and timer; do not
+introduce a competing publication path.
 
 The public site, service information, contact path, and published articles must
 work when Voyager, SQL Server, Docker, Ollama, tunnels, home Internet, or AI are
@@ -26,7 +27,7 @@ unavailable. Voyager is optional progressive enhancement only.
 | `/about` | Establish founder identity, experience, approach, location, and personal credibility | `app/about/page.tsx`, `app/about/about.css` |
 | `/articles` | Display and filter the ten published field notes | `app/articles/Articles.tsx` |
 | `/articles/{slug}` | Deliver a complete technical article and a contact CTA | `app/articles/Articles.tsx`, generated static artifacts |
-| `/admin/articles` | Private publishing-desk shell; no-index and disabled without approved backend credentials | `app/admin/ArticlesAdmin.tsx` |
+| `/admin/articles` | Private publishing-desk shell; public build disconnected; authenticated API works privately | `app/admin/ArticlesAdmin.tsx` |
 | `/404` | Explain a missing route and return the visitor home | `app/SiteRouter.tsx`, generated `404.html` |
 
 Current shared navigation is About, Services (home anchor), Articles, Approach
@@ -79,16 +80,16 @@ live dashboard.
 ### Home
 
 Answer: What does Netherwood do? Who calls? What does an engagement look like?
-Why trust the approach? How do I contact Steven? Keep the primary offer focused
-on senior database engineering rather than general IT or AI consulting.
+Why trust the approach? How do I contact Steven? Lead with small-business software, data migration, inherited systems and
+practical support. SQL Server remains supporting technical depth. This
+September 11 owner direction supersedes the earlier database-only positioning.
 
 ### Services
 
-For Friday, the homepage services and engagement sections are sufficient. They
-must cover SQL Server performance/troubleshooting, health and reliability,
-migrations/upgrades, cloud/Azure modernization, database development and
-integration, and ongoing DBA support. Later service pages may add scope,
-inputs, deliverables, and fit criteria after the owner approves them.
+The homepage services and engagement sections explain software setup, business
+transitions, legacy data migration, reviews, practical fixes and staff support.
+Deeper SQL Server expertise remains on About. Keep existing anchors/routes;
+add dedicated service pages only when they provide useful, specific detail.
 
 ### Tools
 
@@ -157,3 +158,9 @@ collector, or required step.
   availability.
 
 Any new public feature must state its outage behavior before implementation.
+
+## Outstanding capabilities
+
+FEATURE_STATUS.md is the current register for chat, analytics, lead workflow,
+owner publishing access, Tools/Query Vault, portrait and other unfinished work.
+The functioning article pipeline does not close those features.

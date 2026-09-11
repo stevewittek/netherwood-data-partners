@@ -1,5 +1,18 @@
 # Current launch and publication checklist
 
+## Small-business direction — September 11
+
+- [x] Record the true unfinished-feature list in FEATURE_STATUS.md.
+- [x] Reword Home, About, contact choices, metadata and company knowledge around
+  small-business software, inherited systems, migration and support.
+- [x] Preserve structure, CSS, Formspark transport and SQL-owned articles.
+- [x] Verify 39 responsive renders, keyboard flow, metadata and fallback behavior;
+  required local lint/tests/builds pass. See small-business verification evidence.
+- [x] Prepare the researched positioning and consented pilot plan; no results invented.
+- [ ] Complete the actual clinic pilot after its owner agrees the scope.
+- [ ] Close remaining capabilities individually using FEATURE_STATUS.md acceptance tests.
+
+
 Application merge: `60110be306340bd8d654a3da071f57a8687b1827` from PR #1.
 Production source: `16a133f7d82bb807f3c230514f325604bac84190` after
 PR #4 fixed dynamic-publication test coverage. Current production run:

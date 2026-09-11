@@ -4,20 +4,20 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://netherwooddatapartners.com"),
   icons: { icon: "/favicon.svg" },
-  title: "Netherwood Data Partners | Database Consulting & Engineering",
-  description: "Database consulting for SQL Server performance, reliability, migrations, Azure modernization, development, integration, reporting, and ongoing DBA support.",
+  title: "Small Business Software & Data Support | Netherwood",
+  description: "Hands-on help with small business software setup, legacy data migration, system reviews and practical support. Work directly with Steven Wittek in New Jersey.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Netherwood Data Partners | Database Consulting & Engineering",
-    description: "Practical database consulting and engineering for organizations that depend on reliable data systems.",
+    title: "Small Business Software & Data Support | Netherwood",
+    description: "Buying a business or changing software? Get help reviewing the setup, moving your records, fixing problems and supporting staff.",
     url: "/",
     type: "website",
     images: [{ url: "/og.png", width: 1734, height: 907, alt: "Netherwood Data Partners — Dependable data systems. Clearer decisions." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Netherwood Data Partners | Database Consulting & Engineering",
-    description: "Practical database consulting and engineering for organizations that depend on reliable data systems.",
+    title: "Small Business Software & Data Support | Netherwood",
+    description: "Buying a business or changing software? Get help reviewing the setup, moving your records, fixing problems and supporting staff.",
     images: ["/og.png"],
   },
 };

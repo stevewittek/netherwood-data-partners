@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArticlesIndex } from "./Articles";
 
-const description = "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.";
+const description = "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.";
 
 export const metadata: Metadata = {
   title: "Articles & Field Notes | Netherwood Data Partners",

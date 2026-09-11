@@ -59,7 +59,7 @@ async function page(path, html) {
 
 await page("articles", metaPage({
   title: "Articles & Field Notes | Netherwood Data Partners",
-  description: "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.",
+  description: "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.",
   canonical: `${siteUrl}/articles`,
 }));
 

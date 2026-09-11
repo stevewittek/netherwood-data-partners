@@ -1,3 +1,24 @@
+# Current work: small-business positioning and feature accountability
+
+The owner requested a complete unfinished-feature inventory, a shift from a
+SQL Server-led offer to small-business software/data help, and a practical
+chiropractic-office pilot. The existing structure, article source, Formspark
+and publication cycle are preserved. FEATURE_STATUS.md distinguishes working,
+unreleased, roadmap and unverified items; it supersedes ambiguous "release
+complete" language when discussing the entire product.
+
+The new copy keeps SQL Server as supporting expertise and describes software
+setup, inherited systems, data migration, practical fixes and staff handover.
+No formal partnership, clinic client story or measured outcome is claimed.
+See SMALL_BUSINESS_POSITIONING.md and CHIROPRACTIC_PILOT.md. The clinic work
+requires its owner's agreement and has not been performed.
+
+Local validation passed lint, 11 publication tests, Vinext/static builds, all
+13 route checks and 39 responsive browser renders plus keyboard, form fallback
+and removal scenarios. See [positioning evidence](evidence/2026-09-11/small-business/verification.json).
+The publication content digest is unchanged. CI and deployment are verified
+after merge; all dated application evidence below remains historical provenance.
+
 # Project state
 
 ## Production release and lifecycle acceptance - September 11

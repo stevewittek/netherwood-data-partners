@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-11",
+  "baseline": "58136f81817ce8dc429ae1437f6c82c8bf25c7c5",
+  "scope": "Small-business copy, metadata, form choices, business knowledge and planning documents; no layout/CSS redesign",
+  "articleContentUnchanged": true,
+  "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+  "responsiveRoutesChecked": 39,
+  "browserErrors": [],
+  "scenarios": [
+    "Search, empty-result clear and category filtering passed",
+    "Keyboard activation of cross-page contact CTA reaches the form",
+    "Keyboard-only homepage flow reached required form controls with visible focus",
+    "Formspark-down error and mail fallback passed with browser-local response; no submission sent",
+    "Form success/reset passed with browser-local response; no submission sent",
+    "Returning browser ignores newer legacy index/detail caches, including authoritative removal",
+    "Articles render with storage denied and no backend",
+    "No-JavaScript email fallback visible; full site remains JavaScript-rendered",
+    "320px overflow spot checks passed"
+  ],
+  "checks": {
+    "lint": "passed",
+    "publicationTests": "11 passed",
+    "vinextBuild": "passed",
+    "staticBuildAnd13Routes": "passed",
+    "diffCheck": "passed"
+  },
+  "screenshots": "Before/after Home, About and Articles at 1440, 768 and 390 pixels in this directory",
+  "limits": [
+    "Public chat and telemetry remain disabled",
+    "No clinic audit, client result or media capture has occurred",
+    "No form submission or email sent",
+    "Local keyword-volume, Search Console and Business Profile data were not available"
+  ]
+}
