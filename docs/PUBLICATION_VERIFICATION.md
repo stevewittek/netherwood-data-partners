@@ -1,11 +1,58 @@
 # Publication release candidate verification
 
-Verified 2026-09-11 UTC. **Implementation and local verification are ready for
-review; production integration is not complete.** Use the accompanying branch
-commit/PR for the exact source revision. No production release, job activation,
-credential creation, SQL permission change or new contact submission occurred.
+Verified 2026-09-11 UTC. **The website release and controlled publication
+lifecycle are production-accepted.** The current release is source
+`16a133f7d82bb807f3c230514f325604bac84190`, content
+`b6cbdcb0f5b8eb460096db84d5084f4ae4165770`, digest
+`ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`,
+ten articles and chat disabled. Production run `34605108714` succeeded and
+retains exact `website-release` artifact `10265914128` for 30 days. No new
+contact submission or email was sent.
 
-## Baseline and actual production cause
+## Production lifecycle evidence
+
+The release owner approved the SQL export, authoring setup, singular Azure SQL
+title and controlled fixtures. SQL validation and integration scripts passed
+inside rollback-only transactions. `web.ExportPublishedArticles` and only its
+EXECUTE grant to the existing runtime principal were applied. A separate author
+login/user and procedure-only role were provisioned from a protected local
+credential file; secrets were not printed or committed. The reviewed API image
+`sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e`
+replaced only the Netherwood API and is loopback-only and healthy.
+
+| Stage | Public result | Release evidence |
+| --- | --- | --- |
+| Baseline | 10 articles | run `34601708348`, digest `ac062026...` |
+| Initial fixture publish | 11 articles | run `34603017803`, content `341b368c...` |
+| Edited publish | 11 articles, v2 body | run `34603535109`, content `cbcada8e...`, digest `9a1460e...` |
+| Before scheduled due | API/route 404; absent from snapshot/sitemap/AI | cycle 13:27:34Z, unchanged digest `9a1460e...` |
+| After scheduled due | 12 articles; API/route/snapshot/sitemap present | run `34604675813`, content `cced734a...`, digest `0318ac3...` |
+| Withdrawal/archive | both API/routes 404 and absent from index/snapshot/sitemap | run `34605108714`, content `b6cbdcb0...`, restored digest `ac062026...` |
+| Final AI reconciliation | scanned 10, unchanged 10, hidden 2, failed 0 | deployed and SQL digest `ac062026...` |
+
+The first fixture deployment exposed a real test defect: the backend suite
+assumed the dynamic export must contain exactly the ten starter rows. Run
+`34602565678` failed before deployment and preserved the last good site. PR #4
+changed the snapshot test to validate matching starter rows without rejecting
+legitimate additions or withdrawals; CI `34602900762` passed all Site, Backend
+and Backend Windows jobs, and merge commit `16a133f7...` released the fix.
+
+Fresh and returning isolated Chrome profiles rendered the scheduled article.
+After withdrawal, the fresh profile rendered 404. The returning profile first
+showed its previously cached document, then rendered 404 with the old body
+absent after a forced network refresh. This is the expected cache boundary,
+not a server-side resurrection path; there is no service worker or application
+article cache in the release.
+
+Rollback run `34607709999` successfully redeployed the exact selected release
+artifact from run `34605108714`. The rollback gate was then closed and
+publication re-enabled. Normal restoration run `34607819131` completed with a
+no-change result because the selected artifact already was the intended latest
+release. The persistent 15-minute timer is enabled and active; its timer-owned
+14:04:27Z cycle completed successfully at 14:04:34Z with ten unchanged articles,
+matching SQL/deployed digest, current AI knowledge and zero failures.
+
+## Pre-release baseline and actual production cause
 
 | Checkout | Inspected branch / baseline | Preservation |
 | --- | --- | --- |
@@ -29,7 +76,7 @@ Home/About canonical fixes were already part of the preserved launch candidate.
 Measured public cache lifetime was `max-age=600`.
 [Production route evidence](evidence/2026-09-11/production-routes.json).
 
-## Voyager reconciliation
+## Pre-release Voyager reconciliation
 
 The reused public contract is `netherwood.public-articles/v1`. The actual Voyager
 2 candidate was captured at **2026-09-11T03:04:30.209Z**, with ten articles and
@@ -184,25 +231,20 @@ confirm that existing delivery before authorizing another send. Raw message
 bodies, headers, private recipient details and account credentials are not
 committed to this repository.
 
-## Remaining gates and limits
+## Remaining limits and deferred gates
 
-1. Missing Voyager 1 business/runbook handoff; reconcile final backend release
-   and approve the usable private authoring path. Authoring is currently off.
-2. Approve the singular Azure title or correct SQL and provide a fresh export.
-3. Confirm existing direct-mail receipt in the actual destination mailbox.
-4. Review/apply/test the new SQL procedure and exact existing-user grant. Mac
-   Docker daemon is unavailable; this candidate's Docker image and SQL procedure
-   have not been exercised live. Existing Voyager SQL tests cover its older
-   procedures, not this new coherent export.
-5. Approve the repository credential, merge/deploy and later timer activation
-   only after review and those gates. Both publication and rollback workflows
-   have explicit repository-variable gates; no production variables/jobs changed.
-6. After release, prove a controlled publication, due schedule and withdrawal end
-   to end with deployed digest, routes, fresh/returning browsers and AI state.
-   Until then, **do not call the integration complete**.
-7. Public chat needs approved reachable HTTPS, retrieval-time current-source
-   enforcement, backend release and acceptable measured citations/latency/load.
-   It remains disabled and is not required for the website release.
+1. Confirm existing direct-mail receipt in the actual destination mailbox.
+   No new message or form submission was authorized or sent in this release.
+2. Public chat needs an approved reachable HTTPS endpoint, retrieval-time
+   current-source enforcement and acceptable measured citations, unsupported
+   questions, injection, latency and load. It remains disabled and is not
+   required for the website release.
+3. Static Pages stays available when the private host is down, but authoring,
+   export and AI reconciliation pause until SQL, Docker and the local API are
+   healthy. The cycle failed closed during the observed host maintenance window.
+4. Fully offline browsers, already-open tabs, HTTP/CDN/search caches and
+   downloaded copies can retain prior public data. A returning Chrome profile
+   cleared its withdrawn page after a forced network refresh.
 
 Offline browsers, old open tabs, HTTP/CDN/search caches and downloaded copies
 can retain prior public data. New-release code ignores the old article storage

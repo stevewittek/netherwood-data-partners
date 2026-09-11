@@ -1,0 +1,89 @@
+{
+  "capturedAtUtc": "2026-09-11T14:05:00Z",
+  "site": "https://netherwooddatapartners.com",
+  "sourceCommit": "16a133f7d82bb807f3c230514f325604bac84190",
+  "applicationCommit": "60110be306340bd8d654a3da071f57a8687b1827",
+  "contentCommit": "b6cbdcb0f5b8eb460096db84d5084f4ae4165770",
+  "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+  "articleCount": 10,
+  "chatEnabled": false,
+  "productionRun": 34605108714,
+  "publicationRuns": [34601708348, 34603017803, 34603535109, 34604675813, 34605108714],
+  "safeFailedRun": 34602565678,
+  "fixCiRun": 34602900762,
+  "releaseArtifact": {
+    "id": 10265914128,
+    "name": "website-release",
+    "sizeBytes": 2079772,
+    "expiresAtUtc": "2026-10-11T13:35:40Z"
+  },
+  "rollback": {
+    "run": 34607709999,
+    "sourceRun": 34605108714,
+    "result": "success",
+    "restoredSourceCommit": "16a133f7d82bb807f3c230514f325604bac84190",
+    "restoredContentCommit": "b6cbdcb0f5b8eb460096db84d5084f4ae4165770",
+    "restoredContentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+    "restorationRun": 34607819131,
+    "restorationResult": "success_no_change",
+    "publicationEnabledAfter": true,
+    "rollbackApprovedAfter": false
+  },
+  "apiImage": "sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e",
+  "previousApiRootfs": {
+    "path": "/home/nasa/.local/state/netherwood-release-backups/20260911T123806Z/backend-api-1.rootfs.tar",
+    "sha256": "227d9fa9792dd3d4d7413cdff63b631b8126a585dc6b2d6cbff697dc39d32556",
+    "sizeBytes": 408299008,
+    "mode": "600"
+  },
+  "fixtures": {
+    "edited": {
+      "articleId": "c54a0a41-1e75-49f4-a848-6f196e8f6ded",
+      "slug": "controlled-publication-verification-20260911",
+      "finalStatus": "Archived"
+    },
+    "scheduled": {
+      "articleId": "d26d6e2b-f9ec-4b9b-b705-1551c61dc2d4",
+      "slug": "controlled-scheduled-verification-20260911",
+      "publishedDateUtc": "2026-09-11T13:29:40.550Z",
+      "finalStatus": "Archived"
+    }
+  },
+  "finalAiReconciliation": {
+    "scanned": 10,
+    "indexed": 0,
+    "unchanged": 10,
+    "hidden": 2,
+    "failed": 0
+  },
+  "liveCrawl": {
+    "sitemapUrlCount": 13,
+    "badRoutes": 0,
+    "missingCanonicals": 0,
+    "badHomepageAssets": 0,
+    "temporarySlugMatches": 0
+  },
+  "timer": {
+    "installed": true,
+    "enabled": true,
+    "active": true,
+    "firstTriggeredAtUtc": "2026-09-11T14:04:27Z",
+    "firstCompletedAtUtc": "2026-09-11T14:04:34Z",
+    "firstResult": "success",
+    "nextTriggerObservedUtc": "2026-09-11T14:15:00Z",
+    "cycle": {
+      "articleCount": 10,
+      "contentCommit": "b6cbdcb0f5b8eb460096db84d5084f4ae4165770",
+      "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+      "knowledgeState": "current",
+      "failed": 0
+    }
+  },
+  "mailboxSweep": {
+    "helloAddressMatches": 0,
+    "verifiedContactAddressMatches": 51,
+    "canonicalAddress": "contact@netherwooddatapartners.com"
+  },
+  "contactSubmissionsSent": 0,
+  "emailsSent": 0
+}
