@@ -1,6 +1,24 @@
 # Launch audit
 
-## Current finding — 2026-09-11 UTC
+## Current scope — small-business positioning
+
+Publication, Formspark, route generation and rollback are live following the
+September 11 release at `58136f8`. The prior unshipped-publication findings below
+are closed by production evidence, not current launch blockers.
+
+The owner now authorizes small-business software/data positioning while retaining
+structure and branding. See FEATURE_STATUS.md for the actual unfinished list.
+Public chat and analytics are still off; owner browser publishing access is not
+yet demonstrated; Tools/Query Vault and the final real portrait remain unfinished.
+Direct-mail destination receipt is unconfirmed. These limits must be visible in
+status reporting and must not be mislabeled as publication failures.
+
+The copy release requires responsive/keyboard checks, matching metadata, unchanged
+article digest, working Formspark transport and a successful Pages release. No
+clinic success claim, formal partnership or patient media may be fabricated.
+
+
+## Historical pre-release finding — September 11, before production activation
 
 No new public-availability P0 was found. The live Pages source is still
 `b431beb`; the candidate is on `codex/publication-release-candidate` and has

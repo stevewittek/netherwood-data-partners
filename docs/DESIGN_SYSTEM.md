@@ -105,9 +105,10 @@ Pill shapes are approved for buttons, not as a default container or card style.
 
 ## Forms
 
-Production currently has an email CTA and no form. The approved pending form is
-`app/components/ContactForm.tsx` on `codex/formspark-contact` at `f982599`; it
-posts directly to Formspark and keeps the email fallback.
+Production uses `app/components/ContactForm.tsx`, originating from the preserved
+Formspark work at `f982599`. It posts directly to Formspark and retains the
+email fallback. September 11 small-business copy changes may update labels and
+service choices while preserving transport, validation and styling.
 
 - Use `.contact-form`, `.contact-form-grid`, `.contact-field`,
   `.contact-form-actions`, and `.contact-form-status--success`/`--error`.

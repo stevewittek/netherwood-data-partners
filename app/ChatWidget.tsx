@@ -147,7 +147,7 @@ export default function ChatWidget() {
       {open && (
         <div className="chat-panel" id={panelId}>
           <strong>How can we help?</strong>
-          <p>Ask about SQL Server, database performance, migrations, or a project.</p>
+          <p>Ask about software changes, moving data, practical support or a business project.</p>
           {reply && (
             <div className="chat-reply" role="status" aria-live="polite">
               <div>{reply}</div>

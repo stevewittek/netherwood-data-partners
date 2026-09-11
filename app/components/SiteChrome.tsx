@@ -27,7 +27,7 @@ export function SiteFooter() {
         <span className="brand-mark" aria-hidden="true">N</span>
         <span className="brand-name">Netherwood <strong>Data Partners</strong></span>
       </a>
-      <p>Database engineering, performance &amp; data services.</p>
+      <p>Small business software, data migration &amp; practical support.</p>
       <p>© {new Date().getFullYear()} Netherwood Data Partners</p>
     </footer>
   );

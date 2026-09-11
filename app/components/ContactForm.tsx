@@ -112,11 +112,11 @@ export default function ContactForm() {
           <label htmlFor="contact-service">What can we help with?</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
-            <option value="Performance triage">Performance triage</option>
-            <option value="Database health review">Database health review</option>
-            <option value="Migration or upgrade">Migration or upgrade</option>
-            <option value="Ongoing DBA support">Ongoing DBA support</option>
-            <option value="Reporting or data engineering">Reporting or data engineering</option>
+            <option value="Software setup or business takeover">Software setup or business takeover</option>
+            <option value="Business technology review">Business technology review</option>
+            <option value="Data migration or software change">Data migration or software change</option>
+            <option value="Staff help or ongoing support">Staff help or ongoing support</option>
+            <option value="Reporting, data cleanup or a practical fix">Reporting, data cleanup or a practical fix</option>
             <option value="Something else">Something else</option>
           </select>
         </div>
@@ -135,7 +135,7 @@ export default function ContactForm() {
           rows={6}
         />
         <p className="contact-field-hint" id="contact-message-hint">
-          Include the platform, symptoms or project, urgency, and approximate environment size if known.
+          Describe your business, software, location and what you want to change. Please leave out passwords and private customer or patient records.
         </p>
       </div>
 

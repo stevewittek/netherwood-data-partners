@@ -26,7 +26,7 @@ export type PublicArticle = {
 
 type Snapshot = { generatedAt: string | null; articles: PublicArticle[] };
 const staticSnapshot = snapshot as Snapshot;
-const indexDescription = "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.";
+const indexDescription = "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.";
 
 function isArticle(value: unknown): value is PublicArticle {
   if (!value || typeof value !== "object") return false;
@@ -207,7 +207,7 @@ export function ArticlesIndex() {
       <header className="articles-masthead">
         <p className="eyebrow">Netherwood insights</p>
         <h1>Articles &amp; Field Notes</h1>
-        <p>Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.</p>
+        <p>Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.</p>
       </header>
       <section className="articles-publication">
         {articles.length > 0 ? (
