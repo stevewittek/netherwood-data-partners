@@ -15,7 +15,7 @@ A merged codebase is not a verified live publication integration.
 | Mac Voyager import review | `codex/voyager2-article-ai-review`, `af5cf3376d5918e5846623f8480da485e2a7309f` | Preserve the worktree and review history; independently useful backend changes incorporated |
 | Voyager 2 original work | `main`, `417f2e86b3dcf018ba3e09789c8fb454ec2a1979`, with parent `9f9a4ca063ea2bce42b75eac25dfe636206d37ba` | Original lineage reconciled; original checkout and dirty document hashes preserved |
 | Voyager 2 clean review checkout | Tested application revision `60110be`, `/home/nasa/netherwood-release-review-60110be` | Reviewed image built; documentation-only fast-forwards may follow without application change or runtime activation |
-| Voyager 1 business/QA | Four documents reported uncommitted under `D:\Dev\Netherwood-data-partners\netherwood-data-partners\docs` | Completion summary received; actual documents unavailable from this Mac and not yet integrated |
+| Voyager 1 business/QA | Actual runbook, client templates and acceptance report transferred from preserved `b431beb` checkout | Integrated as dated evidence; current publication behavior remains governed by the merged release guide |
 | GitHub application merge | `60110be306340bd8d654a3da071f57a8687b1827` from PR #1 | Site, Backend and Backend Windows passed CI `34592830620`; publication run `34592830561` skipped |
 | Public Pages | `b431beb58dccefb8e092c179a1a8517caa78c484`, deployment `6223598061` | Deployment unchanged; publication and rollback activation variables remain unset |
 
@@ -86,10 +86,11 @@ reject a real outside-root symlink. Windows backend CI passed all 60 tests with
 zero skips in both PR run `34592561393` and merge run `34592830620`. This is
 hosted Windows evidence, not a rerun on Voyager 1.
 
-The actual `BUSINESS_OPERATING_RUNBOOK.md`, `CLIENT_WORK_TEMPLATES.md`,
-`VOYAGER1_ACCEPTANCE_REPORT.md` and `docs/PROJECT_STATE.md` must still be copied
-from Voyager 1 with hashes and reviewed. The existing summary cannot replace
-their contents, and this task has not invented their commercial policies.
+The actual `BUSINESS_OPERATING_RUNBOOK.md`, `CLIENT_WORK_TEMPLATES.md` and
+`VOYAGER1_ACCEPTANCE_REPORT.md` were copied from Voyager 1 and reviewed.
+Newer project state was preserved; the Voyager 1 acceptance result is labeled
+historical rather than promoted to current verification. Its commercial-policy
+gaps remain explicit and were not invented or silently resolved.
 
 ## Validation and production boundary
 
@@ -105,8 +106,8 @@ default improves rejection of weak matches but does not fix the measured
 143.8–176.1 second answer latency, current-source retrieval enforcement or
 unapproved endpoint. It takes effect only in a later approved backend release.
 
-Remaining before production acceptance: reconcile the actual Voyager 1 files, approve/test the
-new SQL export and authoring setup, configure the approved publication
+Remaining before production acceptance: approve/test the new SQL export and
+authoring setup, configure the approved publication
 credential, run a controlled publication/schedule/withdrawal, and only then
 activate the timer. Do not alter SQL, restart APIs or enable jobs just to align
 Git revisions. Follow [PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md).

@@ -5,10 +5,13 @@ This is the combined Mac release guide, reconciled with Voyager 2 local commits
 `417f2e86b3dcf018ba3e09789c8fb454ec2a1979`. PR #1 merged the application as
 `60110be306340bd8d654a3da071f57a8687b1827` at 2026-09-11T11:11:38Z. Later
 documentation-only updates are separate from this application baseline.
-Voyager 1's completion summary has arrived, but its actual runbook/templates
-and acceptance documents still await transfer and review. See
-[WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md). This guide is not
-an approved commercial policy or a completed production integration.
+Voyager 1's actual runbook, client templates and acceptance report were
+transferred and reconciled on September 11. Their dated verification remains
+historical; this document is the authoritative practical guide for editing,
+publication, website/AI currency, failures and rollback. See
+[WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md). Commercial and
+client-lifecycle decisions remain subject to the explicit owner gates in
+[BUSINESS_OPERATING_RUNBOOK.md](BUSINESS_OPERATING_RUNBOOK.md).
 
 ## Current boundary
 
@@ -36,6 +39,23 @@ September 11, and Voyager 2 reports no author login/user or authoring settings.
 The steps below describe the existing supported desk after its separately
 approved activation; there is no usable editor sign-in yet. Do not
 create a competing database or copy production credentials to Voyager 1/Mac.
+
+## Business and client operations
+
+Use [CLIENT_WORK_TEMPLATES.md](CLIENT_WORK_TEMPLATES.md) for inquiry response,
+discovery, scope, delivery and closeout drafts. Bracketed fields require human
+completion. Pricing, response promises, legal terms, client claims and
+retention decisions require owner review and must not be inferred from a
+website inquiry.
+
+The practical client path is inquiry, qualification, discovery, approved
+scope/agreement, least-privilege onboarding, delivery, written acceptance,
+owner-reviewed invoicing and access/data closeout. Record an owner and
+completion evidence at each gate. Never place credentials or client data in
+ordinary email, source control, release logs or public article fixtures. The
+website and Formspark are transport paths, not the approved client system of
+record; the business owner must still designate lifecycle, billing, retention
+and access-removal records.
 
 ## Update and publish an article
 

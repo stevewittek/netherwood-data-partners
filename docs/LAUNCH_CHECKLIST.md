@@ -57,13 +57,13 @@ Code merge and passing checks do not complete production integration.
 - [x] Build Voyager 2 review image `ndp-publication-review:60110be`: 60 tests,
   zero skips and strict type checking passed. The image is not running; public
   chat, authoring and both timers remain off.
-- [ ] Review the actual Voyager 1 business/runbook files after transfer. Its
-  completion summary has been received and reconciled, but is not the files.
+- [x] Review and reconcile the actual Voyager 1 runbook, client templates and
+  acceptance report. Preserve its acceptance result as historical evidence.
 
 ## Required before production acceptance
 
-- [ ] Review and reconcile the actual Voyager 1 business/runbook files after
-  transfer. Voyager 2's original/imported code reconciliation is complete.
+- [x] Review and reconcile the actual Voyager 1 runbook, client templates and
+  acceptance report. Voyager 2's original/imported code reconciliation is complete.
 - [ ] Approve the private authoring path and required service configuration.
   The existing desk is disabled, not ready for login.
 - [ ] Approve the captured singular Azure article title, or correct it in SQL and
