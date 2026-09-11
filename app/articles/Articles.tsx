@@ -24,7 +24,13 @@ export type PublicArticle = {
   modifiedDate: string;
 };
 
-type Snapshot = { generatedAt: string | null; articles: PublicArticle[] };
+type Snapshot = {
+  format: "netherwood.public-articles/v1";
+  generatedAt: string;
+  articleCount: number;
+  contentDigest: string;
+  articles: PublicArticle[];
+};
 type StoredArticleCache = { articles: PublicArticle[]; savedAt: number };
 const staticSnapshot = snapshot as Snapshot;
 const apiUrl = (import.meta.env?.VITE_VOYAGER_API_URL as string | undefined)?.replace(/\/$/, "");

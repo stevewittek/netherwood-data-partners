@@ -1,0 +1,12 @@
+[Unit]
+Description=Check for article edits, removals, and scheduled publications
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=15min
+RandomizedDelaySec=2min
+Persistent=true
+Unit=ndp-articles-refresh.service
+
+[Install]
+WantedBy=timers.target

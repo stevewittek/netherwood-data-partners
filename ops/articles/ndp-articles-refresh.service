@@ -1,0 +1,15 @@
+[Unit]
+Description=Refresh Netherwood public article candidate and article knowledge
+After=docker.service
+Wants=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/netherwood-data-partners
+ExecStart=%h/netherwood-data-partners/ops/articles/publication-sync.sh refresh
+Nice=10
+IOSchedulingClass=idle
+TimeoutStartSec=45min
+
+[Install]
+WantedBy=default.target

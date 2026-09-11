@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { articleSnapshotDigest, articleSnapshotFormat } from "./validate-article-snapshot.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = resolve(root, "backend/sql/seeds/articles.seed.json");
@@ -190,9 +191,18 @@ const snapshotArticles = sorted.map((article) => ({
   publishedDate: new Date(article.publishedDate).toISOString(),
   createdDate: new Date(article.publishedDate).toISOString(),
   modifiedDate: new Date(article.publishedDate).toISOString(),
+  metaTitle: article.title,
+  metaDescription: article.seoDescription,
 }));
 const generatedAt = snapshotArticles[0]?.publishedDate ?? null;
+const contentDigest = articleSnapshotDigest(snapshotArticles);
 
 await writeFile(migrationPath, migration);
-await writeFile(snapshotPath, `${JSON.stringify({ generatedAt, articles: snapshotArticles }, null, 2)}\n`);
+await writeFile(snapshotPath, `${JSON.stringify({
+  format: articleSnapshotFormat,
+  generatedAt,
+  articleCount: snapshotArticles.length,
+  contentDigest,
+  articles: snapshotArticles,
+}, null, 2)}\n`);
 console.log(JSON.stringify({ event: "article_artifacts_generated", articleCount: articles.length, migrationPath, snapshotPath }));

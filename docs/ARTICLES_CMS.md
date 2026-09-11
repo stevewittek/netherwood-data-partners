@@ -9,8 +9,10 @@ the last successful response in that visitor's browser, and falls back to
 `pages-site/articles-snapshot.json` when Voyager is unavailable.
 
 The snapshot is deliberately a reliability layer, not a second authoring
-store. The hardened `articles-export` Compose tool replaces it from SQL data,
-and the Pages build generates the Articles index, one route per exported slug,
+store. The hardened `articles-export` Compose tool writes a validated candidate
+from SQL data. An operator must review its exact content digest and pass an
+isolated site build before the tracked last-good snapshot can be atomically
+promoted. The Pages build generates the Articles index, one route per exported slug,
 a no-index router fallback, article metadata/structured data, `sitemap.xml`,
 `articles-sitemap.xml`, and `robots.txt`. A new
 publication appears immediately through Voyager; a later snapshot export and
@@ -154,25 +156,37 @@ through the private desk, not by editing that file.
 
 ## Refresh the outage snapshot
 
-Run the one-shot hardened Compose tool on Voyager after approved publications
-or on a later schedule:
+Run the staged publication workflow on Voyager after approved publications or
+on a later schedule:
 
 ```bash
-docker compose -f backend/compose.yaml run --rm articles-export
+ops/articles/publication-sync.sh refresh
 ```
 
-Then run `pnpm run build:pages` to verify the emitted routes. Deploying that
-snapshot is not required for the live API publication, but it is what advances
-the backend-independent copy and makes a new slug a native `200` GitHub Pages
-route with build-time SEO metadata. Automating export/build/deploy requires a
-separately approved private-to-GitHub credential and is intentionally not
-introduced in version one.
+This writes only the ignored
+`pages-site/.publication-candidates/articles-snapshot.candidate.json`, reports
+added/edited/removed/due-scheduled IDs and slugs, and reconciles article
+knowledge. It never replaces the tracked snapshot. Review and promote the exact
+reported digest with `publication-sync.sh approve <digest>`; that command first
+tests the candidate in an isolated full site and Pages build. The separately
+gated `publish` mode makes a snapshot-only, non-force push to synchronized
+`main`, which triggers the existing Pages workflow. It requires an explicitly
+approved repository-scoped GitHub credential. Full operations, credential
+requirements, systemd timer templates, and rollback are in
+[`ops/articles/README.md`](../ops/articles/README.md).
 
-## Future knowledge use
+The timer refresh is important even when nobody edits SQL: the public stored
+procedures begin returning a future-dated article when its UTC time becomes
+due, and the next refresh detects it as an addition. Failed or incomplete
+exports leave the last-good snapshot unchanged.
+
+## Article knowledge use
 
 `web.ListPublishedArticleKnowledge` returns article ID, title, slug, relative
 public URL, summary, sanitized plain text, category, JSON tags, author, SEO and
 featured metadata, publication date, and modification date. The runtime login
-can execute this bounded procedure. A future ingestion pass can reuse it
-without allowing model-generated SQL or coupling the publishing UI to an AI
-provider.
+can execute this bounded procedure. The implemented ingestion pass indexes only
+those published, due rows under `sql:article:<ArticleId>`, refreshes changed
+hashes, and hides/removes chunks for rows no longer returned because they were
+unpublished, archived, or moved back into the future. Drafts and private
+documents never enter this path, and the model cannot generate SQL.

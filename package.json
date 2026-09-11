@@ -11,6 +11,7 @@
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "build:pages": "vite build --config vite.pages.config.ts && node scripts/generate-static-pages.mjs",
     "articles:generate": "node scripts/generate-article-artifacts.mjs",
+    "articles:validate": "node scripts/validate-article-snapshot.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "pnpm run build",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern pages-dist --ignore-pattern .next",

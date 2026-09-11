@@ -73,7 +73,20 @@ services:
     volumes:
       - ../pages-site:/export
     tmpfs: ["/tmp:size=16m,mode=1777"]
-    command: ["node", "--experimental-strip-types", "src/export-articles.ts", "/export/articles-snapshot.json"]
+    command: ["node", "--experimental-strip-types", "src/export-articles.ts", "/export/.publication-candidates/articles-snapshot.candidate.json", "/export/articles-snapshot.json"]
+
+  articles-review:
+    profiles: ["tools"]
+    build: { context: . }
+    init: true
+    network_mode: none
+    read_only: true
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    volumes:
+      - ../pages-site:/export
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    command: ["node", "--experimental-strip-types", "src/review-article-snapshot.ts", "/export/.publication-candidates/articles-snapshot.candidate.json", "/export/articles-snapshot.json"]
 
 volumes:
   ollama_data:
