@@ -12,7 +12,7 @@ statements below. See [verification](PUBLICATION_VERIFICATION.md).
 | P1 | Deployed articles use the old tracked export, not current SQL publication state | Cause verified from deployed commit/workflow/bundles. Candidate provides complete validated export and disabled automation; live procedure/release/e2e remain pending. |
 | P1 | Launch candidate including Formspark is not deployed | Existing delivery reread successfully. Keep independent email fallback; direct business-mail receipt still unconfirmed. |
 | P1 | Cross-page contact anchor could open above the form after React mounts | Fixed; keyboard activation and responsive contact evidence pass locally. |
-| P1 | Contact field outlines had insufficient contrast; article lists lost their markers | Narrow CSS fixes with before/after captures and responsive review; solid-palette automated checks pass. Decorative-grid contrast remains a manual review limitation. |
+| P1 | Contact/article filter boundaries and dark focus rings had insufficient contrast; article lists lost markers | Narrow CSS fixes with before/after captures and responsive review; solid-palette and separate grid/control/focus checks pass after corrections. |
 | P1 for chat only | Endpoint/readiness and current-source retrieval are not approved/proven | Chat/telemetry explicitly disabled; website release does not depend on AI. |
 | Release gate | Final handoff/SQL tests/editorial approval/controlled publication absent | Do not merge, deploy, activate, or call integration complete yet. |
 

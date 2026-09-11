@@ -32,9 +32,10 @@ A local pass does not complete production integration.
   the release verification report.
 - [x] Keep public chat and telemetry disabled; document the measured readiness
   gap and ingestion/retrieval limits.
-- [ ] Complete manual contrast review over decorative backgrounds if full WCAG
-  certification is required. Automated checks and solid-palette checks passed;
-  the decorative-grid analysis remains incomplete, not a certification.
+- [x] Resolve automated decorative-background uncertainty with computed grid
+  intersection/gradient colors. Text, article controls and dark keyboard focus
+  pass after narrow corrections; contact focus is checked after its transition.
+  This scoped review does not claim complete WCAG certification.
 
 ## Required before production acceptance
 

@@ -91,13 +91,19 @@ correct SQL and export again, rather than changing only the static copy.
   or replaced sources hidden before embeddings. Non-article knowledge is kept.
   Chat/telemetry stay off. Ingestion is not a retrieval-time revocation guarantee.
 - Narrow visual/flow fixes: apply initial contact fragment after React mounts,
-  restore article bullet/number markers, and raise contact-field outline contrast.
+  restore article bullet/number markers, raise contact-field and article-filter
+  boundary contrast, and improve dark-section link/button keyboard focus.
   The Formspark component, brand, layout and navigation are preserved.
 
 ## Executed checks
 
 Supported runtime: Node **24.19.0**, pnpm **11.19.0**, frozen root lockfile and
 backend `npm ci` using npm 10.9.2. No lockfile or dependency version change.
+
+Hosted [CI run 34558806847](https://github.com/stevewittek/netherwood-data-partners/actions/runs/34558806847)
+also passed both Site and Backend jobs for implementation commit
+`21fc005acfbfb2c2d266c2c5f7ee3ea44ccd12bd` on Node 22. The draft PR shows checks
+for any later evidence-only or workflow-reporting refinement.
 
 | Check | Result |
 | --- | --- |
@@ -111,7 +117,7 @@ backend `npm ci` using npm 10.9.2. No lockfile or dependency version change.
 | Release-step error propagation | Harmless failing subprocess exits 1 before output is written |
 | `git diff --check` and reviewed changed-file secret scan | Pass; no credential added |
 | Responsive browsers | 39 route/width renders at 1440/768/390; 320px Home/About/index/detail spot checks pass |
-| Accessibility | 14 pages: zero automated WCAG A/AA violations; solid-palette contrast check passes; decorative-grid contrast remains incomplete |
+| Accessibility | 14 pages: zero automated WCAG A/AA violations; solid-palette checks pass; separate grid/control/focus measurements pass after scoped corrections |
 | Contact/keyboard/failure | Visible logical focus, About-to-contact keyboard CTA, search/filter, form local success/error/reset, no-JS mail fallback, backend down and storage denied pass |
 | Removal/last-good rehearsal | Corrupt input preserves local build; valid empty export removes routes/sitemaps; returning browser sees empty index/HTTP404 over legacy cached article, including reload |
 
@@ -144,8 +150,24 @@ All revised contact submit/privacy/email controls are visible. Restored lists
 show bullets and numbered steps. No horizontal overflow or visible unrelated
 Home/About/Articles regression was found. Contact boundary contrast increased
 from roughly 2.13:1 against the field to 3.59:1 (4.56:1 against its section).
-Automated axe could not fully resolve the decorative background grid; this
-report is not a complete manual WCAG certification.
+Automated axe could not fully resolve decorative backgrounds, so a separate
+computed-color check covered grid intersections and the featured gradient:
+371 text nodes, zero failures, minimum 5.13:1. It found and fixed dark-section
+focus rings (2.37:1 -> 10.54:1) and article-filter borders (2.07:1 -> 5.19:1
+against the darkest grid; 6.07:1 against the white field). The existing settled
+contact focus border is 7.28:1 against its interior. This is bounded QA, not a
+complete WCAG certification. See [contrast measurements](evidence/2026-09-11/contrast-summary.json),
+[computed final styles](evidence/2026-09-11/after-grid-contrast.json) and
+[settled field colors](evidence/2026-09-11/settled-control-colors.json).
+
+Focus-state before/after screenshots for Contact, About and an article are
+retained at all three widths as `before/after-{width}-{page}-focus.png`; filter
+controls use `before/after-{width}-article-filters.png` in the evidence directory.
+[Mobile focus before](evidence/2026-09-11/before-390-contact-focus.png) /
+[after](evidence/2026-09-11/after-390-contact-focus.png),
+[mobile filters before](evidence/2026-09-11/before-390-article-filters.png) /
+[after](evidence/2026-09-11/after-390-article-filters.png).
+The full 39-render browser suite passed again after these final changes.
 
 ## Existing contact delivery evidence
 

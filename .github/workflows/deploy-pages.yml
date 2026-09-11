@@ -127,7 +127,8 @@ jobs:
             echo "Website source: $GITHUB_SHA"
             echo "Public content commit: ${NDP_CONTENT_COMMIT:-unresolved}"
             echo "Update needed: ${CHANGED:-not determined}"
-            echo 'No successful Publish step means the previous Pages release remains in place.'
+            echo 'A failure before Publish leaves the previous Pages release in place.'
+            echo 'If Publish failed or was interrupted, verify the public manifest: the deployment outcome may be uncertain.'
             echo 'Inspect the failed step, fix it, then run the publisher again. No SQL or AI secret is used here.'
             if [[ -f pages-dist/publication.json ]]; then cat pages-dist/publication.json; fi
           } >> "$GITHUB_STEP_SUMMARY"

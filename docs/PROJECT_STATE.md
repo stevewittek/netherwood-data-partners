@@ -31,7 +31,8 @@ used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
   unconfirmed in the connected Gmail evidence.
 - Current responsive/browser checks cover all ten articles plus Home/About/index
   at 1440/768/390 and 320px spot checks. Focused fixes restore cross-page contact
-  scrolling, article list markers and contact-field boundary contrast, with
+  scrolling, article list markers, contact/article-control boundary contrast and
+  dark-section keyboard focus, with
   before/after evidence. Branding, layout and navigation are retained.
 - AI reconciliation follows the deployed/current-SQL intersection and hides
   removed or changed article sources before embeddings. Chat and its telemetry
@@ -47,6 +48,9 @@ used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
 - Supported local runtime: bundled Node 24.19.0 and pnpm 11.19.0. Host runtime and
   services were not changed. Docker daemon was unavailable locally; no Docker
   image build or live SQL mutation is claimed.
+- [Draft PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1)
+  contains the candidate. Hosted CI passed Site and Backend on implementation
+  commit `21fc005`; production remains at `b431beb` with activation unset.
 
 ## Historical state — not current release sign-off
 
