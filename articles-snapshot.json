@@ -1,9 +1,30 @@
 {
   "format": "netherwood.public-articles/v1",
-  "generatedAt": "2026-09-11T13:18:08.661Z",
-  "articleCount": 11,
-  "contentDigest": "9a1460e2568851bbec4b1684c7ed5556bcd7347452b99c8b9a47d803b1db3699",
+  "generatedAt": "2026-09-11T13:30:13.596Z",
+  "articleCount": 12,
+  "contentDigest": "0318ac3a6883fa01f919072099362c990312758a03b41bfcf3725d17c85ac642",
   "articles": [
+    {
+      "articleId": "d26d6e2b-f9ec-4b9b-b705-1551c61dc2d4",
+      "title": "Controlled Scheduled Publication Verification",
+      "slug": "controlled-scheduled-verification-20260911",
+      "summary": "Controlled publication acceptance fixture: scheduled-due.",
+      "category": "Publication Verification",
+      "tags": [
+        "release verification"
+      ],
+      "author": "Netherwood release verification",
+      "status": "Published",
+      "seoDescription": "Controlled publication acceptance fixture: scheduled-due.",
+      "isFeatured": false,
+      "publishedDate": "2026-09-11T13:29:40.550Z",
+      "createdDate": "2026-09-11T13:25:56.053Z",
+      "modifiedDate": "2026-09-11T13:26:12.646Z",
+      "html": "<h2>Controlled publication verification</h2><p>This temporary release fixture records scheduled-due.</p>",
+      "plainText": "CONTROLLED PUBLICATION VERIFICATION\n\nThis temporary release fixture records scheduled-due.",
+      "metaTitle": "Controlled Scheduled Publication Verification",
+      "metaDescription": "Controlled publication acceptance fixture: scheduled-due."
+    },
     {
       "articleId": "c54a0a41-1e75-49f4-a848-6f196e8f6ded",
       "title": "Controlled Publication Verification",
