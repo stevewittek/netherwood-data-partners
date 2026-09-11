@@ -2,18 +2,29 @@
 
 This is the combined Mac release guide, reconciled with Voyager 2 local commits
 `9f9a4ca063ea2bce42b75eac25dfe636206d37ba` and
-`417f2e86b3dcf018ba3e09789c8fb454ec2a1979` and its current September 11 status. Voyager 1's completion summary has
-arrived, but its actual runbook/templates
-and acceptance documents have not been transferred; those details still need
-review. See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md).
-Do not mistake this guide
-for an approved commercial policy or a completed production integration.
+`417f2e86b3dcf018ba3e09789c8fb454ec2a1979`. PR #1 merged the application as
+`60110be306340bd8d654a3da071f57a8687b1827` at 2026-09-11T11:11:38Z. Later
+documentation-only updates are separate from this application baseline.
+Voyager 1's completion summary has arrived, but its actual runbook/templates
+and acceptance documents still await transfer and review. See
+[WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md). This guide is not
+an approved commercial policy or a completed production integration.
 
 ## Current boundary
 
+The application merge passed Site, Backend and Backend Windows in CI run
+`34592830620`; Windows passed 60 tests with zero skips. Publication run
+`34592830561` was skipped. Pages still serves `b431beb`, deployment `6223598061`.
+Voyager 2's clean review checkout and Docker image are verified at the
+application merge; the image is built, not running. See
+[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
+The clean review checkouts may receive documentation-only fast-forwards without
+changing the tested application revision or requiring an image rebuild.
+
 SQL on Voyager 2 owns article content and publication state. GitHub Pages owns
-public availability. GitHub builds only a validated, complete public export;
-visitors never need SQL, Voyager, Docker, Ollama, a tunnel, or home Internet.
+public availability. After activation, the prepared workflow builds only a
+validated, complete public export. Visitors never need SQL, Voyager, Docker,
+Ollama, a tunnel, or home Internet.
 Formspark remains the existing independent contact service, with visible
 `contact@netherwooddatapartners.com` fallback. No new contact test is authorized.
 
@@ -132,8 +143,8 @@ indexed/unchanged/hidden/failed counts. Then verify actual answers and citations
 against the deployed article. Do not use only an ingestion success message as
 an answer-quality check.
 
-**Before chat activation:** obtain the finished Voyager 2 handoff and approved
-reachable endpoint; enforce current SQL visibility/version at retrieval time;
+**Before chat activation:** approve a reachable HTTPS endpoint and the reviewed
+backend runtime; enforce current SQL visibility/version at retrieval time;
 measure citations, unsupported questions, source-text injection, timeout and
 backend-down behavior plus realistic latency/resource use. Current removal
 checks occur during ingestion. A prerequisite outage or SQL change during
@@ -172,8 +183,8 @@ threshold are not running; public response-time expectations remain unapproved.
 
 ## Rollback
 
-**First release:** its PR includes the previous launch candidate as well as this
-integration. Reverting that complete release merge restores the previous
+**First release:** application merge `60110be` includes the previous launch
+candidate as well as this integration. Reverting that complete merge restores the previous
 `b431beb` source, tracked article snapshot and original static workflow. Review
 that revert and explicitly authorize its production merge/deploy. Reverting
 only the export JSON is insufficient if the new importer remains enabled.
@@ -203,10 +214,11 @@ release cannot resurrect a removed article from those caches. There is no
 service worker. Full page content still needs JavaScript; the no-JavaScript
 contact email remains available.
 
-## One-time activation checklist (not executed)
+## Remaining production activation checklist (not executed)
 
-- Reconcile the missing Voyager 1 business/runbook handoff and the captured
-  Voyager 2 commits. Keep this candidate's deployment-aware cycle; do not
+- Review and reconcile the actual Voyager 1 business/runbook files after
+  transfer. Voyager 2's code reconciliation is complete. Keep the merged
+  deployment-aware cycle; do not
   wholesale apply Voyager 2's old snapshot-to-main publisher or refresh timer.
 - Approve whether the exported title "Azure SQL Migration Lesson" is intended.
   If plural is intended, correct SQL through an approved authoring operation and
@@ -217,16 +229,18 @@ contact email remains available.
   create credentials/grants and require an API restart. None were run here.
   Preserve the old runtime image and validate its approved replacement before
   restart; no public networking change is needed for private authoring.
-- The September 11 owner request authorizes merging the reconciled repository
-  through PR #1 while publication remains disabled. Review evidence and resolve
-  remaining production gates before deployment/activation.
-- On Voyager 2, preserve its dirty main checkout. Prepare a separate reviewed
-  release checkout at the approved candidate commit; verify Node/pnpm/gh,
-  existing Docker images/config and private runtime identity before changes.
+- The repository merge is complete. Review the recorded checks and resolve
+  remaining production gates before deployment or runtime activation.
+- On Voyager 2, preserve its dirty original checkout. The clean detached review
+  checkout is `/home/nasa/netherwood-release-review-60110be`; its reviewed image
+  is `ndp-publication-review:60110be`, built with 60 passing tests, zero skips
+  and strict type checking. Verify the selected approved source, configuration,
+  tooling and private runtime identity before any activation.
 - Approve/apply/test `web.ExportPublishedArticles` and its narrow existing-user
   grant. Do a read-only comparison with SQL and run rollback-only fixtures on an
-  isolated database. Build the reviewed backend tools without restarting shared
-  services. Keep SQL/API/Ollama networking unchanged.
+  isolated database. The completed image build does not apply this procedure
+  or grant. Keep shared services and SQL/API/Ollama networking unchanged until
+  their separately approved activation steps.
 - Approve an existing or new repository-scoped publication credential with
   Contents read/write and Actions write for dispatch, preserving main branch
   protection. A deploy key alone cannot perform this API dispatch. Use the
@@ -239,7 +253,7 @@ contact email remains available.
   `node --experimental-strip-types scripts/publish-article-export.ts <candidate> --initialize`.
   This creates only the content branch; it requests no deployment and never
   writes main. After initialization use the same command without `--initialize`.
-- After the repository merge and remaining release approvals, set **repository**
+- After the remaining release approvals, set **repository**
   `NDP_PUBLICATION_ENABLED=true` only as part of the approved release. The
   workflow otherwise stays disabled,
   including main pushes. Dispatch the reviewed content commit and verify it.
