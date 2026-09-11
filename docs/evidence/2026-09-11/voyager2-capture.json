@@ -1,0 +1,120 @@
+{
+  "capturedAt": "2026-09-11T03:07:46.299741+00:00",
+  "remoteRoot": "/home/nasa/netherwood-data-partners",
+  "baselineCommit": "b431beb58dccefb8e092c179a1a8517caa78c484",
+  "state": "uncommitted work in progress",
+  "files": [
+    {
+      "path": "backend/src/article-snapshot.ts",
+      "capturedSha256": "f0833b15b977449b20cbe7b2249eb856c649f30a14348e6a9229d8b342e01f98",
+      "remoteSha256": "f0833b15b977449b20cbe7b2249eb856c649f30a14348e6a9229d8b342e01f98",
+      "match": true
+    },
+    {
+      "path": "backend/src/review-article-snapshot.ts",
+      "capturedSha256": "eec088da3878082430fc223b30c08e7daeb94b4a0992080ffe1af7b3f6f268e8",
+      "remoteSha256": "eec088da3878082430fc223b30c08e7daeb94b4a0992080ffe1af7b3f6f268e8",
+      "match": true
+    },
+    {
+      "path": "backend/src/export-articles.ts",
+      "capturedSha256": "58d12729d5f386181e34da8be9fa36de7b287c6ad405669f95a87edcc52aeee8",
+      "remoteSha256": "58d12729d5f386181e34da8be9fa36de7b287c6ad405669f95a87edcc52aeee8",
+      "match": true
+    },
+    {
+      "path": "backend/src/ingest-knowledge.ts",
+      "capturedSha256": "bc046d1493016b975e8cb9a2ded71a5e6ffd4c375ebcadee6dd273dc89d1abb7",
+      "remoteSha256": "bc046d1493016b975e8cb9a2ded71a5e6ffd4c375ebcadee6dd273dc89d1abb7",
+      "match": true
+    },
+    {
+      "path": "backend/src/ingestion.ts",
+      "capturedSha256": "6e8441f89ba29a5dcd77900624ca98aec37c976bbcde7c6f49d93e99d10f5203",
+      "remoteSha256": "6e8441f89ba29a5dcd77900624ca98aec37c976bbcde7c6f49d93e99d10f5203",
+      "match": true
+    },
+    {
+      "path": "backend/src/knowledge.ts",
+      "capturedSha256": "58b0a8d20c7bf38a7ef753a58c2119ab99b76d9b540744d29b7ea28596c1ed01",
+      "remoteSha256": "58b0a8d20c7bf38a7ef753a58c2119ab99b76d9b540744d29b7ea28596c1ed01",
+      "match": true
+    },
+    {
+      "path": "backend/src/database.ts",
+      "capturedSha256": "b195fa375034fdf4ef3a304fe0181dc4de83ab5827cd58f387b6a7a3c4c5af1f",
+      "remoteSha256": "b195fa375034fdf4ef3a304fe0181dc4de83ab5827cd58f387b6a7a3c4c5af1f",
+      "match": true
+    },
+    {
+      "path": "backend/src/articles.ts",
+      "capturedSha256": "8209b26d39a4f1785e17212aeff5d9eddffdb5706fc8f5cd481a4bad964de537",
+      "remoteSha256": "8209b26d39a4f1785e17212aeff5d9eddffdb5706fc8f5cd481a4bad964de537",
+      "match": true
+    },
+    {
+      "path": "backend/test/article-snapshot.test.ts",
+      "capturedSha256": "41e311db4b7b50ed10e94da172f03c76180d736896b1c9333a1dd1b6edec20fd",
+      "remoteSha256": "41e311db4b7b50ed10e94da172f03c76180d736896b1c9333a1dd1b6edec20fd",
+      "match": true
+    },
+    {
+      "path": "backend/test/ingestion.test.ts",
+      "capturedSha256": "2018d9a0dcafb0f203d2f1a9142931a0632cb13a42d36e338825b7e5f9b810f1",
+      "remoteSha256": "2018d9a0dcafb0f203d2f1a9142931a0632cb13a42d36e338825b7e5f9b810f1",
+      "match": true
+    },
+    {
+      "path": "ops/articles/README.md",
+      "capturedSha256": "fed1802e93be377a3ac9886b973413906bd3bb74327948a3ddd4bce93eaafa3d",
+      "remoteSha256": "fed1802e93be377a3ac9886b973413906bd3bb74327948a3ddd4bce93eaafa3d",
+      "match": true
+    },
+    {
+      "path": "ops/articles/publication-sync.sh",
+      "capturedSha256": "ea7d3f9edf78a5c9cda8755e1da2419a0c08b7b3d44e44979ce90c20ed1d2faf",
+      "remoteSha256": "ea7d3f9edf78a5c9cda8755e1da2419a0c08b7b3d44e44979ce90c20ed1d2faf",
+      "match": true
+    },
+    {
+      "path": "ops/articles/verify-candidate-build.sh",
+      "capturedSha256": "3127131516971f3063c0208a474680a41a2eb66db4b52b8196a7036fd8f99407",
+      "remoteSha256": "3127131516971f3063c0208a474680a41a2eb66db4b52b8196a7036fd8f99407",
+      "match": true
+    },
+    {
+      "path": "ops/articles/ndp-articles-refresh.timer",
+      "capturedSha256": "3ae3e331ac8125dead79b0505b0c6dfd60d31cab255523531a68bff5c35d78ac",
+      "remoteSha256": "3ae3e331ac8125dead79b0505b0c6dfd60d31cab255523531a68bff5c35d78ac",
+      "match": true
+    },
+    {
+      "path": "ops/articles/ndp-articles-refresh.service",
+      "capturedSha256": "e820c7466dba3a9eaafe2a2148af300454e61b5552c635427288ac5040ea478f",
+      "remoteSha256": "e820c7466dba3a9eaafe2a2148af300454e61b5552c635427288ac5040ea478f",
+      "match": true
+    },
+    {
+      "path": "scripts/validate-article-snapshot.mjs",
+      "capturedSha256": "f94e37ce9139a3bb254aca333532d74473902f853cb689af9abbd0d143437de8",
+      "remoteSha256": "f94e37ce9139a3bb254aca333532d74473902f853cb689af9abbd0d143437de8",
+      "match": true
+    },
+    {
+      "path": "docs/VOYAGER2_LAUNCH_STATUS.md",
+      "capturedSha256": "af69582e53f41891713be3a8998187ce6a4e2da299823d9e93aedf31dd801eff",
+      "remoteSha256": "af69582e53f41891713be3a8998187ce6a4e2da299823d9e93aedf31dd801eff",
+      "match": true
+    }
+  ],
+  "note": "Two source files changed during inspection; latest copies replaced after retaining .initial versions. Hashes matched recorded remote comparison.",
+  "candidate": {
+    "path": "/tmp/ndp-voyager2-handoff/articles-snapshot.candidate.json",
+    "fileSha256": "5c08cc45f89beef5d2f46095672a163952dffb0d27ef941736725c26e6e4361b",
+    "generatedAt": "2026-09-11T03:04:30.209Z",
+    "articleCount": 10,
+    "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+    "validation": "Copied Voyager 2 JavaScript readAndValidateArticleSnapshot passed with Node 24.19.0, allowLegacy false in result",
+    "validatedAt": "2026-09-11T03:08:13.903477+00:00"
+  }
+}

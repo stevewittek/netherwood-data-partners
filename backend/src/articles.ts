@@ -125,6 +125,16 @@ export function sanitizeArticleHtml(html: string): string {
   }).trim();
 }
 
+export function articlePlainTextFromHtml(html: string): string {
+  return convert(html, {
+    wordwrap: false,
+    selectors: [
+      { selector: "a", options: { ignoreHref: true } },
+      { selector: "img", format: "skip" },
+    ],
+  }).replace(/\n{3,}/g, "\n\n").trim();
+}
+
 export function normalizeArticleSlug(value: string): string {
   return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -220,13 +230,7 @@ export function parseArticleInput(value: Record<string, unknown>): ArticleInput 
     }
   }
   const featuredImage = optionalSafeUrl(value.featuredImage, errors);
-  const plainText = convert(html, {
-    wordwrap: false,
-    selectors: [
-      { selector: "a", options: { ignoreHref: true } },
-      { selector: "img", format: "skip" },
-    ],
-  }).replace(/\n{3,}/g, "\n\n").trim();
+  const plainText = articlePlainTextFromHtml(html);
   if (sourceHtml && html && !plainText) errors.html = "Article content must contain readable text";
   if (Object.keys(errors).length > 0) throw new ArticleValidationError(errors);
 

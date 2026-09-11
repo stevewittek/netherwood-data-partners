@@ -1,0 +1,19 @@
+{
+  "settledContactFocus": {
+    "border": "rgb(195, 220, 114)",
+    "background": "rgba(255, 255, 255, 0.12)",
+    "outer": "rgb(23, 35, 41)"
+  },
+  "articleControls": [
+    {
+      "tag": "INPUT",
+      "border": "rgb(61, 106, 104)",
+      "background": "rgb(255, 255, 255)"
+    },
+    {
+      "tag": "SELECT",
+      "border": "rgb(61, 106, 104)",
+      "background": "rgb(255, 255, 255)"
+    }
+  ]
+}

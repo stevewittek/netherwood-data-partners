@@ -21,6 +21,7 @@ async function hideMissing(
 ): Promise<number> {
   let hidden = 0;
   for (const source of existing) {
+    if (sourceType === "database" && source.sourceLocation.startsWith("sql:article:")) continue;
     if (seen.has(source.sourceLocation) || !source.chatbotVisible) continue;
     await store.hideKnowledgeSource(sourceType, source.sourceLocation);
     hidden += 1;

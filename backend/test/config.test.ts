@@ -20,6 +20,7 @@ test("loads a complete SQL configuration", () => {
   assert.equal(config.ollamaEmbeddingModel, "nomic-embed-text");
   assert.equal(config.chatMaxConcurrent, 1);
   assert.equal(config.chatBusyRetryAfterSeconds, 120);
+  assert.equal(config.ragMaxDistance, 0.35);
   assert.equal(config.articleRateLimit, 120);
   assert.equal(config.adminRateLimit, 10);
 });

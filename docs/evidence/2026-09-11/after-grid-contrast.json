@@ -1,0 +1,473 @@
+[
+  {
+    "path": "/",
+    "textNodes": 137,
+    "worstText": [
+      {
+        "text": "Insights",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "Browse articles",
+        "selector": "A.article-read-link",
+        "color": "rgb(61, 106, 104)",
+        "size": "14px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "→",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "14px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "SQL Server performance · reliability · data services",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "Where we help",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "When to call us",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      }
+    ],
+    "textFailures": [],
+    "focus": [
+      {
+        "selector": ".contact-form-actions button",
+        "outline": "rgb(195, 220, 114)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 10.544019028610943,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgb(195, 220, 114)"
+      },
+      {
+        "selector": ".contact-email-fallback a",
+        "outline": "rgb(195, 220, 114)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 10.544019028610943,
+        "border": "rgb(255, 255, 255)",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "nav a",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "#contact-name",
+        "outline": "rgba(195, 220, 114, 0.2)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 1.6499834893191567,
+        "border": "rgba(255, 255, 255, 0.42)",
+        "bg": "rgba(255, 255, 255, 0.08)"
+      }
+    ]
+  },
+  {
+    "path": "/about",
+    "textNodes": 67,
+    "worstText": [
+      {
+        "text": "Areas of expertise",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "01",
+        "selector": "SPAN.expertise-number",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "02",
+        "selector": "SPAN.expertise-number",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "03",
+        "selector": "SPAN.expertise-number",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "04",
+        "selector": "SPAN.expertise-number",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      },
+      {
+        "text": "05",
+        "selector": "SPAN.expertise-number",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.151782633777187,
+        "bg": [
+          233,
+          237,
+          239
+        ]
+      }
+    ],
+    "textFailures": [],
+    "focus": [
+      {
+        "selector": ".about-contact a",
+        "outline": "rgb(195, 220, 114)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 10.544019028610943,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgb(195, 220, 114)"
+      },
+      {
+        "selector": "nav a",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  },
+  {
+    "path": "/articles",
+    "textNodes": 85,
+    "worstText": [
+      {
+        "text": "SQL Server Performance",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.126360830966547,
+        "bg": [
+          232.48555136,
+          238.12983232,
+          221.03528384
+        ]
+      },
+      {
+        "text": "Read field note",
+        "selector": "A.article-read-link",
+        "color": "rgb(61, 106, 104)",
+        "size": "14px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.126360830966547,
+        "bg": [
+          232.48555136,
+          238.12983232,
+          221.03528384
+        ]
+      },
+      {
+        "text": "→",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "14px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.126360830966547,
+        "bg": [
+          232.48555136,
+          238.12983232,
+          221.03528384
+        ]
+      },
+      {
+        "text": "Netherwood insights",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "Featured insight",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "Indexing",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      }
+    ],
+    "textFailures": [],
+    "focus": [
+      {
+        "selector": "nav a",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": ".articles-tools input",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(61, 106, 104)",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "selector": ".articles-tools select",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(61, 106, 104)",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "path": "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+    "textNodes": 82,
+    "worstText": [
+      {
+        "text": "← Articles & Field Notes",
+        "selector": "A.article-back",
+        "color": "rgb(61, 106, 104)",
+        "size": "14px",
+        "weight": "750",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "Query Tuning",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "Continue reading",
+        "selector": "P.eyebrow",
+        "color": "rgb(61, 106, 104)",
+        "size": "12px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.209094595667352,
+        "bg": [
+          236.37702399999998,
+          237.898688,
+          237.230656
+        ]
+      },
+      {
+        "text": "SQL Server Performance",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.700947327252516,
+        "bg": [
+          247,
+          248,
+          247
+        ]
+      },
+      {
+        "text": "Indexing",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.700947327252516,
+        "bg": [
+          247,
+          248,
+          247
+        ]
+      },
+      {
+        "text": "Concurrency",
+        "selector": "SPAN.",
+        "color": "rgb(61, 106, 104)",
+        "size": "11px",
+        "weight": "800",
+        "required": 4.5,
+        "ratio": 5.700947327252516,
+        "bg": [
+          247,
+          248,
+          247
+        ]
+      }
+    ],
+    "textFailures": [],
+    "focus": [
+      {
+        "selector": ".article-cta a",
+        "outline": "rgb(195, 220, 114)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 10.544019028610943,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgb(195, 220, 114)"
+      },
+      {
+        "selector": "nav a",
+        "outline": "rgba(71, 105, 88, 0.9)",
+        "width": "3px",
+        "style": "solid",
+        "worstRatio": 4.279965254775719,
+        "border": "rgb(23, 35, 41)",
+        "bg": "rgba(0, 0, 0, 0)"
+      }
+    ]
+  }
+]

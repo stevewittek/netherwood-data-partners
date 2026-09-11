@@ -5,15 +5,17 @@ import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import "./about.css";
 
 export const metadata: Metadata = {
-  title: "About Steven Wittek | Netherwood Data Partners",
-  description: "Meet Steven Wittek, founder, database engineer, and consultant at Netherwood Data Partners.",
+  title: "About Netherwood Data Partners | Database Consulting",
+  description: "Learn how Netherwood Data Partners approaches SQL Server performance, reliability, migrations, cloud modernization, and practical database consulting.",
+  alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+    title: "About Netherwood Data Partners | Database Consulting",
+    description: "Founder-led database consulting grounded in more than 15 years of hands-on systems work.",
+    url: "/about",
   },
   twitter: {
-    title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+    title: "About Netherwood Data Partners | Database Consulting",
+    description: "Founder-led database consulting grounded in more than 15 years of hands-on systems work.",
   },
 };
 
@@ -57,7 +59,7 @@ export default function AboutPage() {
           <p className="about-role">Founder, Database Engineer & Consultant</p>
           <div className="long-form about-intro">
             <p>
-              I have spent more than 15 years working with databases, applications, and the systems businesses depend on every day. My background combines hands-on SQL Server engineering, performance tuning, production support, reporting, data migration, cloud systems, and long-term technology consulting.
+              I have worked in the field since 2009, building more than 15 years of experience with databases, applications, and the systems businesses depend on every day. My background combines hands-on SQL Server engineering, performance tuning, production support, reporting, data migration, cloud systems, and long-term technology consulting.
             </p>
             <p>
               I founded Netherwood Data Partners to bring that experience directly to businesses that need practical help with their data without adding another layer of enterprise complexity.

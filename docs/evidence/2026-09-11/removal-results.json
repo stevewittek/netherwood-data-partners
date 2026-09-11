@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "scenarios": [
+    "Truncated input failed before modifying last good local build",
+    "Complete empty export removed all native article routes and sitemap entries",
+    "Returning browser with legacy cached article observed authoritative empty index and HTTP404 detail across reload"
+  ],
+  "restoredDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+}

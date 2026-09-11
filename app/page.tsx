@@ -1,4 +1,5 @@
 import ChatWidget from "./ChatWidget";
+import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 
 const services = [
@@ -61,9 +62,9 @@ const principles = [
 ];
 
 const aboutPoints = [
-  "Senior database professionals remain close to the work.",
-  "We help teams make informed technical decisions without the noise of large anonymous support queues.",
-  "We keep the focus on the system, the risk, and the practical path forward.",
+  "I remain directly involved from the first investigation through the final handoff.",
+  "When a project needs another specialty, I discuss that scope with you before bringing additional expertise into the work.",
+  "The focus stays on the system, the risk, and the practical path forward.",
 ];
 
 const engagements = [
@@ -194,12 +195,12 @@ export default function Home() {
       <section className="section about" id="about">
         <div className="section-heading compact-heading">
           <p className="eyebrow">About</p>
-          <h2>Senior expertise, directly involved.</h2>
+          <h2>Experienced database engineering, directly involved.</h2>
         </div>
         <div className="about-panel">
           <p>
-            Work is performed by experienced database professionals who stay close to the technical detail,
-            the business constraints, and the eventual operating model.
+            Netherwood is a founder-led database consultancy. I stay close to the technical detail,
+            the business constraints, and the eventual operating model throughout the work.
           </p>
           <ul>
             {aboutPoints.map((point) => (
@@ -233,10 +234,11 @@ export default function Home() {
             Share the platform, the symptoms, and the urgency. If you have a rough size or timeline, include it.
             We will tell you candidly whether we can help and what makes the most sense next.
           </p>
-          <div className="contact-meta">
-            <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a>
-            <p>Helpful context: database platform, issue/project, urgency, approximate environment size if known.</p>
-          </div>
+          <ContactForm />
+          <p className="contact-email-fallback">
+            Prefer email? Write to{" "}
+            <a href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a>.
+          </p>
         </div>
       </section>
 

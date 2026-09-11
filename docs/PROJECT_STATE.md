@@ -1,7 +1,82 @@
 # Project state
 
-Last verified: 2026-08-28 UTC on `voyager2-articles-platform`. This records
-observed state, not plans.
+## September 11 morning reconciliation
+
+The owner has requested the repository merge. The chosen baseline remains the
+Mac publication implementation; Voyager 2's original/review histories are
+reconciled with its 0.35 retrieval default and failure tests, preserving one
+article ingester and one publisher. Local backend checks now pass 60 tests.
+The Windows symlink fixture is isolated and Windows CI is included.
+See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md) for exact source
+commits, selected/superseded changes and the three-machine status.
+
+Voyager 2 was reverified healthy and unchanged, with authoring off and both
+timers inactive. Voyager 1's summary is now available, but its four actual
+uncommitted documents are still awaiting transfer. Repository merge approval
+does not activate production: Pages remains on b431beb until a separately
+approved release. No SQL permissions, credentials, services or public exposure
+were changed by reconciliation.
+
+## Current release candidate — verified 2026-09-11 UTC
+
+**Local candidate; not released and not integration-complete.** Branch
+`codex/publication-release-candidate` preserves `f96bc08` and its seven launch
+commits. Remote `main` and the verified live Pages deployment remain
+`b431beb58dccefb8e092c179a1a8517caa78c484`. The three original worktrees and the
+unrelated Database Mail modification were preserved; no pull/reset/clean was
+used. See [verification evidence](PUBLICATION_VERIFICATION.md) and the
+[combined operations guide](PUBLICATION_OPERATIONS.md).
+
+- Actual production cause: the deployed workflow builds its tracked August 24
+  snapshot without exporting SQL. Both inspected public API/chat build values
+  are empty. Ten live article routes remain independently available.
+- Candidate: a validated, complete public SQL export controls every article
+  surface, route, related link, metadata record and sitemap. Captured Voyager 2
+  export: 2026-09-11T03:04:30.209Z, ten articles, digest
+  `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
+  The SQL title "Azure SQL Migration Lesson" is singular while production is
+  plural; approve that captured editorial change before releasing it.
+- Publication automation is prepared and disabled. A private 15-minute full-set
+  export, content-only Git branch and hosted validation/build/deploy detect
+  edits, due schedules and removals. Healthy operational expectation is roughly
+  15–30 minutes including measured ten-minute Pages cache lifetime; no SLA.
+- Legacy live-article/localStorage fallback is removed. The new release treats
+  an empty export or absent slug as authoritative. Failed export/build retains
+  the last good release. Offline copies and old open tabs cannot be revoked.
+- Existing Formspark is reused. Its prior inbox receipt was reread on September
+  11; no new message or form was sent. Direct business-mail receipt remains
+  unconfirmed in the connected Gmail evidence.
+- Current responsive/browser checks cover all ten articles plus Home/About/index
+  at 1440/768/390 and 320px spot checks. Focused fixes restore cross-page contact
+  scrolling, article list markers, contact/article-control boundary contrast and
+  dark-section keyboard focus, with
+  before/after evidence. Branding, layout and navigation are retained.
+- AI reconciliation follows the deployed/current-SQL intersection and hides
+  removed or changed article sources before embeddings. Chat and its telemetry
+  remain disabled. Retrieval-time visibility protection and acceptable measured
+  endpoint behavior are still required before any chat activation.
+- Voyager 2 current local commits are `9f9a4ca` and `417f2e8` (not pushed).
+  Health is 200, authoring is 404, its newly built API image is not running and
+  its timer is absent/inactive. Ten article knowledge sources are indexed, but
+  website-digest agreement is pending; cited answers took 143.8–176.1 seconds.
+- The new SQL export procedure/grant and scheduled units have not been applied
+  or activated. Final Voyager handoffs, live SQL fixtures, approved release and
+  controlled post-release publication/withdrawal are outstanding gates.
+- Supported local runtime: bundled Node 24.19.0 and pnpm 11.19.0. Host runtime and
+  services were not changed. Docker daemon was unavailable locally; no Docker
+  image build or live SQL mutation is claimed.
+- [Draft PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1)
+  contains the candidate. Hosted CI passed Site and Backend on implementation
+  commit `21fc005`; production remains at `b431beb` with activation unset.
+
+## Historical state — not current release sign-off
+
+The following is retained as dated history. Statements about live API fallback,
+old captures, host versions, deployments, credentials and prior checkmarks must
+not override the current evidence above.
+
+Last verified: 2026-09-02 UTC on `codex/friday-launch-integration`. This
+records observed state, not plans.
 
 ## Repository and publishing
 
@@ -21,6 +96,31 @@ observed state, not plans.
   widget is omitted unless `VOYAGER_API_URL` is explicitly supplied at build
   time, so Pages does not depend on Voyager, SQL Server, Docker, Ollama, or home
   Internet.
+- The home-page contact section posts directly to the public Formspark endpoint
+  for the `Netherwood Data Partners Contact` form. It remains a static-site
+  integration and requires no private key, local backend, or runtime secret.
+  JavaScript submissions expose clear sending, success, timeout, and error
+  states, and the rendered form retains a native POST action. The existing
+  contact email remains visible as a fallback.
+- Formspark's automatic spam filter was observed as active for the form. The
+  site also sends Formspark's supported `_honeypot` field. The dashboard reports
+  one active notification recipient. On 2026-09-02, four test-like submissions
+  were found in the Spam queue: two placeholder-only QA attempts and two owner
+  tests whose message contained a second, mismatched email address. With owner
+  approval, only the two owner tests were marked as non-spam; the QA placeholders
+  remain quarantined. No spam-protection setting was changed.
+- One owner-approved candidate submission at 20:24 EDT was accepted with the
+  automatic filter still enabled. The site displayed its success state and
+  reset the form, the submission appeared in the Formspark Inbox, and the
+  notification reached the configured recipient at 20:24:57 EDT with the
+  submitted business address as `Reply-To`. The workspace allowance changed
+  from 250 to 247 because the two recovered submissions and the new accepted
+  test each count once.
+- A direct fallback-email test was sent from `steven.wittek@gmail.com` to
+  `contact@netherwooddatapartners.com` at 22:41 EDT on 2026-09-02, outside
+  Formspark. Gmail recorded the Sent message. No delivered copy appeared in the
+  connected Gmail inbox during the initial check, so receipt in the business
+  mailbox or its forwarding destination is not yet confirmed.
 - Before the 2026-08-28 release, the live domain returned HTTP 200 with a
   `2026-08-23 14:36:55 UTC` modification time and the expected site title. The
   Articles release keeps the public site static and adds the Articles index,
@@ -239,6 +339,12 @@ observed state, not plans.
   article read succeed locally. SQL schema, migration, runtime-login, and
   consistency checks pass after recovery. Earlier re-ingestion was idempotent
   and the real local cited RAG check passed.
+- On 2026-09-02, the contact-form change passed root ESLint, the static Pages
+  build and generated-route export, the Vinext production build, a local HTTP
+  render, `git diff --check`, and a tracked-content secret-pattern scan under
+  pinned Node 22.13.1/pnpm 11.19.0. Interactive browser QA was later completed
+  on the integrated launch candidate at desktop, 768px, 390px, and a 320px
+  home-page spot check.
 - Root ESLint, the static Pages build with ten generated native article routes,
   and the Vinext build passed under Node 22.13.1. SQL migrations 006-008
   passed rollback validation before the gated live apply. A separate
@@ -277,3 +383,43 @@ observed state, not plans.
 6. Only after local security review, set the static build's `VOYAGER_API_URL`
    to an approved HTTPS endpoint and test backend-down behavior. It remains
    unset now.
+
+## Launch governance audit (2026-09-02)
+
+- `origin/main` was pulled and confirmed at `b431beb` before the audit.
+- Production Home, About, Articles, ten article routes, mobile containment,
+  robots, and sitemaps were inspected. The public site remained independent of
+  Voyager; production contact was still email-only.
+- The original Formspark commit `f982599` remains preserved on
+  `codex/formspark-contact`. No newer Formspark work was found. It was
+  cherry-picked exactly once into `codex/friday-launch-integration` as
+  `9aaf05c`, after governance commit `5acea14` was integrated as `7a82024`.
+  Neither integration commit is on `origin/main` or production.
+- Candidate screenshots were captured before and after at desktop, 768px, and
+  390px. Home, About, Articles, and one article route were checked at all three
+  widths with no document overflow. The public form has one rendered instance,
+  a native POST action, required name/email/message fields, honeypot, visible
+  email fallback, and no Voyager widget or runtime dependency.
+- A narrow fallback follow-up leaves native POST behavior available when
+  `fetch` is unavailable and adds a static `noscript` email path. Empty and
+  invalid-email browser validation passed. The owner-approved live candidate
+  test confirmed success, reset, Formspark Inbox receipt, notification delivery,
+  and correct `Reply-To`. A later browser QA attempt exposed that automation
+  could bypass native `minLength`; one short placeholder request reached
+  Formspark and was rejected. The enhanced handler now applies the trimmed
+  20-character minimum independently, and the repeated path stopped locally
+  with the expected validation message and no request.
+- The owner confirmed that Steven began working in the field in 2009 and that
+  Netherwood is currently a founder-led, one-person consultancy. Plural
+  professional wording was narrowed accordingly. The temporary founder image
+  is approved for the Friday launch while a real portrait is prepared.
+- The launch candidate self-hosts Manrope and DM Sans for both static Pages and
+  Next/Vinext paths, with tracked OFL licensing and no font-CDN request. Home
+  and About use aligned company-focused title, description, Open Graph,
+  Twitter, and canonical metadata. Responsive browser checks at desktop,
+  768px, and 390px reported the intended computed fonts, one `h1`, no broken
+  images, and no horizontal overflow on Home, About, Articles, and one article.
+- Launch source-of-truth documents were added under `docs/`, with concise agent
+  rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
+  CSS, content, backend, infrastructure, or production configuration was
+  changed by the governance task.
