@@ -1,13 +1,18 @@
 {
   "capturedAtUtc": "2026-09-11T14:05:00Z",
   "site": "https://netherwooddatapartners.com",
-  "sourceCommit": "16a133f7d82bb807f3c230514f325604bac84190",
+  "applicationSourceCommit": "16a133f7d82bb807f3c230514f325604bac84190",
   "applicationCommit": "60110be306340bd8d654a3da071f57a8687b1827",
   "contentCommit": "b6cbdcb0f5b8eb460096db84d5084f4ae4165770",
   "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
   "articleCount": 10,
   "chatEnabled": false,
   "productionRun": 34605108714,
+  "firstEvidenceDeployment": {
+    "sourceCommit": "ebc289576fb396a2ac3badfa8207e6cf41029565",
+    "run": 34608419905,
+    "artifactId": 10267555713
+  },
   "publicationRuns": [34601708348, 34603017803, 34603535109, 34604675813, 34605108714],
   "safeFailedRun": 34602565678,
   "fixCiRun": 34602900762,

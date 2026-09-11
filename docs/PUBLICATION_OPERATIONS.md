@@ -15,8 +15,9 @@ client-lifecycle decisions remain subject to the explicit owner gates in
 
 ## Current boundary
 
-The production website serves source
-`16a133f7d82bb807f3c230514f325604bac84190` and content
+The production website's stable application baseline is
+`16a133f7d82bb807f3c230514f325604bac84190`; later evidence-only main merges
+do not change its behavior. Current content is
 `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`. Publication run
 `34605108714` restored the intended ten-article digest
 `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
