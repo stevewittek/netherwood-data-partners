@@ -1,8 +1,9 @@
 # Publication release candidate verification
 
 Verified 2026-09-11 UTC. **The website release and controlled publication
-lifecycle are production-accepted.** The current release is source
-`16a133f7d82bb807f3c230514f325604bac84190`, content
+lifecycle are production-accepted.** The stable application baseline is
+`16a133f7d82bb807f3c230514f325604bac84190`; later evidence-only merges do
+not change its behavior. The current content is
 `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`, digest
 `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`,
 ten articles and chat disabled. Production run `34605108714` succeeded and

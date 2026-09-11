@@ -2,9 +2,11 @@
 
 ## Production release and lifecycle acceptance - September 11
 
-Netherwood Data Partners is live at `https://netherwooddatapartners.com` from
-source commit `16a133f7d82bb807f3c230514f325604bac84190`. The current public
-manifest records content commit `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`,
+Netherwood Data Partners is live at `https://netherwooddatapartners.com`.
+Application behavior is based on
+`16a133f7d82bb807f3c230514f325604bac84190`; later evidence-only merges do
+not change that baseline. The current public manifest records content commit
+`b6cbdcb0f5b8eb460096db84d5084f4ae4165770`,
 digest `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`,
 ten articles, chat disabled, and successful publication run `34605108714`.
 The retained `website-release` artifact is ID `10265914128`, 2,079,772 bytes,
