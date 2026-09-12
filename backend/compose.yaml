@@ -73,7 +73,7 @@ services:
     volumes:
       - ../pages-site:/export
     tmpfs: ["/tmp:size=16m,mode=1777"]
-    command: ["node", "--experimental-strip-types", "src/export-articles.ts", "/export/articles-snapshot.json"]
+    command: ["node", "--experimental-strip-types", "src/export-articles.ts", "/export/.publication-candidates/articles-snapshot.candidate.json"]
 
 volumes:
   ollama_data:

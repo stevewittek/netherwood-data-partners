@@ -2,6 +2,11 @@
 
 Executed: 2026-09-11 UTC from main at b431beb on Voyager 1.
 
+This is retained historical acceptance evidence, not current production
+verification. Later fixes and live-release results belong in
+[PUBLICATION_VERIFICATION.md](PUBLICATION_VERIFICATION.md) and
+[PROJECT_STATE.md](PROJECT_STATE.md).
+
 ## Scope, safety, and evidence
 
 All production checks were read-only. Each browser capture used a new temporary

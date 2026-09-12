@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-09-11T03:39:09.355548+00:00",
+  "ratios": {
+    "darkFocus": 10.544019028610943,
+    "articleControlOutside": 5.189444062557148,
+    "articleControlInside": 6.069488978671629,
+    "contactFocusedBorderInside": 7.277744493176933,
+    "contactFocusedBorderOutside": 10.544019028610943
+  },
+  "method": "Computed element colors; conservative alpha-composition of declared 0.025 grid lines; settled contact focus styles. The general grid report samples contact fields before their transition settles; use settled-control-colors.json for that state.",
+  "gridTextMinimum": 5.126,
+  "scope": "Home, About, Articles index, Query Store template; 371 grid/gradient text nodes. Focus screenshots at 1440/768/390. Bounded QA, not WCAG certification."
+}

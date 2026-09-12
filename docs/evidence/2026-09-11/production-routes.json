@@ -1,0 +1,783 @@
+{
+  "verifiedAt": "2026-09-11T03:02:14.255005+00:00",
+  "deploymentSha": "b431beb58dccefb8e092c179a1a8517caa78c484",
+  "summary": {
+    "articleCount": 10,
+    "all200": true,
+    "uniqueTitles": true,
+    "canonicalMatch": true,
+    "allArticleJsonLd": true,
+    "allJsonLdDatesAuthors": true,
+    "allOpenGraphTwitter": true
+  },
+  "routes": [
+    {
+      "url": "https://netherwooddatapartners.com/articles",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Articles &amp; Field Notes | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles",
+      "hasDescription": true,
+      "jsonLd": null,
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.",
+        "robots": "index, follow",
+        "og:type": "website",
+        "og:title": "Articles & Field Notes | Netherwood Data Partners",
+        "og:description": "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.",
+        "og:url": "https://netherwooddatapartners.com/articles",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Articles & Field Notes | Netherwood Data Partners",
+        "twitter:description": "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Why SQL Server Databases Slow Down Over Time | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why SQL Server Databases Slow Down Over Time",
+        "description": "Learn why SQL Server performance declines as data, workloads, plans, and operating practices change, plus a practical method for diagnosing the cause.",
+        "datePublished": "2026-08-22T14:00:00.000Z",
+        "dateModified": "2026-08-22T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Learn why SQL Server performance declines as data, workloads, plans, and operating practices change, plus a practical method for diagnosing the cause.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Why SQL Server Databases Slow Down Over Time | Netherwood Data Partners",
+        "og:description": "Learn why SQL Server performance declines as data, workloads, plans, and operating practices change, plus a practical method for diagnosing the cause.",
+        "og:url": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Why SQL Server Databases Slow Down Over Time | Netherwood Data Partners",
+        "twitter:description": "Learn why SQL Server performance declines as data, workloads, plans, and operating practices change, plus a practical method for diagnosing the cause.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-22T14:00:00.000Z",
+        "article:modified_time": "2026-08-22T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "SQL Server Indexing Mistakes That Hurt Performance | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "SQL Server Indexing Mistakes That Hurt Performance",
+        "description": "Avoid common SQL Server indexing mistakes involving missing-index hints, key order, wide includes, clustered keys, fill factor, and redundant indexes.",
+        "datePublished": "2026-08-20T14:00:00.000Z",
+        "dateModified": "2026-08-20T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Avoid common SQL Server indexing mistakes involving missing-index hints, key order, wide includes, clustered keys, fill factor, and redundant indexes.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "SQL Server Indexing Mistakes That Hurt Performance | Netherwood Data Partners",
+        "og:description": "Avoid common SQL Server indexing mistakes involving missing-index hints, key order, wide includes, clustered keys, fill factor, and redundant indexes.",
+        "og:url": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "SQL Server Indexing Mistakes That Hurt Performance | Netherwood Data Partners",
+        "twitter:description": "Avoid common SQL Server indexing mistakes involving missing-index hints, key order, wide includes, clustered keys, fill factor, and redundant indexes.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-20T14:00:00.000Z",
+        "article:modified_time": "2026-08-20T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Query Store: Finding the Queries That Are Breaking Your Database | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Query Store: Finding the Queries That Are Breaking Your Database",
+        "description": "Use SQL Server Query Store to isolate incident windows, compare plans, identify regressions, and apply plan forcing or hints with appropriate controls.",
+        "datePublished": "2026-08-18T14:00:00.000Z",
+        "dateModified": "2026-08-18T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Use SQL Server Query Store to isolate incident windows, compare plans, identify regressions, and apply plan forcing or hints with appropriate controls.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Query Store: Finding the Queries That Are Breaking Your Database | Netherwood Data Partners",
+        "og:description": "Use SQL Server Query Store to isolate incident windows, compare plans, identify regressions, and apply plan forcing or hints with appropriate controls.",
+        "og:url": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Query Store: Finding the Queries That Are Breaking Your Database | Netherwood Data Partners",
+        "twitter:description": "Use SQL Server Query Store to isolate incident windows, compare plans, identify regressions, and apply plan forcing or hints with appropriate controls.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-18T14:00:00.000Z",
+        "article:modified_time": "2026-08-18T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Why NOLOCK Does Not Fix Blocking Problems | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why NOLOCK Does Not Fix Blocking Problems",
+        "description": "Understand why SQL Server NOLOCK can return incorrect data, what it still waits on, and how to diagnose blocking with safer, durable corrections.",
+        "datePublished": "2026-08-16T14:00:00.000Z",
+        "dateModified": "2026-08-16T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Understand why SQL Server NOLOCK can return incorrect data, what it still waits on, and how to diagnose blocking with safer, durable corrections.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Why NOLOCK Does Not Fix Blocking Problems | Netherwood Data Partners",
+        "og:description": "Understand why SQL Server NOLOCK can return incorrect data, what it still waits on, and how to diagnose blocking with safer, durable corrections.",
+        "og:url": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Why NOLOCK Does Not Fix Blocking Problems | Netherwood Data Partners",
+        "twitter:description": "Understand why SQL Server NOLOCK can return incorrect data, what it still waits on, and how to diagnose blocking with safer, durable corrections.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-16T14:00:00.000Z",
+        "article:modified_time": "2026-08-16T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "When Small Businesses Need a Database Consultant | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "When Small Businesses Need a Database Consultant",
+        "description": "Recognize when a small business needs database consulting for performance, recovery, migrations, reporting accuracy, security, or operational ownership.",
+        "datePublished": "2026-08-14T14:00:00.000Z",
+        "dateModified": "2026-08-14T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Recognize when a small business needs database consulting for performance, recovery, migrations, reporting accuracy, security, or operational ownership.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "When Small Businesses Need a Database Consultant | Netherwood Data Partners",
+        "og:description": "Recognize when a small business needs database consulting for performance, recovery, migrations, reporting accuracy, security, or operational ownership.",
+        "og:url": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "When Small Businesses Need a Database Consultant | Netherwood Data Partners",
+        "twitter:description": "Recognize when a small business needs database consulting for performance, recovery, migrations, reporting accuracy, security, or operational ownership.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-14T14:00:00.000Z",
+        "article:modified_time": "2026-08-14T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Moving Legacy Applications to Modern SQL Server Platforms | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Moving Legacy Applications to Modern SQL Server Platforms",
+        "description": "Plan a legacy SQL Server migration through dependency discovery, compatibility testing, rehearsed data movement, controlled cutover, and proven recovery.",
+        "datePublished": "2026-08-12T14:00:00.000Z",
+        "dateModified": "2026-08-12T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Plan a legacy SQL Server migration through dependency discovery, compatibility testing, rehearsed data movement, controlled cutover, and proven recovery.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Moving Legacy Applications to Modern SQL Server Platforms | Netherwood Data Partners",
+        "og:description": "Plan a legacy SQL Server migration through dependency discovery, compatibility testing, rehearsed data movement, controlled cutover, and proven recovery.",
+        "og:url": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Moving Legacy Applications to Modern SQL Server Platforms | Netherwood Data Partners",
+        "twitter:description": "Plan a legacy SQL Server migration through dependency discovery, compatibility testing, rehearsed data movement, controlled cutover, and proven recovery.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-12T14:00:00.000Z",
+        "article:modified_time": "2026-08-12T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Database Backups: What Companies Get Wrong | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Database Backups: What Companies Get Wrong",
+        "description": "Build a reliable SQL Server backup strategy with clear recovery objectives, protected backup chains, monitored artifacts, and timed restore testing.",
+        "datePublished": "2026-08-10T14:00:00.000Z",
+        "dateModified": "2026-08-10T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Build a reliable SQL Server backup strategy with clear recovery objectives, protected backup chains, monitored artifacts, and timed restore testing.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Database Backups: What Companies Get Wrong | Netherwood Data Partners",
+        "og:description": "Build a reliable SQL Server backup strategy with clear recovery objectives, protected backup chains, monitored artifacts, and timed restore testing.",
+        "og:url": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Database Backups: What Companies Get Wrong | Netherwood Data Partners",
+        "twitter:description": "Build a reliable SQL Server backup strategy with clear recovery objectives, protected backup chains, monitored artifacts, and timed restore testing.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-10T14:00:00.000Z",
+        "article:modified_time": "2026-08-10T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Azure SQL Migration Lessons | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Azure SQL Migration Lessons",
+        "description": "Apply practical Azure SQL migration lessons for service selection, dependency assessment, networking, identity, sizing, cutover, operations, and cost.",
+        "datePublished": "2026-08-08T14:00:00.000Z",
+        "dateModified": "2026-08-08T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Apply practical Azure SQL migration lessons for service selection, dependency assessment, networking, identity, sizing, cutover, operations, and cost.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Azure SQL Migration Lessons | Netherwood Data Partners",
+        "og:description": "Apply practical Azure SQL migration lessons for service selection, dependency assessment, networking, identity, sizing, cutover, operations, and cost.",
+        "og:url": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Azure SQL Migration Lessons | Netherwood Data Partners",
+        "twitter:description": "Apply practical Azure SQL migration lessons for service selection, dependency assessment, networking, identity, sizing, cutover, operations, and cost.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-08T14:00:00.000Z",
+        "article:modified_time": "2026-08-08T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Performance Tuning Before Buying More Hardware | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Performance Tuning Before Buying More Hardware",
+        "description": "Diagnose SQL Server queries, waits, concurrency, configuration, and workload demand before deciding whether more CPU, memory, or storage is justified.",
+        "datePublished": "2026-08-06T14:00:00.000Z",
+        "dateModified": "2026-08-06T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Diagnose SQL Server queries, waits, concurrency, configuration, and workload demand before deciding whether more CPU, memory, or storage is justified.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Performance Tuning Before Buying More Hardware | Netherwood Data Partners",
+        "og:description": "Diagnose SQL Server queries, waits, concurrency, configuration, and workload demand before deciding whether more CPU, memory, or storage is justified.",
+        "og:url": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Performance Tuning Before Buying More Hardware | Netherwood Data Partners",
+        "twitter:description": "Diagnose SQL Server queries, waits, concurrency, configuration, and workload demand before deciding whether more CPU, memory, or storage is justified.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-06T14:00:00.000Z",
+        "article:modified_time": "2026-08-06T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Database Health Checks Explained | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+      "hasDescription": true,
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Database Health Checks Explained",
+        "description": "See what a professional database health check covers, how evidence is gathered, and how recovery, performance, security, and operations findings are prioritized.",
+        "datePublished": "2026-08-04T14:00:00.000Z",
+        "dateModified": "2026-08-04T14:00:00.000Z",
+        "author": {
+          "@type": "Person",
+          "name": "Steven Wittek"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Netherwood Data Partners",
+          "url": "https://netherwooddatapartners.com"
+        },
+        "mainEntityOfPage": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+        "image": "https://netherwooddatapartners.com/og.png"
+      },
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "See what a professional database health check covers, how evidence is gathered, and how recovery, performance, security, and operations findings are prioritized.",
+        "robots": "index, follow",
+        "og:type": "article",
+        "og:title": "Database Health Checks Explained | Netherwood Data Partners",
+        "og:description": "See what a professional database health check covers, how evidence is gathered, and how recovery, performance, security, and operations findings are prioritized.",
+        "og:url": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Database Health Checks Explained | Netherwood Data Partners",
+        "twitter:description": "See what a professional database health check covers, how evidence is gathered, and how recovery, performance, security, and operations findings are prioritized.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png",
+        "article:published_time": "2026-08-04T14:00:00.000Z",
+        "article:modified_time": "2026-08-04T14:00:00.000Z",
+        "article:author": "Steven Wittek"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Netherwood Data Partners | Database Engineering & Data Services",
+      "canonical": null,
+      "hasDescription": true,
+      "jsonLd": null,
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Database engineering, SQL Server performance, migrations, reliability, reporting, and practical data services.",
+        "og:type": "website",
+        "og:title": "Netherwood Data Partners",
+        "og:description": "Dependable data systems. Clearer decisions.",
+        "og:url": "https://netherwooddatapartners.com",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Netherwood Data Partners",
+        "twitter:description": "Dependable data systems. Clearer decisions.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/about",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "About Steven Wittek | Netherwood Data Partners",
+      "canonical": null,
+      "hasDescription": true,
+      "jsonLd": null,
+      "noindex": false,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Meet Steven Wittek, founder, database engineer, and consultant at Netherwood Data Partners.",
+        "og:type": "website",
+        "og:title": "About Steven Wittek | Netherwood Data Partners",
+        "og:description": "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+        "og:url": "https://netherwooddatapartners.com/about/",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "About Steven Wittek | Netherwood Data Partners",
+        "twitter:description": "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png"
+      },
+      "assets": [
+        "/assets/about-C63SdmPu.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css",
+        "/assets/about-bYjbGDLI.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/admin/articles",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Article publishing | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/admin/articles",
+      "hasDescription": true,
+      "jsonLd": null,
+      "noindex": true,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "Private Netherwood Data Partners article publishing.",
+        "robots": "noindex, nofollow, noarchive",
+        "og:type": "website",
+        "og:title": "Article publishing | Netherwood Data Partners",
+        "og:description": "Private Netherwood Data Partners article publishing.",
+        "og:url": "https://netherwooddatapartners.com/admin/articles",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Article publishing | Netherwood Data Partners",
+        "twitter:description": "Private Netherwood Data Partners article publishing.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    },
+    {
+      "url": "https://netherwooddatapartners.com/robots.txt",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": null,
+      "canonical": null,
+      "hasDescription": false,
+      "jsonLd": null,
+      "noindex": false,
+      "emptyReactRoot": false,
+      "content": "User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: https://netherwooddatapartners.com/sitemap.xml\nSitemap: https://netherwooddatapartners.com/articles-sitemap.xml\n"
+    },
+    {
+      "url": "https://netherwooddatapartners.com/sitemap.xml",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": null,
+      "canonical": null,
+      "hasDescription": false,
+      "jsonLd": null,
+      "noindex": false,
+      "emptyReactRoot": false,
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://netherwooddatapartners.com/</loc></url>\n  <url><loc>https://netherwooddatapartners.com/about</loc></url>\n  <url><loc>https://netherwooddatapartners.com/articles</loc><lastmod>2026-08-24T02:11:34.373Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time</loc><lastmod>2026-08-22T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance</loc><lastmod>2026-08-20T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database</loc><lastmod>2026-08-18T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems</loc><lastmod>2026-08-16T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant</loc><lastmod>2026-08-14T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms</loc><lastmod>2026-08-12T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong</loc><lastmod>2026-08-10T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/azure-sql-migration-lessons</loc><lastmod>2026-08-08T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware</loc><lastmod>2026-08-06T14:00:00.000Z</lastmod></url>\n  <url><loc>https://netherwooddatapartners.com/articles/database-health-checks-explained</loc><lastmod>2026-08-04T14:00:00.000Z</lastmod></url>\n</urlset>\n"
+    },
+    {
+      "url": "https://netherwooddatapartners.com/404.html",
+      "status": 200,
+      "cacheControl": "max-age=600",
+      "title": "Page not found | Netherwood Data Partners",
+      "canonical": "https://netherwooddatapartners.com/404",
+      "hasDescription": true,
+      "jsonLd": null,
+      "noindex": true,
+      "emptyReactRoot": true,
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "description": "The requested page is not available.",
+        "robots": "noindex, nofollow, noarchive",
+        "og:type": "website",
+        "og:title": "Page not found | Netherwood Data Partners",
+        "og:description": "The requested page is not available.",
+        "og:url": "https://netherwooddatapartners.com/404",
+        "og:image": "https://netherwooddatapartners.com/og.png",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Page not found | Netherwood Data Partners",
+        "twitter:description": "The requested page is not available.",
+        "twitter:image": "https://netherwooddatapartners.com/og.png"
+      },
+      "assets": [
+        "/assets/home-5qQjg1kd.js",
+        "/assets/globals-DOA8vIrc.js",
+        "/assets/globals-BmQMCm6z.css"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "path": "/assets/about-C63SdmPu.js",
+      "status": 200,
+      "bytes": 8997,
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/assets/about-bYjbGDLI.css",
+      "status": 200,
+      "bytes": 5966,
+      "contentType": "text/css; charset=utf-8",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/assets/globals-BmQMCm6z.css",
+      "status": 200,
+      "bytes": 32970,
+      "contentType": "text/css; charset=utf-8",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/assets/globals-DOA8vIrc.js",
+      "status": 200,
+      "bytes": 195780,
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/assets/home-5qQjg1kd.js",
+      "status": 200,
+      "bytes": 165846,
+      "contentType": "application/javascript; charset=utf-8",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/og.png",
+      "status": 200,
+      "bytes": 1196329,
+      "contentType": "image/png",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "bytes": 712,
+      "contentType": "image/svg+xml",
+      "cacheControl": "max-age=600"
+    },
+    {
+      "path": "/images/steven-wittek.jpg",
+      "status": 200,
+      "bytes": 641660,
+      "contentType": "image/jpeg",
+      "cacheControl": "max-age=600"
+    }
+  ],
+  "github": {
+    "main": "b431beb58dccefb8e092c179a1a8517caa78c484",
+    "workflowRunId": 33636722032,
+    "deploymentId": 6223598061,
+    "deploymentStatus": "success",
+    "deployedAt": "2026-09-02T13:36:51Z",
+    "repositoryVariables": [],
+    "pagesEnvironmentVariables": [],
+    "apiUrlInActualArticleBundle": "",
+    "apiUrlInActualChatBundle": "",
+    "snapshotGeneratedAtInActualBundle": "2026-08-24T02:11:34.373Z"
+  }
+}

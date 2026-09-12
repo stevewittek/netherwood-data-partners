@@ -1,0 +1,287 @@
+# Current launch and publication checklist
+
+## Small-business direction — September 11
+
+- [x] Record the true unfinished-feature list in FEATURE_STATUS.md.
+- [x] Reword Home, About, contact choices, metadata and company knowledge around
+  small-business software, inherited systems, migration and support.
+- [x] Preserve structure, CSS, Formspark transport and SQL-owned articles.
+- [x] Verify 39 responsive renders, keyboard flow, metadata and fallback behavior;
+  required local lint/tests/builds pass. See small-business verification evidence.
+- [x] Prepare the researched positioning and consented pilot plan; no results invented.
+- [ ] Complete the actual clinic pilot after its owner agrees the scope.
+- [ ] Close remaining capabilities individually using FEATURE_STATUS.md acceptance tests.
+
+
+Application merge: `60110be306340bd8d654a3da071f57a8687b1827` from PR #1.
+Production source: `16a133f7d82bb807f3c230514f325604bac84190` after
+PR #4 fixed dynamic-publication test coverage. Current production run:
+`34605108714`; content: `b6cbdcb0f5b8eb460096db84d5084f4ae4165770`;
+digest: `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
+Evidence and limits: [PUBLICATION_VERIFICATION.md](PUBLICATION_VERIFICATION.md).
+Merge, CI and review-image evidence:
+[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
+Operating steps: [PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md).
+Code merge and passing checks do not complete production integration.
+
+## Candidate implementation and verification
+
+- [x] Inspect all three worktrees, fetch remote state, preserve existing work,
+  choose the launch integration baseline, and use an isolated branch/worktree.
+- [x] Determine actual deployed commit, run and build configuration.
+- [x] Reuse Formspark and the existing visual system and chat/backend.
+- [x] Validate the captured public-only Voyager 2 contract and ten article rows.
+- [x] Generate article content, routes, metadata, related links and sitemaps from
+  one validated export; accept a legitimate zero-article set.
+- [x] Prepare disabled automation with full-set change detection, schedule/removal
+  handling, serialization, bounded retries, failed-update reporting and rollback.
+- [x] Test corrupt-export last-good preservation and authoritative removal in a
+  returning browser with cached former content. Restore the exact source input.
+- [x] Render Home/About/index and every article at 1440/768/390; inspect contact
+  controls and 320px overflow; capture before/after protected visual fixes.
+- [x] Verify keyboard focus/order, cross-page contact activation, search/filter,
+  reduced motion, article markers and table/code containment where present.
+- [x] Verify titles, descriptions, canonicals, article JSON-LD, sitemap membership,
+  robots/admin/404, assets and internal links.
+- [x] Verify backend-down and storage-denied behavior, no-JavaScript email fallback,
+  and browser-local form success/error/reset without submitting a real inquiry.
+- [x] Reread existing delivered Formspark notification and sender/reply-to evidence.
+- [x] Run lint, publication tests, backend tests/typecheck, Vinext build, static
+  build/artifact checks and workflow/shell validation. Final run logs accompany
+  the release verification report.
+- [x] Keep public chat and telemetry disabled; document the measured readiness
+  gap and ingestion/retrieval limits.
+- [x] Resolve automated decorative-background uncertainty with computed grid
+  intersection/gradient colors. Text, article controls and dark keyboard focus
+  pass after narrow corrections; contact focus is checked after its transition.
+  This scoped review does not claim complete WCAG certification.
+
+## September 11 repository reconciliation
+
+- [x] Reconcile Voyager 2 original/imported commits with the selected publication
+  design; retain one article ingester and one publication cycle.
+- [x] Incorporate the measured retrieval default and backend failure coverage.
+- [x] Isolate the Windows-only symlink privilege limitation without skipping file
+  filtering or traversal assertions; add Windows backend CI.
+- [x] Merge the reviewed repository changes through PR #1; application commit
+  `60110be`. Publication run `34592830561` was skipped, and Pages remains at
+  `b431beb`, deployment `6223598061`.
+- [x] Verify merge CI `34592830620`: Site, Backend and Backend Windows passed.
+  Windows passed 60 tests with zero skips, including PR run `34592561393`.
+- [x] Synchronize clean Mac/Voyager 2 review checkouts to the application merge,
+  preserving original worktrees and Voyager 2's dirty document hashes.
+- [x] Build Voyager 2 review image `ndp-publication-review:60110be`: 60 tests,
+  zero skips and strict type checking passed. The identical reviewed image is
+  now the healthy loopback-only API; public chat remains off.
+- [x] Review and reconcile the actual Voyager 1 runbook, client templates and
+  acceptance report. Preserve its acceptance result as historical evidence.
+
+## Required before production acceptance
+
+- [x] Review and reconcile the actual Voyager 1 runbook, client templates and
+  acceptance report. Voyager 2's original/imported code reconciliation is complete.
+- [x] Approve and activate the private authoring path with separate protected
+  credentials, procedure-only SQL access and a loopback-only reviewed API.
+- [x] Approve the captured singular Azure article title and release the SQL value.
+- [ ] Confirm receipt of the existing direct business-email test in its actual
+  destination mailbox. Authorize any additional send separately if needed.
+- [x] Review/apply/test the prepared SQL procedure and narrow grant on Voyager 2,
+  including isolated schedule/removal/concurrent-update fixtures.
+- [x] Approve the release, repository publication credential and activation plan;
+  production publication is gated by `NDP_PUBLICATION_ENABLED`.
+- [x] Verify the deployed commit and manifest; run a controlled approved draft,
+  publish/edit, scheduled publication and withdrawal through SQL to the website,
+  including fresh/returning browsers and matching AI publication state.
+- [x] Save the successful release artifact and practice the approved rollback
+  procedure. Artifact `10265914128` was redeployed by run `34607709999`;
+  the gates were restored and run `34607819131` confirmed latest-state parity.
+- [x] Enable the 15-minute production timer only after the controlled cycle passes.
+  It is enabled and active; the timer-owned 14:04:27Z cycle passed at 14:04:34Z.
+- [ ] For a later chat release, require approved HTTPS endpoint, retrieval-time
+  SQL visibility/version enforcement, measured latency/load/citations, unsupported
+  questions, injection and backend-down tests. Chat is not needed for site launch.
+
+## Historical September 2–4 checklist
+
+These checkmarks record the earlier run; they are not renewed production approval.
+
+<details>
+<summary>Show retained historical checklist</summary>
+
+# Friday launch checklist
+
+Target: Netherwood Data Partners is a credible, professional, lead-generating
+database consulting site by Friday, September 4, 2026. Friday is QA, deployment,
+and freeze—not redesign.
+
+No item may bypass `AGENTS.md`, `docs/DESIGN_SYSTEM.md`, or the protected visual
+change policy. Record the commit, reviewer, evidence, and result for every
+completed release check.
+
+## Wednesday, September 2 — establish truth and resolve decisions
+
+- [x] Integrate the governance commit into the candidate so every agent can
+  read the source-of-truth files.
+- [x] Confirm `main` is clean and current with `origin/main`; list active
+  branches before starting integration.
+- [x] Preserve the existing Formspark work at `codex/formspark-contact`
+  (`f982599`). Do not recreate or overwrite it.
+- [x] Decide how to integrate `f982599` into the release candidate (rebase,
+  cherry-pick, or merge after confirming no newer Formspark commit exists).
+- [x] In Formspark, verify the form name, automatic spam protection, free-plan
+  limit, and exact notification recipient. Do not expose account credentials.
+- [x] Owner-approve or revise the public claims identified in
+  `docs/LAUNCH_AUDIT.md`, especially "more than 15 years" and plural
+  professional/team language.
+- [x] Owner-approve the current temporary founder image or supply the exact real
+  portrait to use. Treat replacement as a scoped visual task.
+- [x] Choose the production typography outcome: intended Manrope/DM Sans or the
+  current system stack. Create a narrow implementation task with screenshots;
+  do not combine it with layout cleanup.
+- [x] Choose one Home/About metadata set and approve canonical URLs.
+- [ ] Confirm the Friday navigation scope. Tools/Query Vault is explicitly not
+  a blocker; do not add a dead Tools link.
+- [ ] Confirm the business email works by sending and receiving a normal direct
+  email outside Formspark. A labeled message was sent from the connected Gmail
+  account to `contact@netherwooddatapartners.com` at 22:41 EDT on 2026-09-02;
+  Gmail confirmed the Sent copy, but no delivered copy had appeared in that
+  Gmail inbox after the initial check. Confirm receipt in the actual business
+  mailbox or forwarding destination before checking this item.
+
+## Thursday, September 3 — integrate P1 work and verify the candidate
+
+### Contact and conversion
+
+- [x] Integrate the existing Formspark commit without duplicating its component
+  or action endpoint.
+- [x] Build and serve the exact release candidate locally.
+- [x] Submit one clearly labeled test inquiry through the candidate form.
+- [x] Confirm Formspark records the inquiry and the intended business inbox
+  receives the notification, including sender/reply-to behavior.
+- [x] Confirm required-field, invalid-email, short-message, double-submit,
+  success, timeout/error, and reset behavior.
+- [x] Confirm the visible email fallback still works when JavaScript is
+  unavailable and when Formspark is unavailable.
+- [x] Confirm the contact path works without Voyager, SQL Server, Docker,
+  Ollama, a tunnel, or home-hosted services.
+- [x] Review the form privacy sentence and any required disclosure with the
+  owner; do not invent legal claims.
+- [x] Verify all Home, About, Articles, header, and footer CTAs lead to the
+  intended contact path.
+
+### Content and credibility
+
+- [x] Confirm the hero states the concrete database-engineering offer and the
+  primary service areas remain accurate.
+- [x] Confirm every biography, location, experience, service, technology, and
+  availability statement is factual and owner-approved.
+- [x] Confirm there are no invented employees, testimonials, logos, clients,
+  counts, certifications, awards, years-in-business claims, SLAs, guarantees,
+  packages, prices, or response times.
+- [x] Confirm the selected founder image is genuine/approved, correctly cropped,
+  optimized, and has accurate alt text.
+- [x] Proofread visible copy as a human reader. Remove generic consulting/AI
+  language listed in `docs/BRAND_VOICE.md`.
+- [ ] Open all ten published article routes; verify title, author/date,
+  formatting, related links, and contact CTA.
+
+### Responsive and accessibility
+
+- [x] Capture desktop before/after screenshots for every protected visual
+  change and compare Home, About, Articles index, one article, and Contact.
+- [x] Repeat at 390px and 768px. Also spot-check 320px if the full navigation
+  remains visible there.
+- [x] Confirm no horizontal document overflow, clipped text, overlap, broken
+  image crop, or off-screen control.
+- [ ] Navigate the whole public flow with keyboard only; verify visible focus,
+  logical focus order, and usable form errors/status messages.
+- [x] Verify one `h1` per page, logical heading order, real labels, meaningful
+  alt text, and no color-only instructions.
+- [ ] Check text, control, link, and focus contrast on light and dark surfaces.
+- [ ] Enable reduced motion and confirm no required information depends on
+  animation.
+- [ ] Verify article tables and code blocks remain usable on mobile.
+
+### SEO, links, and build
+
+- [x] Align Home/About title, description, Open Graph, Twitter, robots, and
+  canonical metadata in the static output.
+- [x] Confirm every article has a unique title, description, canonical URL,
+  Article JSON-LD, publication date, modification date, and author.
+- [x] Verify `public/CNAME`, favicon, `og.png`, and social-image dimensions.
+- [x] Verify generated `robots.txt` allows public pages, disallows `/admin/`,
+  and references both sitemaps.
+- [x] Verify `sitemap.xml` and `articles-sitemap.xml` contain only canonical,
+  successful public routes and all ten articles.
+- [x] Crawl internal links in the built `pages-dist`; fix broken navigation,
+  anchors, article links, images, and downloads.
+- [x] Confirm the Tools nav item remains absent until `/tools` is a useful page.
+- [x] Run `pnpm install --frozen-lockfile` with Node 22.13 or newer and pnpm
+  11.19.0.
+- [x] Run `pnpm lint`.
+- [x] Run `pnpm test` (the configured Vinext production build).
+- [x] Run `pnpm build:pages` and inspect generated Home, About, Articles,
+  article detail, admin, 404, robots, and sitemap artifacts.
+- [x] Run `git diff --check` and review the entire release diff.
+- [x] Scan tracked changes for secrets, tokens, private email credentials,
+  tunnel keys, and `.env` data. A public Formspark action URL is expected; no
+  private credential belongs in browser code.
+- [x] If analytics is present in the candidate, verify consent/privacy behavior,
+  purpose, retention, production delivery, and outage safety. If absent, record
+  "not present"; analytics is not a Friday blocker. Result: not present.
+
+## Friday, September 4 — freeze, deploy, and smoke test
+
+### Release gate
+
+- [ ] Freeze content and protected visual files except for an approved P0 fix.
+- [ ] Confirm all P0 items are closed and every P1 item has an owner-approved
+  result or an explicit no-launch decision.
+- [ ] Confirm the release branch is based on current `origin/main` and contains
+  no unrelated backend, infrastructure, database, or design changes.
+- [ ] Re-run `pnpm lint`, `pnpm test`, `pnpm build:pages`, and
+  `git diff --check` on the final commit.
+- [ ] Save final desktop and mobile screenshots for Home, About, Articles, one
+  article, and the contact form.
+- [ ] Review the generated artifacts and commit hash; then merge through the
+  normal `main` workflow.
+
+### Deployment
+
+- [ ] Watch both GitHub Actions workflows: CI and Publish website.
+- [ ] Confirm the Pages deployment reports the expected final commit.
+- [ ] Do not change DNS, router/firewall rules, tunnels, Voyager exposure,
+  database credentials, or SQL Server networking as part of the website launch.
+- [ ] If deployment fails, stop and roll back/revert the focused release commit;
+  do not perform a live redesign.
+
+### Production smoke test
+
+- [ ] Open the canonical HTTPS domain in a fresh/private session.
+- [ ] Verify Home, About, Articles, all ten article details, 404, robots, and
+  both sitemaps return the expected content.
+- [ ] Verify header/footer links and Home anchors: Services, Approach, and
+  Contact.
+- [ ] Verify production title, descriptions, canonicals, social metadata, and
+  no-index behavior for admin/404.
+- [ ] Verify the founder image, favicon, social image, and article assets load
+  without console or network errors.
+- [ ] Repeat the key path at desktop, 768px, and 390px; confirm no horizontal
+  overflow or hidden contact control.
+- [ ] Submit one final labeled Formspark smoke-test inquiry.
+- [ ] Confirm it appears in Formspark and arrives in the intended inbox; then
+  record the time and remove/label the test lead as appropriate.
+- [ ] Verify the email fallback opens the correct address.
+- [ ] Verify the site and contact email remain usable with Voyager unavailable.
+- [ ] If analytics was intentionally included, verify one production page view
+  without collecting unexpected personal data. Otherwise record "not present."
+- [ ] Record launch commit, deployment run, production URL, test results, and
+  rollback commit in the release notes.
+
+### Freeze rule
+
+After successful smoke testing, make no design, typography, navigation, or copy
+changes on Friday unless a P0 is confirmed. Move P2/P3 work to post-launch
+branches.
+
+</details>

@@ -29,17 +29,45 @@ jobs:
           cache: true
           install: false
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm install --frozen-lockfile
+          npm ci --prefix backend
       - name: Lint
         run: pnpm run lint
+      - name: Publication tests
+        run: pnpm test:publication
       - name: Test
         run: pnpm run test
       - name: Build static site
-        run: pnpm run build:pages
+        run: |
+          pnpm run build:pages
+          node scripts/check-pages.mjs
 
   backend:
     name: Backend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Test
+        run: npm test
+      - name: Typecheck
+        run: npm run typecheck
+
+  backend-windows:
+    name: Backend Windows
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: backend

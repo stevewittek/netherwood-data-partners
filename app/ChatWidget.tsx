@@ -3,7 +3,9 @@
 import { useEffect, useId, useState } from "react";
 import type { FormEvent } from "react";
 
-const apiUrl = (import.meta.env?.VITE_VOYAGER_API_URL as string | undefined)?.replace(/\/$/, "");
+const approved = import.meta.env?.VITE_PUBLIC_CHAT_ENABLED === "true";
+const endpoint = (import.meta.env?.VITE_VOYAGER_API_URL as string | undefined)?.replace(/\/$/, "");
+const apiUrl = approved && endpoint?.startsWith("https://") ? endpoint : undefined;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 type Identifiers = { visitorId: string; sessionId: string; chatSessionId: string };
 type Citation = { title: string; type: "document" | "database"; url?: string };
@@ -65,7 +67,7 @@ function safeReferrer(): string | undefined {
 
 export default function ChatWidget() {
   const panelId = useId();
-  const [identifiers] = useState<Identifiers | undefined>(() => typeof window === "undefined" ? undefined : createIdentifiers());
+  const [identifiers] = useState<Identifiers | undefined>(() => typeof window === "undefined" || !apiUrl ? undefined : createIdentifiers());
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState("");
@@ -145,7 +147,7 @@ export default function ChatWidget() {
       {open && (
         <div className="chat-panel" id={panelId}>
           <strong>How can we help?</strong>
-          <p>Ask about SQL Server, database performance, migrations, or a project.</p>
+          <p>Ask about software changes, moving data, practical support or a business project.</p>
           {reply && (
             <div className="chat-reply" role="status" aria-live="polite">
               <div>{reply}</div>

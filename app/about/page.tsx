@@ -6,43 +6,25 @@ import "./about.css";
 
 export const metadata: Metadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
-  description: "Meet Steven Wittek, founder, database engineer, and consultant at Netherwood Data Partners.",
+  description: "Meet Steven Wittek, a New Jersey-based consultant helping small businesses with software changes, data migration, practical fixes and support.",
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+    description: "Practical business systems and data support, grounded in more than 15 years of hands-on experience.",
+    url: "/about",
   },
   twitter: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical database engineering and consulting grounded in more than 15 years of real-world systems work.",
+    description: "Practical business systems and data support, grounded in more than 15 years of hands-on experience.",
   },
 };
 
 const expertise = [
-  {
-    number: "01",
-    title: "SQL Server Performance",
-    body: "Execution plans, Query Store, Extended Events, waits, indexing, blocking, query tuning, workload analysis and production troubleshooting.",
-  },
-  {
-    number: "02",
-    title: "Database Engineering",
-    body: "Architecture, upgrades, migrations, automation, deployment processes, database development and production support.",
-  },
-  {
-    number: "03",
-    title: "Reliability",
-    body: "Always On availability groups, replication, backup and recovery, disaster recovery, monitoring and operational resilience.",
-  },
-  {
-    number: "04",
-    title: "Data & Reporting",
-    body: "T-SQL development, reporting systems, data conversions, integrations, data cleanup and database-backed applications.",
-  },
-  {
-    number: "05",
-    title: "Cloud & Modernization",
-    body: "Microsoft Azure, Azure SQL, managed database environments, Google Cloud and modernization of older database systems.",
-  },
+  { number: "01", title: "Software transitions", body: "Review an existing setup, plan new software, coordinate with providers, and test the everyday tasks your staff depend on." },
+  { number: "02", title: "Data migration & reporting", body: "Data conversions, record validation, cleanup, integrations and reports that help a business understand its information." },
+  { number: "03", title: "SQL Server & performance", body: "Execution plans, Query Store, waits, indexing, blocking and production troubleshooting when the database needs deeper investigation." },
+  { number: "04", title: "Reliability & recovery", body: "Backup and recovery review, upgrade planning, monitoring and careful change sequencing for the systems behind your software." },
+  { number: "05", title: "Support & handover", body: "Practical documentation, staff guidance, problem investigation and a clear plan for ongoing support or specialist escalation." },
 ];
 
 export default function AboutPage() {
@@ -54,13 +36,13 @@ export default function AboutPage() {
         <div className="about-hero-copy">
           <p className="eyebrow">About the founder</p>
           <h1>Steven Wittek</h1>
-          <p className="about-role">Founder, Database Engineer & Consultant</p>
+          <p className="about-role">Founder, Business Systems & Data Consultant</p>
           <div className="long-form about-intro">
             <p>
-              I have spent more than 15 years working with databases, applications, and the systems businesses depend on every day. My background combines hands-on SQL Server engineering, performance tuning, production support, reporting, data migration, cloud systems, and long-term technology consulting.
+              I help business owners make sense of their software, move existing data into new systems, and sort out the problems that get in the way of daily work. I have worked in technology since 2009, with more than 15 years of hands-on experience supporting applications, databases and business systems.
             </p>
             <p>
-              I founded Netherwood Data Partners to bring that experience directly to businesses that need practical help with their data without adding another layer of enterprise complexity.
+              I started Netherwood Data Partners so an office, shop or service business could work directly with someone who understands both the technical detail and the need to keep the business operating. You can start with one problem, a software change or a review of the setup you inherited.
             </p>
           </div>
           <a className="button button-primary" href="/#contact">Work With Me</a>
@@ -71,7 +53,7 @@ export default function AboutPage() {
       <section className="about-section about-background">
         <div className="about-section-title">
           <p className="eyebrow">Professional background</p>
-          <h2>Database Work Built Around Real Systems</h2>
+          <h2>Technical depth behind practical business help</h2>
         </div>
         <div className="long-form about-section-copy">
           <p>
@@ -89,7 +71,7 @@ export default function AboutPage() {
       <section className="expertise-section" aria-labelledby="expertise-title">
         <div className="expertise-heading">
           <p className="eyebrow">Areas of expertise</p>
-          <h2 id="expertise-title">The work behind reliable data systems.</h2>
+          <h2 id="expertise-title">From the first review to the support handoff.</h2>
         </div>
         <ol className="expertise-list">
           {expertise.map((area) => (
@@ -129,13 +111,13 @@ export default function AboutPage() {
           </div>
           <div className="long-form origin-copy">
             <p>
-              Netherwood Data Partners grew out of a simple idea: many businesses need experienced data and database help, but they do not necessarily need a large consulting firm, a long engagement, or another software platform.
+              Netherwood Data Partners grew out of a simple idea: a small business should be able to get experienced technology help for a defined piece of work, with a clear explanation of what happens next.
             </p>
             <p>
-              Sometimes a company needs someone to investigate why SQL Server is suddenly slow. Sometimes an old application needs its data converted. Sometimes reporting has become unreliable. Sometimes the business has simply accumulated years of databases, spreadsheets and files and needs help making sense of them.
+              That might mean reviewing the software that comes with a business purchase, preparing records for a new application, fixing an unreliable report, or helping staff through a change. Sometimes it means investigating the SQL Server database underneath the application.
             </p>
             <p>
-              I wanted to create a consulting company that could handle those problems directly while also developing practical monitoring, analysis and database tools that make ongoing support more useful and affordable.
+              I stay involved in the technical work and the handover. If a project needs networking, security, hardware or another specialty, I discuss the scope with you and coordinate with the appropriate provider. Responsibilities and any additional work are agreed before anyone starts.
             </p>
           </div>
         </div>
@@ -166,10 +148,10 @@ export default function AboutPage() {
       <section className="about-contact" id="contact">
         <div>
           <p className="eyebrow">Start with the problem</p>
-          <h2>Have a Data Problem?</h2>
+          <h2>What would make your business easier to run?</h2>
         </div>
         <div className="about-contact-copy">
-          <p>If a database is slow, a migration has stalled, reporting is unreliable, or you simply need an experienced second set of eyes, tell me what is happening.</p>
+          <p>Tell me what you use today, what is getting in the way and what you want to change. You do not need to know which system is causing the problem.</p>
           <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">Talk With Steven</a>
         </div>
       </section>

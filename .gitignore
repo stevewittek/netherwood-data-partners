@@ -43,3 +43,8 @@ yarn-error.log*
 !.env.example
 !**/.env.example
 /.pnpm-store/
+
+# Private/local publication work and QA output
+/pages-site/.publication-candidates/
+/.publication-input/
+/.publication-state/

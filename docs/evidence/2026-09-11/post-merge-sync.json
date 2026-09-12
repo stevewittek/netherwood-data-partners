@@ -1,0 +1,65 @@
+{
+  "verifiedDate": "2026-09-11",
+  "scope": "Repository merge and isolated build verification; production not activated",
+  "applicationMerge": {
+    "commit": "60110be306340bd8d654a3da071f57a8687b1827",
+    "pullRequest": "https://github.com/stevewittek/netherwood-data-partners/pull/1",
+    "mergedAt": "2026-09-11T11:11:38Z",
+    "reviewedHead": "42cf8307ede0ac6976031657cd62645a8d9b6bd0",
+    "treeMatchesReviewedHead": true,
+    "voyagerOriginalAndImportHistoriesRetained": true
+  },
+  "checks": {
+    "mainCi": "https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830620",
+    "site": "passed",
+    "linuxBackend": "passed",
+    "windowsBackend": "passed",
+    "windowsTests": { "tests": 60, "passed": 60, "failed": 0, "skipped": 0 },
+    "macBackendTests": { "tests": 60, "passed": 60, "failed": 0, "skipped": 0 },
+    "publicationTests": 11,
+    "lint": "passed",
+    "backendTypecheck": "passed",
+    "vinextBuild": "passed",
+    "staticBuildAndRouteChecks": "passed: 13 routes, including all 10 articles",
+    "workflowSyntax": "passed with optional shellcheck and pyflakes disabled",
+    "diffCheck": "passed",
+    "browserEvidence": "Prior September 11 candidate evidence applies: no frontend changes in this reconciliation"
+  },
+  "voyager2": {
+    "reviewCheckout": "/home/nasa/netherwood-release-review-60110be",
+    "reviewHead": "60110be306340bd8d654a3da071f57a8687b1827",
+    "reviewClean": true,
+    "originalCheckoutHead": "417f2e86b3dcf018ba3e09789c8fb454ec2a1979",
+    "preservedOriginalFiles": {
+      "docs/PROJECT_STATE.md": "055fd9a547d4aa2b4e8c80a6164536b0776d368a66a463bf9e54d485b9b3a180",
+      "docs/VOYAGER2_LAUNCH_STATUS.md": "af69582e53f41891713be3a8998187ce6a4e2da299823d9e93aedf31dd801eff"
+    },
+    "bundleSha256": "4715d3a90f5718eaf13a4edbcee3680868e44dfcf1f132a7c81168b4b413d253",
+    "offlineBuild": "Stopped at uncached npm dependency installation; not a passing offline build",
+    "standardDockerBuild": "Passed locked dependency install, 60 tests with zero failures/skips, and typecheck",
+    "reviewImageTag": "ndp-publication-review:60110be",
+    "reviewImageId": "sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e",
+    "reviewImageActivated": false,
+    "unchangedRunningImage": "sha256:f988324af08604881cac57459df4698fb854585dbc8eac307ad42775c99f42d0",
+    "unchangedRunningStart": "2026-08-27T21:34:47.083611256Z",
+    "health": 200,
+    "authoring": 404,
+    "publicationTimers": "Both not found and inactive",
+    "apiAndOllamaBindings": "127.0.0.1 only"
+  },
+  "production": {
+    "pagesCommit": "b431beb58dccefb8e092c179a1a8517caa78c484",
+    "deploymentId": 6223598061,
+    "deploymentStatus": "success",
+    "publicationWorkflow": "https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830561",
+    "publicationWorkflowConclusion": "skipped",
+    "activationVariables": "Unset in repository and github-pages environment",
+    "chat": "disabled",
+    "controlledPostReleasePublication": "not yet authorized or verified"
+  },
+  "voyager1": {
+    "completionSummary": "reviewed",
+    "actualRunbookTemplatesAndAcceptanceFiles": "awaiting transfer; not integrated",
+    "remoteAccess": "Existing SSH path timed out before authentication; no connection or exposure changes made"
+  }
+}

@@ -98,7 +98,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   if (!(ollamaUrl.protocol === "http:" || ollamaUrl.protocol === "https:")) {
     throw new Error("OLLAMA_BASE_URL must use http or https");
   }
-  const ragMaxDistance = Number(env.RAG_MAX_DISTANCE ?? "0.65");
+  const ragMaxDistance = Number(env.RAG_MAX_DISTANCE ?? "0.35");
   if (!Number.isFinite(ragMaxDistance) || ragMaxDistance < 0 || ragMaxDistance > 2) {
     throw new Error("RAG_MAX_DISTANCE must be a number from 0 through 2");
   }

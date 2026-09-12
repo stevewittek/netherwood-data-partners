@@ -25,11 +25,8 @@ export type PublicArticle = {
 };
 
 type Snapshot = { generatedAt: string | null; articles: PublicArticle[] };
-type StoredArticleCache = { articles: PublicArticle[]; savedAt: number };
 const staticSnapshot = snapshot as Snapshot;
-const apiUrl = (import.meta.env?.VITE_VOYAGER_API_URL as string | undefined)?.replace(/\/$/, "");
-const listCacheKey = "ndp.articles.published.v1";
-const indexDescription = "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.";
+const indexDescription = "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.";
 
 function isArticle(value: unknown): value is PublicArticle {
   if (!value || typeof value !== "object") return false;
@@ -62,53 +59,6 @@ function sortArticles(articles: PublicArticle[]): PublicArticle[] {
 function fallbackArticles(): PublicArticle[] {
   const exported = staticSnapshot.articles.filter(isArticle);
   return sortArticles(exported);
-}
-
-function storedArticleCache(key: string): StoredArticleCache {
-  try {
-    const value = JSON.parse(localStorage.getItem(key) ?? "null") as unknown;
-    if (Array.isArray(value)) {
-      const articles = value.filter(isArticle);
-      return { articles, savedAt: Math.max(0, ...articles.map((article) => timestamp(article.modifiedDate))) };
-    }
-    if (value && typeof value === "object") {
-      const cached = value as Record<string, unknown>;
-      const articles = Array.isArray(cached.articles) ? cached.articles.filter(isArticle) : [];
-      return { articles, savedAt: typeof cached.savedAt === "string" ? timestamp(cached.savedAt) : 0 };
-    }
-    return { articles: [], savedAt: 0 };
-  } catch {
-    return { articles: [], savedAt: 0 };
-  }
-}
-
-function remember(key: string, value: PublicArticle[]): void {
-  try {
-    localStorage.setItem(key, JSON.stringify({ savedAt: new Date().toISOString(), articles: value }));
-  } catch { /* static fallback remains available */ }
-}
-
-function browserFallbackArticles(): PublicArticle[] {
-  const exported = fallbackArticles();
-  const cached = storedArticleCache(listCacheKey);
-  const exportTime = staticSnapshot.generatedAt ? timestamp(staticSnapshot.generatedAt) : 0;
-  if (cached.articles.length > 0 && (exported.length === 0 || cached.savedAt > exportTime)) {
-    return sortArticles(cached.articles);
-  }
-  return exported;
-}
-
-async function api<T>(path: string): Promise<T> {
-  if (!apiUrl) throw new Error("offline");
-  const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 5_000);
-  try {
-    const response = await fetch(`${apiUrl}${path}`, { signal: controller.signal });
-    if (!response.ok) throw new Error(response.status === 404 ? "not_found" : "unavailable");
-    return await response.json() as T;
-  } finally {
-    window.clearTimeout(timer);
-  }
 }
 
 function dateLabel(value: string): string {
@@ -202,10 +152,6 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
   }, [article, noindex, requestedSlug]);
 }
 
-function LoadingLine() {
-  return <p className="articles-status" role="status">Loading the latest field notes…</p>;
-}
-
 function ArticlePreview({ article, featured = false }: { article: PublicArticle; featured?: boolean }) {
   return (
     <article className={featured ? "article-preview article-preview-featured" : "article-preview"}>
@@ -224,25 +170,10 @@ function ArticlePreview({ article, featured = false }: { article: PublicArticle;
 }
 
 export function ArticlesIndex() {
-  const [articles, setArticles] = useState<PublicArticle[]>(fallbackArticles);
-  const [loading, setLoading] = useState(Boolean(apiUrl));
+  const articles = useMemo(() => fallbackArticles(), []);
   const [category, setCategory] = useState("all");
   const [search, setSearch] = useState("");
   usePageMetadata();
-
-  useEffect(() => {
-    const fallback = browserFallbackArticles();
-    queueMicrotask(() => { if (fallback.length > 0) setArticles(fallback); });
-    if (!apiUrl) return;
-    void api<{ articles: PublicArticle[] }>("/api/articles?page=1&pageSize=50")
-      .then((payload) => {
-        const valid = sortArticles(payload.articles.filter(isArticle));
-        setArticles(valid);
-        remember(listCacheKey, valid);
-      })
-      .catch(() => undefined)
-      .finally(() => setLoading(false));
-  }, []);
 
   const sortedArticles = useMemo(() => sortArticles(articles), [articles]);
   const categories = useMemo(() => [...new Set(sortedArticles.map((article) => article.category))]
@@ -276,10 +207,9 @@ export function ArticlesIndex() {
       <header className="articles-masthead">
         <p className="eyebrow">Netherwood insights</p>
         <h1>Articles &amp; Field Notes</h1>
-        <p>Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.</p>
+        <p>Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.</p>
       </header>
       <section className="articles-publication">
-        {loading && articles.length === 0 ? <LoadingLine /> : null}
         {articles.length > 0 ? (
           <>
             <form className="articles-tools" role="search" onSubmit={(event) => event.preventDefault()}>
@@ -332,7 +262,7 @@ export function ArticlesIndex() {
             )}
           </>
         ) : null}
-        {!loading && articles.length === 0 ? (
+        {articles.length === 0 ? (
           <div className="articles-empty">
             <p className="eyebrow">Publication desk</p>
             <h2>Field notes are being prepared.</h2>
@@ -347,63 +277,11 @@ export function ArticlesIndex() {
 }
 
 export function ArticlePage({ slug }: { slug: string }) {
-  const staticArticle = staticSnapshot.articles.find((article) => article.slug === slug);
-  const [article, setArticle] = useState<PublicArticle | undefined>(staticArticle);
-  const [loading, setLoading] = useState(Boolean(apiUrl));
-  const [missing, setMissing] = useState(!apiUrl && !staticArticle);
-  const [relatedPool, setRelatedPool] = useState<PublicArticle[]>(fallbackArticles);
-  usePageMetadata(article, missing || (!loading && !article), slug);
-
-  useEffect(() => {
-    const cached = storedArticleCache(`ndp.article.${slug}.v1`);
-    const exportTime = staticSnapshot.generatedAt ? timestamp(staticSnapshot.generatedAt) : 0;
-    const cachedArticle = cached.articles[0];
-    const localFallback = cachedArticle && (!staticArticle || cached.savedAt > exportTime)
-      ? cachedArticle
-      : staticArticle;
-    queueMicrotask(() => {
-      if (localFallback) setArticle(localFallback);
-      setMissing(!localFallback && !apiUrl);
-    });
-    if (!apiUrl) return;
-    void api<{ article: PublicArticle }>(`/api/articles/${encodeURIComponent(slug)}`)
-      .then((payload) => {
-        if (!isArticle(payload.article) || typeof payload.article.html !== "string") throw new Error("invalid");
-        setArticle(payload.article);
-        setMissing(false);
-        remember(`ndp.article.${slug}.v1`, [payload.article]);
-      })
-      .catch((error: Error) => {
-        if (error.message === "not_found") {
-          setArticle(undefined);
-          setMissing(true);
-        }
-      })
-      .finally(() => setLoading(false));
-  }, [slug, staticArticle]);
-
-  useEffect(() => {
-    if (!article?.category) return;
-    if (!apiUrl) {
-      const fallback = browserFallbackArticles();
-      queueMicrotask(() => setRelatedPool(fallback));
-      return;
-    }
-    let active = true;
-    void api<{ articles: PublicArticle[] }>("/api/articles?page=1&pageSize=50")
-      .then((payload) => {
-        if (!active) return;
-        const valid = sortArticles(payload.articles.filter(isArticle));
-        setRelatedPool(valid);
-        remember(listCacheKey, valid);
-      })
-      .catch(() => {
-        if (!active) return;
-        const fallback = browserFallbackArticles();
-        if (fallback.length > 0) setRelatedPool(fallback);
-      });
-    return () => { active = false; };
-  }, [article?.category]);
+  // This release's complete SQL export is authoritative, including an empty set.
+  // Never read legacy browser caches or combine it with a different live API revision.
+  const article = staticSnapshot.articles.find((item) => item.slug === slug);
+  const relatedPool = useMemo(() => fallbackArticles(), []);
+  usePageMetadata(article, !article, slug);
 
   const related = useMemo(() => {
     const articleTags = new Set(article?.tags.map((tag) => tag.toLocaleLowerCase()) ?? []);
@@ -419,7 +297,6 @@ export function ArticlePage({ slug }: { slug: string }) {
       .map(({ candidate }) => candidate);
   }, [article?.category, article?.tags, relatedPool, slug]);
 
-  if (!article && loading) return <main><SiteHeader currentPage="articles" /><div className="article-shell"><LoadingLine /></div><SiteFooter /></main>;
   if (!article) return (
     <main>
       <SiteHeader currentPage="articles" />

@@ -1,0 +1,48 @@
+{
+  "capturedAt": "2026-09-11T03:27:30.520376+00:00",
+  "repository": "/home/nasa/netherwood-data-partners",
+  "localCommits": [
+    "9f9a4ca063ea2bce42b75eac25dfe636206d37ba",
+    "417f2e86b3dcf018ba3e09789c8fb454ec2a1979"
+  ],
+  "remoteMainUnchanged": true,
+  "status": "Two local implementation commits; current PROJECT_STATE.md remains uncommitted; no separate final Mac handoff",
+  "files": [
+    {
+      "path": "docs/PROJECT_STATE.md",
+      "sha256": "055fd9a547d4aa2b4e8c80a6164536b0776d368a66a463bf9e54d485b9b3a180",
+      "matchesRemote": true
+    },
+    {
+      "path": "docs/ARTICLES_CMS.md",
+      "sha256": "187edd2979a9124fbf0369e44257fcb8bec43ab56d2408a43f7f4407ef7faf0f",
+      "matchesRemote": true
+    },
+    {
+      "path": "docs/VOYAGER1_ARTICLES_INTEGRATION.md",
+      "sha256": "187dd0eddd0db1e5720087ff76522fd75aedc5473229b39dc89a6a0c4a6ac3be",
+      "matchesRemote": true
+    },
+    {
+      "path": "docs/VOYAGER2_BACKEND.md",
+      "sha256": "c5c0c01f01dbd631bfd5253a802678e70dde6389899c41bc6f5ab4f028ace0bf",
+      "matchesRemote": true
+    },
+    {
+      "path": "ops/articles/README.md",
+      "sha256": "40d68be0362a25db69915a6a8eeec81564d9130e9c20d482553cadc77b7053a3",
+      "matchesRemote": true
+    }
+  ],
+  "liveChecks": {
+    "healthHttp": 200,
+    "adminHttp": 404,
+    "timerEnabled": "not-found",
+    "timerActive": "inactive",
+    "runningApiImage": "sha256:f988324af08604881cac57459df4698fb854585dbc8eac307ad42775c99f42d0",
+    "apiStartedAt": "2026-08-27T21:34:47.083611256Z",
+    "newBuiltApiImage": "sha256:c18758f025c6f2dfc534102b301b1b881362ae7318f6121a59b8430e425a9eb8",
+    "newImageCreatedAt": "2026-09-11T03:17:44.108889834Z"
+  },
+  "reportedBackendTests": "56 tests and strict typecheck passed in new image, as documented by Voyager 2 task; this agent did not rerun tests or model calls"
+}

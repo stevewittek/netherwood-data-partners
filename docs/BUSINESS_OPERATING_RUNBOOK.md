@@ -1,6 +1,21 @@
+> Current implementation note, September 11: this operating-process document
+> retains the original Voyager 1 draft below. Its old statements that article
+> export/AI refresh/publication are blocked are historical and superseded by
+> PUBLICATION_OPERATIONS.md and production-release.json. Formspark intake and
+> automatic SQL publication are live. Business-process templates do not imply
+> a built CRM. FEATURE_STATUS.md is the current unfinished-capability register;
+> CHIROPRACTIC_PILOT.md is a proposed engagement, not a client success.
+
 # Business operating runbook
 
 Last reviewed: 2026-09-11 UTC on Voyager 1.
+
+Reconciled into the production release work on 2026-09-11. The article
+publication observations below are historical evidence from Voyager 1 at
+`b431beb`; the current editing, publication, website/AI currency, failure and
+rollback procedure is [PUBLICATION_OPERATIONS.md](PUBLICATION_OPERATIONS.md).
+The inquiry-to-closeout controls and explicit owner decisions in this document
+remain current unless a later approved business record resolves them.
 
 ## Purpose and boundaries
 

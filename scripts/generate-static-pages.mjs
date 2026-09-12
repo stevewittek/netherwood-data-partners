@@ -1,11 +1,12 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { readArticleSnapshot } from "../backend/src/article-snapshot.ts";
 
 const root = resolve(import.meta.dirname, "..");
 const output = resolve(root, "pages-dist");
 const template = await readFile(resolve(output, "index.html"), "utf8");
-const snapshot = JSON.parse(await readFile(resolve(root, "pages-site/articles-snapshot.json"), "utf8"));
-const articles = Array.isArray(snapshot.articles) ? snapshot.articles : [];
+const snapshot = await readArticleSnapshot(resolve(root, "pages-site/articles-snapshot.json"));
+const articles = snapshot.articles;
 const siteUrl = "https://netherwooddatapartners.com";
 const defaultImage = `${siteUrl}/og.png`;
 
@@ -58,7 +59,7 @@ async function page(path, html) {
 
 await page("articles", metaPage({
   title: "Articles & Field Notes | Netherwood Data Partners",
-  description: "Practical notes on databases, performance, data projects, infrastructure and the problems that show up in real systems.",
+  description: "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.",
   canonical: `${siteUrl}/articles`,
 }));
 
@@ -70,12 +71,11 @@ await page("admin/articles", metaPage({
 }));
 
 for (const article of articles) {
-  if (!article || typeof article.slug !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug)) continue;
   const canonical = `${siteUrl}/articles/${article.slug}`;
   const image = article.featuredImage ? new URL(article.featuredImage, siteUrl).href : defaultImage;
   const description = article.seoDescription || article.summary;
   await page(`articles/${article.slug}`, metaPage({
-    title: `${article.title} | Netherwood Data Partners`,
+    title: article.seoTitle || `${article.title} | Netherwood Data Partners`,
     description,
     canonical,
     type: "article",
@@ -98,7 +98,7 @@ for (const article of articles) {
   }));
 }
 
-const validArticles = articles.filter((article) => article && typeof article.slug === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug));
+const validArticles = articles;
 const articleUrls = [
   `  <url><loc>${siteUrl}/articles</loc>${snapshot.generatedAt ? `<lastmod>${escapeHtml(snapshot.generatedAt)}</lastmod>` : ""}</url>`,
   ...validArticles.map((article) => `  <url><loc>${siteUrl}/articles/${escapeHtml(article.slug)}</loc>${article.modifiedDate ? `<lastmod>${escapeHtml(article.modifiedDate)}</lastmod>` : ""}</url>`),
@@ -131,3 +131,17 @@ await writeFile(resolve(output, "404.html"), metaPage({
   canonical: `${siteUrl}/404`,
   noindex: true,
 }));
+
+// This same complete export drives the browser bundle, routes, metadata and AI handoff.
+await writeFile(resolve(output, "articles-snapshot.json"), `${JSON.stringify(snapshot)}\n`);
+await writeFile(resolve(output, "publication.json"), `${JSON.stringify({
+  format: "netherwood.website-release/v1",
+  sourceCommit: process.env.GITHUB_SHA || "local",
+  contentCommit: process.env.NDP_CONTENT_COMMIT || "local",
+  contentDigest: snapshot.contentDigest,
+  articleCount: snapshot.articleCount,
+  generatedAt: snapshot.generatedAt,
+  builtAt: new Date().toISOString(),
+  runUrl: process.env.GITHUB_RUN_ID ? `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}` : null,
+  chatEnabled: false,
+})}\n`);
