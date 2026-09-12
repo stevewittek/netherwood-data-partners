@@ -17,7 +17,8 @@
     "db:generate": "drizzle-kit generate",
     "articles:validate": "node --experimental-strip-types scripts/prepare-publication.ts",
     "articles:import": "node --experimental-strip-types scripts/prepare-publication.ts",
-    "test:publication": "node --experimental-strip-types --test backend/test/article-snapshot.test.ts backend/test/publication-release.test.ts && node --test test/publication-pipeline.test.mjs",
+    "test:publication": "node --experimental-strip-types --test backend/test/article-snapshot.test.ts backend/test/publication-release.test.ts test/admin-publishing-desk.test.ts && node --test test/publication-pipeline.test.mjs",
+    "test:admin": "node --experimental-strip-types --test test/admin-publishing-desk.test.ts",
     "preview:pages": "node scripts/preview-pages.mjs"
   },
   "dependencies": {

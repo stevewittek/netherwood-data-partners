@@ -1,23 +1,18 @@
-# Current work: small-business positioning and feature accountability
+# Current work: owner publishing desk and feature accountability
 
-The owner requested a complete unfinished-feature inventory, a shift from a
-SQL Server-led offer to small-business software/data help, and a practical
-chiropractic-office pilot. The existing structure, article source, Formspark
-and publication cycle are preserved. FEATURE_STATUS.md distinguishes working,
-unreleased, roadmap and unverified items; it supersedes ambiguous "release
-complete" language when discussing the entire product.
+The private owner publishing desk has been implemented in `app/admin/ArticlesAdmin.tsx`
+and `app/admin/admin-utils.ts`. It provides Steve a secure browser workflow to
+manage SQL-backed articles from Mac and Windows workstations over the private Voyager
+connection without hardcoding or leaking credentials.
 
-The new copy keeps SQL Server as supporting expertise and describes software
-setup, inherited systems, data migration, practical fixes and staff handover.
-No formal partnership, clinic client story or measured outcome is claimed.
-See SMALL_BUSINESS_POSITIONING.md and CHIROPRACTIC_PILOT.md. The clinic work
-requires its owner's agreement and has not been performed.
-
-Local validation passed lint, 11 publication tests, Vinext/static builds, all
-13 route checks and 39 responsive browser renders plus keyboard, form fallback
-and removal scenarios. See [positioning evidence](evidence/2026-09-11/small-business/verification.json).
-The publication content digest is unchanged. CI and deployment are verified
-after merge; all dated application evidence below remains historical provenance.
+Key capabilities delivered and verified:
+- Dynamic private API configuration with zero credentials in static bundles, URLs, or persistent browser storage (memory-only authentication).
+- Full article lifecycle: Draft creation, draft editing, server-sanitized preview, immediate and future-dated UTC scheduling, publish, unpublish, archive, and guarded deletion.
+- Clear distinction between SQL storage state and live website deployment (with staged draft changes indicators).
+- Robust error recovery: inline re-authentication on 401 token expiry and failure preservation keeping unsaved edits intact.
+- Destructive action confirmations (unpublish, archive, delete, discard).
+- Keyboard-accessible, responsive layout (<900px, <640px) preserving branding and public layout.
+- Tested with 9 new admin unit/lifecycle tests; all 60 backend tests, 17 publication/admin tests, typechecks, lint, and static page builds passing.
 
 # Project state
 
