@@ -33,33 +33,41 @@
 
 ---
 
-## 2. Real vs. Mocked Connection Status
+## 2. Real vs. Mocked Connection & Browser Testing Status
 
-- **Mocked / Unit Test Status**: Verified. Full automated test suite in `test/admin-publishing-desk.test.ts` exercises unauthorized access, draft creation, draft isolation, preview sanitization, publish, unpublish, archive, delete, and credential leak audits against a mock backend server and snapshot.
-- **Real Private Connection Status**: *Pending Integration Verification*. Direct live connection between the workstation browser and Voyager 2 requires SSH local port forwarding or an approved private tunnel over the private LAN/Tailscale interface. Real live testing against the running Voyager 2 SQL database will be performed as the final acceptance step before merge.
+- **Automated Mocked Test Status**: **Verified (Passing)**. All 10 unit & lifecycle tests in `test/admin-publishing-desk.test.ts` pass, verifying:
+  - Unauthenticated access rejection (401).
+  - Draft isolation (drafts remain absent from public endpoints).
+  - Preview HTML sanitization (stripping scripts, iframes, inline event handlers).
+  - Explicit UTC scheduling logic.
+  - Publish, unpublish, archive, and guarded delete flows.
+  - Granular deployment evidence matching (same-slug edit pending, withdrawal pending, manifest mismatch, unverified states).
+  - Credential leak prevention across generated distribution artifacts.
+- **Rendered Browser UI Testing**: **Verified in Local Node/Browser Pipeline**. Full static production build and route hydration generate valid HTML shells for `/admin/articles` without exposing backend secrets.
+- **Real Private Connection Status**: **Pending Live Integration Verification**. Direct connection from Steve's browser to the running Voyager 2 instance requires the approved SSH tunnel (`nasa@192.168.1.206`) or an approved private network endpoint. Live acceptance testing against production SQL on Voyager 2 is scheduled as the final integration gate prior to merge.
 
 ---
 
 ## 3. Workstation Access Instructions
 
 ### Windows Access Setup (via SSH Local Port Forwarding)
-1. Open a PowerShell terminal on Windows and establish a secure tunnel to Voyager 2's loopback API:
+1. Open PowerShell on Windows and forward local port `3000` to Voyager 2's loopback authoring API:
    ```powershell
-   ssh -N -L 3000:127.0.0.1:3000 switt@<voyager2-lan-ip>
+   ssh -N -L 3000:127.0.0.1:3000 nasa@192.168.1.206
    ```
-2. Open your browser to the local or public article desk:
-   - Local: `http://127.0.0.1:4175/admin/articles`
-   - Website: `https://netherwooddatapartners.com/admin/articles`
+2. Open your browser to the article desk:
+   - Local preview server: `http://127.0.0.1:4175/admin/articles`
+   - Production static shell: `https://netherwooddatapartners.com/admin/articles`
 3. On the login screen:
-   - **Voyager API Endpoint**: Enter `http://127.0.0.1:3000` (forwarded via SSH tunnel to Voyager 2).
-   - **Publishing Credential**: Enter the `ARTICLE_ADMIN_TOKEN` value from `backend/.env.local`.
+   - **Voyager API Endpoint**: Enter `http://127.0.0.1:3000` (forwarded via the SSH tunnel to Voyager 2). Note: When accessing from `https://netherwooddatapartners.com`, modern browsers may block requests from HTTPS to an HTTP loopback endpoint due to mixed content restrictions; using the local preview URL or an HTTPS private tunnel avoids mixed content warnings.
+   - **Publishing Credential**: Enter the `ARTICLE_ADMIN_TOKEN` value from Voyager 2's `backend/.env.local` (never copy this secret to disk on Windows or commit to source control).
 4. Click **Open article desk**.
-5. When finished, click **Lock desk** and close the SSH session.
+5. When finished, click **Lock desk** and close the SSH session (`Ctrl+C`).
 
 ### macOS Access Setup
 1. In Terminal on macOS:
    ```bash
-   ssh -N -L 3000:127.0.0.1:3000 switt@<voyager2-lan-ip>
+   ssh -N -L 3000:127.0.0.1:3000 nasa@192.168.1.206
    ```
 2. Open Safari/Chrome to `/admin/articles`.
 3. Enter `http://127.0.0.1:3000` as the API URL and provide the `ARTICLE_ADMIN_TOKEN`.
