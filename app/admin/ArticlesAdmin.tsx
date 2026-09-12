@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { SiteHeader } from "../components/SiteChrome";
 import {
   blankEditor,
@@ -11,16 +11,29 @@ import {
   isoLabel,
   slugify,
   toUtcInputString,
+  verifySqlPublicationEvidence,
+  verifyWebsitePublicationEvidence,
   type AdminArticle,
-  type DeploymentEvidence,
   type EditorValue,
   type NoticeState,
+  type SqlPublicationEvidence,
+  type WebsitePublicationEvidence,
 } from "./admin-utils";
 
 export type { AdminArticle, EditorValue, NoticeState };
 export { blankEditor, editorFromArticle, fromUtcInputString, isFutureDate, isoLabel, slugify, toUtcInputString };
 
 const defaultEnvApiUrl = (import.meta.env?.VITE_VOYAGER_API_URL as string | undefined)?.replace(/\/$/, "") || "";
+
+const websiteEvidenceUnavailable: WebsitePublicationEvidence = {
+  status: "unavailable",
+  reason: "Website deployment evidence has not been verified.",
+};
+
+const sqlEvidenceUnavailable: SqlPublicationEvidence = {
+  status: "unavailable",
+  reason: "Current SQL-published content/version evidence has not been verified.",
+};
 
 export default function ArticlesAdmin() {
   const [token, setToken] = useState("");
@@ -39,77 +52,15 @@ export default function ArticlesAdmin() {
   const [reauthPassword, setReauthPassword] = useState("");
   const [showReauth, setShowReauth] = useState(false);
   const [currentUtcTime, setCurrentUtcTime] = useState<number>(() => Date.now());
-  const [manifest, setManifest] = useState<DeploymentEvidence | null>(null);
-  const [snapshotSlugs, setSnapshotSlugs] = useState<Set<string>>(new Set());
+  const [websiteEvidence, setWebsiteEvidence] = useState<WebsitePublicationEvidence>(websiteEvidenceUnavailable);
+  const [sqlEvidence, setSqlEvidence] = useState<SqlPublicationEvidence>(sqlEvidenceUnavailable);
+  const evidenceRequest = useRef(0);
+  const manifest = websiteEvidence.status === "verified" ? websiteEvidence.manifest : null;
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentUtcTime(Date.now()), 30_000);
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    let active = true;
-    const fetchEvidence = async () => {
-      try {
-        const pubRes = await fetch("/publication.json", { cache: "no-store" });
-        if (!active) return;
-        if (pubRes.ok) {
-          const pubData = (await pubRes.json()) as DeploymentEvidence;
-          setManifest(pubData);
-        } else {
-          setManifest(null);
-        }
-      } catch {
-        if (active) setManifest(null);
-      }
-
-      try {
-        const snapRes = await fetch("/articles-snapshot.json", { cache: "no-store" });
-        if (!active) return;
-        if (snapRes.ok) {
-          const snapData = (await snapRes.json()) as { articles?: Array<{ slug: string }> };
-          if (Array.isArray(snapData.articles)) {
-            setSnapshotSlugs(new Set(snapData.articles.map((a) => a.slug)));
-          }
-        }
-      } catch {
-        // Keep previous or empty snapshot slugs
-      }
-    };
-
-    if (authenticated) {
-      void fetchEvidence();
-    }
-    return () => {
-      active = false;
-    };
-  }, [authenticated]);
-
-  const checkDeploymentEvidence = async () => {
-    try {
-      const pubRes = await fetch("/publication.json", { cache: "no-store" });
-      if (pubRes.ok) {
-        const pubData = (await pubRes.json()) as DeploymentEvidence;
-        setManifest(pubData);
-      } else {
-        setManifest(null);
-      }
-    } catch {
-      setManifest(null);
-    }
-
-    try {
-      const snapRes = await fetch("/articles-snapshot.json", { cache: "no-store" });
-      if (snapRes.ok) {
-        const snapData = (await snapRes.json()) as { articles?: Array<{ slug: string }> };
-        if (Array.isArray(snapData.articles)) {
-          setSnapshotSlugs(new Set(snapData.articles.map((a) => a.slug)));
-        }
-      }
-    } catch {
-      // Keep previous
-    }
-  };
 
   useEffect(() => {
     document.title = "Article publishing | Netherwood Data Partners";
@@ -197,7 +148,119 @@ export default function ArticlesAdmin() {
     return body;
   }
 
-  async function loadList(overrideToken?: string, overrideUrl?: string): Promise<void> {
+  async function fetchWebsiteEvidence(): Promise<WebsitePublicationEvidence> {
+    try {
+      const beforeResponse = await fetch("/publication.json", { cache: "no-store" });
+      const snapshotResponse = await fetch("/articles-snapshot.json", { cache: "no-store" });
+      const afterResponse = await fetch("/publication.json", { cache: "no-store" });
+      if (!beforeResponse.ok || !snapshotResponse.ok || !afterResponse.ok) return websiteEvidenceUnavailable;
+
+      const snapshot = (await snapshotResponse.json()) as unknown;
+      const before = await verifyWebsitePublicationEvidence((await beforeResponse.json()) as unknown, snapshot);
+      const after = await verifyWebsitePublicationEvidence((await afterResponse.json()) as unknown, snapshot);
+      if (before.status !== "verified" || after.status !== "verified") return websiteEvidenceUnavailable;
+      if (
+        before.manifest.sourceCommit !== after.manifest.sourceCommit ||
+        before.manifest.contentCommit !== after.manifest.contentCommit ||
+        before.manifest.contentDigest !== after.manifest.contentDigest ||
+        before.manifest.generatedAt !== after.manifest.generatedAt
+      ) {
+        return {
+          status: "unavailable",
+          reason: "Website deployment changed during verification; the current version is not verified.",
+        };
+      }
+      return after;
+    } catch {
+      return websiteEvidenceUnavailable;
+    }
+  }
+
+  async function fetchSqlEvidence(
+    adminArticles: AdminArticle[],
+    overrideUrl?: string,
+  ): Promise<SqlPublicationEvidence> {
+    try {
+      const endpoint = (overrideUrl ?? apiUrl).replace(/\/$/, "");
+      const requestPublicSql = async (path: string): Promise<unknown> => {
+        if (!endpoint) throw new Error("Voyager API URL is required");
+        const response = await fetch(`${endpoint}${path}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("Current SQL public-version evidence is unavailable");
+        return response.json() as Promise<unknown>;
+      };
+      const duePublishedIds = new Set(
+        adminArticles
+          .filter((article) => article.status === "Published" && !isFutureDate(article.publishedDate))
+          .map((article) => article.articleId),
+      );
+      const references = new Map<string, string>();
+      let page = 1;
+      let total = 0;
+      do {
+        const value = await requestPublicSql(`/api/articles?page=${page}&pageSize=50`);
+        if (!value || typeof value !== "object" || !Array.isArray((value as { articles?: unknown }).articles)) {
+          throw new Error("Published SQL article list is invalid");
+        }
+        const result = value as { articles: unknown[]; total?: unknown };
+        if (!Number.isInteger(result.total) || Number(result.total) < 0) {
+          throw new Error("Published SQL article total is invalid");
+        }
+        total = Number(result.total);
+        if (result.articles.length === 0 && references.size < total) {
+          throw new Error("Published SQL article list is incomplete");
+        }
+        for (const candidate of result.articles) {
+          if (!candidate || typeof candidate !== "object") throw new Error("Published SQL article reference is invalid");
+          const { articleId, slug } = candidate as { articleId?: unknown; slug?: unknown };
+          if (typeof articleId !== "string" || typeof slug !== "string" || references.has(articleId)) {
+            throw new Error("Published SQL article references are inconsistent");
+          }
+          references.set(articleId, slug);
+        }
+        page += 1;
+        if (page > 201) throw new Error("Published SQL article list exceeds the verification limit");
+      } while (references.size < total);
+      if (references.size !== total) throw new Error("Published SQL article list changed during verification");
+
+      const expectedReferences = Array.from(references).filter(([articleId]) => duePublishedIds.has(articleId));
+      const details = await Promise.all(
+        expectedReferences.map(async ([articleId, slug]) => {
+          const value = await requestPublicSql(`/api/articles/${encodeURIComponent(slug)}`);
+          if (!value || typeof value !== "object" || !("article" in value)) {
+            throw new Error("Published SQL article detail is missing");
+          }
+          const article = (value as { article: unknown }).article;
+          if (!article || typeof article !== "object") throw new Error("Published SQL article detail is invalid");
+          const identity = article as { articleId?: unknown; slug?: unknown };
+          if (identity.articleId !== articleId || identity.slug !== slug) {
+            throw new Error("Published SQL list and detail are inconsistent");
+          }
+          return article;
+        }),
+      );
+      return verifySqlPublicationEvidence(details);
+    } catch {
+      return sqlEvidenceUnavailable;
+    }
+  }
+
+  async function refreshPublicationEvidence(
+    adminArticles: AdminArticle[],
+    overrideUrl?: string,
+  ): Promise<void> {
+    const requestId = ++evidenceRequest.current;
+    setWebsiteEvidence(websiteEvidenceUnavailable);
+    setSqlEvidence(sqlEvidenceUnavailable);
+    const [nextWebsiteEvidence, nextSqlEvidence] = await Promise.all([
+      fetchWebsiteEvidence(),
+      fetchSqlEvidence(adminArticles, overrideUrl),
+    ]);
+    if (requestId !== evidenceRequest.current) return;
+    setWebsiteEvidence(nextWebsiteEvidence);
+    setSqlEvidence(nextSqlEvidence);
+  }
+
+  async function loadList(overrideToken?: string, overrideUrl?: string): Promise<AdminArticle[]> {
     const result = await request<{ articles: AdminArticle[] }>(
       "/api/admin/articles",
       {},
@@ -205,6 +268,8 @@ export default function ArticlesAdmin() {
       overrideUrl,
     );
     setArticles(result.articles);
+    void refreshPublicationEvidence(result.articles, overrideUrl);
+    return result.articles;
   }
 
   async function signIn(event: FormEvent): Promise<void> {
@@ -263,6 +328,9 @@ export default function ArticlesAdmin() {
     setNotice(null);
     setFieldErrors({});
     setShowReauth(false);
+    evidenceRequest.current += 1;
+    setWebsiteEvidence(websiteEvidenceUnavailable);
+    setSqlEvidence(sqlEvidenceUnavailable);
   }
 
   function newArticle(): void {
@@ -456,7 +524,6 @@ export default function ArticlesAdmin() {
 
       setNotice({ type: "success", text: verbMsg });
       await loadList();
-      void checkDeploymentEvidence();
 
       if (selectedId === articleId) {
         const updatedEditor = editorFromArticle(result.article);
@@ -532,6 +599,14 @@ export default function ArticlesAdmin() {
   }
 
   const selectedArticle = articles.find((article) => article.articleId === selectedId);
+  const selectedPublication = selectedArticle
+    ? getPublicVerification(
+        selectedArticle,
+        selectedArticle.status === "Published" && isFutureDate(selectedArticle.publishedDate, currentUtcTime),
+        websiteEvidence,
+        sqlEvidence,
+      )
+    : undefined;
 
   const scheduledUtcPreview = useMemo(() => {
     if (!editor.publishedDate) return "Immediate (published on publish action)";
@@ -734,11 +809,10 @@ export default function ArticlesAdmin() {
                 {articles.map((article) => {
                   const scheduled = article.status === "Published" && isFutureDate(article.publishedDate, currentUtcTime);
                   const pubVerification = getPublicVerification(
-                    manifest,
-                    article.slug,
-                    article.status,
+                    article,
                     scheduled,
-                    snapshotSlugs,
+                    websiteEvidence,
+                    sqlEvidence,
                   );
                   return (
                     <tr key={article.articleId}>
@@ -856,15 +930,7 @@ export default function ArticlesAdmin() {
                   </span>
                 </div>
                 <p className="admin-sync-explanation">
-                  {selectedArticle.status === "Published"
-                    ? isFutureDate(selectedArticle.publishedDate, currentUtcTime)
-                      ? `Scheduled in SQL for release on ${isoLabel(selectedArticle.publishedDate)}. It will automatically export once due.`
-                      : manifest && snapshotSlugs.has(selectedArticle.slug)
-                      ? `Published in SQL and live on public website (digest ${manifest.contentDigest.slice(0, 8)}…).`
-                      : "Published in SQL; awaiting website update. Will deploy on the automated 15-minute export cycle."
-                    : selectedArticle.status === "Draft"
-                    ? "Saved in SQL as Draft. Not visible on the public website."
-                    : "Archived in SQL. Hidden from public website and search."}
+                  {selectedPublication?.details}
                 </p>
                 {selectedArticle.hasUnpublishedChanges ? (
                   <p className="admin-staged-warning">

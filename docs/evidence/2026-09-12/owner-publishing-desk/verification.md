@@ -23,8 +23,10 @@
    - Publish, Unpublish, Archive, and guarded Delete (articles must be unpublished before deletion). Destructive action confirmation dialogs prevent accidental data loss.
 
 3. **Publication-Status Accuracy & Honest Reporting**:
-   - Clearly distinguishes "Saved in SQL: Draft", "Published in SQL; awaiting website update", "Live on Website", and "Scheduled in SQL".
-   - Authoritative verification: compares current article state against `/publication.json` and `/articles-snapshot.json`. If deployment evidence is unavailable or unverified, displays "Not verified" rather than a false positive.
+   - Clearly distinguishes SQL state, the current SQL-published version, staged draft changes, and the validated deployed website snapshot.
+   - A successful website status requires the same article ID and equality across every public field, including full HTML and plain text, between a fresh SQL public-detail response and the deployed snapshot. Slug presence and modified timestamps are never treated as version proof.
+   - The browser recomputes the snapshot SHA-256 content digest and requires matching manifest/snapshot format, digest, count, and generation time. It also reads the manifest before and after the snapshot so a deployment transition produces uncertainty rather than success.
+   - A draft, archive, or newly scheduled version remains `Withdrawal pending on website` while that article ID is still in the validated deployed snapshot. Missing, malformed, internally inconsistent, or unavailable evidence reports that the current version is not verified.
 
 4. **Error Recovery & Unsaved Work Protection**:
    - In-progress edits are preserved during 502/503/504 backend downtime, network disruptions, or validation errors.
@@ -35,15 +37,17 @@
 
 ## 2. Real vs. Mocked Connection & Browser Testing Status
 
-- **Automated Mocked Test Status**: **Verified (Passing)**. All 10 unit & lifecycle tests in `test/admin-publishing-desk.test.ts` pass, verifying:
+- **Automated Mocked Test Status**: **Verified (Passing)**. All 14 unit and lifecycle tests in `test/admin-publishing-desk.test.ts` pass. The combined publication command passes 22 TypeScript tests plus 3 pipeline tests, and the backend suite passes 60 tests with zero skips. Coverage includes:
   - Unauthenticated access rejection (401).
   - Draft isolation (drafts remain absent from public endpoints).
   - Preview HTML sanitization (stripping scripts, iframes, inline event handlers).
   - Explicit UTC scheduling logic.
   - Publish, unpublish, archive, and guarded delete flows.
-  - Granular deployment evidence matching (same-slug edit pending, withdrawal pending, manifest mismatch, unverified states).
+  - Full content/version matching, including a same-slug and same-timestamp content edit that must remain pending.
+  - Separate staged-draft handling, withdrawal pending, manifest/snapshot/digest mismatch, and unverified states.
   - Credential leak prevention across generated distribution artifacts.
-- **Rendered Browser UI Testing**: **Verified in Local Node/Browser Pipeline**. Full static production build and route hydration generate valid HTML shells for `/admin/articles` without exposing backend secrets.
+- **Static Build Status**: **Verified (Passing)**. The Vinext production build and static Pages build complete, and the static release checker validates 13 public routes and the ten-article digest. This proves build and generated-artifact behavior only.
+- **Rendered Browser UI Testing**: **Pending**. No rendered-browser interaction, layout, or hydration acceptance was performed for these exact changes. A passing static build is not browser-test evidence.
 - **Real Private Connection Status**: **Pending Live Integration Verification**. Direct connection from Steve's browser to the running Voyager 2 instance requires the approved SSH tunnel (`nasa@192.168.1.206`) or an approved private network endpoint. Live acceptance testing against production SQL on Voyager 2 is scheduled as the final integration gate prior to merge.
 
 ---
@@ -81,6 +85,6 @@ To execute the controlled end-to-end publishing test:
 1. **Create Draft**: Click **New Article**, enter title `“Production Desk Validation”`, category `“Operations”`, summary `“Controlled owner desk test”`, content `<p>Testing SQL staging and publish flow.</p>`, and click **Save Draft in SQL**.
 2. **Verify Staging**: Confirm that the article appears with status **Draft** in the admin table and is **not** present on `/articles` or in `articles-snapshot.json`.
 3. **Preview**: Click **Preview** to verify the server-sanitized rendering.
-4. **Publish**: Click **Publish to Website**. Verify status becomes **Published in SQL; awaiting website update**.
-5. **Verify Website Release**: On the next 15-minute export cycle, verify status transitions to **Live on Website** with matching digest.
-6. **Withdraw & Cleanup**: Click **Unpublish** (reverting to Draft in SQL). After the next cycle confirms withdrawal from the live site, click **Archive** or **Delete** for cleanup.
+4. **Publish**: Click **Publish to Website**. Verify status becomes **Published in SQL; website update pending**.
+5. **Verify Website Release**: On the next 15-minute export cycle, verify status transitions to **Current version verified on website** only after full SQL-published content/version equality with the validated deployed snapshot.
+6. **Withdraw & Cleanup**: Click **Unpublish** (reverting to Draft in SQL). Confirm the desk reports **Withdrawal pending on website** while the deployed snapshot still contains the article. After a later cycle verifies absence from the deployed snapshot, click **Archive** or **Delete** for cleanup.

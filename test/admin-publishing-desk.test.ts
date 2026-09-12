@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
@@ -14,8 +15,11 @@ import {
   isoLabel,
   slugify,
   toUtcInputString,
+  verifySqlPublicationEvidence,
+  verifyWebsitePublicationEvidence,
   type AdminArticle,
-  type DeploymentEvidence,
+  type PublicArticleVersion,
+  type WebsitePublicationEvidence,
 } from "../app/admin/admin-utils.ts";
 import {
   sanitizeArticleHtml,
@@ -103,47 +107,210 @@ test("isFutureDate correctly identifies upcoming scheduled dates", () => {
   assert.equal(isFutureDate(undefined, baseTime), false);
 });
 
-test("getPublicVerification returns honest status distinctions between SQL and website deployment", () => {
-  const manifest: DeploymentEvidence = {
-    format: "netherwood.website-release/v1",
-    sourceCommit: "16a133f",
-    contentCommit: "b6cbdcb",
-    contentDigest: "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
-    articleCount: 10,
-    generatedAt: "2026-09-11T03:04:30.209Z",
-    chatEnabled: false,
+function publicArticle(overrides: Partial<PublicArticleVersion> = {}): PublicArticleVersion {
+  return {
+    articleId: "12345678-1234-4234-8234-123456789abc",
+    title: "Deployment evidence must compare content",
+    slug: "deployment-evidence-must-compare-content",
+    summary: "A complete public-version comparison prevents false publication success.",
+    category: "Operations",
+    tags: ["publishing", "verification"],
+    author: "Steven Wittek",
+    status: "Published",
+    isFeatured: false,
+    publishedDate: "2026-09-12T10:00:00.000Z",
+    createdDate: "2026-09-12T09:00:00.000Z",
+    modifiedDate: "2026-09-12T10:00:00.000Z",
+    html: "<p>First published version.</p>",
+    plainText: "First published version.",
+    metaTitle: "Deployment evidence must compare content",
+    metaDescription: "A complete public-version comparison prevents false publication success.",
+    ...overrides,
   };
-  const liveSlugs = new Set(["why-sql-server-databases-slow-down-over-time", "existing-live-slug"]);
+}
 
-  // 1. Draft article
-  const draftResult = getPublicVerification(manifest, "draft-article", "Draft", false, liveSlugs);
-  assert.equal(draftResult.label, "Draft in SQL");
-  assert.equal(draftResult.badgeClass, "status-draft");
+async function websiteEvidence(articles: PublicArticleVersion[]): Promise<WebsitePublicationEvidence> {
+  const contentDigest = createHash("sha256").update(JSON.stringify(articles)).digest("hex");
+  const generatedAt = "2026-09-12T10:05:00.000Z";
+  const result = await verifyWebsitePublicationEvidence(
+    {
+      format: "netherwood.website-release/v1",
+      sourceCommit: "a".repeat(40),
+      contentCommit: "b".repeat(40),
+      contentDigest,
+      articleCount: articles.length,
+      generatedAt,
+      builtAt: "2026-09-12T10:06:00.000Z",
+      runUrl: null,
+      chatEnabled: false,
+    },
+    {
+      format: "netherwood.public-articles/v1",
+      generatedAt,
+      articleCount: articles.length,
+      contentDigest,
+      articles,
+    },
+  );
+  assert.equal(result.status, "verified");
+  return result;
+}
 
-  // 2. Archived article
-  const archivedResult = getPublicVerification(manifest, "archived-article", "Archived", false, liveSlugs);
-  assert.equal(archivedResult.label, "Archived in SQL");
-  assert.equal(archivedResult.badgeClass, "status-archived");
+test("publication success requires exact current SQL and deployed content/version equality", async () => {
+  const deployed = publicArticle();
+  const website = await websiteEvidence([deployed]);
+  const exactSql = verifySqlPublicationEvidence([deployed]);
+  const exact = getPublicVerification(
+    { articleId: deployed.articleId, status: "Published", hasUnpublishedChanges: false },
+    false,
+    website,
+    exactSql,
+  );
+  assert.equal(exact.label, "Current version verified on website");
+  assert.equal(exact.badgeClass, "status-live");
+  assert.match(exact.details, /Every public field, including article content/);
 
-  // 3. Scheduled article (future-dated)
-  const scheduledResult = getPublicVerification(manifest, "future-article", "Published", true, liveSlugs);
-  assert.equal(scheduledResult.label, "Scheduled in SQL");
-  assert.equal(scheduledResult.badgeClass, "status-scheduled");
+  const changedContentSameSlugAndTimestamp = publicArticle({
+    html: "<p>Changed SQL content with the same slug and modified timestamp.</p>",
+    plainText: "Changed SQL content with the same slug and modified timestamp.",
+  });
+  const changedSql = verifySqlPublicationEvidence([changedContentSameSlugAndTimestamp]);
+  const pending = getPublicVerification(
+    { articleId: deployed.articleId, status: "Published", hasUnpublishedChanges: false },
+    false,
+    website,
+    changedSql,
+  );
+  assert.equal(pending.label, "Published in SQL; website update pending");
+  assert.equal(pending.badgeClass, "status-pending-sync");
+  assert.match(pending.details, /Slug presence and timestamps alone do not verify equality/);
+});
 
-  // 4. Published article not yet in public snapshot (pending 15-min export)
-  const pendingResult = getPublicVerification(manifest, "newly-published-article", "Published", false, liveSlugs);
-  assert.equal(pendingResult.label, "Published in SQL; awaiting website update");
-  assert.equal(pendingResult.badgeClass, "status-pending-sync");
+test("staged draft fields remain separate from the SQL-published version comparison", async () => {
+  const publishedVersion = publicArticle();
+  const stagedAdminArticle: AdminArticle = {
+    articleId: publishedVersion.articleId,
+    title: "Unpublished replacement title",
+    slug: "unpublished-replacement-slug",
+    summary: "These draft fields must not be compared with the deployed published version.",
+    html: "<p>Unpublished replacement content.</p>",
+    plainText: "Unpublished replacement content.",
+    category: "Draft category",
+    tags: ["draft"],
+    author: publishedVersion.author,
+    status: "Published",
+    isFeatured: false,
+    publishedDate: publishedVersion.publishedDate,
+    createdDate: publishedVersion.createdDate,
+    modifiedDate: "2026-09-12T10:04:00.000Z",
+    hasUnpublishedChanges: true,
+  };
+  const result = getPublicVerification(
+    stagedAdminArticle,
+    false,
+    await websiteEvidence([publishedVersion]),
+    verifySqlPublicationEvidence([publishedVersion]),
+  );
+  assert.equal(result.label, "Current version verified on website");
+  assert.match(result.details, /separate unpublished draft is staged in SQL and is not part of this comparison/);
+});
 
-  // 5. Published article confirmed live in public snapshot
-  const liveResult = getPublicVerification(manifest, "why-sql-server-databases-slow-down-over-time", "Published", false, liveSlugs);
-  assert.equal(liveResult.label, "Live on Website");
-  assert.equal(liveResult.badgeClass, "status-live");
+test("withdrawal remains pending while a validated deployed snapshot contains the article", async () => {
+  const deployed = publicArticle();
+  const website = await websiteEvidence([deployed]);
+  const noPublishedSqlArticles = verifySqlPublicationEvidence([]);
 
-  // 6. Manifest unavailable / unverified
-  const unverifiedResult = getPublicVerification(null, "why-sql-server-databases-slow-down-over-time", "Published", false, liveSlugs);
-  assert.equal(unverifiedResult.label, "Published in SQL (Not verified on website)");
-  assert.equal(unverifiedResult.badgeClass, "status-unverified");
+  for (const status of ["Draft", "Archived"] as const) {
+    const result = getPublicVerification(
+      { articleId: deployed.articleId, status, hasUnpublishedChanges: false },
+      false,
+      website,
+      noPublishedSqlArticles,
+    );
+    assert.equal(result.label, "Withdrawal pending on website");
+    assert.equal(result.badgeClass, "status-pending-sync");
+  }
+
+  const scheduled = getPublicVerification(
+    { articleId: deployed.articleId, status: "Published", hasUnpublishedChanges: false },
+    true,
+    website,
+    noPublishedSqlArticles,
+  );
+  assert.equal(scheduled.label, "Withdrawal pending on website");
+});
+
+test("validated absence distinguishes draft, archived, scheduled, and newly published SQL states", async () => {
+  const emptyWebsite = await websiteEvidence([]);
+  const emptySql = verifySqlPublicationEvidence([]);
+  const articleId = "12345678-1234-4234-8234-123456789abc";
+
+  assert.equal(
+    getPublicVerification({ articleId, status: "Draft" }, false, emptyWebsite, emptySql).label,
+    "Draft in SQL; not on website",
+  );
+  assert.equal(
+    getPublicVerification({ articleId, status: "Archived" }, false, emptyWebsite, emptySql).label,
+    "Archived in SQL; not on website",
+  );
+  assert.equal(
+    getPublicVerification({ articleId, status: "Published" }, true, emptyWebsite, emptySql).label,
+    "Scheduled in SQL; not on website",
+  );
+
+  const currentSql = publicArticle();
+  const pending = getPublicVerification(
+    { articleId, status: "Published" },
+    false,
+    emptyWebsite,
+    verifySqlPublicationEvidence([currentSql]),
+  );
+  assert.equal(pending.label, "Published in SQL; website update pending");
+});
+
+test("missing or inconsistent evidence reports uncertainty instead of publication success", async () => {
+  const article = publicArticle();
+  const sql = verifySqlPublicationEvidence([article]);
+  const unavailableWebsite: WebsitePublicationEvidence = {
+    status: "unavailable",
+    reason: "Website deployment evidence is missing or inconsistent; the current version is not verified.",
+  };
+  const missingWebsite = getPublicVerification(
+    { articleId: article.articleId, status: "Published" },
+    false,
+    unavailableWebsite,
+    sql,
+  );
+  assert.equal(missingWebsite.label, "Published in SQL (Current version not verified)");
+  assert.equal(missingWebsite.badgeClass, "status-unverified");
+
+  const consistentWebsite = await websiteEvidence([article]);
+  const missingSql = getPublicVerification(
+    { articleId: article.articleId, status: "Published" },
+    false,
+    consistentWebsite,
+    verifySqlPublicationEvidence([]),
+  );
+  assert.equal(missingSql.label, "Published in SQL (Current version not verified)");
+
+  const invalid = await verifyWebsitePublicationEvidence(
+    {
+      format: "netherwood.website-release/v1",
+      sourceCommit: "a".repeat(40),
+      contentCommit: "b".repeat(40),
+      contentDigest: "0".repeat(64),
+      articleCount: 1,
+      generatedAt: "2026-09-12T10:05:00.000Z",
+    },
+    {
+      format: "netherwood.public-articles/v1",
+      generatedAt: "2026-09-12T10:05:00.000Z",
+      articleCount: 1,
+      contentDigest: "0".repeat(64),
+      articles: [article],
+    },
+  );
+  assert.equal(invalid.status, "unavailable");
 });
 
 test("editorFromArticle maps article fields to editor state and preserves values", () => {
@@ -438,4 +605,3 @@ test("public static distribution bundles never contain tokens, credentials, or p
     assert.doesNotMatch(content, /Bearer\s+[a-zA-Z0-9_-]{20,}/);
   }
 });
-
