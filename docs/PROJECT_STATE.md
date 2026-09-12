@@ -1,7 +1,39 @@
 # Project state
 
-Last verified: 2026-08-28 UTC on `voyager2-articles-platform`. This records
-observed state, not plans.
+## Voyager 1 business operations and acceptance update
+
+- docs/BUSINESS_OPERATING_RUNBOOK.md records article and inquiry-to-closeout
+  processes, role gates, inputs, outputs, completion conditions, existing
+  systems of record, cache limitations, and open owner decisions.
+  docs/CLIENT_WORK_TEMPLATES.md supplies inquiry-response, discovery, scope,
+  delivery, and closeout templates without inventing pricing, response promises,
+  or legal terms.
+- docs/VOYAGER1_ACCEPTANCE_REPORT.md separates passed, failed, and not-tested
+  checks and includes a paste-ready Voyager 2/Mac staging handoff. No production
+  article, form, email, credential, tracker, SQL data, or external service was
+  changed.
+- Read-only live checks returned HTTP 200 for Home, About, Articles, one native
+  article URL, private authoring, both sitemaps, and robots.txt. All 13 URLs
+  in the live main sitemap returned 200. Fresh Edge
+  sessions rendered desktop and approximately 400-CSS-pixel layouts. Public
+  authoring correctly reported it was disconnected. Responses observed
+  Cache-Control: max-age=600.
+- Root lint, direct Vite Pages build/static generation, and backend strict
+  TypeScript checking passed. The snapshot contains ten articles; the build
+  emitted ten slug pages, 13 main-sitemap URLs, 11 article-sitemap URLs, admin
+  noindex, and /admin/ robots exclusion.
+- Backend tests passed 48 of 49. The remaining test did not reach an application
+  assertion because Windows denied creation of its symlink fixture with EPERM;
+  rerun it in the pinned Linux/Node 22 container.
+- Gaps remain: no owner-approved publication interval/static-sync owner is
+  documented, and knowledge:ingest does not consume the existing
+  web.ListPublishedArticleKnowledge export. Schedule, complete withdrawal/cache,
+  and article-citation checks require isolated Voyager 2/Mac staging integration.
+
+
+Voyager 2 host/backend state below was last verified 2026-08-28 UTC on
+`voyager2-articles-platform`. The Voyager 1 update above was verified
+2026-09-11 UTC on `main`. This records observed state, not plans.
 
 ## Repository and publishing
 
