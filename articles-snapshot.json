@@ -1,9 +1,27 @@
 {
   "format": "netherwood.public-articles/v1",
-  "generatedAt": "2026-09-11T13:34:41.795Z",
-  "articleCount": 10,
-  "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+  "generatedAt": "2026-09-12T18:50:42.440Z",
+  "articleCount": 11,
+  "contentDigest": "1e3ca67f2e2ba3683b76c3c9ce869c32cb84e88480f6ad95e18ff982cb7ec181",
   "articles": [
+    {
+      "articleId": "f7ff5568-0d08-4439-9b32-2e456e9995e8",
+      "title": "Controlled publishing desk verification",
+      "slug": "ndp-desk-acceptance-20260912",
+      "summary": "Temporary owner-authorized verification of article publishing. This record will be withdrawn after acceptance.",
+      "category": "SQL Server",
+      "tags": [],
+      "author": "Steven Wittek",
+      "status": "Published",
+      "isFeatured": false,
+      "publishedDate": "2026-09-12T18:50:15.693Z",
+      "createdDate": "2026-09-12T18:45:28.209Z",
+      "modifiedDate": "2026-09-12T18:50:15.693Z",
+      "html": "<p>Temporary synthetic acceptance record. No client or patient data.</p>",
+      "plainText": "Temporary synthetic acceptance record. No client or patient data.",
+      "metaTitle": "Controlled publishing desk verification",
+      "metaDescription": "Temporary owner-authorized verification of article publishing. This record will be withdrawn after acceptance."
+    },
     {
       "articleId": "5c914054-7d6a-5bb4-89e9-7fa3093cae76",
       "title": "Why SQL Server Databases Slow Down Over Time",
