@@ -8,8 +8,7 @@
       "session": []
     },
     "authenticatedReadOnly": true,
-    "logoutCleared": true,
-    "aiCurrentVisible": true
+    "logoutCleared": true
   },
   {
     "width": 768,
@@ -20,8 +19,7 @@
       "session": []
     },
     "authenticatedReadOnly": true,
-    "logoutCleared": true,
-    "aiCurrentVisible": true
+    "logoutCleared": true
   },
   {
     "width": 390,
@@ -32,7 +30,6 @@
       "session": []
     },
     "authenticatedReadOnly": true,
-    "logoutCleared": true,
-    "aiCurrentVisible": true
+    "logoutCleared": true
   }
 ]

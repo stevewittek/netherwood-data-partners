@@ -1,0 +1,8 @@
+{
+  "credentialRecovery": "passed in real Mac browser with locally simulated 401 and real reauthentication",
+  "unsavedDraftPreserved": true,
+  "apiOutage": "passed in real Mac browser with locally simulated 503",
+  "noContactSubmission": true,
+  "rollbackArtifact": 10304210071,
+  "rollbackArtifactExpiresAt": "2026-10-12T18:55:37Z"
+}

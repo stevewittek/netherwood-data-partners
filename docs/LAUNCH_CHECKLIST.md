@@ -1,5 +1,24 @@
 # Current launch and publication checklist
 
+## Owner desk release — September 12
+
+- [x] Reconcile Voyager 2 status API and Voyager 1 desk changes; merge PR #8.
+- [x] Pass local checks and Linux/Windows CI; deploy reviewed source.
+- [x] Verify real Mac and Windows browsers at desktop/tablet/mobile sizes.
+- [x] Verify SQL save, sanitized preview, public publish, withdrawal, archive,
+  fresh/returning browser removal, sitemap removal and article AI reconciliation.
+- [x] Verify credential recovery, memory-only storage, lock, and unsaved draft
+  preservation during browser-local API failures.
+- [x] Recheck all 13 public routes at three widths, keyboard/contact fallback,
+  assets, metadata, legacy caches and backend-down behavior.
+- [x] Enable private loopback desk service using existing SSH access and retain
+  15-minute publication timer; preserve previous API image for rollback.
+- [x] Record operating steps and evidence in OWNER_DESK_ACCESS.md and
+  evidence/2026-09-12/desk-final/.
+
+The release details below are historical; PROJECT_STATE.md records the current
+source and controlled publication/withdrawal runs.
+
 ## Small-business direction — September 11
 
 - [x] Record the true unfinished-feature list in FEATURE_STATUS.md.

@@ -1,0 +1,1638 @@
+{
+  "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+  "routes": [
+    {
+      "width": 1440,
+      "path": "/",
+      "scrollWidth": 1440,
+      "h1": [
+        "Practical technology help for your small business."
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "#contact",
+        "#services",
+        "/articles",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-home.png"
+    },
+    {
+      "width": 1440,
+      "path": "/about",
+      "scrollWidth": 1440,
+      "h1": [
+        "Steven Wittek"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/about",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/#contact",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-about.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles",
+      "scrollWidth": 1440,
+      "h1": [
+        "Articles & Field Notes"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/database-health-checks-explained",
+        "/articles/database-health-checks-explained",
+        "/"
+      ],
+      "screenshot": "1440-articles.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/why-sql-server-databases-slow-down-over-time",
+      "scrollWidth": 1440,
+      "h1": [
+        "Why SQL Server Databases Slow Down Over Time"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-why-sql-server-databases-slow-down-over-time.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "scrollWidth": 1440,
+      "h1": [
+        "SQL Server Indexing Mistakes That Hurt Performance"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-sql-server-indexing-mistakes-that-hurt-performance.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "scrollWidth": 1440,
+      "h1": [
+        "Query Store: Finding the Queries That Are Breaking Your Database"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        },
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-query-store-finding-the-queries-that-are-breaking-your-database.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/why-nolock-does-not-fix-blocking-problems",
+      "scrollWidth": 1440,
+      "h1": [
+        "Why NOLOCK Does Not Fix Blocking Problems"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-why-nolock-does-not-fix-blocking-problems.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/when-small-businesses-need-a-database-consultant",
+      "scrollWidth": 1440,
+      "h1": [
+        "When Small Businesses Need a Database Consultant"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-when-small-businesses-need-a-database-consultant.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "scrollWidth": 1440,
+      "h1": [
+        "Moving Legacy Applications to Modern SQL Server Platforms"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-moving-legacy-applications-to-modern-sql-server-platforms.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/database-backups-what-companies-get-wrong",
+      "scrollWidth": 1440,
+      "h1": [
+        "Database Backups: What Companies Get Wrong"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-database-backups-what-companies-get-wrong.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/azure-sql-migration-lessons",
+      "scrollWidth": 1440,
+      "h1": [
+        "Azure SQL Migration Lesson"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-azure-sql-migration-lessons.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/performance-tuning-before-buying-more-hardware",
+      "scrollWidth": 1440,
+      "h1": [
+        "Performance Tuning Before Buying More Hardware"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/database-health-checks-explained",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-performance-tuning-before-buying-more-hardware.png"
+    },
+    {
+      "width": 1440,
+      "path": "/articles/database-health-checks-explained",
+      "scrollWidth": 1440,
+      "h1": [
+        "Database Health Checks Explained"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "1440-articles-database-health-checks-explained.png"
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "scrollWidth": 768,
+      "h1": [
+        "Practical technology help for your small business."
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "#contact",
+        "#services",
+        "/articles",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-home.png"
+    },
+    {
+      "width": 768,
+      "path": "/about",
+      "scrollWidth": 768,
+      "h1": [
+        "Steven Wittek"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/about",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/#contact",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-about.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles",
+      "scrollWidth": 768,
+      "h1": [
+        "Articles & Field Notes"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/database-health-checks-explained",
+        "/articles/database-health-checks-explained",
+        "/"
+      ],
+      "screenshot": "768-articles.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/why-sql-server-databases-slow-down-over-time",
+      "scrollWidth": 768,
+      "h1": [
+        "Why SQL Server Databases Slow Down Over Time"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-why-sql-server-databases-slow-down-over-time.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "scrollWidth": 768,
+      "h1": [
+        "SQL Server Indexing Mistakes That Hurt Performance"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-sql-server-indexing-mistakes-that-hurt-performance.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "scrollWidth": 768,
+      "h1": [
+        "Query Store: Finding the Queries That Are Breaking Your Database"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        },
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-query-store-finding-the-queries-that-are-breaking-your-database.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/why-nolock-does-not-fix-blocking-problems",
+      "scrollWidth": 768,
+      "h1": [
+        "Why NOLOCK Does Not Fix Blocking Problems"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-why-nolock-does-not-fix-blocking-problems.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/when-small-businesses-need-a-database-consultant",
+      "scrollWidth": 768,
+      "h1": [
+        "When Small Businesses Need a Database Consultant"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-when-small-businesses-need-a-database-consultant.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "scrollWidth": 768,
+      "h1": [
+        "Moving Legacy Applications to Modern SQL Server Platforms"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-moving-legacy-applications-to-modern-sql-server-platforms.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/database-backups-what-companies-get-wrong",
+      "scrollWidth": 768,
+      "h1": [
+        "Database Backups: What Companies Get Wrong"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-database-backups-what-companies-get-wrong.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/azure-sql-migration-lessons",
+      "scrollWidth": 768,
+      "h1": [
+        "Azure SQL Migration Lesson"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-azure-sql-migration-lessons.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/performance-tuning-before-buying-more-hardware",
+      "scrollWidth": 768,
+      "h1": [
+        "Performance Tuning Before Buying More Hardware"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/database-health-checks-explained",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-performance-tuning-before-buying-more-hardware.png"
+    },
+    {
+      "width": 768,
+      "path": "/articles/database-health-checks-explained",
+      "scrollWidth": 768,
+      "h1": [
+        "Database Health Checks Explained"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 720,
+          "scrollWidth": 720
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "768-articles-database-health-checks-explained.png"
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "scrollWidth": 390,
+      "h1": [
+        "Practical technology help for your small business."
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "#contact",
+        "#services",
+        "/articles",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-home.png"
+    },
+    {
+      "width": 390,
+      "path": "/about",
+      "scrollWidth": 390,
+      "h1": [
+        "Steven Wittek"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/about",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/#contact",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-about.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles",
+      "scrollWidth": 390,
+      "h1": [
+        "Articles & Field Notes"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/when-small-businesses-need-a-database-consultant",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/database-backups-what-companies-get-wrong",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/azure-sql-migration-lessons",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/database-health-checks-explained",
+        "/articles/database-health-checks-explained",
+        "/"
+      ],
+      "screenshot": "390-articles.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/why-sql-server-databases-slow-down-over-time",
+      "scrollWidth": 390,
+      "h1": [
+        "Why SQL Server Databases Slow Down Over Time"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-sql-server-databases-slow-down-over-time",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-why-sql-server-databases-slow-down-over-time.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "scrollWidth": 390,
+      "h1": [
+        "SQL Server Indexing Mistakes That Hurt Performance"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/sql-server-indexing-mistakes-that-hurt-performance",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-sql-server-indexing-mistakes-that-hurt-performance.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "scrollWidth": 390,
+      "h1": [
+        "Query Store: Finding the Queries That Are Breaking Your Database"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        },
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/why-nolock-does-not-fix-blocking-problems",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-query-store-finding-the-queries-that-are-breaking-your-database.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/why-nolock-does-not-fix-blocking-problems",
+      "scrollWidth": 390,
+      "h1": [
+        "Why NOLOCK Does Not Fix Blocking Problems"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/why-nolock-does-not-fix-blocking-problems",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-why-nolock-does-not-fix-blocking-problems.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/when-small-businesses-need-a-database-consultant",
+      "scrollWidth": 390,
+      "h1": [
+        "When Small Businesses Need a Database Consultant"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/when-small-businesses-need-a-database-consultant",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-when-small-businesses-need-a-database-consultant.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "scrollWidth": 390,
+      "h1": [
+        "Moving Legacy Applications to Modern SQL Server Platforms"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/moving-legacy-applications-to-modern-sql-server-platforms",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-moving-legacy-applications-to-modern-sql-server-platforms.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/database-backups-what-companies-get-wrong",
+      "scrollWidth": 390,
+      "h1": [
+        "Database Backups: What Companies Get Wrong"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-backups-what-companies-get-wrong",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-database-backups-what-companies-get-wrong.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/azure-sql-migration-lessons",
+      "scrollWidth": 390,
+      "h1": [
+        "Azure SQL Migration Lesson"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/azure-sql-migration-lessons",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "OL",
+          "style": "decimal"
+        }
+      ],
+      "articleTables": [],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "/articles/query-store-finding-the-queries-that-are-breaking-your-database",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-azure-sql-migration-lessons.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/performance-tuning-before-buying-more-hardware",
+      "scrollWidth": 390,
+      "h1": [
+        "Performance Tuning Before Buying More Hardware"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/performance-tuning-before-buying-more-hardware",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/database-health-checks-explained",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-performance-tuning-before-buying-more-hardware.png"
+    },
+    {
+      "width": 390,
+      "path": "/articles/database-health-checks-explained",
+      "scrollWidth": 390,
+      "h1": [
+        "Database Health Checks Explained"
+      ],
+      "images": [],
+      "font": "\"DM Sans\", sans-serif",
+      "canonical": "https://netherwooddatapartners.com/articles/database-health-checks-explained",
+      "robots": "index, follow",
+      "chat": 0,
+      "activeAnimations": 0,
+      "lists": [
+        {
+          "tag": "UL",
+          "style": "disc"
+        }
+      ],
+      "articleTables": [
+        {
+          "tag": "TABLE",
+          "width": 358,
+          "scrollWidth": 358
+        }
+      ],
+      "links": [
+        "/",
+        "/about",
+        "/#services",
+        "/articles",
+        "/#approach",
+        "/#contact",
+        "/articles",
+        "/articles/performance-tuning-before-buying-more-hardware",
+        "/articles/why-sql-server-databases-slow-down-over-time",
+        "/articles/sql-server-indexing-mistakes-that-hurt-performance",
+        "mailto:contact@netherwooddatapartners.com",
+        "/"
+      ],
+      "screenshot": "390-articles-database-health-checks-explained.png"
+    }
+  ],
+  "browserErrors": [],
+  "externalRequests": [],
+  "keyboard": [
+    {
+      "tag": "A",
+      "text": "NNetherwood Data Partners",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "About",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Articles",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Start a conversation",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Tell me what you need help with",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "See what we help with ↓",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "Browse articles →",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "id": "contact-name",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "id": "contact-email",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "id": "contact-company",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "SELECT",
+      "text": "Choose one (optional)Software setup or business takeoverBusiness technology revi",
+      "id": "contact-service",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "TEXTAREA",
+      "text": "",
+      "id": "contact-message",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Send inquiry",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    },
+    {
+      "tag": "A",
+      "text": "contact@netherwooddatapartners.com",
+      "id": "",
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "visible": true
+    }
+  ],
+  "scenarios": [
+    "Search, empty-result clear and category filtering passed",
+    "Keyboard activation of cross-page contact CTA reaches the form",
+    "Keyboard-only homepage flow reached required form controls with visible focus",
+    "Formspark-down error and mail fallback passed with browser-local response; no submission sent",
+    "Form success/reset passed with browser-local response; no submission sent",
+    "Returning browser ignores newer legacy index/detail caches, including authoritative removal",
+    "Articles render with storage denied and no backend",
+    "No-JavaScript email fallback visible; full site remains JavaScript-rendered",
+    "320px overflow spot checks passed"
+  ]
+}

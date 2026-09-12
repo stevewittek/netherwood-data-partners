@@ -1,18 +1,36 @@
-# Current work: owner publishing desk and feature accountability
+# Current verified state — September 12, 2026
 
-The private owner publishing desk has been implemented in `app/admin/ArticlesAdmin.tsx`
-and `app/admin/admin-utils.ts`. It provides Steve a secure browser workflow to
-manage SQL-backed articles from Mac and Windows workstations over the private Voyager
-connection without hardcoding or leaking credentials.
+The owner publishing desk milestone is released and verified. PR #8 merged as
+`c235c73b0fea25fd0a46152edf93ba7a40b0f831`; reviewed application head is
+`9ff835214cf898918beff06f389e1587313aef33`. Main CI 34712311898 passed.
+The source release deployed in run 34712311869. Controlled publication run
+34712416208 exposed the synthetic article; withdrawal run 34712596957 removed it.
+Fresh and returning online browsers confirmed removal. The synthetic record is
+archived. Final SQL, deployed website, and article AI digests match at ten articles.
 
-Key capabilities delivered and verified:
-- Dynamic private API configuration with zero credentials in static bundles, URLs, or persistent browser storage (memory-only authentication).
-- Full article lifecycle: Draft creation, draft editing, server-sanitized preview, immediate and future-dated UTC scheduling, publish, unpublish, archive, and guarded deletion.
-- Clear distinction between SQL storage state and live website deployment (with staged draft changes indicators).
-- Robust error recovery: inline re-authentication on 401 token expiry and failure preservation keeping unsaved edits intact.
-- Destructive action confirmations (unpublish, archive, delete, discard).
-- Keyboard-accessible, responsive layout (<900px, <640px) preserving branding and public layout.
-- Tested with 9 new admin unit/lifecycle tests; all 60 backend tests, 17 publication/admin tests, typechecks, lint, and static page builds passing.
+- Voyager 2: reviewed private API image is healthy, the owner desk service and
+  15-minute publication timer are enabled and active. No schema migration or
+  public network exposure was introduced. Existing dirty checkouts are preserved.
+- Voyager 1: actual Windows Chrome authenticated desk checks passed at 1440,
+  768 and 390 pixels using its existing SSH access. VS Code work was preserved.
+- Mac: the same rendered checks passed; real draft/preview/publish/unpublish/
+  archive acceptance passed. Browser-local 503 and 401 simulations preserved
+  unsaved edits; real reauthentication and lock cleared credentials correctly.
+- Final validation: lint, 23 publication/admin tests, 3 pipeline tests, 70 backend
+  tests, frontend/backend typechecks, Vinext test/build, Pages build, static route
+  checks and diff checks passed. Public browser regression covered all 13 routes
+  at three sizes (39 renders), keyboard flow, contact fallback, cache and backend
+  failure. No real contact form submission or email was sent.
+- Current practical access and rollback: OWNER_DESK_ACCESS.md and
+  PUBLICATION_OPERATIONS.md. Machine-readable results and responsive images:
+  `docs/evidence/2026-09-12/desk-final/`.
+- Public chat remains disabled. Direct business-mail receipt remains unconfirmed.
+  An already-open/offline page may retain old content until an online refresh.
+  Other business capabilities are separately tracked in FEATURE_STATUS.md.
+
+## Historical state below
+
+These dated notes are retained for provenance, not current acceptance gates.
 
 # Project state
 

@@ -255,12 +255,13 @@ export default function ArticlesAdmin() {
   async function refreshPublicationEvidence(
     adminArticles: AdminArticle[],
     overrideUrl?: string,
+    overrideToken?: string,
   ): Promise<void> {
     const requestId = ++evidenceRequest.current;
     setAiStatus("Not verified");
-    void request<{aiKnowledge: {state: string}}>("/api/admin/publication-status", {}, undefined, overrideUrl)
+    void request<{status: {aiKnowledge: {state: string}}}>("/api/admin/publication-status", {}, overrideToken, overrideUrl)
       .then((result) => {
-        if (requestId === evidenceRequest.current) setAiStatus(result.aiKnowledge.state === "current" ? "Current" : "Not current: " + result.aiKnowledge.state.replaceAll("_", " "));
+        if (requestId === evidenceRequest.current) setAiStatus(result.status.aiKnowledge.state === "current" ? "Current" : "Not current: " + result.status.aiKnowledge.state.replaceAll("_", " "));
       }).catch(() => { if (requestId === evidenceRequest.current) setAiStatus("Not verified"); });
     setWebsiteEvidence(websiteEvidenceUnavailable);
     setSqlEvidence(sqlEvidenceUnavailable);
@@ -281,7 +282,7 @@ export default function ArticlesAdmin() {
       overrideUrl,
     );
     setArticles(result.articles);
-    void refreshPublicationEvidence(result.articles, overrideUrl);
+    void refreshPublicationEvidence(result.articles, overrideUrl, overrideToken);
     return result.articles;
   }
 

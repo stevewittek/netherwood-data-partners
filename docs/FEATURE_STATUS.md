@@ -1,6 +1,6 @@
 # What works and what remains unfinished
 
-Reviewed September 11, 2026 against released main `58136f8`, the source tree,
+Reviewed September 12, 2026 against released desk source `c235c73`, the source tree,
 production acceptance evidence and the owner's small-business direction.
 Publication completion never meant that every planned capability was delivered.
 This is the current feature register; older launch checkboxes are historical.
@@ -14,7 +14,7 @@ other conversations. Items found only in the roadmap are labeled accordingly.
 | Public Home, About, article index, search/filter and ten article routes | Released Pages site, independent of Voyager availability |
 | Inquiry form | Existing Formspark integration and delivery evidence; visible contact@netherwooddatapartners.com fallback |
 | SQL article authoring and lifecycle | Authenticated private API active; draft/edit/publish/schedule/unpublish/archive exercised in production acceptance |
-| Owner private article publishing desk | Complete browser-based editor in `app/admin/ArticlesAdmin.tsx`; authenticated in-memory credential & private endpoint workflow, server-sanitized preview, UTC scheduling, draft staging/hasUnpublishedChanges indicators, destructive action confirmations, inline re-auth on token expiry, and error recovery preserving unsaved edits |
+| Owner private article publishing desk | Released and tested on actual Mac and Windows browsers; controlled public publish/withdraw/archive and matching SQL/website/AI verified September 12 (desk-final evidence). Private access: OWNER_DESK_ACCESS.md. Browser-based editor in `app/admin/ArticlesAdmin.tsx`; authenticated in-memory credential & private endpoint workflow, server-sanitized preview, UTC scheduling, draft staging/hasUnpublishedChanges indicators, destructive action confirmations, inline re-auth on token expiry, and error recovery preserving unsaved edits |
 | Automatic article publication | Complete SQL export, shared routes/metadata/sitemaps, 15-minute cycle; healthy target about 15–30 minutes |
 | Release recovery | Last-good artifact retention and controlled rollback verified |
 | Article AI knowledge reconciliation | Private job active with matching deployed/SQL versions; this does not make visitor chat available |
