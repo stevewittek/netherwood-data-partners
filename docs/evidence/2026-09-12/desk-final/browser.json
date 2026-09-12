@@ -1,0 +1,35 @@
+[
+  {
+    "width": 1440,
+    "overflow": false,
+    "errors": [],
+    "storage": {
+      "local": [],
+      "session": []
+    },
+    "authenticatedReadOnly": true,
+    "logoutCleared": true
+  },
+  {
+    "width": 768,
+    "overflow": false,
+    "errors": [],
+    "storage": {
+      "local": [],
+      "session": []
+    },
+    "authenticatedReadOnly": true,
+    "logoutCleared": true
+  },
+  {
+    "width": 390,
+    "overflow": false,
+    "errors": [],
+    "storage": {
+      "local": [],
+      "session": []
+    },
+    "authenticatedReadOnly": true,
+    "logoutCleared": true
+  }
+]
