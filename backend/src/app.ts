@@ -12,6 +12,7 @@ import {
 import { ProviderError, type ChatProvider } from "./ai.ts";
 import { loadConfig, type Config } from "./config.ts";
 import { createDatabase, type Database, type RequestContext } from "./database.ts";
+import { createPublicationStatusReader, type PublicationStatusReader } from "./publication-status.ts";
 import { createConfiguredProvider } from "./providers.ts";
 
 const baseHeaders = {
@@ -31,6 +32,7 @@ type Deps = {
   config?: Config;
   database?: Database;
   articleAdmin?: ArticleAdminStore;
+  publicationStatus?: PublicationStatusReader;
   chat?: ChatHandler;
   now?: () => number;
 };
@@ -120,13 +122,18 @@ function authorized(request: IncomingMessage, expected: string | undefined): boo
 }
 
 function adminPath(path: string): boolean {
-  return path === "/api/admin/articles" || path === "/api/admin/articles/preview" || path.startsWith("/api/admin/articles/");
+  return path === "/api/admin/publication-status"
+    || path === "/api/admin/articles"
+    || path === "/api/admin/articles/preview"
+    || path.startsWith("/api/admin/articles/");
 }
 
 export function createApp(deps: Deps = {}) {
   const config = deps.config ?? loadConfig();
   const database = deps.database ?? (config.sql ? createDatabase(config.sql) : undefined);
   const articleAdmin = deps.articleAdmin ?? (config.articleSql ? createArticleAdminDatabase(config.articleSql) : undefined);
+  const publicationStatus = deps.publicationStatus
+    ?? (config.sql && database ? createPublicationStatusReader(config.sql, database) : undefined);
   const chat = deps.chat ?? createConfiguredProvider(config, database);
   const now = deps.now ?? Date.now;
   const buckets = new Map<string, { start: number; count: number }>();
@@ -247,6 +254,10 @@ export function createApp(deps: Deps = {}) {
           });
         }
         const adminHeaders = { ...cors, "x-robots-tag": "noindex, nofollow" };
+        if (request.method === "GET" && url.pathname === "/api/admin/publication-status") {
+          if (!publicationStatus) return send(response, 503, { error: "service_unavailable", requestId }, adminHeaders);
+          return send(response, 200, { status: await publicationStatus(new Date(now())), requestId }, adminHeaders);
+        }
         if (request.method === "GET" && url.pathname === "/api/admin/articles") {
           const articles = await articleAdmin.listAdminArticles();
           return send(response, 200, { articles: articles.map(articleSummaryJson), requestId }, adminHeaders);

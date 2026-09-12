@@ -6,6 +6,7 @@ import { ArticleConflictError, PublishedArticleDeleteError } from "../src/articl
 import type { Config } from "../src/config.ts";
 import type { ChatMessageInput, ChatReplyInput, Database, LeadInput, PageViewInput } from "../src/database.ts";
 import type { Article, ArticleAdminStore, ArticleInput, ArticleSummary } from "../src/articles.ts";
+import type { PublicationStatus, PublicationStatusReader } from "../src/publication-status.ts";
 
 const visitorId = "11111111-1111-4111-8111-111111111111";
 const sessionId = "22222222-2222-4222-8222-222222222222";
@@ -58,7 +59,14 @@ function database() {
 
 async function withServer(
   check: (base: string) => Promise<void>,
-  options: { config?: Config; database?: Database; articleAdmin?: ArticleAdminStore; chat?: ChatHandler; now?: () => number } = {},
+  options: {
+    config?: Config;
+    database?: Database;
+    articleAdmin?: ArticleAdminStore;
+    publicationStatus?: PublicationStatusReader;
+    chat?: ChatHandler;
+    now?: () => number;
+  } = {},
 ): Promise<void> {
   const server = createApp({ config, ...options });
   await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
@@ -353,12 +361,68 @@ test("admin delete refuses a published article with a safe conflict response", a
   }, { config: securedConfig, database: database().value, articleAdmin: store });
 });
 
+const currentPublicationStatus: PublicationStatus = {
+  checkedAtUtc: "2026-09-12T10:00:00.000Z",
+  sqlSaved: {
+    state: "available", capturedAtUtc: "2026-09-12T09:59:58.000Z", articleCount: 10, contentDigest: "a".repeat(64),
+  },
+  deployedWebsite: {
+    state: "current", capturedAtUtc: "2026-09-12T09:45:00.000Z", builtAtUtc: "2026-09-12T09:46:00.000Z",
+    articleCount: 10, contentDigest: "a".repeat(64),
+  },
+  aiKnowledge: {
+    state: "current", checkedAtUtc: "2026-09-12T10:00:00.000Z", expectedArticleCount: 10,
+    matchingArticleCount: 10, withheldArticleCount: 0, unexpectedVisibleArticleCount: 0,
+    contentDigest: "a".repeat(64),
+  },
+};
+
+test("publication status uses the private admin authentication, CORS, and response headers", async () => {
+  const securedConfig = { ...config, articleAdminToken: "test-admin-token-that-is-at-least-32-characters" };
+  let reads = 0;
+  const publicationStatus: PublicationStatusReader = async () => {
+    reads += 1;
+    return currentPublicationStatus;
+  };
+  await withServer(async (base) => {
+    const preflight = await fetch(base + "/api/admin/publication-status", {
+      method: "OPTIONS",
+      headers: {
+        origin: "https://www.netherwooddatapartners.com",
+        "access-control-request-method": "GET",
+        "access-control-request-headers": "authorization",
+      },
+    });
+    assert.equal(preflight.status, 204);
+    assert.match(preflight.headers.get("access-control-allow-headers") ?? "", /authorization/);
+
+    assert.equal((await fetch(base + "/api/admin/publication-status")).status, 401);
+    assert.equal((await fetch(base + "/api/admin/publication-status", {
+      headers: { authorization: "Bearer incorrect-token" },
+    })).status, 401);
+    assert.equal(reads, 0);
+
+    const response = await fetch(base + "/api/admin/publication-status", {
+      headers: { authorization: "Bearer test-admin-token-that-is-at-least-32-characters" },
+    });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+    assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow");
+    const body = await response.json() as { status: PublicationStatus; requestId: string };
+    assert.deepEqual(body.status, currentPublicationStatus);
+    assert.match(body.requestId, /^[0-9a-f-]{36}$/);
+    assert.equal(reads, 1);
+  }, { config: securedConfig, database: database().value, articleAdmin: articleAdminStore(), publicationStatus });
+});
+
 test("admin routes are absent when authoring credentials are disabled", async () => {
   await withServer(async (base) => {
-    const response = await fetch(base + "/api/admin/articles", { headers: { authorization: "Bearer anything" } });
-    assert.equal(response.status, 404);
-    assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow");
-  }, { database: database().value });
+    for (const path of ["/api/admin/articles", "/api/admin/publication-status"]) {
+      const response = await fetch(base + path, { headers: { authorization: "Bearer anything" } });
+      assert.equal(response.status, 404);
+      assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow");
+    }
+  }, { database: database().value, publicationStatus: async () => currentPublicationStatus });
 });
 
 test("chat validates, persists, and returns the provider result", async () => {

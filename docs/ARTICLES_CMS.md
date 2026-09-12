@@ -62,6 +62,12 @@ inside the same transaction.
 - `POST /api/admin/articles/{id}/publish`, `/unpublish`, and `/archive` change
   state through fixed procedures. `DELETE /api/admin/articles/{id}` permanently
   deletes only a non-published article.
+- `GET /api/admin/publication-status` reports the due/published SQL export,
+  validated deployed website, and exact visible article-knowledge alignment as
+  separate states, timestamps, counts, and digests. It does not return drafts,
+  article content, paths, logs, source locations, or dependency error details.
+  A SQL capture older than five minutes or more than 60 seconds ahead is treated
+  as unavailable rather than being reported as current.
 
 Admin routes return `404` when authoring is not configured and require
 `Authorization: Bearer ...` when it is. Authentication attempts and other
