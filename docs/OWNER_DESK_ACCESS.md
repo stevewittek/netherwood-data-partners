@@ -1,6 +1,10 @@
 # Private owner publishing desk
 
-Use a trusted local build of the reviewed release. The public website remains independent of this private connection. No new firewall, public endpoint, SQL credentials, or permanent browser credential storage is required.
+Preferred access uses the reviewed desk hosted privately on Voyager 2; no Node installation is needed on your workstation. Run `ops/desk/start-desk.ps1` in Windows PowerShell or `bash ops/desk/start-desk.sh` on the Mac, keep the connection open, and open http://127.0.0.1:5173/admin/articles/. Use http://127.0.0.1:13001 as the API endpoint and the existing protected publishing credential. If the ports are already occupied by your desk connection, reuse that connection rather than starting another.
+
+The enabled `ndp-owner-desk.service` serves the immutable reviewed artifact from `/home/nasa/netherwood-desk-preview-20260912-final` on loopback only and restarts on failure. Its template is in `ops/desk/`. Upgrading requires building and checking a new release artifact in a new directory, updating the unit paths, and restarting only this private preview service. Retain the old directory for rollback.
+
+Alternative: use a trusted local build of the reviewed release. The public website remains independent of this private connection. No new firewall, public endpoint, SQL credentials, or permanent browser credential storage is required.
 
 1. Build the reviewed checkout with `pnpm build:pages`.
 2. Start `pnpm desk` (or `node scripts/preview-pages.mjs --desk`). It binds only to 127.0.0.1:5173. Keep this terminal running.

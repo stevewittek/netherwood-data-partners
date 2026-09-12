@@ -282,3 +282,45 @@ results, exact lineage, contact-delivery evidence and known limits. GitHub's
 [artifact documentation](https://docs.github.com/en/actions/tutorials/store-and-share-data)
 and [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
 explain the hosted artifact and concurrency mechanisms used here.
+
+
+## September 12 owner desk operation and recovery
+
+Start with [Private owner publishing desk](OWNER_DESK_ACCESS.md). Its Windows and
+Mac launchers connect through existing SSH; no workstation Node installation is
+needed for the Voyager-hosted desk. Open a draft or New Article, edit, Preview,
+and Save Draft in SQL. Review the preview, then Publish (or set a future UTC date).
+Staged edits do not replace the public version until Publish is selected.
+
+Expect the next 15-minute cycle plus build/CDN time, usually 15–30 minutes.
+Refresh publication status: require both the website and article AI to report
+current, then open the public route and check sitemap membership. For removal,
+Unpublish or Archive and wait for the same checks; verify the former route in
+both a refreshed existing browser and a fresh browser. Do not treat SQL save as
+proof that the public update is complete.
+
+On a failed save, keep the editor open: unsaved text is retained. Reauthenticate
+if prompted. On a failed export/build, the last-good website stays available;
+inspect the desk status and the latest Publish website workflow and Voyager 2
+`ndp-publication.service` journal. Correct the cause and allow the existing timer
+to retry. Avoid parallel publisher jobs. Lock only after saving or accepting the
+loss of unsaved work. Offline or already-open copies cannot be recalled remotely.
+
+The September 12 controlled lifecycle passed: source c235c73, publish run
+34712416208, withdrawal run 34712596957, synthetic record
+f7ff5568-0d08-4439-9b32-2e456e9995e8 archived. Final count ten, SQL/deployed/AI
+matching. See evidence/2026-09-12/desk-final/production-lifecycle.json.
+
+For website rollback use the gated artifact procedure above. Private API
+rollback is separate: the previous image is retained on Voyager 2 as
+`ndp-api-rollback:before-desk` (sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e).
+Under the existing publication cycle lock, retag it as `backend-api`, then from
+`/home/nasa/netherwood-publication-release` run
+`docker compose -f backend/compose.yaml up -d --no-deps --no-build api`.
+Verify loopback health and publication status afterward. Old API versions may
+lack the new status route; the desk must report unavailable rather than current.
+No database migration was introduced. The released API image ID is
+`sha256:3b3667b90899f17b1e7e8b4e1cd58fffd84efa80b733460ed3f6265737e286fa`.
+To roll back only the private desk preview, point its user service at the retained
+previous reviewed artifact directory and restart only `ndp-owner-desk.service`.
+Do not reset shared dirty checkouts or alter unrelated containers.

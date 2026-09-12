@@ -1,0 +1,83 @@
+{
+  "published": {
+    "format": "netherwood.website-release/v1",
+    "sourceCommit": "c235c73b0fea25fd0a46152edf93ba7a40b0f831",
+    "contentCommit": "5d27dc1207357f8de8c310fc0891adc47cf1e548",
+    "contentDigest": "1e3ca67f2e2ba3683b76c3c9ce869c32cb84e88480f6ad95e18ff982cb7ec181",
+    "articleCount": 11,
+    "generatedAt": "2026-09-12T18:50:42.440Z",
+    "builtAt": "2026-09-12T18:51:44.949Z",
+    "runUrl": "https://github.com/stevewittek/netherwood-data-partners/actions/runs/34712416208",
+    "chatEnabled": false
+  },
+  "publishedStatus": {
+    "status": {
+      "checkedAtUtc": "2026-09-12T18:54:25.649Z",
+      "sqlSaved": {
+        "state": "available",
+        "capturedAtUtc": "2026-09-12T18:54:25.947Z",
+        "articleCount": 11,
+        "contentDigest": "1e3ca67f2e2ba3683b76c3c9ce869c32cb84e88480f6ad95e18ff982cb7ec181"
+      },
+      "deployedWebsite": {
+        "state": "current",
+        "capturedAtUtc": "2026-09-12T18:50:42.440Z",
+        "builtAtUtc": "2026-09-12T18:51:44.949Z",
+        "articleCount": 11,
+        "contentDigest": "1e3ca67f2e2ba3683b76c3c9ce869c32cb84e88480f6ad95e18ff982cb7ec181"
+      },
+      "aiKnowledge": {
+        "state": "current",
+        "checkedAtUtc": "2026-09-12T18:54:25.649Z",
+        "expectedArticleCount": 11,
+        "matchingArticleCount": 11,
+        "withheldArticleCount": 0,
+        "unexpectedVisibleArticleCount": 0,
+        "contentDigest": "1e3ca67f2e2ba3683b76c3c9ce869c32cb84e88480f6ad95e18ff982cb7ec181"
+      }
+    },
+    "requestId": "96153f15-cd88-4d34-b3b4-36f6d54bb47b"
+  },
+  "withdrawn": {
+    "format": "netherwood.website-release/v1",
+    "sourceCommit": "c235c73b0fea25fd0a46152edf93ba7a40b0f831",
+    "contentCommit": "cb8ca812278afbde28a83309976a1823f6cf3fdd",
+    "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+    "articleCount": 10,
+    "generatedAt": "2026-09-12T18:54:33.428Z",
+    "builtAt": "2026-09-12T18:55:36.968Z",
+    "runUrl": "https://github.com/stevewittek/netherwood-data-partners/actions/runs/34712596957",
+    "chatEnabled": false
+  },
+  "returningBrowserRemoval": true,
+  "freshBrowserRemoval": true,
+  "finalStatus": {
+    "status": {
+      "checkedAtUtc": "2026-09-12T18:55:58.618Z",
+      "sqlSaved": {
+        "state": "available",
+        "capturedAtUtc": "2026-09-12T18:55:58.910Z",
+        "articleCount": 10,
+        "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+      },
+      "deployedWebsite": {
+        "state": "current",
+        "capturedAtUtc": "2026-09-12T18:54:33.428Z",
+        "builtAtUtc": "2026-09-12T18:55:36.968Z",
+        "articleCount": 10,
+        "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+      },
+      "aiKnowledge": {
+        "state": "current",
+        "checkedAtUtc": "2026-09-12T18:55:58.618Z",
+        "expectedArticleCount": 10,
+        "matchingArticleCount": 10,
+        "withheldArticleCount": 0,
+        "unexpectedVisibleArticleCount": 0,
+        "contentDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+      }
+    },
+    "requestId": "365994dc-2bd2-4f46-a548-2037fdf356a3"
+  },
+  "archived": true
+}

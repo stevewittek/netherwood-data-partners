@@ -1,0 +1,13 @@
+[Unit]
+Description=Private Netherwood owner desk (loopback only)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/netherwood-desk-preview-20260912-final
+ExecStart=/usr/bin/node %h/netherwood-desk-preview-20260912-final/scripts/preview-pages.mjs --desk
+Restart=on-failure
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
