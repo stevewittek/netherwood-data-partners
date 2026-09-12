@@ -127,6 +127,81 @@ export function isoLabel(value?: string): string {
   }
 }
 
+export type DeploymentEvidence = {
+  format: string;
+  sourceCommit: string;
+  contentCommit: string;
+  contentDigest: string;
+  articleCount: number;
+  generatedAt: string;
+  builtAt?: string;
+  runUrl?: string | null;
+  chatEnabled?: boolean;
+};
+
+export type PublicVerification = {
+  verified: boolean;
+  publishedCount: number;
+  contentDigest?: string;
+  generatedAt?: string;
+  error?: string;
+};
+
+export function getPublicVerification(
+  manifest: DeploymentEvidence | null,
+  articleSlug: string,
+  articleStatus: "Draft" | "Published" | "Archived",
+  isScheduled: boolean,
+  snapshotSlugs?: Set<string>,
+): { label: string; badgeClass: string; details: string } {
+  if (articleStatus === "Draft") {
+    return {
+      label: "Draft in SQL",
+      badgeClass: "status-draft",
+      details: "Stored in SQL as draft. Not published to website.",
+    };
+  }
+
+  if (articleStatus === "Archived") {
+    return {
+      label: "Archived in SQL",
+      badgeClass: "status-archived",
+      details: "Archived in SQL. Hidden from website and sitemaps.",
+    };
+  }
+
+  if (isScheduled) {
+    return {
+      label: "Scheduled in SQL",
+      badgeClass: "status-scheduled",
+      details: "Scheduled in SQL with a future UTC publication date. Will export automatically once due.",
+    };
+  }
+
+  // Article status is "Published" and due
+  if (!manifest) {
+    return {
+      label: "Published in SQL (Not verified on website)",
+      badgeClass: "status-unverified",
+      details: "Published in SQL. Website deployment evidence not yet verified or manifest unavailable.",
+    };
+  }
+
+  if (snapshotSlugs && snapshotSlugs.has(articleSlug)) {
+    return {
+      label: "Live on Website",
+      badgeClass: "status-live",
+      details: `Live on public website (digest ${manifest.contentDigest.slice(0, 8)}…, ${manifest.articleCount} articles).`,
+    };
+  }
+
+  return {
+    label: "Published in SQL; awaiting website update",
+    badgeClass: "status-pending-sync",
+    details: "Saved as Published in SQL. Awaiting next 15-minute export and deployment cycle to go live on website.",
+  };
+}
+
 export function isFutureDate(isoString?: string, currentTimestamp = Date.now()): boolean {
   if (!isoString) return false;
   try {

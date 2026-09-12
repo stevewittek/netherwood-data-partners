@@ -6,14 +6,16 @@ import {
   blankEditor,
   editorFromArticle,
   fromUtcInputString,
+  getPublicVerification,
   isFutureDate,
   isoLabel,
   slugify,
   toUtcInputString,
   type AdminArticle,
+  type DeploymentEvidence,
   type EditorValue,
   type NoticeState,
-} from "./admin-utils.ts";
+} from "./admin-utils";
 
 export type { AdminArticle, EditorValue, NoticeState };
 export { blankEditor, editorFromArticle, fromUtcInputString, isFutureDate, isoLabel, slugify, toUtcInputString };
@@ -37,11 +39,77 @@ export default function ArticlesAdmin() {
   const [reauthPassword, setReauthPassword] = useState("");
   const [showReauth, setShowReauth] = useState(false);
   const [currentUtcTime, setCurrentUtcTime] = useState<number>(() => Date.now());
+  const [manifest, setManifest] = useState<DeploymentEvidence | null>(null);
+  const [snapshotSlugs, setSnapshotSlugs] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentUtcTime(Date.now()), 30_000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    let active = true;
+    const fetchEvidence = async () => {
+      try {
+        const pubRes = await fetch("/publication.json", { cache: "no-store" });
+        if (!active) return;
+        if (pubRes.ok) {
+          const pubData = (await pubRes.json()) as DeploymentEvidence;
+          setManifest(pubData);
+        } else {
+          setManifest(null);
+        }
+      } catch {
+        if (active) setManifest(null);
+      }
+
+      try {
+        const snapRes = await fetch("/articles-snapshot.json", { cache: "no-store" });
+        if (!active) return;
+        if (snapRes.ok) {
+          const snapData = (await snapRes.json()) as { articles?: Array<{ slug: string }> };
+          if (Array.isArray(snapData.articles)) {
+            setSnapshotSlugs(new Set(snapData.articles.map((a) => a.slug)));
+          }
+        }
+      } catch {
+        // Keep previous or empty snapshot slugs
+      }
+    };
+
+    if (authenticated) {
+      void fetchEvidence();
+    }
+    return () => {
+      active = false;
+    };
+  }, [authenticated]);
+
+  const checkDeploymentEvidence = async () => {
+    try {
+      const pubRes = await fetch("/publication.json", { cache: "no-store" });
+      if (pubRes.ok) {
+        const pubData = (await pubRes.json()) as DeploymentEvidence;
+        setManifest(pubData);
+      } else {
+        setManifest(null);
+      }
+    } catch {
+      setManifest(null);
+    }
+
+    try {
+      const snapRes = await fetch("/articles-snapshot.json", { cache: "no-store" });
+      if (snapRes.ok) {
+        const snapData = (await snapRes.json()) as { articles?: Array<{ slug: string }> };
+        if (Array.isArray(snapData.articles)) {
+          setSnapshotSlugs(new Set(snapData.articles.map((a) => a.slug)));
+        }
+      }
+    } catch {
+      // Keep previous
+    }
+  };
 
   useEffect(() => {
     document.title = "Article publishing | Netherwood Data Partners";
@@ -378,7 +446,7 @@ export default function ArticlesAdmin() {
         if (isFutureDate(result.article.publishedDate, currentUtcTime)) {
           verbMsg = `Scheduled “${result.article.title}” in SQL for ${isoLabel(result.article.publishedDate)}. It will go live once due.`;
         } else {
-          verbMsg = `Published “${result.article.title}” in SQL. It will deploy to the public website on the next 15-minute export cycle.`;
+          verbMsg = `Published “${result.article.title}” in SQL. Awaiting website update (next 15-minute export cycle).`;
         }
       } else if (action === "unpublish") {
         verbMsg = `Unpublished “${result.article.title}” in SQL. Reverted to Draft; will be removed on the next export cycle.`;
@@ -388,6 +456,7 @@ export default function ArticlesAdmin() {
 
       setNotice({ type: "success", text: verbMsg });
       await loadList();
+      void checkDeploymentEvidence();
 
       if (selectedId === articleId) {
         const updatedEditor = editorFromArticle(result.article);
@@ -632,16 +701,27 @@ export default function ArticlesAdmin() {
             <div className="admin-table-summary">
               <span>{articles.length} total articles in SQL</span>
               <span>
-                {articles.filter((a) => a.status === "Published" && !isFutureDate(a.publishedDate, currentUtcTime)).length} published
+                {articles.filter((a) => a.status === "Published" && !isFutureDate(a.publishedDate, currentUtcTime)).length} published in SQL
               </span>
               <span>{articles.filter((a) => a.status === "Draft").length} drafts</span>
               <span>{articles.filter((a) => a.status === "Published" && isFutureDate(a.publishedDate, currentUtcTime)).length} scheduled</span>
+              <span>
+                Website release:{" "}
+                {manifest ? (
+                  <strong>
+                    Digest {manifest.contentDigest.slice(0, 8)}… ({manifest.articleCount} live)
+                  </strong>
+                ) : (
+                  <em>Not verified</em>
+                )}
+              </span>
             </div>
             <table className="admin-table" aria-label="Articles list">
               <thead>
                 <tr>
                   <th scope="col">Title &amp; Slug</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">SQL Status</th>
+                  <th scope="col">Website Publication Status</th>
                   <th scope="col">Category</th>
                   <th scope="col">SQL Modified (UTC)</th>
                   <th scope="col">SQL Published (UTC)</th>
@@ -653,6 +733,13 @@ export default function ArticlesAdmin() {
               <tbody>
                 {articles.map((article) => {
                   const scheduled = article.status === "Published" && isFutureDate(article.publishedDate, currentUtcTime);
+                  const pubVerification = getPublicVerification(
+                    manifest,
+                    article.slug,
+                    article.status,
+                    scheduled,
+                    snapshotSlugs,
+                  );
                   return (
                     <tr key={article.articleId}>
                       <td>
@@ -669,6 +756,11 @@ export default function ArticlesAdmin() {
                           }`}
                         >
                           {scheduled ? "Scheduled" : article.status}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`status-label ${pubVerification.badgeClass}`} title={pubVerification.details}>
+                          {pubVerification.label}
                         </span>
                       </td>
                       <td>{article.category}</td>
@@ -766,8 +858,10 @@ export default function ArticlesAdmin() {
                 <p className="admin-sync-explanation">
                   {selectedArticle.status === "Published"
                     ? isFutureDate(selectedArticle.publishedDate, currentUtcTime)
-                      ? `Scheduled in SQL for release on ${isoLabel(selectedArticle.publishedDate)}. It will automatically deploy on the first 15-minute export cycle once due.`
-                      : "Published in SQL. Changes are deployed to the public website via the automated 15-minute export cycle."
+                      ? `Scheduled in SQL for release on ${isoLabel(selectedArticle.publishedDate)}. It will automatically export once due.`
+                      : manifest && snapshotSlugs.has(selectedArticle.slug)
+                      ? `Published in SQL and live on public website (digest ${manifest.contentDigest.slice(0, 8)}…).`
+                      : "Published in SQL; awaiting website update. Will deploy on the automated 15-minute export cycle."
                     : selectedArticle.status === "Draft"
                     ? "Saved in SQL as Draft. Not visible on the public website."
                     : "Archived in SQL. Hidden from public website and search."}

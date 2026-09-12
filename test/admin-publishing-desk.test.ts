@@ -3,18 +3,19 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { createApp } from "../backend/src/app.ts";
-import { ArticleConflictError, PublishedArticleDeleteError } from "../backend/src/article-database.ts";
+import { PublishedArticleDeleteError } from "../backend/src/article-database.ts";
 import type { Config } from "../backend/src/config.ts";
 import type { Database } from "../backend/src/database.ts";
 import {
-  blankEditor,
   editorFromArticle,
   fromUtcInputString,
+  getPublicVerification,
   isFutureDate,
   isoLabel,
   slugify,
   toUtcInputString,
   type AdminArticle,
+  type DeploymentEvidence,
 } from "../app/admin/admin-utils.ts";
 import {
   sanitizeArticleHtml,
@@ -100,6 +101,49 @@ test("isFutureDate correctly identifies upcoming scheduled dates", () => {
   assert.equal(isFutureDate("2026-09-12T11:59:00.000Z", baseTime), false);
   assert.equal(isFutureDate("2026-08-22T14:00:00.000Z", baseTime), false);
   assert.equal(isFutureDate(undefined, baseTime), false);
+});
+
+test("getPublicVerification returns honest status distinctions between SQL and website deployment", () => {
+  const manifest: DeploymentEvidence = {
+    format: "netherwood.website-release/v1",
+    sourceCommit: "16a133f",
+    contentCommit: "b6cbdcb",
+    contentDigest: "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8",
+    articleCount: 10,
+    generatedAt: "2026-09-11T03:04:30.209Z",
+    chatEnabled: false,
+  };
+  const liveSlugs = new Set(["why-sql-server-databases-slow-down-over-time", "existing-live-slug"]);
+
+  // 1. Draft article
+  const draftResult = getPublicVerification(manifest, "draft-article", "Draft", false, liveSlugs);
+  assert.equal(draftResult.label, "Draft in SQL");
+  assert.equal(draftResult.badgeClass, "status-draft");
+
+  // 2. Archived article
+  const archivedResult = getPublicVerification(manifest, "archived-article", "Archived", false, liveSlugs);
+  assert.equal(archivedResult.label, "Archived in SQL");
+  assert.equal(archivedResult.badgeClass, "status-archived");
+
+  // 3. Scheduled article (future-dated)
+  const scheduledResult = getPublicVerification(manifest, "future-article", "Published", true, liveSlugs);
+  assert.equal(scheduledResult.label, "Scheduled in SQL");
+  assert.equal(scheduledResult.badgeClass, "status-scheduled");
+
+  // 4. Published article not yet in public snapshot (pending 15-min export)
+  const pendingResult = getPublicVerification(manifest, "newly-published-article", "Published", false, liveSlugs);
+  assert.equal(pendingResult.label, "Published in SQL; awaiting website update");
+  assert.equal(pendingResult.badgeClass, "status-pending-sync");
+
+  // 5. Published article confirmed live in public snapshot
+  const liveResult = getPublicVerification(manifest, "why-sql-server-databases-slow-down-over-time", "Published", false, liveSlugs);
+  assert.equal(liveResult.label, "Live on Website");
+  assert.equal(liveResult.badgeClass, "status-live");
+
+  // 6. Manifest unavailable / unverified
+  const unverifiedResult = getPublicVerification(null, "why-sql-server-databases-slow-down-over-time", "Published", false, liveSlugs);
+  assert.equal(unverifiedResult.label, "Published in SQL (Not verified on website)");
+  assert.equal(unverifiedResult.badgeClass, "status-unverified");
 });
 
 test("editorFromArticle maps article fields to editor state and preserves values", () => {

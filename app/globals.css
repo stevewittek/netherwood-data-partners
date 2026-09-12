@@ -1277,6 +1277,9 @@ footer p:last-child {
 .status-scheduled { background: #e0e9f8; color: #1e3a6a; }
 .status-archived { color: #66716d; }
 .status-draft { background: #eee; color: #444; }
+.status-live { background: #d7edd8; color: #164627; border: 1px solid #b2d9b5; }
+.status-pending-sync { background: #fef2d6; color: #784805; border: 1px solid #fae1a0; }
+.status-unverified { background: #f2f2f2; color: #666; border: 1px dashed #bbb; }
 .admin-actions { display: flex; flex-wrap: wrap; gap: 9px; }
 .admin-actions button { padding: 0; font-size: 12px; }
 .admin-actions .danger-action { color: #9a3029; }
