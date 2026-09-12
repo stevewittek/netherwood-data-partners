@@ -16,135 +16,40 @@ Key capabilities delivered and verified:
 
 # Project state
 
-## Production release and lifecycle acceptance - September 11
+## Voyager 1 business operations and acceptance update
 
-Netherwood Data Partners is live at `https://netherwooddatapartners.com`.
-Application behavior is based on
-`16a133f7d82bb807f3c230514f325604bac84190`; later evidence-only merges do
-not change that baseline. The current public manifest records content commit
-`b6cbdcb0f5b8eb460096db84d5084f4ae4165770`,
-digest `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`,
-ten articles, chat disabled, and successful publication run `34605108714`.
-The retained `website-release` artifact is ID `10265914128`, 2,079,772 bytes,
-and expires 2026-10-11T13:35:40Z.
+- docs/BUSINESS_OPERATING_RUNBOOK.md records article and inquiry-to-closeout
+  processes, role gates, inputs, outputs, completion conditions, existing
+  systems of record, cache limitations, and open owner decisions.
+  docs/CLIENT_WORK_TEMPLATES.md supplies inquiry-response, discovery, scope,
+  delivery, and closeout templates without inventing pricing, response promises,
+  or legal terms.
+- docs/VOYAGER1_ACCEPTANCE_REPORT.md separates passed, failed, and not-tested
+  checks and includes a paste-ready Voyager 2/Mac staging handoff. No production
+  article, form, email, credential, tracker, SQL data, or external service was
+  changed.
+- Read-only live checks returned HTTP 200 for Home, About, Articles, one native
+  article URL, private authoring, both sitemaps, and robots.txt. All 13 URLs
+  in the live main sitemap returned 200. Fresh Edge
+  sessions rendered desktop and approximately 400-CSS-pixel layouts. Public
+  authoring correctly reported it was disconnected. Responses observed
+  Cache-Control: max-age=600.
+- Root lint, direct Vite Pages build/static generation, and backend strict
+  TypeScript checking passed. The snapshot contains ten articles; the build
+  emitted ten slug pages, 13 main-sitemap URLs, 11 article-sitemap URLs, admin
+  noindex, and /admin/ robots exclusion.
+- Backend tests passed 48 of 49. The remaining test did not reach an application
+  assertion because Windows denied creation of its symlink fixture with EPERM;
+  rerun it in the pinned Linux/Node 22 container.
+- Gaps remain: no owner-approved publication interval/static-sync owner is
+  documented, and knowledge:ingest does not consume the existing
+  web.ListPublishedArticleKnowledge export. Schedule, complete withdrawal/cache,
+  and article-citation checks require isolated Voyager 2/Mac staging integration.
 
-The release applied and rollback-tested `web.ExportPublishedArticles` and its
-narrow EXECUTE grant to the existing runtime user. Private authoring now uses
-separate protected credentials and the loopback-only API. The reviewed API
-image is running healthy as
-`sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e`.
-No public backend, network, DNS, router or firewall change was made.
 
-Controlled acceptance covered private draft, initial publish, edited draft
-remaining private, edited publish, future-dated publish, due transition,
-unpublish and archive. Successful Pages runs were `34603017803`, `34603535109`,
-`34604675813` and `34605108714`. The final AI reconciliation scanned ten,
-left ten unchanged, hid both temporary sources and failed zero, with deployed
-and SQL digests equal to the production digest. Fresh Chrome showed the removed
-route immediately; a returning profile retained its prior HTTP-cached page
-until a network refresh, after which it showed the authoritative 404. Fully
-offline and already-open copies remain outside server-side revocation.
-
-At 13:37:56Z the host cleanly stopped SQL Server and at 13:41Z externally
-restarted SQL and Docker. The website remained available. The cycle failed
-closed during the interval and succeeded without intervention after recovery.
-No release command restarted those host services.
-
-Rollback run `34607709999` successfully redeployed the exact selected
-`34605108714` artifact. The rollback gate was closed, automatic publication
-was restored, and normal restoration run `34607819131` confirmed there was no
-newer content to deploy. The persistent 15-minute timer is enabled and active.
-Its first timer-owned cycle completed at 14:04:34Z with matching SQL/deployed
-digests, ten unchanged articles, current AI knowledge and zero failures; its
-next scheduled trigger was 14:15:00Z. Public chat remains disabled because
-endpoint, retrieval-time revocation and CPU-latency readiness are not accepted.
-
-## Historical pre-production merge and review synchronization
-
-[PR #1](https://github.com/stevewittek/netherwood-data-partners/pull/1) merged at
-2026-09-11T11:11:38Z. Its application merge commit is
-`60110be306340bd8d654a3da071f57a8687b1827`; later documentation-only commits do
-not change that application baseline. The merged implementation reconciles
-Voyager 2's histories, 0.35 retrieval default and failure tests while preserving
-one article ingester and one publisher.
-
-[Merge CI run 34592830620](https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830620)
-passed Site, Backend and Backend Windows. Windows passed all 60 tests with zero
-skips, as it also did in PR run `34592561393`.
-See [WORKSTREAM_RECONCILIATION.md](WORKSTREAM_RECONCILIATION.md) for exact source
-commits, selected/superseded changes and the three-machine status.
-
-The Mac publication review checkout was fast-forwarded to the application merge
-before opening this documentation-only follow-up. Voyager 2's new clean,
-detached review checkout under `/home/nasa/netherwood-release-review-60110be`
-was tested at the same application commit. Review checkouts may advance through
-documentation-only updates; the tested application revision remains `60110be`.
-Its original checkout remains at
-`417f2e8`, with its dirty document hashes unchanged. The reviewed Docker image
-`ndp-publication-review:60110be` built successfully with 60 tests, zero skips and
-strict type checking. Its image ID is
-`sha256:fa981eabf100883ef675a8424222ac4d882c3525b335f6b48aa51af021654e9e`.
-It is **built, not running**. An earlier offline attempt stopped at an npm cache
-miss; the normal build then installed locked dependencies and passed.
-
-[Publication run 34592830561](https://github.com/stevewittek/netherwood-data-partners/actions/runs/34592830561)
-was skipped. Public Pages remains at `b431beb58dccefb8e092c179a1a8517caa78c484`,
-deployment `6223598061`. Authoring, public chat and both timers remain off;
-existing services were not restarted. Voyager 1's summary is available, but its
-four actual uncommitted documents still await transfer. No SQL permissions,
-credentials or public exposure changed. See
-[post-merge provenance](evidence/2026-09-11/post-merge-sync.json).
-
-## Historical pre-production application state
-
-**Merged code; not deployed and not integration-complete.** The application
-merge preserves `f96bc08` and its seven launch commits. Existing worktrees and
-the unrelated Database Mail modification were preserved. See
-[pre-release verification evidence](PUBLICATION_VERIFICATION.md) and the
-[combined operations guide](PUBLICATION_OPERATIONS.md).
-
-- Actual production cause: the deployed workflow builds its tracked August 24
-  snapshot without exporting SQL. Both inspected public API/chat build values
-  are empty. Ten live article routes remain independently available.
-- Prepared behavior: a validated, complete public SQL export controls every article
-  surface, route, related link, metadata record and sitemap. Captured Voyager 2
-  export: 2026-09-11T03:04:30.209Z, ten articles, digest
-  `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
-  The SQL title "Azure SQL Migration Lesson" is singular while production is
-  plural; approve that captured editorial change before releasing it.
-- Publication automation is prepared and disabled. A private 15-minute full-set
-  export, content-only Git branch and hosted validation/build/deploy detect
-  edits, due schedules and removals. Healthy operational expectation is roughly
-  15–30 minutes including measured ten-minute Pages cache lifetime; no SLA.
-- Legacy live-article/localStorage fallback is removed. The new release treats
-  an empty export or absent slug as authoritative. Failed export/build retains
-  the last good release. Offline copies and old open tabs cannot be revoked.
-- Existing Formspark is reused. Its prior inbox receipt was reread on September
-  11; no new message or form was sent. Direct business-mail receipt remains
-  unconfirmed in the connected Gmail evidence.
-- Current responsive/browser checks cover all ten articles plus Home/About/index
-  at 1440/768/390 and 320px spot checks. Focused fixes restore cross-page contact
-  scrolling, article list markers, contact/article-control boundary contrast and
-  dark-section keyboard focus, with
-  before/after evidence. Branding, layout and navigation are retained.
-- AI reconciliation follows the deployed/current-SQL intersection and hides
-  removed or changed article sources before embeddings. Chat and its telemetry
-  remain disabled. Retrieval-time visibility protection and acceptable measured
-  endpoint behavior are still required before any chat activation.
-- Voyager 2's original checkout preserves `9f9a4ca` and `417f2e8`; the clean
-  application review checkout and new image are recorded above.
-  Health is 200, authoring is 404, its newly built API image is not running and
-  its timer is absent/inactive. Ten article knowledge sources are indexed, but
-  website-digest agreement is pending; cited answers took 143.8–176.1 seconds.
-- The new SQL export procedure/grant and scheduled units have not been applied
-  or activated. The actual Voyager 1 files, live SQL fixtures, approved release and
-  controlled post-release publication/withdrawal are outstanding gates.
-- Supported Mac verification runtime: bundled Node 24.19.0 and pnpm 11.19.0.
-  The Docker build ran on Voyager 2, not the Mac. No live SQL mutation or runtime
-  activation is claimed. The merge CI and image-build results above supplement
-  the earlier candidate verification; they do not prove a live publication.
-
-## Historical state — not current release sign-off
+Voyager 2 host/backend state below was last verified 2026-08-28 UTC on
+`voyager2-articles-platform`. The Voyager 1 update above was verified
+2026-09-11 UTC on `main`. This records observed state, not plans.
 
 The following is retained as dated history. Statements about live API fallback,
 old captures, host versions, deployments, credentials and prior checkmarks must
