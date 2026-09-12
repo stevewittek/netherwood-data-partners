@@ -54,7 +54,9 @@ export default function ArticlesAdmin() {
   const [currentUtcTime, setCurrentUtcTime] = useState<number>(() => Date.now());
   const [websiteEvidence, setWebsiteEvidence] = useState<WebsitePublicationEvidence>(websiteEvidenceUnavailable);
   const [sqlEvidence, setSqlEvidence] = useState<SqlPublicationEvidence>(sqlEvidenceUnavailable);
+  const [aiStatus, setAiStatus] = useState("Not verified");
   const evidenceRequest = useRef(0);
+  const sessionGeneration = useRef(0);
   const manifest = websiteEvidence.status === "verified" ? websiteEvidence.manifest : null;
 
   useEffect(() => {
@@ -95,6 +97,7 @@ export default function ArticlesAdmin() {
     overrideToken?: string,
     overrideUrl?: string,
   ): Promise<T> {
+    const requestSession = sessionGeneration.current;
     const endpoint = (overrideUrl ?? apiUrl).replace(/\/$/, "");
     if (!endpoint) throw new Error("Voyager API URL is required.");
     const bearer = overrideToken ?? token;
@@ -102,6 +105,7 @@ export default function ArticlesAdmin() {
     try {
       response = await fetch(`${endpoint}${path}`, {
         ...init,
+        signal: init.signal ?? AbortSignal.timeout(30000),
         headers: {
           authorization: `Bearer ${bearer}`,
           ...(init.body ? { "content-type": "application/json" } : {}),
@@ -117,6 +121,10 @@ export default function ArticlesAdmin() {
       error?: string;
       fields?: Record<string, string>;
     } & T;
+
+    if (requestSession !== sessionGeneration.current) {
+      throw new Error("The desk was locked. This request cannot restore the previous session.");
+    }
 
     if (!response.ok) {
       if (body.fields) {
@@ -190,7 +198,7 @@ export default function ArticlesAdmin() {
       };
       const duePublishedIds = new Set(
         adminArticles
-          .filter((article) => article.status === "Published" && !isFutureDate(article.publishedDate))
+          .filter((article) => article.status === "Published")
           .map((article) => article.articleId),
       );
       const references = new Map<string, string>();
@@ -249,6 +257,11 @@ export default function ArticlesAdmin() {
     overrideUrl?: string,
   ): Promise<void> {
     const requestId = ++evidenceRequest.current;
+    setAiStatus("Not verified");
+    void request<{aiKnowledge: {state: string}}>("/api/admin/publication-status", {}, undefined, overrideUrl)
+      .then((result) => {
+        if (requestId === evidenceRequest.current) setAiStatus(result.aiKnowledge.state === "current" ? "Current" : "Not current: " + result.aiKnowledge.state.replaceAll("_", " "));
+      }).catch(() => { if (requestId === evidenceRequest.current) setAiStatus("Not verified"); });
     setWebsiteEvidence(websiteEvidenceUnavailable);
     setSqlEvidence(sqlEvidenceUnavailable);
     const [nextWebsiteEvidence, nextSqlEvidence] = await Promise.all([
@@ -294,14 +307,17 @@ export default function ArticlesAdmin() {
 
   async function reauthenticate(event: FormEvent): Promise<void> {
     event.preventDefault();
+    const requestSession = sessionGeneration.current;
     setBusy(true);
     try {
       await loadList(reauthPassword, apiUrl);
+      if (requestSession !== sessionGeneration.current) return;
       setToken(reauthPassword);
       setReauthPassword("");
       setShowReauth(false);
       setNotice({ type: "success", text: "Credential updated. You can now save your changes." });
     } catch (error) {
+      if (requestSession !== sessionGeneration.current) return;
       setNotice({
         type: "error",
         text: error instanceof Error ? error.message : "The re-entered credential was not accepted.",
@@ -317,8 +333,11 @@ export default function ArticlesAdmin() {
         return;
       }
     }
+    sessionGeneration.current += 1;
     setToken("");
+    setReauthPassword("");
     setAuthenticated(false);
+    setAiStatus("Not verified");
     setSelectedId(undefined);
     setEditor(blankEditor);
     setSavedEditor(blankEditor);
@@ -331,6 +350,23 @@ export default function ArticlesAdmin() {
     evidenceRequest.current += 1;
     setWebsiteEvidence(websiteEvidenceUnavailable);
     setSqlEvidence(sqlEvidenceUnavailable);
+  }
+
+  async function refreshStatus(): Promise<void> {
+    const requestSession = sessionGeneration.current;
+    setBusy(true);
+    setNotice(null);
+    try {
+      await loadList();
+    } catch (error) {
+      if (requestSession !== sessionGeneration.current) return;
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "Unable to refresh publication status.",
+      });
+    } finally {
+      setBusy(false);
+    }
   }
 
   function newArticle(): void {
@@ -489,7 +525,7 @@ export default function ArticlesAdmin() {
     if (action === "archive") {
       if (
         !window.confirm(
-          `Archive “${title}”? This removes the article from public view and sitemaps.`,
+          `Archive “${title}” in SQL? Removal from the public website and sitemaps remains pending until the next successful publication cycle.`,
         )
       ) {
         return;
@@ -519,7 +555,7 @@ export default function ArticlesAdmin() {
       } else if (action === "unpublish") {
         verbMsg = `Unpublished “${result.article.title}” in SQL. Reverted to Draft; will be removed on the next export cycle.`;
       } else {
-        verbMsg = `Archived “${result.article.title}” in SQL. Removed from public view.`;
+        verbMsg = `Archived “${result.article.title}” in SQL. Website removal is pending until a successful publication cycle verifies it.`;
       }
 
       setNotice({ type: "success", text: verbMsg });
@@ -631,7 +667,7 @@ export default function ArticlesAdmin() {
           <h1 id="admin-title">Article desk</h1>
           <p>
             Connect to Voyager 2 to manage SQL-backed articles. Credentials and tokens are held only in this
-            session’s browser memory and are never saved to disk or persistent storage.
+            session’s browser memory; the desk does not persist them in browser storage.
           </p>
           <form onSubmit={signIn} noValidate>
             {!defaultEnvApiUrl ? (
@@ -704,6 +740,9 @@ export default function ArticlesAdmin() {
           <a href="/articles" target="_blank" rel="noreferrer">
             View public articles
           </a>
+          <button type="button" onClick={() => void refreshStatus()} disabled={busy}>
+            Refresh publication status
+          </button>
           <button type="button" onClick={lockDesk} aria-label="Lock publishing desk and clear memory">
             Lock desk
           </button>
@@ -774,6 +813,7 @@ export default function ArticlesAdmin() {
         {mode === "list" ? (
           <div className="admin-table-wrap">
             <div className="admin-table-summary">
+              <span>Article AI knowledge: {aiStatus}</span>
               <span>{articles.length} total articles in SQL</span>
               <span>
                 {articles.filter((a) => a.status === "Published" && !isFutureDate(a.publishedDate, currentUtcTime)).length} published in SQL

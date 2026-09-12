@@ -387,7 +387,22 @@ export function getPublicVerification(
   const deployedArticle =
     websiteEvidence.status === "verified" ? websiteEvidence.articlesById.get(article.articleId) : undefined;
 
-  if (article.status !== "Published" || isScheduled) {
+  // Admin dates can come from an unpublished draft rather than the published row.
+  // Only the public SQL version can establish that such an article is currently due.
+  const stagedPublishedArticle = article.status === "Published" && article.hasUnpublishedChanges;
+  if (
+    stagedPublishedArticle &&
+    (sqlEvidence.status !== "verified" || !sqlEvidence.articlesById.has(article.articleId))
+  ) {
+    return {
+      label: "Published in SQL (Current version not verified)",
+      badgeClass: "status-unverified",
+      details: "An unpublished draft is staged. Its publication date does not establish the current published version's schedule or withdrawal state. Current SQL public-version evidence is unavailable or missing.",
+    };
+  }
+
+  const publishedVersionScheduled = isScheduled && !stagedPublishedArticle;
+  if (article.status !== "Published" || publishedVersionScheduled) {
     const sqlLabel =
       article.status === "Draft" ? "Draft in SQL" : article.status === "Archived" ? "Archived in SQL" : "Scheduled in SQL";
     const baseClass =

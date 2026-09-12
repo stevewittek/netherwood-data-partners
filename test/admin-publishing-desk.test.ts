@@ -215,6 +215,25 @@ test("staged draft fields remain separate from the SQL-published version compari
   assert.match(result.details, /separate unpublished draft is staged in SQL and is not part of this comparison/);
 });
 
+test("a staged future date cannot withdraw or reschedule the current SQL-published version", async () => {
+  const published = publicArticle();
+  const article = { articleId: published.articleId, status: "Published" as const, hasUnpublishedChanges: true };
+  const website = await websiteEvidence([published]);
+  const current = getPublicVerification(article, true, website, verifySqlPublicationEvidence([published]));
+  assert.equal(current.label, "Current version verified on website");
+
+  const changed = publicArticle({ html: "<p>New published version.</p>", plainText: "New published version." });
+  const pending = getPublicVerification(article, true, website, verifySqlPublicationEvidence([changed]));
+  assert.equal(pending.label, "Published in SQL; website update pending");
+
+  for (const sql of [verifySqlPublicationEvidence([]), verifySqlPublicationEvidence([{}])]) {
+    const unknown = getPublicVerification(article, true, website, sql);
+    assert.equal(unknown.badgeClass, "status-unverified");
+    assert.match(unknown.details, /publication date does not establish/);
+    assert.doesNotMatch(unknown.label, /Withdrawal|Scheduled/);
+  }
+});
+
 test("withdrawal remains pending while a validated deployed snapshot contains the article", async () => {
   const deployed = publicArticle();
   const website = await websiteEvidence([deployed]);
