@@ -112,6 +112,8 @@ export default function ContactForm() {
           <label htmlFor="contact-service">What can we help with?</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
+            <option value="Fractional DBA or SQL Server support">Fractional DBA or SQL Server support</option>
+            <option value="Database performance, recovery or upgrades">Database performance, recovery or upgrades</option>
             <option value="Software setup or business takeover">Software setup or business takeover</option>
             <option value="Business technology review">Business technology review</option>
             <option value="Data migration or software change">Data migration or software change</option>

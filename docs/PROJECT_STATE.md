@@ -1,4 +1,24 @@
-# Current verified state — September 12, 2026
+# Website redesign candidate — September 19, 2026
+
+Owner explicitly authorized a creative professional redesign serving local
+business owners and fractional DBA/database customers. The reviewed candidate
+starts at `9baee00` on `codex/local-business-design`, built in an isolated
+Voyager 2 checkout. Home, About, shared navigation/footer, and public metadata
+are refreshed. The contact integration and all ten articles are preserved.
+
+The supplied private technical summary grounds anonymized founder experience;
+it is not published. An intentional monogram replaces the novelty portrait;
+`app/content/founder.ts` is ready for an owner-approved real photograph.
+No home address, walk-in invitation, rates, coverage promises, or client
+claims were invented. See `REDESIGN_ACCEPTANCE.md` for checks and boundaries.
+
+Candidate lint, both builds, 26 publication checks, static route checks, and
+frontend typecheck passed. Browser acceptance covered desktop/tablet/phones,
+all articles at desktop/phone widths, contact validation, keyboard and FAQs.
+Release/deployment outcome must be confirmed from the merge and Pages run;
+the candidate status alone is not a production-deployment claim.
+
+## Earlier verified operational milestone — September 12, 2026
 
 The owner publishing desk milestone is released and verified. PR #8 merged as
 `c235c73b0fea25fd0a46152edf93ba7a40b0f831`; reviewed application head is

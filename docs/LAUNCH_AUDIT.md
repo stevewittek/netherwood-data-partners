@@ -1,6 +1,10 @@
 # Launch audit
 
-## Current scope — small-business positioning
+Current design acceptance is recorded in `REDESIGN_ACCEPTANCE.md` and the
+September 19 section at the end of this document. Earlier dated operational
+findings below are historical, not a fresh statement of mail or desk readiness.
+
+## Historical scope — September 11 small-business positioning
 
 Publication, Formspark, route generation and rollback are live following the
 September 11 release at `58136f8`. The prior unshipped-publication findings below
@@ -319,3 +323,13 @@ expose SQL Server/Ollama directly.
 - Articles have a tracked static fallback and ten current native routes.
 - No fake customer statistics, testimonials, client logos, certifications,
   awards, SLAs, or guarantees were found in the public pages reviewed.
+# September 19 redesign acceptance
+
+The owner-authorized dual-audience design candidate has passed its scoped
+build, static-route, publication, responsive, and interaction checks. See
+`REDESIGN_ACCEPTANCE.md`. No unexplained new P0/P1 remains in this design scope.
+The original contact submission logic, independent business-email fallback,
+Search Console verification, and ten published articles are preserved.
+The real founder photo remains an owner input, not a launch blocker: the
+monogram is intentionally presented as typography rather than a photograph.
+Prior operational audit entries below retain their original dates and scope.

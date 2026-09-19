@@ -1,5 +1,37 @@
 # Netherwood Data Partners design system
 
+## Authorized redesign — September 19, 2026
+
+The owner explicitly requested a distinctive professional design and dual
+local-business/database positioning. This section supersedes conflicting
+historical specifications below; unrelated redesigns still require approval.
+
+- Character: warm-paper editorial consulting practice, forest-green ink,
+  restrained lime accents, open numbered rows, and two service panels.
+- Existing self-hosted Manrope and DM Sans retained; no font CDN, new UI
+  framework, motion dependency, or stock photography introduced.
+- Current colors: ink `#203c32`, paper `#f8f7f1`, cream `#eaece2`, moss
+  `#466d56`, lime `#d0e79f`; secondary ink unchanged. The background grid is
+  removed. Publication/admin layouts remain structurally unchanged.
+- New layouts are scoped in `app/studio.css`. Public marketing containers
+  are 1240px maximum, desktop 40px gutters, tablet 24px and phone 20px.
+  Existing article reading measures are preserved.
+- Homepage/About headings use medium weights and tighter tracking; body copy
+  has generous line-height. Main buttons have 4px corners. Shared article
+  controls retain their existing primitives.
+- `SystemsIllustration` is decorative, code-native SVG brand artwork. It does
+  not represent a client system or live data. No invented dashboards/results.
+- Navigation keeps Business help, Database help, About, Articles, and contact
+  visible on mobile through a second row. A keyboard skip link is included.
+- The real-portrait slot is configured by `app/content/founder.ts`. Until an
+  owner-approved photograph is supplied, an intentional SW monogram is used.
+  The older novelty illustration is no longer presented as a headshot.
+- Contact transport, validation, honeypot, status states, privacy copy, and
+  fallback email remain intact. Only DBA topic options are added.
+- Evidence and acceptance record: `docs/REDESIGN_ACCEPTANCE.md`.
+
+## Historical launch specification
+
 Status: launch source of truth, derived from `origin/main` at `b431beb` and the
 production site inspected on 2026-09-02. This document records the approved
 direction; it does not authorize a redesign.

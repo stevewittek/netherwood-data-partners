@@ -39,12 +39,12 @@
 :root {
   --font-display: "Manrope";
   --font-body: "DM Sans";
-  --ink: #172329;
+  --ink: #203c32;
   --ink-soft: #46545a;
-  --cream: #e9edef;
-  --paper: #f7f8f7;
-  --moss: #3d6a68;
-  --lime: #c3dc72;
+  --cream: #eaece2;
+  --paper: #f8f7f1;
+  --moss: #466d56;
+  --lime: #d0e79f;
   --line: rgba(23, 35, 41, 0.16);
   --panel: #eef1f1;
   --shadow: rgba(23, 35, 41, 0.12);
@@ -58,8 +58,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body), sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-image: linear-gradient(rgba(23, 35, 41, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 35, 41, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-image: none;
 }
 
 img { max-width: 100%; display: block; }
@@ -801,7 +800,7 @@ footer p:last-child {
 }
 
 @media (max-width: 980px) {
-  nav > a:not(.nav-cta):not(.nav-about):not(.nav-articles) { display: none; }
+  .site-header:not(.studio-header) nav > a:not(.nav-cta):not(.nav-about):not(.nav-articles) { display: none; }
 
   .hero {
     grid-template-columns: 1fr;
