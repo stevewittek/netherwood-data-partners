@@ -1,6 +1,10 @@
 # Launch audit
 
-## Current scope — small-business positioning
+Current design acceptance is recorded in `REDESIGN_ACCEPTANCE.md` and the
+September 19 section at the end of this document. Earlier dated operational
+findings below are historical, not a fresh statement of mail or desk readiness.
+
+## Historical scope — September 11 small-business positioning
 
 Publication, Formspark, route generation and rollback are live following the
 September 11 release at `58136f8`. The prior unshipped-publication findings below
