@@ -60,6 +60,15 @@ else
   fail sitemap unavailable
 fi
 
+dmarc_record=$(dig +time=5 +tries=1 +short TXT \
+  _dmarc.netherwooddatapartners.com 2>/dev/null | tr -d '"' | head -n 1)
+if grep -q '^v=DMARC1;' <<< "$dmarc_record" && \
+  grep -Eq '(^|;[[:space:]]*)p=(none|quarantine|reject)(;|$)' <<< "$dmarc_record"; then
+  pass email_dmarc
+else
+  fail email_dmarc missing_or_invalid
+fi
+
 for timer_name in ndp-publication.timer; do
   if systemctl --user is-active --quiet "$timer_name"; then
     pass "unit_${timer_name//[.-]/_}"
