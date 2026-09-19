@@ -3,6 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://netherwooddatapartners.com"),
+  verification: { google: "PCfDpB6puoZJ2YmRBVwP3tqiBWZUKvSqEsuDDESt8Zw" },
   icons: { icon: "/favicon.svg" },
   title: "Small Business Software & Data Support | Netherwood",
   description: "Hands-on help with small business software setup, legacy data migration, system reviews and practical support. Work directly with Steven Wittek in New Jersey.",
