@@ -1,7 +1,8 @@
 # What works and what remains unfinished
 
-Reviewed September 12, 2026 against released desk source `c235c73`, the source tree,
-production acceptance evidence and the owner's small-business direction.
+Reviewed September 19, 2026 against deployed source `751a65a`, Voyager 2's
+healthy publication reconciliation, the source tree, production acceptance
+evidence and the owner's small-business direction.
 Publication completion never meant that every planned capability was delivered.
 This is the current feature register; older launch checkboxes are historical.
 The request history available here does not establish every request made in
@@ -19,6 +20,8 @@ other conversations. Items found only in the roadmap are labeled accordingly.
 | Release recovery | Last-good artifact retention and controlled rollback verified |
 | Article AI knowledge reconciliation | Private job active with matching deployed/SQL versions; this does not make visitor chat available |
 | Business runbook and client templates | Voyager 1 documents merged; these are documents, not an automated client-management product |
+| Small-business positioning | Deployed Home/About copy now leads with software changes, inherited systems, data migration, practical fixes and staff support; SQL Server remains evidence of technical depth |
+| Business-operations starter kit | `docs/BUSINESS_READINESS.md` and `ops/business/` provide a decision checklist, an unpopulated inquiry register and an engagement checklist without creating a CRM or storing client data in Git |
 
 ## Unfinished or unavailable to the intended user
 
@@ -32,12 +35,10 @@ other conversations. Items found only in the roadmap are labeled accordingly.
 | Direct business-email receipt | Correct address/link exists; previous outgoing test found, destination receipt not confirmed | The destination mailbox evidence is missing | Inspect that mailbox or obtain owner confirmation. Formspark notification receipt is separate. This is a verification gap, not proof the mailbox is broken. |
 | Optional private Sites mirror | Packaged previously, not refreshed | Separate source destination/export not authorized | Only refresh if the owner wants that extra mirror. It is not a missing capability on the public website. |
 
-## New work from today's request
+## Current business work
 
-- Small-business positioning: homepage, About, contact choices, metadata and
-  business knowledge are being revised around software changes, inherited
-  systems, data migration, practical fixes and support. SQL Server remains
-  technical credibility. Deployment is recorded in PROJECT_STATE when verified.
+- Small-business positioning is deployed. Do not reopen it as a redesign unless
+  real inquiry or search evidence identifies a specific problem.
 - Chiropractic pilot: a prepared engagement and evidence plan, not an audit
   already performed. Clinic-owner consent, a chosen workflow and real measurements
   are needed before a case study can exist. See CHIROPRACTIC_PILOT.md.
@@ -48,13 +49,17 @@ other conversations. Items found only in the roadmap are labeled accordingly.
 
 ## Order of work
 
-1. Publish the owner-requested positioning and remove contradictory status text.
-2. Run the small, consented pilot and produce evidence of one useful result.
-3. Close owner publishing usability and mailbox receipt; establish basic lead
-   measurement. These support daily operation and sales.
-4. Complete chat engineering and access in an explicitly scoped follow-up, with
+1. Confirm direct receipt in the business mailbox; the working Formspark path
+   does not prove that separate route.
+2. Resolve the owner decisions in `docs/BUSINESS_READINESS.md`, then initialize
+   a private business-record location outside Git if one does not already exist.
+3. Run the small, consented pilot and produce evidence of one useful result.
+4. Verify Search Console/Business Profile state and begin basic lead-source
+   measurement only after the owner authorizes the relevant account access.
+5. Complete chat engineering and access in an explicitly scoped follow-up, with
    the tests above. Keep it visible in this register until actually delivered.
-5. Revisit the Tools/Query Vault release and optional mirror as separate work.
+6. Revisit the Tools/Query Vault release, portrait and optional mirror as
+   separate work.
 
 Scheduling these items is a priority proposal, not permission to silently drop
 them. No ticket portal, payments, appointment booking or formal partner program
