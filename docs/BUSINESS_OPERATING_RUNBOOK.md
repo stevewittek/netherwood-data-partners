@@ -1,14 +1,13 @@
-> Current implementation note, September 11: this operating-process document
-> retains the original Voyager 1 draft below. Its old statements that article
-> export/AI refresh/publication are blocked are historical and superseded by
-> PUBLICATION_OPERATIONS.md and production-release.json. Formspark intake and
-> automatic SQL publication are live. Business-process templates do not imply
-> a built CRM. FEATURE_STATUS.md is the current unfinished-capability register;
+> Current implementation note, September 19: Formspark intake, the private owner
+> desk, automatic SQL publication and private article-knowledge reconciliation
+> are live. Business-process templates do not imply a built CRM.
+> FEATURE_STATUS.md is the current unfinished-capability register;
+> BUSINESS_READINESS.md records the remaining owner/external gates; and
 > CHIROPRACTIC_PILOT.md is a proposed engagement, not a client success.
 
 # Business operating runbook
 
-Last reviewed: 2026-09-11 UTC on Voyager 1.
+Last reviewed: 2026-09-19 UTC on Voyager 2.
 
 Reconciled into the production release work on 2026-09-11. The article
 publication observations below are historical evidence from Voyager 1 at
@@ -37,10 +36,10 @@ client closeout. It records what exists today and flags owner decisions.
 | Area | Existing record | Boundary or gap |
 | --- | --- | --- |
 | Public website/outage copy | GitHub main, pages-site/articles-snapshot.json, pages-dist, and Pages history | A push to main deploys automatically; there is no release gate. |
-| Drafts/publication state | Voyager 2 NDP_Web through the private desk and fixed procedures | Authoring credentials and a public Voyager URL were not configured in the last verified state. |
-| Public article API | Voyager 2 published/due procedures | Optional; the deployed site currently uses its static snapshot. |
-| AI knowledge | Voyager 2 knowledge tables populated from company-knowledge/public and approved structured records | Published-article export exists, but knowledge:ingest does not consume it. |
-| Inquiry transport | mailto:contact@netherwooddatapartners.com | Observed intake channel, not a declared lifecycle system of record. |
+| Drafts/publication state | Voyager 2 NDP_Web through the private owner desk and fixed procedures | Private, protected access only; it is not a public authoring service. |
+| Public article API | Voyager 2 published/due procedures | Optional; the deployed site remains independently readable from its static snapshot. |
+| AI knowledge | Voyager 2 knowledge tables reconciled from company knowledge and the deployed/current SQL article set | Private reconciliation is active; visitor-facing chat remains disabled. |
+| Inquiry transport | Formspark plus mailto:contact@netherwooddatapartners.com | Formspark delivery was verified; direct destination-mailbox receipt remains unconfirmed. Neither transport is the client lifecycle record. |
 | Sales, agreements, delivery, acceptance, invoicing, access | No repository-backed system found | **OWNER DECISION REQUIRED:** designate existing tools and retention/access rules before live client use. |
 
 Roles identify accountability gates, not staffing policy. One person may hold
@@ -57,7 +56,7 @@ several roles, but approval, execution, and verification remain separate acts.
 | Publishing | Authorized Voyager 2 publisher | Approved revision/time | Published or future-dated row | API returns it only when Published and due; draft save leaves current live content unchanged | Voyager 2 web.BlogPosts and publish procedure |
 | Static export/deployment | Publisher/release owner | Approved published/due set | Snapshot, native pages, sitemaps, Pages release | Export/diff/build/CI pass; approved commit reaches main; deploy succeeds | Git and GitHub Actions/Pages |
 | Website verification | Independent verifier | URL, approved content, expected metadata, timestamps | Evidence or defect | Fresh desktop/mobile listing/direct URL correct; sitemap contains URL; backend-independent read succeeds | Public URLs/Actions; **missing:** durable verification log |
-| AI refresh | Voyager 2 AI curator | Approved public set | Re-indexed chunks and citations | Current article is retrievable/cited; withdrawn version hidden | Voyager 2 knowledge store; **blocked:** article export is not ingested |
+| AI refresh | Voyager 2 AI curator | Approved public set | Re-indexed or hidden chunks and citations | Deployed and SQL digests match; current articles remain available and withdrawn versions are hidden | Voyager 2 knowledge store and publication reconciliation log |
 | Correction | Author, reviewer, approver | Defect and current article | Corrected approved revision and refreshed copies | Correct content is on canonical URL/sitemaps/AI; obsolete claim absent after cache windows | Same records as drafting through AI; **missing:** correction-note policy |
 | Withdrawal | Approver and publisher | Slug, reason, effective time, archive decision | Unpublished/archived row, regenerated static artifacts, hidden AI chunks, evidence | Absent from API, listings, generated page, both sitemaps, and AI after cache checks | Voyager 2 state, Git/Pages, knowledge store |
 
@@ -74,11 +73,14 @@ several roles, but approval, execution, and verification remain separate acts.
    A main push is the production release action.
 6. Verify listing, direct URL with/without trailing slash, metadata, sitemap,
    desktop/mobile, and a fresh profile.
-7. After article AI ingestion is implemented, refresh and verify a question
-   whose supported answer must cite the changed article.
+7. Confirm the reconciliation log reports matching deployed and SQL digests,
+   then verify a private question whose supported answer must cite the changed
+   article when the content change affects retrieval.
 
-**OWNER DECISION REQUIRED:** define maximum intervals for approval to API
-visibility and snapshot export to Pages visibility. None is documented today.
+The active publication timer checks every 15 minutes; healthy end-to-end
+visibility is expected in about 15-30 minutes. **OWNER DECISION REQUIRED:**
+assign the content approver and release owner, and define the escalation target
+when that interval is missed.
 
 ### Correction, withdrawal, and caches
 
@@ -102,7 +104,7 @@ visibility and snapshot export to Pages visibility. None is documented today.
 
 | Stage | Owner role | Input | Output | Completion condition | Existing system of record |
 | --- | --- | --- | --- | --- | --- |
-| Website inquiry | Inquiry coordinator | Voluntary email from site link | Preserved inquiry with time, sender, request, consented details | Receipt recorded/routed without a response promise | Mailbox transport; **missing:** lifecycle record/retention |
+| Website inquiry | Inquiry coordinator | Voluntary Formspark submission or direct email | Preserved inquiry with time, sender, request, consented details | Receipt recorded/routed without a response promise | Formspark/mailbox transport; **missing:** approved private lifecycle record/retention |
 | Qualification | Client lead | Inquiry and permitted public context | Proceed/decline/more-information decision | Fit, authority, urgency, conflicts, sensitivity, next action recorded | **Missing:** criteria, owner, location |
 | Discovery | Client and technical leads | Qualified inquiry/agenda | Current state, objectives, constraints, stakeholders, risks, access/data needs, open questions | Client confirms problem statement; no credentials in notes | **Missing:** approved notes location/retention |
 | Proposal/scope | Engagement lead | Confirmed discovery | Draft scope template | Outcomes, scope, assumptions, dependencies, deliverables, acceptance, changes, owner-review placeholders complete | docs/CLIENT_WORK_TEMPLATES.md; executed location **missing** |
@@ -122,7 +124,9 @@ visibility and snapshot export to Pages visibility. None is documented today.
    CRM only after a concrete volume/reporting need and owner approval.
 3. Approve qualification criteria, response targets, pricing, legal language,
    payment terms, retention, and correction disclosure.
-4. Define publication intervals and the snapshot/deploy owner. GitHub-writing
-   automation needs separately approved least-privilege credentials.
-5. Implement article AI ingestion/withdrawal hiding and define its interval and
-   evidence log.
+4. Assign the content approver and publication escalation owner; retain the
+   existing 15-minute automation and evidence log unless a measured need justifies
+   a change.
+5. Decide whether visitor-facing chat has business value. Public activation
+   remains separate work requiring bounded response time, current-source checks,
+   an approved HTTPS route and fresh-browser acceptance.
