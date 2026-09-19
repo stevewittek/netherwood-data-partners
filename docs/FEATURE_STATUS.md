@@ -10,7 +10,7 @@ Older launch checklists are historical records; this is the active register.
 | --- | --- |
 | Public consulting website | Home with inquiry form, About, article index/search and ten articles are live on Pages and remain available when Voyager 2 is offline. The site positions Netherwood for practical local-business systems work and fractional database engineering. |
 | Inquiry path | Formspark delivery is retained with a visible `contact@netherwooddatapartners.com` fallback. A normal message was received at both the business mailbox and Gmail during September 19 acceptance. |
-| Business email | The Namecheap mailbox authenticates through the loopback Voyager 2 relay. SPF and DKIM passed on the received message; the relay is healthy and its queue is empty. SQL Server Database Mail and SQL Agent use the same bounded route. |
+| Business email | The Namecheap mailbox authenticates through the loopback Voyager 2 relay. SPF and DKIM passed on the received message; a DMARC monitoring policy is published; the relay is healthy and its queue is empty. SQL Server Database Mail and SQL Agent use the same bounded route. |
 | Article operations | The private owner desk and authenticated API support draft, edit, preview, publish, schedule, withdraw and archive. The 15-minute publication cycle is active and its latest run succeeded. |
 | Publication integrity | Ten articles, thirteen sitemap routes and matching release metadata are live. The deployed publication digest is `ac06202690a528460f2a8a9a4c2d56fccdfc8657a3b22995547a435b1b650e8`. |
 | Search ownership | Search Console ownership is verified and both submitted sitemaps were processed. Indexing and ranking remain search-engine decisions, not deployment guarantees. |

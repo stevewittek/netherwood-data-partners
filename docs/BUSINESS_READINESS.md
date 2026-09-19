@@ -12,7 +12,8 @@ and Voyager 2's live publication, mail and owner-operations services.
   slow-system diagnosis, order/workflow cleanup and dependable support, while
   retaining fractional DBA and SQL Server depth for larger environments.
 - Direct business-email delivery is proven. The Voyager 2 relay, Database Mail
-  and SQL Agent notification path have passed acceptance.
+  and SQL Agent notification path have passed acceptance. SPF and DKIM pass,
+  and a DMARC monitoring policy is published for report collection.
 - Search Console ownership and sitemap processing are verified.
 - The private owner desk, authenticated API and 15-minute publication cycle
   support controlled draft, preview, publish, schedule, withdraw and archive.

@@ -15,6 +15,7 @@ mail block recorded during setup.
 | Runtime services | The private backend and `netherwood-smtp-relay` containers are running and healthy. | Ready |
 | Mail queue | Relay queue was empty at inspection. | Ready |
 | Mail acceptance | The Namecheap relay accepted authenticated delivery; the message arrived at the business mailbox and Gmail with SPF and DKIM passing. Database Mail and SQL Agent tests also succeeded. | Ready |
+| Domain mail policy | Authoritative DNS returns `v=DMARC1; p=none; rua=mailto:steve@netherwooddatapartners.com; pct=100`. This collects evidence without rejecting mail. | Monitoring |
 | Host capacity | Voyager 2 root filesystem was 65 percent used with approximately 34 GB available; monitored threshold is 85 percent. | Ready |
 | Existing platform health | `caplab-health.timer` and `voyager-health.timer` were active and their latest observed services succeeded. | Ready |
 | Search ownership | Search Console ownership and sitemap processing were verified. | Ready |
@@ -22,9 +23,10 @@ mail block recorded during setup.
 ## Consolidated monitor
 
 The bounded user-level timer in `ops/monitoring/` runs every fifteen minutes.
-It checks the public Home page, release manifest, sitemap route count, last
-publication result, publication timer, owner desk, backend health, SMTP relay
-health and queue, and root-disk pressure. Results are stored owner-only at:
+It checks the public Home page, release manifest, sitemap route count, published
+DMARC policy, last publication result, publication timer, owner desk, backend
+health, SMTP relay health and queue, and root-disk pressure. Results are stored
+owner-only at:
 
 `~/.local/state/netherwood-ops-monitor/latest.txt`
 
@@ -72,9 +74,8 @@ These are the only material technical readiness gaps identified:
 ## Email hardening boundary
 
 The operational mail path is complete: credentials are stored owner-only, the
-relay is loopback-only, the queue is clear, direct delivery is proven, and SPF
-and DKIM pass. DMARC enforcement and mailbox/account two-factor authentication
-are account-level hardening tasks. Begin DMARC in monitoring mode only after
-confirming the reporting mailbox and DNS access; review reports before moving
-to quarantine or reject. Never commit mailbox credentials or DMARC reports to
-this repository.
+relay is loopback-only, the queue is clear, direct delivery is proven, and SPF,
+DKIM and a monitoring-only DMARC policy are published. Review aggregate reports
+before moving DMARC to quarantine or reject. Mailbox/account two-factor
+authentication remains an owner-interactive hardening task. Never commit
+mailbox credentials or DMARC reports to this repository.

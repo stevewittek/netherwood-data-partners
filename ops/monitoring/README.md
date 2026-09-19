@@ -4,6 +4,7 @@ This bounded user-level timer checks the paths required to operate the public
 site and article workflow:
 
 - public Home, publication manifest and sitemap;
+- published DMARC policy presence and syntax;
 - enabled publication timer and successful last publication run;
 - private owner desk;
 - backend API and loopback SMTP relay container health;
