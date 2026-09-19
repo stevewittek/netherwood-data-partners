@@ -1,5 +1,22 @@
 # Netherwood Data Partners site architecture
 
+## September 19, 2026 public design update
+
+The owner-approved redesign keeps the same production/static publishing
+architecture and routes. Home now offers two equal service paths:
+`/#business-systems` and `/#database-services`. Navigation also includes About,
+Articles, and `/#contact`. The former homepage anchors (`services`,
+`engagements`, `when-to-call-us`, `approach`, `about`, `insights`, `contact`)
+remain valid. No dead Services/Tools routes are introduced.
+
+Home contains the dual offer, illustrative scenarios, process, engagement
+scope, founder introduction, native FAQ disclosures, article link, and contact.
+About contains the founder biography and anonymized professional experience.
+`app/studio.css` is imported by both Pages entries and the Vinext layout.
+`app/content/founder.ts` is the single real-portrait configuration point.
+No backend, SQL, DNS, timer, authentication, or public-exposure changes belong
+to this design release. The older navigation targets below are historical.
+
 Status: publication is live following the September 11 release at `58136f8`.
 The owner has requested small-business positioning with the same structure. See
 [publication operations](PUBLICATION_OPERATIONS.md).

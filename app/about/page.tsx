@@ -6,156 +6,207 @@ import "./about.css";
 
 export const metadata: Metadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
-  description: "Meet Steven Wittek, a New Jersey-based consultant helping small businesses with software changes, data migration, practical fixes and support.",
+  description:
+    "Meet Steven Wittek: database engineer, technology consultant, and founder of Netherwood. Hands-on experience since 2009, based in New Jersey.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical business systems and data support, grounded in more than 15 years of hands-on experience.",
+    description:
+      "Enterprise database experience. Personal, practical business technology help.",
     url: "/about",
   },
   twitter: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description: "Practical business systems and data support, grounded in more than 15 years of hands-on experience.",
+    description:
+      "Enterprise database experience. Personal, practical business technology help.",
   },
 };
 
-const expertise = [
-  { number: "01", title: "Software transitions", body: "Review an existing setup, plan new software, coordinate with providers, and test the everyday tasks your staff depend on." },
-  { number: "02", title: "Data migration & reporting", body: "Data conversions, record validation, cleanup, integrations and reports that help a business understand its information." },
-  { number: "03", title: "SQL Server & performance", body: "Execution plans, Query Store, waits, indexing, blocking and production troubleshooting when the database needs deeper investigation." },
-  { number: "04", title: "Reliability & recovery", body: "Backup and recovery review, upgrade planning, monitoring and careful change sequencing for the systems behind your software." },
-  { number: "05", title: "Support & handover", body: "Practical documentation, staff guidance, problem investigation and a clear plan for ongoing support or specialist escalation." },
+const experience = [
+  {
+    number: "01",
+    title: "Making demanding databases work better",
+    body: "I have developed and tuned SQL for financial reporting and analytics, translating business calculations into maintainable database code. My investigations go beyond adding an index: I look at execution plans, workload patterns, waits, blocking, statistics, and what changed.",
+    tools: "SQL Server · T-SQL · Query Store · Execution plans",
+  },
+  {
+    number: "02",
+    title: "Planning for the day something fails",
+    body: "My experience includes SQL Server availability groups, geographic replicas, backup strategies, encryption, and restore and failover testing. I start with how long the business can be down and how much data it can afford to lose, then work through what the design and recovery process need to support.",
+    tools: "Always On · Backup & restore · Recovery planning · GCP",
+  },
+  {
+    number: "03",
+    title: "Bringing control to database changes",
+    body: "I have worked with Git, Azure DevOps, database projects, deployment packages, and review-driven releases. In an environment without a dependable source baseline, I captured the existing database objects, compared the differences, and helped make subsequent changes more traceable.",
+    tools: "Git · Azure DevOps · DACPAC · Change review",
+  },
+  {
+    number: "04",
+    title: "Giving teams evidence they can use",
+    body: "I build reporting, monitoring, and investigation tools that make it easier to understand a system. My ongoing QueryVault project preserves query-performance history across test-environment refreshes, so changes can be compared without giving developers unrestricted production access.",
+    tools: "QueryVault · DMVs · Extended Events · Monitoring",
+  },
 ];
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="founder-page">
       <SiteHeader currentPage="about" />
-
-      <section className="about-hero">
-        <div className="about-hero-copy">
-          <p className="eyebrow">About the founder</p>
-          <h1>Steven Wittek</h1>
-          <p className="about-role">Founder, Business Systems & Data Consultant</p>
+      <section className="about-hero studio-wrap">
+        <div>
+          <p className="eyebrow">The person behind Netherwood</p>
+          <h1>Steven Wittek.</h1>
+          <p className="about-role">
+            Database engineer.
+            <br />
+            Practical problem solver.
+          </p>
           <div className="long-form about-intro">
             <p>
-              I help business owners make sense of their software, move existing data into new systems, and sort out the problems that get in the way of daily work. I have worked in technology since 2009, with more than 15 years of hands-on experience supporting applications, databases and business systems.
+              I help people make sense of the systems their businesses depend
+              on. Sometimes that means getting deep into a SQL execution plan.
+              Sometimes it means helping an owner move years of records into
+              software that better fits the way they work.
             </p>
             <p>
-              I started Netherwood Data Partners so an office, shop or service business could work directly with someone who understands both the technical detail and the need to keep the business operating. You can start with one problem, a software change or a review of the setup you inherited.
+              I have worked in technology since 2009. Netherwood Data Partners
+              brings that hands-on experience into a direct, personal consulting
+              relationship.
             </p>
           </div>
-          <a className="button button-primary" href="/#contact">Work With Me</a>
+          <a className="button button-primary" href="/#contact">
+            Tell me what you’re working on <span aria-hidden="true">↗</span>
+          </a>
         </div>
         <Portrait />
       </section>
-
-      <section className="about-section about-background">
-        <div className="about-section-title">
-          <p className="eyebrow">Professional background</p>
-          <h2>Technical depth behind practical business help</h2>
+      <div className="founder-facts">
+        <div className="studio-wrap">
+          <span>
+            <strong>Since 2009</strong>Hands-on technology experience
+          </span>
+          <span>
+            <strong>New Jersey</strong>Independent & founder-led
+          </span>
+          <span>
+            <strong>Direct involvement</strong>From discovery through handoff
+          </span>
         </div>
-        <div className="long-form about-section-copy">
-          <p>
-            My career has covered both long-term technology consulting and enterprise database engineering. I have supported organizations with very different systems, budgets, workloads, and technical challenges, from smaller businesses needing direct hands-on assistance to financial technology platforms operating large production database environments.
-          </p>
-          <p>
-            Much of my work has centered on Microsoft SQL Server: diagnosing performance problems, improving queries and indexes, designing reliable database environments, supporting high availability and disaster recovery, managing migrations and upgrades, developing reporting and data solutions, and helping application teams make better use of the database underneath their software.
-          </p>
-          <p>
-            I have also worked with Microsoft Azure, Google Cloud, Windows and Linux database environments, monitoring platforms, automation, Git-based deployment processes, and the operational tools required to keep production systems reliable.
-          </p>
-        </div>
-      </section>
-
-      <section className="expertise-section" aria-labelledby="expertise-title">
-        <div className="expertise-heading">
-          <p className="eyebrow">Areas of expertise</p>
-          <h2 id="expertise-title">From the first review to the support handoff.</h2>
-        </div>
-        <ol className="expertise-list">
-          {expertise.map((area) => (
-            <li key={area.number}>
-              <span className="expertise-number">{area.number}</span>
-              <h3>{area.title}</h3>
-              <p>{area.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="about-section consulting-section">
-        <div className="about-section-title">
-          <p className="eyebrow">Consulting background</p>
-          <h2>From Consulting to Enterprise Systems</h2>
-        </div>
-        <div className="long-form about-section-copy">
-          <p>
-            Before working inside larger financial technology environments, I spent many years consulting directly with businesses and organizations on their technology and data systems. That experience shaped the way I approach technical work today.
-          </p>
-          <p>
-            A database problem is rarely just a database problem. It may be affecting an employee trying to finish a report, a customer waiting for an application to respond, an accounting process that cannot complete, or a business owner who simply needs the system to work.
-          </p>
-          <p>
-            My more recent enterprise work has included institutional investment and high-volume application environments, where performance, reliability, and careful production operations matter every day.
-          </p>
-          <p className="pull-quote">I try to understand that larger problem first, then use the technology to solve it.</p>
-        </div>
-      </section>
-
-      <section className="origin-section">
-        <div className="origin-inner">
-          <div>
-            <p className="eyebrow">Why Netherwood</p>
-            <h2>Why I Started Netherwood Data Partners</h2>
-          </div>
-          <div className="long-form origin-copy">
-            <p>
-              Netherwood Data Partners grew out of a simple idea: a small business should be able to get experienced technology help for a defined piece of work, with a clear explanation of what happens next.
-            </p>
-            <p>
-              That might mean reviewing the software that comes with a business purchase, preparing records for a new application, fixing an unreliable report, or helping staff through a change. Sometimes it means investigating the SQL Server database underneath the application.
-            </p>
-            <p>
-              I stay involved in the technical work and the handover. If a project needs networking, security, hardware or another specialty, I discuss the scope with you and coordinate with the appropriate provider. Responsibilities and any additional work are agreed before anyone starts.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="about-section personal-section">
-        <div className="personal-marker" aria-hidden="true">
-          <span>26.2</span>
-          <small>miles</small>
-        </div>
-        <div className="about-section-title">
-          <p className="eyebrow">Beyond the work</p>
-          <h2>Beyond the Database</h2>
-        </div>
-        <div className="long-form about-section-copy">
-          <p>
-            I am based in New Jersey and have spent much of my career working with organizations throughout New Jersey, New York and the surrounding region, as well as with distributed teams across the country.
-          </p>
-          <p>
-            Outside of technology, I am family-oriented, an avid distance runner, and someone who has always enjoyed understanding how things work, improving them and building useful things from the pieces available.
-          </p>
-          <p>
-            That same curiosity has increasingly extended into artificial intelligence and the ways smaller organizations can use modern technology without losing ownership or control of their data.
-          </p>
-        </div>
-      </section>
-
-      <section className="about-contact" id="contact">
+      </div>
+      <section className="about-section studio-wrap">
         <div>
-          <p className="eyebrow">Start with the problem</p>
-          <h2>What would make your business easier to run?</h2>
+          <p className="eyebrow">Why Netherwood</p>
+          <h2>
+            Good technology help
+            <br />
+            should feel human.
+          </h2>
         </div>
-        <div className="about-contact-copy">
-          <p>Tell me what you use today, what is getting in the way and what you want to change. You do not need to know which system is causing the problem.</p>
-          <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">Talk With Steven</a>
+        <div className="long-form">
+          <p>
+            My career has included long-term consulting and enterprise database
+            engineering, including systems used for financial data and
+            analytics. That work taught me to take reliability, change control,
+            and the details seriously.
+          </p>
+          <p>
+            Those habits matter outside a large technology team, too. A
+            neighborhood business still needs trustworthy records. An owner
+            changing software still needs a sensible migration plan. A small
+            development team still needs someone who understands the database
+            underneath its application.
+          </p>
+          <p>
+            I built Netherwood around that connection: technical depth,
+            explained clearly, with the person doing the work directly involved.
+          </p>
         </div>
       </section>
-
+      <section className="founder-experience">
+        <div className="studio-wrap">
+          <div className="founder-experience-heading">
+            <p className="eyebrow">Selected professional experience</p>
+            <h2>
+              The depth behind
+              <br />
+              the day-to-day help.
+            </h2>
+            <p>
+              Examples from my engineering background and personal projects.
+              These describe my experience, not a list of Netherwood clients or
+              promised results.
+            </p>
+          </div>
+          <div className="founder-experience-list">
+            {experience.map((item) => (
+              <article key={item.number}>
+                <span>{item.number}</span>
+                <h3>{item.title}</h3>
+                <div>
+                  <p>{item.body}</p>
+                  <p className="founder-tools">{item.tools}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="about-section studio-wrap">
+        <div>
+          <p className="eyebrow">What working together looks like</p>
+          <h2>
+            Careful with your systems.
+            <br />
+            Straight with you.
+          </h2>
+        </div>
+        <div className="long-form">
+          <p>
+            I want you to understand what I found, what I recommend, and what
+            happens next. Before changing a system, we agree the scope, who owns
+            what, and how we will check the result.
+          </p>
+          <p>
+            I can work alongside your existing IT company, software provider, or
+            development team. If a problem needs a different specialist, I will
+            explain the boundary and discuss the next step with you.
+          </p>
+          <p>
+            Outside the technical work, I am a New Jersey local, a distance
+            runner, and a family person. I value steady progress, clear
+            communication, and finishing the work properly.
+          </p>
+          <a className="studio-text-link" href="/#services">
+            Explore how I can help <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+      <section className="founder-contact">
+        <div className="studio-wrap">
+          <div>
+            <p className="eyebrow">Start with a conversation</p>
+            <h2>
+              You do not need
+              <br />
+              all the answers yet.
+            </h2>
+          </div>
+          <div>
+            <p>
+              Bring the slow system, the software change, the database question,
+              or the setup you inherited. We can work out a useful starting
+              point.
+            </p>
+            <a className="button button-light" href="/#contact">
+              Let’s talk <span aria-hidden="true">↗</span>
+            </a>
+            <p className="founder-appointment">
+              Remote & local engagements · Meetings by appointment
+            </p>
+          </div>
+        </div>
+      </section>
       <SiteFooter />
       <ChatWidget />
     </main>

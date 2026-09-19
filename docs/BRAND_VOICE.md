@@ -1,5 +1,29 @@
 # Netherwood Data Partners brand voice
 
+## Current positioning — owner direction, September 19, 2026
+
+The owner explicitly requested a creative, professional redesign serving both
+local business owners and teams needing fractional DBA/database engineering.
+Both offers now lead on the homepage. This supersedes the September 11
+instruction to keep database services only in supporting copy and preserve
+the previous visual structure.
+
+Lead with recognizable problems: slow systems, changing software, moving
+records, query performance, recovery readiness, and a need for scoped database
+ownership. Explain fractional DBA rather than assuming buyers know the term.
+Retain one-person, founder-led transparency and direct work with Steven.
+
+The owner supplied a private technical summary and authorized rewording its
+experience for public service and biography copy. Use anonymized descriptions
+of SQL performance, financial data/reporting, recovery, controlled releases,
+and QueryVault. Do not publish the original PDF, employer names as clients,
+private procedure names, financial scale, or unverified outcome metrics.
+Illustrative local-business situations must be labeled as examples, not cases.
+No home address, walk-in invitation, rates, fixed support hours, guaranteed
+results, or implied 24/7 coverage. Meetings are by appointment.
+
+The older positioning notes below remain historical context where consistent.
+
 ## Positioning — owner direction, September 11, 2026
 
 Netherwood helps small businesses with software setup, inherited systems,
