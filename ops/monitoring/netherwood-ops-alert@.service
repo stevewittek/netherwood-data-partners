@@ -1,0 +1,15 @@
+[Unit]
+Description=Send one bounded alert for failed Netherwood operations checks
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/lib/netherwood-ops-monitor/netherwood-ops-alert.sh %i
+UMask=0077
+Nice=10
+CPUQuota=10%
+MemoryMax=64M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=%h/.local/state/netherwood-ops-monitor

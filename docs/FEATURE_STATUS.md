@@ -1,66 +1,44 @@
-# What works and what remains unfinished
+# Current feature register
 
-Reviewed September 19, 2026 against deployed source `751a65a`, Voyager 2's
-healthy publication reconciliation, the source tree, production acceptance
-evidence and the owner's small-business direction.
-Publication completion never meant that every planned capability was delivered.
-This is the current feature register; older launch checkboxes are historical.
-The request history available here does not establish every request made in
-other conversations. Items found only in the roadmap are labeled accordingly.
+Reconciled September 19, 2026 against production source `29357a1`, the live
+site, Voyager 2 services, publication acceptance and mail-delivery evidence.
+Older launch checklists are historical records; this is the active register.
 
-## Working
+## Delivered and operating
 
-| Capability | Evidence and practical limit |
+| Capability | Current evidence and boundary |
 | --- | --- |
-| Public Home, About, article index, search/filter and ten article routes | Released Pages site, independent of Voyager availability |
-| Inquiry form | Existing Formspark integration and delivery evidence; visible contact@netherwooddatapartners.com fallback |
-| SQL article authoring and lifecycle | Authenticated private API active; draft/edit/publish/schedule/unpublish/archive exercised in production acceptance |
-| Owner private article publishing desk | Released and tested on actual Mac and Windows browsers; controlled public publish/withdraw/archive and matching SQL/website/AI verified September 12 (desk-final evidence). Private access: OWNER_DESK_ACCESS.md. Browser-based editor in `app/admin/ArticlesAdmin.tsx`; authenticated in-memory credential & private endpoint workflow, server-sanitized preview, UTC scheduling, draft staging/hasUnpublishedChanges indicators, destructive action confirmations, inline re-auth on token expiry, and error recovery preserving unsaved edits |
-| Automatic article publication | Complete SQL export, shared routes/metadata/sitemaps, 15-minute cycle; healthy target about 15–30 minutes |
-| Release recovery | Last-good artifact retention and controlled rollback verified |
-| Article AI knowledge reconciliation | Private job active with matching deployed/SQL versions; this does not make visitor chat available |
-| Business runbook and client templates | Voyager 1 documents merged; these are documents, not an automated client-management product |
-| Small-business positioning | Deployed Home/About copy now leads with software changes, inherited systems, data migration, practical fixes and staff support; SQL Server remains evidence of technical depth |
-| Business-operations starter kit | `docs/BUSINESS_READINESS.md` and `ops/business/` provide a decision checklist, an unpopulated inquiry register and an engagement checklist without creating a CRM or storing client data in Git |
+| Public consulting website | Home with inquiry form, About, article index/search and ten articles are live on Pages and remain available when Voyager 2 is offline. The site positions Netherwood for practical local-business systems work and fractional database engineering. |
+| Inquiry path | Formspark delivery is retained with a visible `contact@netherwooddatapartners.com` fallback. A normal message was received at both the business mailbox and Gmail during September 19 acceptance. |
+| Business email | The Namecheap mailbox authenticates through the loopback Voyager 2 relay. SPF and DKIM passed on the received message; the relay is healthy and its queue is empty. SQL Server Database Mail and SQL Agent use the same bounded route. |
+| Article operations | The private owner desk and authenticated API support draft, edit, preview, publish, schedule, withdraw and archive. The 15-minute publication cycle is active and its latest run succeeded. |
+| Publication integrity | Ten articles, thirteen sitemap routes and matching release metadata are live. The deployed publication digest is `ac06202690a528460f2a8a9a4c2d56fccdfc8657a3b22995547a435b1b650e8`. |
+| Search ownership | Search Console ownership is verified and both submitted sitemaps were processed. Indexing and ranking remain search-engine decisions, not deployment guarantees. |
+| Operating templates | Private inquiry, owner-decision and engagement templates exist outside Git on Voyager 2. Tracked templates contain no client records. |
+| Consolidated monitoring | The repository contains a bounded user-level check for the public site, publication state, private owner desk, backend, SMTP relay and queue, and disk pressure. Deployment evidence is in `OPERATIONS_READINESS_2026-09-19.md`. |
 
-## Unfinished or unavailable to the intended user
+## Deliberately optional or deferred
 
-| Item | Actual state / evidence | Why it remains open | Concrete completion test and next work |
-| --- | --- | --- | --- |
-| Visitor-facing AI assistant | Widget/backend implemented, public flag off; `app/ChatWidget.tsx`, `docs/PUBLICATION_OPERATIONS.md` | Public HTTPS route not established; retrieval-time article revocation incomplete; recorded answers took 143.8–176.1 seconds | Implement current-visibility/version checks at retrieval and a bounded response budget, measure helpful/unsupported/withdrawn-source behavior, then provision an explicitly approved public route and test fresh browsers. This is unfinished functionality, not a finished feature that happens to be hidden. |
-| Visitor analytics and conversion visibility | Page-view route exists but collection is coupled to the disabled chat widget; no general analytics dashboard | Chat activation currently controls unrelated page-view collection | Separate consent/disclosure and collection from chat; agree useful aggregate measures, connect an approved endpoint, and prove page-view/inquiry events plus retention. Do not promise historical traffic data that was never collected. |
-| SQL lead/customer workflow | `/api/leads` and SQL support exist; the live form intentionally uses independent Formspark | No verified live form-to-SQL/CRM workflow or operator dashboard | Define whether a CRM is actually wanted; if so, add a deduplicated, consent-compatible import/workflow while retaining Formspark availability. Backend scaffolding is not a delivered CRM. This is documented backend roadmap work. |
-| Public Tools / Query Vault area | No `/tools` or downloadable Query Vault release on the website | Explicitly deferred in `SITE_ARCHITECTURE.md` and `LAUNCH_AUDIT.md` | Review the actual tool/release, support scope and safe access path; publish a useful page and verified artifact. Do not add a fake download. This is a documented earlier roadmap item, not a publication blocker. |
-| Final real founder portrait | Current stylized portrait remains the approved temporary image | No selected real replacement in this checkout | Obtain a real chosen portrait, replace it and verify crops/accessibility. Do not synthesize a real client visit. |
-| Direct business-email receipt | Correct address/link exists; previous outgoing test found, destination receipt not confirmed | The destination mailbox evidence is missing | Inspect that mailbox or obtain owner confirmation. Formspark notification receipt is separate. This is a verification gap, not proof the mailbox is broken. |
-| Optional private Sites mirror | Packaged previously, not refreshed | Separate source destination/export not authorized | Only refresh if the owner wants that extra mirror. It is not a missing capability on the public website. |
+| Item | Current state | Completion gate |
+| --- | --- | --- |
+| Real founder portrait | The current professional monogram/identity treatment is intentional and complete enough to launch. | Replace only when the owner selects a real photograph; verify responsive crops and alternative text. |
+| Visitor analytics | No general visitor analytics dashboard is claimed. | Select a privacy and retention policy, then add only the measurements needed to improve qualified inquiries. |
+| SQL lead/CRM workflow | The live form intentionally remains independent of the private SQL scaffolding. | Decide whether a CRM adds value before connecting it; prove consent, deduplication and retention. |
+| Visitor-facing AI assistant | Backend/widget work exists but the public feature remains off. | Add retrieval-time visibility checks, a bounded response target and a separately approved public route before activation. |
+| Public Tools / Query Vault | No public download or tools route is claimed. | Review the actual release, documentation and support boundary before publishing a real artifact. |
+| Google Business Profile | Search Console is complete; Business Profile eligibility/state is not asserted here. | Verify the authoritative account and service-area rules before creating or changing a profile. |
+| Optional Sites mirror | Not required for the production Pages website. | Refresh only if the owner chooses to maintain a second publishing destination. |
 
-## Current business work
+## Remaining business decisions
 
-- Small-business positioning is deployed. Do not reopen it as a redesign unless
-  real inquiry or search evidence identifies a specific problem.
-- Chiropractic pilot: a prepared engagement and evidence plan, not an audit
-  already performed. Clinic-owner consent, a chosen workflow and real measurements
-  are needed before a case study can exist. See CHIROPRACTIC_PILOT.md.
-- Local discovery and customer acquisition: a research-backed message and
-  measurement plan. Search Console/Business Profile ownership, search volumes,
-  paid campaigns and lead performance have not been verified. Do not call them
-  configured, proven or earlier user requests without evidence.
+The technical launch is complete. The remaining work is owner policy rather
+than unfinished site engineering:
 
-## Order of work
+1. service area, availability and inquiry-response target;
+2. initial offer, qualification rules and pricing approach;
+3. agreement, invoicing, payment, tax, insurance and legal choices;
+4. private client system of record, retention and secret-transfer method; and
+5. a consented first pilot with real before/after evidence.
 
-1. Confirm direct receipt in the business mailbox; the working Formspark path
-   does not prove that separate route.
-2. Resolve the owner decisions in `docs/BUSINESS_READINESS.md`, then initialize
-   a private business-record location outside Git if one does not already exist.
-3. Run the small, consented pilot and produce evidence of one useful result.
-4. Verify Search Console/Business Profile state and begin basic lead-source
-   measurement only after the owner authorizes the relevant account access.
-5. Complete chat engineering and access in an explicitly scoped follow-up, with
-   the tests above. Keep it visible in this register until actually delivered.
-6. Revisit the Tools/Query Vault release, portrait and optional mirror as
-   separate work.
-
-Scheduling these items is a priority proposal, not permission to silently drop
-them. No ticket portal, payments, appointment booking or formal partner program
-is claimed to have been requested or built on the evidence reviewed here.
+No client result, testimonial, SLA, license, insurance, revenue or partnership
+is implied until its authoritative record exists.

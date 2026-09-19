@@ -1,0 +1,16 @@
+[Unit]
+Description=Check Netherwood public and private operating paths
+After=network-online.target docker.service
+OnFailure=netherwood-ops-alert@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/lib/netherwood-ops-monitor/netherwood-ops-check.sh
+UMask=0077
+Nice=10
+CPUQuota=10%
+MemoryMax=96M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=%h/.local/state/netherwood-ops-monitor
