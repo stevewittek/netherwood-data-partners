@@ -6,12 +6,12 @@ const description = "Practical notes on software changes, moving business data, 
 export const metadata: Metadata = {
   title: "Articles & Field Notes | Netherwood Data Partners",
   description,
-  alternates: { canonical: "/articles" },
+  alternates: { canonical: "/articles/" },
   openGraph: {
     title: "Articles & Field Notes | Netherwood Data Partners",
     description,
     type: "website",
-    url: "/articles",
+    url: "/articles/",
     images: ["/og.png"],
   },
   twitter: {

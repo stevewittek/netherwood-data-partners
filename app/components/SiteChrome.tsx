@@ -22,13 +22,13 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
         <a href="/#business-systems">Business help</a>
         <a href="/#database-services">Database help</a>
         <a
-          href="/about"
+          href="/about/"
           aria-current={currentPage === "about" ? "page" : undefined}
         >
           About
         </a>
         <a
-          href="/articles"
+          href="/articles/"
           aria-current={currentPage === "articles" ? "page" : undefined}
         >
           Articles
@@ -52,8 +52,8 @@ export function SiteFooter() {
         <div className="studio-footer-links">
           <a href="/#business-systems">Business systems</a>
           <a href="/#database-services">Database engineering</a>
-          <a href="/about">Meet Steven</a>
-          <a href="/articles">Articles & field notes</a>
+          <a href="/about/">Meet Steven</a>
+          <a href="/articles/">Articles & field notes</a>
         </div>
         <a className="studio-text-link" href="/#contact">
           Start a conversation <span aria-hidden="true">↗</span>

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: ArticleRouteProps): Promise<M
     return {
       title: "Article not found | Netherwood Data Partners",
       description: "This article is not available.",
-      alternates: { canonical: `/articles/${slug}` },
+      alternates: { canonical: `/articles/${slug}/` },
       robots: { index: false, follow: false, nocache: true },
     };
   }
@@ -34,12 +34,12 @@ export async function generateMetadata({ params }: ArticleRouteProps): Promise<M
   return {
     title,
     description,
-    alternates: { canonical: `/articles/${article.slug}` },
+    alternates: { canonical: `/articles/${article.slug}/` },
     openGraph: {
       title,
       description,
       type: "article",
-      url: `/articles/${article.slug}`,
+      url: `/articles/${article.slug}/`,
       publishedTime: article.publishedDate,
       modifiedTime: article.modifiedDate,
       authors: [article.author],

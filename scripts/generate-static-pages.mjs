@@ -60,18 +60,18 @@ async function page(path, html) {
 await page("articles", metaPage({
   title: "Articles & Field Notes | Netherwood Data Partners",
   description: "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.",
-  canonical: `${siteUrl}/articles`,
+  canonical: `${siteUrl}/articles/`,
 }));
 
 await page("admin/articles", metaPage({
   title: "Article publishing | Netherwood Data Partners",
   description: "Private Netherwood Data Partners article publishing.",
-  canonical: `${siteUrl}/admin/articles`,
+  canonical: `${siteUrl}/admin/articles/`,
   noindex: true,
 }));
 
 for (const article of articles) {
-  const canonical = `${siteUrl}/articles/${article.slug}`;
+  const canonical = `${siteUrl}/articles/${article.slug}/`;
   const image = article.featuredImage ? new URL(article.featuredImage, siteUrl).href : defaultImage;
   const description = article.seoDescription || article.summary;
   await page(`articles/${article.slug}`, metaPage({
@@ -91,7 +91,7 @@ for (const article of articles) {
       datePublished: article.publishedDate,
       dateModified: article.modifiedDate,
       author: { "@type": "Person", name: article.author },
-      publisher: { "@type": "Organization", name: "Netherwood Data Partners", url: siteUrl },
+      publisher: { "@type": "Organization", name: "Netherwood Data Partners", url: `${siteUrl}/` },
       mainEntityOfPage: canonical,
       ...(image ? { image } : {}),
     },
@@ -100,8 +100,8 @@ for (const article of articles) {
 
 const validArticles = articles;
 const articleUrls = [
-  `  <url><loc>${siteUrl}/articles</loc>${snapshot.generatedAt ? `<lastmod>${escapeHtml(snapshot.generatedAt)}</lastmod>` : ""}</url>`,
-  ...validArticles.map((article) => `  <url><loc>${siteUrl}/articles/${escapeHtml(article.slug)}</loc>${article.modifiedDate ? `<lastmod>${escapeHtml(article.modifiedDate)}</lastmod>` : ""}</url>`),
+  `  <url><loc>${siteUrl}/articles/</loc>${snapshot.generatedAt ? `<lastmod>${escapeHtml(snapshot.generatedAt)}</lastmod>` : ""}</url>`,
+  ...validArticles.map((article) => `  <url><loc>${siteUrl}/articles/${escapeHtml(article.slug)}/</loc>${article.modifiedDate ? `<lastmod>${escapeHtml(article.modifiedDate)}</lastmod>` : ""}</url>`),
 ];
 const articleSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -113,7 +113,7 @@ await writeFile(resolve(output, "articles-sitemap.xml"), articleSitemap);
 const rootSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${siteUrl}/</loc></url>
-  <url><loc>${siteUrl}/about</loc></url>
+  <url><loc>${siteUrl}/about/</loc></url>
 ${articleUrls.join("\n")}
 </urlset>
 `;
@@ -128,7 +128,7 @@ Sitemap: ${siteUrl}/articles-sitemap.xml
 await writeFile(resolve(output, "404.html"), metaPage({
   title: "Page not found | Netherwood Data Partners",
   description: "The requested page is not available.",
-  canonical: `${siteUrl}/404`,
+  canonical: `${siteUrl}/404.html`,
   noindex: true,
 }));
 

@@ -738,7 +738,7 @@ export default function ArticlesAdmin() {
             <span className="admin-conn-dot" aria-hidden="true" />
             Connected to Voyager API
           </span>
-          <a href="/articles" target="_blank" rel="noreferrer">
+          <a href="/articles/" target="_blank" rel="noreferrer">
             View public articles
           </a>
           <button type="button" onClick={() => void refreshStatus()} disabled={busy}>

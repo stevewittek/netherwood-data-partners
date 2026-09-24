@@ -327,7 +327,7 @@ export default function Home() {
             your business, your team, and the systems you depend on. You work
             directly with me—not a mystery queue.
           </p>
-          <a className="studio-text-link" href="/about">
+          <a className="studio-text-link" href="/about/">
             Meet Steven & explore his experience{" "}
             <span aria-hidden="true">↗</span>
           </a>
@@ -359,7 +359,7 @@ export default function Home() {
             behind a business.
           </p>
         </div>
-        <a className="studio-text-link" href="/articles">
+        <a className="studio-text-link" href="/articles/">
           Read articles & field notes <span aria-hidden="true">↗</span>
         </a>
       </section>

@@ -8,7 +8,7 @@ await mkdir(output, { recursive: true });
 const snapshot = JSON.parse(await readFile('pages-site/articles-snapshot.json', 'utf8'));
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const results = { contentDigest: snapshot.contentDigest, routes: [], browserErrors: [], externalRequests: [], keyboard: [], scenarios: [] };
-const paths = ['/', '/about', '/articles', ...snapshot.articles.map(a => `/articles/${a.slug}`)];
+const paths = ['/', '/about/', '/articles/', ...snapshot.articles.map(a => `/articles/${a.slug}/`)];
 async function context(options = {}) {
   const value = await browser.newContext(options);
   await value.route('**/*', route => {
@@ -64,7 +64,7 @@ try {
   }
   const ctx = await context({ viewport: { width: 390, height: 844 } });
   const page = await ctx.newPage();
-  await page.goto(`${base}/articles`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${base}/articles/`, { waitUntil: 'domcontentloaded' });
   await page.getByRole('searchbox').fill('no matching fixture zzzz');
   await page.getByText('Try a broader search.').waitFor();
   await page.getByRole('button', { name: 'Clear filters' }).click();
@@ -116,26 +116,26 @@ try {
     localStorage.setItem(`ndp.article.${article.slug}.v1`, JSON.stringify({ savedAt: '2099-01-01T00:00:00Z', articles: [{...article, title:'STALE CACHED TITLE'}] }));
   }, {article: snapshot.articles[0]});
   const rp = await returning.newPage();
-  await rp.goto(`${base}/articles/withdrawn-fixture`, { waitUntil: 'domcontentloaded' });
+  await rp.goto(`${base}/articles/withdrawn-fixture/`, { waitUntil: 'domcontentloaded' });
   await rp.getByRole('heading', {name:'This field note is not available.'}).waitFor();
   assert.match(await rp.locator('meta[name=robots]').getAttribute('content'), /noindex/);
-  await rp.goto(`${base}/articles/${snapshot.articles[0].slug}`, { waitUntil: 'domcontentloaded' });
+  await rp.goto(`${base}/articles/${snapshot.articles[0].slug}/`, { waitUntil: 'domcontentloaded' });
   assert.equal(await rp.locator('h1').innerText(), snapshot.articles[0].title);
-  await rp.goto(`${base}/articles`, {waitUntil: 'domcontentloaded'});
+  await rp.goto(`${base}/articles/`, {waitUntil: 'domcontentloaded'});
   assert.equal(await rp.getByText('STALE CACHED TITLE').count(), 0);
   assert.match(await rp.locator('.articles-results-summary').innerText(), /10 articles/);
   results.scenarios.push('Returning browser ignores newer legacy index/detail caches, including authoritative removal');
   await returning.close();
   const blocked = await context();
   await blocked.addInitScript(() => { Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage denied'); } }); });
-  const bp = await blocked.newPage(); await bp.goto(`${base}/articles/${snapshot.articles[0].slug}`, {waitUntil:'domcontentloaded'});
+  const bp = await blocked.newPage(); await bp.goto(`${base}/articles/${snapshot.articles[0].slug}/`, {waitUntil:'domcontentloaded'});
   assert.equal(await bp.locator('h1').innerText(), snapshot.articles[0].title);
   results.scenarios.push('Articles render with storage denied and no backend'); await blocked.close();
   const nojs = await context({javaScriptEnabled:false}); const np = await nojs.newPage();
   await np.goto(`${base}/`); assert.ok(await np.locator('noscript a[href="mailto:contact@netherwooddatapartners.com"]').isVisible());
   results.scenarios.push('No-JavaScript email fallback visible; full site remains JavaScript-rendered'); await nojs.close();
   const narrow = await context({viewport:{width:320,height:844}}); const narrowPage = await narrow.newPage();
-  for (const route of ['/', '/about', '/articles', `/articles/${snapshot.articles[0].slug}`]) {
+  for (const route of ['/', '/about/', '/articles/', `/articles/${snapshot.articles[0].slug}/`]) {
     await narrowPage.goto(`${base}${route}`, {waitUntil:'domcontentloaded'}); await narrowPage.locator('h1').waitFor();
     assert.ok(await narrowPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `320px overflow ${route}`);
   }

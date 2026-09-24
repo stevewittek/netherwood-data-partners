@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
   description:
     "Meet Steven Wittek: database engineer, technology consultant, and founder of Netherwood. Hands-on experience since 2009, based in New Jersey.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/about/" },
   openGraph: {
     title: "About Steven Wittek | Netherwood Data Partners",
     description:
       "Enterprise database experience. Personal, practical business technology help.",
-    url: "/about",
+    url: "/about/",
   },
   twitter: {
     title: "About Steven Wittek | Netherwood Data Partners",

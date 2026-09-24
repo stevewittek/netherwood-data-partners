@@ -93,7 +93,7 @@ function absoluteImage(value?: string): string {
 
 function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug?: string): void {
   useEffect(() => {
-    const canonicalPath = article ? `/articles/${article.slug}` : requestedSlug ? `/articles/${requestedSlug}` : "/articles";
+    const canonicalPath = article ? `/articles/${article.slug}/` : requestedSlug ? `/articles/${requestedSlug}/` : "/articles/";
     const title = article
       ? article.seoTitle || `${article.title} | Netherwood Data Partners`
       : requestedSlug && noindex
@@ -143,7 +143,7 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
         datePublished: article.publishedDate,
         dateModified: article.modifiedDate,
         author: { "@type": "Person", name: article.author },
-        publisher: { "@type": "Organization", name: "Netherwood Data Partners", url: "https://netherwooddatapartners.com" },
+        publisher: { "@type": "Organization", name: "Netherwood Data Partners", url: "https://netherwooddatapartners.com/" },
         mainEntityOfPage: `https://netherwooddatapartners.com${canonicalPath}`,
         image: socialImage,
       }).replace(/</g, "\\u003c");
@@ -161,9 +161,9 @@ function ArticlePreview({ article, featured = false }: { article: PublicArticle;
         <time dateTime={article.publishedDate}>{dateLabel(article.publishedDate)}</time>
       </div>
       <div className="article-preview-copy">
-        <h2><a href={`/articles/${article.slug}`}>{article.title}</a></h2>
+        <h2><a href={`/articles/${article.slug}/`}>{article.title}</a></h2>
         <p>{article.summary}</p>
-        <a className="article-read-link" href={`/articles/${article.slug}`}>Read field note <span aria-hidden="true">→</span></a>
+        <a className="article-read-link" href={`/articles/${article.slug}/`}>Read field note <span aria-hidden="true">→</span></a>
       </div>
     </article>
   );
@@ -304,7 +304,7 @@ export function ArticlePage({ slug }: { slug: string }) {
         <p className="eyebrow">Article not found</p>
         <h1>This field note is not available.</h1>
         <p>It may still be a draft, may have been archived, or the address may be incorrect.</p>
-        <a className="button button-primary" href="/articles">View published articles</a>
+        <a className="button button-primary" href="/articles/">View published articles</a>
       </section>
       <SiteFooter />
     </main>
@@ -315,7 +315,7 @@ export function ArticlePage({ slug }: { slug: string }) {
       <SiteHeader currentPage="articles" />
       <article>
         <header className="article-header">
-          <a href="/articles" className="article-back">← Articles &amp; Field Notes</a>
+          <a href="/articles/" className="article-back">← Articles &amp; Field Notes</a>
           <div className="article-kicker"><span>{article.category}</span><time dateTime={article.publishedDate}>{dateLabel(article.publishedDate)}</time></div>
           <h1>{article.title}</h1>
           <p className="article-deck">{article.summary}</p>
@@ -335,7 +335,7 @@ export function ArticlePage({ slug }: { slug: string }) {
         <section className="related-articles">
           <p className="eyebrow">Continue reading</p>
           <h2>Related field notes</h2>
-          <div>{related.map((item) => <a href={`/articles/${item.slug}`} key={item.articleId}><span>{item.category}</span><strong>{item.title}</strong></a>)}</div>
+          <div>{related.map((item) => <a href={`/articles/${item.slug}/`} key={item.articleId}><span>{item.category}</span><strong>{item.title}</strong></a>)}</div>
         </section>
       ) : null}
       <section className="article-cta">
