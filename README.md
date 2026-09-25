@@ -2,6 +2,20 @@
 
 The public website for Netherwood Data Partners.
 
+The site focuses on small business data migration and systems modernization,
+with database engineering as its technical foundation. Migration intake and the
+ungated readiness check reuse the existing static architecture. See
+[`docs/MIGRATION_IMPLEMENTATION.md`](docs/MIGRATION_IMPLEMENTATION.md) for this
+revision, checks, file inventory and next phase.
+
+## Local prospecting
+
+Run `pnpm prospecting` with Node 22.13+ and open `http://127.0.0.1:4319` on the
+same machine. This is a separate private workspace, never part of the public
+site. It stores data outside the repository and has no email sender or crawler.
+See [`internal/prospecting/README.md`](internal/prospecting/README.md).
+Run `pnpm test:migration` for readiness and prospecting tests.
+
 ## Update the site
 
 Route content lives under `app/`; shared visual styling lives in
@@ -21,7 +35,7 @@ pnpm run build
 pnpm run build:pages
 ```
 
-The static production build is published by GitHub Pages. A private Sites release
+The static production build includes build-time rendered HTML and is published by GitHub Pages. A private Sites release
 is kept as a fallback. Git history provides the rollback path: revert a commit or
 redeploy a prior saved version.
 

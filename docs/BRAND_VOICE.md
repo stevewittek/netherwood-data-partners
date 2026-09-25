@@ -1,5 +1,29 @@
 # Netherwood Data Partners brand voice
 
+## Current positioning — owner direction, September 25, 2026
+
+Netherwood helps established small and midsize businesses move from aging
+applications, databases, spreadsheets and servers into modern business platforms
+they choose. Migration and systems modernization lead; the founder's senior
+database engineering/DBA background explains the technical credibility.
+
+"Your business chose the new system. We help you get there." The software
+provider supplies the platform; Netherwood handles discovery, extraction,
+cleanup, mapping, transformation, testing, reconciliation, cutover and handover.
+Never imply a proprietary replacement product, reseller business model,
+unverified vendor expertise, formal partnership or guaranteed migration outcome.
+Professional consulting/project fees are primary; ongoing support is optional.
+
+The owner authorized seven services, the assessment engagement, practical
+automation/AI as follow-on work, and typical fit around 5–150 employees. Initial
+geographic focus is Union, Somerset and Middlesex counties, broader NJ/NYC and
+Tri-State work, and remote US projects where practical. Industry situations are
+illustrative, not completed client cases. Founder-led transparency, verified
+experience since 2009 and the existing biography boundaries remain in force.
+
+This direction supersedes the equal business-help/fractional-DBA offer below.
+The prior dated sections remain provenance, not the current homepage brief.
+
 ## Current positioning — owner direction, September 19, 2026
 
 The owner explicitly requested a creative, professional redesign serving both

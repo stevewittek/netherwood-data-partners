@@ -1,4 +1,47 @@
-# Website redesign candidate — September 19, 2026
+# Migration and modernization candidate — September 25, 2026
+
+The owner explicitly authorized a major repositioning around small-business data
+migration and systems modernization. Implemented on `codex/migration-modernization`
+from `origin/main` at `b54819b`, in the linked worktree
+`/home/nasa/netherwood-migration-modernization`. The original checkout's unrelated
+local documentation is untouched. This candidate is **not deployed or merged**.
+
+- Home and About now explain vendor-neutral migration into the customer's chosen
+  platform, grounded in the founder's database-engineering experience. Existing
+  brand, homepage anchors, SQL Server services and all ten articles are retained.
+- Ten new pages: service index and seven service details, guided migration intake,
+  and a 14-question ungated readiness check with explained results and an optional
+  reviewed handoff into the inquiry. Formspark destination and email fallback
+  remain; no real inquiry was sent.
+- The existing static Pages build now prerenders readable HTML before hydration.
+  Unique metadata/schema and 23 sitemap URLs cover the expanded site. Article
+  renderer/export digest and full-body parity checks protect publication content.
+  Deployment/release controls are preserved; CI adds migration/prospecting tests.
+- A separate loopback-only prospecting app supports manual public evidence,
+  FACT/INFERENCE/OPPORTUNITY, source-backed scoring, private persistence/export,
+  draft review and sticky suppression. It has no email transport or crawler and
+  is excluded from public artifacts. No real prospects were collected.
+- Passed: lint, frontend/backend typechecks, 26 publication/pipeline tests,
+  eight readiness tests, 14 prospecting tests, 70 backend tests, both production
+  builds, static metadata/link/schema/sitemap checks and `git diff --check`.
+- Browser checks passed: 69 renders at 1440/768/390, additional 320px/keyboard/
+  reduced-motion checks, 23 no-JavaScript pages, missing and `index.html` routes,
+  year rollover, 21 public-tool scenarios and the private prospecting workflow.
+  No unexpected external requests, console or hydration errors. All 13 synthetic
+  form POSTs were intercepted locally. 35 axe scans reported zero violations;
+  this is not a full assistive-technology certification.
+- Local screenshots/results are in ignored `outputs/migration-qa/` and
+  `outputs/prospecting/`. See `MIGRATION_IMPLEMENTATION.md` for the page/file
+  inventory, checks, limitations, release/rollback path and next phase;
+  `MIGRATION_SEO_RESEARCH.md` and `MIGRATION_EDITORIAL_BACKLOG.md` hold the strategy.
+
+Remaining: owner review and normal release, authorized real inquiry receipt test,
+publication of new articles through the existing CMS, manually verified initial
+prospects, and private-store restore/duplicate/suppression reconciliation before
+any separately authorized passive collection or human-approved sending system.
+No DNS, secrets, production backend, SQL schema or external exposure was changed.
+
+## Previous candidate — September 19, 2026
 
 Owner explicitly authorized a creative professional redesign serving local
 business owners and fractional DBA/database customers. The reviewed candidate
