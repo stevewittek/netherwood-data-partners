@@ -55,3 +55,11 @@ the API publishing token are configured. See
 preview, export, and recovery details.
 Voyager 1 integration details and response contracts are in
 [`docs/VOYAGER1_ARTICLES_INTEGRATION.md`](docs/VOYAGER1_ARTICLES_INTEGRATION.md).
+
+## Private marketing desk
+
+Company lists, suppression, deliberate campaign approval, local email previews
+and attribution reporting live in the isolated [marketing module](marketing/README.md).
+Run `pnpm marketing:setup` then `pnpm marketing` locally. The shipped provider
+cannot send real mail. See [marketing handoff](docs/MARKETING-HANDOFF.md) and
+[Voyager 2 integration](docs/VOYAGER2-INTEGRATION.md) before production outreach.
