@@ -1,31 +1,62 @@
 ---
-title: Small Business Software and Data Support
-url: /#services
+title: Data Migration and Systems Modernization Services
+url: /services/
 ---
 
-# Small business software and data support
+# Data migration and systems modernization
 
-Netherwood Data Partners helps small businesses with software setup, legacy data
-migration, system reviews, practical fixes and support after a change. Steven
-Wittek is the founder and remains directly involved. He is based in New Jersey.
+Netherwood Data Partners helps established small and midsize businesses move
+from aging applications, databases, spreadsheets and servers into the modern
+business platforms they choose. Founder Steven Wittek is a senior database
+engineer and DBA and remains directly involved in the work.
 
-Typical situations include buying a business and inheriting its records, opening
-an office or shop, switching applications, fixing recurring software problems,
-and reducing duplicate entry or unreliable spreadsheet work.
+The business is vendor-neutral: your platform, your data, your choice. Customers
+can select an established SaaS, ERP, CRM, practice-management, accounting,
+field-service or document-management product. Netherwood works with their
+chosen software provider to handle the migration and integration work around
+it. These categories do not imply partnerships or expertise in every product.
 
-Software transition work includes reviewing the current setup, coordinating
-with the software provider, preparing records, testing everyday tasks, planning
-the change and handing over instructions. Import capabilities depend on the
-source and destination software and must be verified for each project.
+## Services
 
-System reviews cover application versions, workflows, support responsibilities,
-recovery options and problems that affect daily work. SQL Server engineering,
-performance investigation, data conversion and reporting remain areas of
-technical depth. Netherwood does not promise to modify a vendor's proprietary
-application or support every platform.
+- Data migration: legacy extraction, data cleanup, duplicate review, field
+  mapping, transformation, ETL, CSV/import preparation, APIs and document
+  migration; trial migrations, reconciliation, production cutover and validation.
+- Legacy application modernization: understand Access, SQL Server applications,
+  older Windows software, custom systems and spreadsheet workflows; determine
+  what to repair, stabilize, integrate, migrate, replace, archive or retire.
+- Business software migration: coordinate customer, vendor and Netherwood
+  responsibilities when the replacement platform is selected.
+- Legacy systems and migration assessment: inventory systems and data, map
+  dependencies, review backup arrangements, inspect data quality, identify risks
+  and define preliminary migration options and a modernization roadmap.
+- Database engineering: SQL Server performance tuning, health checks,
+  troubleshooting, upgrades, migrations, backup/recovery, availability reviews,
+  ETL, reporting and database design. Scoped ongoing DBA support remains possible.
+- Workflow automation: reduce duplicate entry, connect systems and automate
+  imports, exports, reporting or document workflows with suitable APIs,
+  scripting and Microsoft 365 tools where appropriate.
+- Practical AI: assess bounded uses such as internal knowledge search, document
+  extraction, summarization, employee assistance and report drafting after
+  organizing information and defining access and review requirements.
 
-Work can start with a defined review, a software change, a specific data problem
-or an agreed period of support. Pricing, availability, support hours and scope
-are agreed for the engagement. No fixed price or response-time guarantee is
-published. Additional specialties are discussed with the client and scoped with
-the appropriate provider; no formal vendor partnership is claimed.
+Data migration is database engineering. Schemas, keys, relationships, data types,
+constraints, stored procedures and recovery requirements affect whether years
+of business information move correctly. Matching record counts alone is not
+enough: important relationships, business totals and staff workflows also need
+agreed validation.
+
+The primary commercial model is professional consulting and project services.
+Exact scope, deliverables, fees, responsibilities and optional support are agreed
+before work begins. No fixed price, response-time guarantee, automatic 24/7
+support or recurring software-license arrangement is offered on the website.
+
+Netherwood is based in New Jersey, with an initial focus on Union, Somerset and
+Middlesex counties, broader Central New Jersey and the Tri-State region. Remote
+US projects are considered where practical. The typical customer is an
+established business with roughly 5 to 150 employees; project fit matters more
+than a rigid size limit.
+
+Import and export capabilities, licenses and vendor restrictions must be checked
+for each engagement. Not all history can necessarily move into the replacement;
+an agreed archive may be appropriate. Netherwood does not promise to modify
+proprietary applications or support every product.

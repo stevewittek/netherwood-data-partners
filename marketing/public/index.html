@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Marketing desk · Netherwood Data Partners</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="/"><span class="mark" aria-hidden="true">N</span><span>Netherwood<span class="brand-sub">DATA PARTNERS</span></span></a>
+  <div class="header-meta"><span class="mode">Local simulation</span><button id="lock" class="quiet" hidden>Lock desk</button></div>
+</header>
+<main id="main">
+  <section id="login" class="login">
+    <p class="eyebrow">PRIVATE MARKETING DESK</p>
+    <h1>Start a useful<br>conversation.</h1>
+    <p class="lead">Build a focused business list, prepare a clear message, and see which campaigns lead to inquiries.</p>
+    <form id="login-form" class="unlock-form">
+      <label for="token">Desk access token</label>
+      <div class="inline"><input id="token" type="password" autocomplete="off" spellcheck="false" required minlength="32"><button type="submit">Unlock desk <span aria-hidden="true">↗</span></button></div>
+      <p class="hint">Your token stays in this tab's memory and is cleared when you lock or reload.</p>
+    </form>
+    <p class="simulation-note">This installation creates local email previews only. It cannot deliver a production campaign.</p>
+  </section>
+  <div id="desk" hidden>
+    <div class="masthead"><div><p class="eyebrow">PRIVATE MARKETING DESK</p><h1>Useful outreach.<br>Measurable results.</h1></div><p>Focused lists. Plainspoken messages.<br>A clear path from introduction to inquiry.</p></div>
+    <div class="notice"><strong>Local simulation</strong><span>Email is saved locally. Delivered totals stay at zero. Public tracking and unsubscribe hosting need a separate deployment.</span></div>
+    <nav class="tabs" aria-label="Marketing sections">
+      <button type="button" data-tab="results" aria-current="page">01 <span>Results</span></button>
+      <button type="button" data-tab="lists">02 <span>Company lists</span></button>
+      <button type="button" data-tab="campaigns">03 <span>Campaigns</span></button>
+      <button type="button" data-tab="suppression">04 <span>Suppression</span></button>
+    </nav>
+    <section id="workspace" aria-label="Selected marketing section"></section>
+  </div>
+  <p id="status" role="status" aria-live="polite" class="status"></p>
+</main>
+<footer><span>Netherwood Data Partners</span><span>Data migration &amp; systems modernization</span></footer>
+<noscript><p class="public-message">JavaScript is required to use the private marketing desk.</p></noscript>
+</body>
+</html>

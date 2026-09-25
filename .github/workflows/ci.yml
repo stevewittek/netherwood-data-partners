@@ -34,8 +34,14 @@ jobs:
           npm ci --prefix backend
       - name: Lint
         run: pnpm run lint
+      - name: Marketing tests and strict typecheck
+        run: |
+          pnpm test:marketing
+          pnpm typecheck:marketing
       - name: Publication tests
         run: pnpm test:publication
+      - name: Migration and attribution tests
+        run: pnpm test:migration
       - name: Test
         run: pnpm run test
       - name: Build static site
@@ -86,3 +92,22 @@ jobs:
         run: npm test
       - name: Typecheck
         run: npm run typecheck
+
+  marketing-windows:
+    name: Marketing Windows
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+      - name: Set up pnpm
+        uses: pnpm/setup@v2
+        with:
+          version: 11.19.0
+          install: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Marketing tests
+        run: node --experimental-strip-types --test marketing/test/*.test.ts

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "flow": "unlock/create list/map CSV/preview/import/create campaign/preview/test/ready/approve/simulate/dashboard/lock",
+  "synthetic_companies": 3,
+  "duplicates": 1,
+  "simulated": 3,
+  "delivered": 0,
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "errors": []
+}

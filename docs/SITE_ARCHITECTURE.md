@@ -1,5 +1,37 @@
 # Netherwood Data Partners site architecture
 
+## Migration revision — September 25, 2026
+
+The owner requested migration/modernization positioning and public lead-generation
+tools. The existing React/Vite static Pages deployment and Next/Vinext alternative
+are retained. Voyager 1's separate lightweight marketing desk is the sole private
+campaign/list foundation; the redundant score-based prospecting workspace was removed.
+
+New public routes: `/services/`, seven `/services/{slug}/` detail pages,
+`/migration-intake/` and `/migration-readiness/`. Shared navigation exposes these
+paths. Home/About and company knowledge now lead with vendor-neutral migration;
+all ten SQL-owned published articles, their routes and old homepage anchors remain.
+
+`build:pages` validates the same publication export, builds browser assets, builds
+a temporary Vite SSR bundle, and renders the public pages to HTML at build time.
+There is no runtime SSR service. React hydrates the same components. The renderer
+digest must match the validated article export, and `check-pages.mjs` checks full
+article-body parity as well as routes, metadata, schema and links. The custom 404
+uses client rendering for route-specific missing states. The temporary renderer
+lives in ignored `.static-render/` and is never deployed.
+
+Contact and guided intake reuse one Formspark transport with native POST,
+honeypot, validation, timeout/error status and visible business email. They do
+not depend on Voyager. The readiness result is computed locally without contact
+details. Only an explicit user action places enumerated answers in sessionStorage
+for an optional, expiring intake attachment. No inquiry is sent automatically.
+Campaign attribution uses separate session storage for one first touch in the
+current tab. It allows only UTM source/medium/campaign/content, opaque
+`nwd_campaign`, and a path-only landing page. The fields accompany an inquiry to
+Formspark; no browser request is made to the private marketing desk and no accepted
+inquiry is automatically counted as a conversion. No general analytics package was
+present; existing disabled telemetry stays disabled.
+
 ## September 19, 2026 public design update
 
 The owner-approved redesign keeps the same production/static publishing

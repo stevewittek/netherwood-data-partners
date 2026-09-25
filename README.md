@@ -2,6 +2,18 @@
 
 The public website for Netherwood Data Partners.
 
+The site focuses on small business data migration and systems modernization,
+with database engineering as its technical foundation. Migration intake and the
+ungated readiness check reuse the existing static architecture. See
+[`docs/MIGRATION_IMPLEMENTATION.md`](docs/MIGRATION_IMPLEMENTATION.md) for this
+revision, checks, file inventory and next phase.
+
+The public forms preserve a bounded first campaign touch in session storage and
+include only allowlisted UTM fields, the opaque `nwd_campaign` code and a path-only
+landing page with an inquiry. No cookie, referrer URL, advertising identifier or
+browsing history is collected. Run `pnpm test:migration` for readiness and
+attribution contract tests.
+
 ## Update the site
 
 Route content lives under `app/`; shared visual styling lives in
@@ -21,7 +33,7 @@ pnpm run build
 pnpm run build:pages
 ```
 
-The static production build is published by GitHub Pages. A private Sites release
+The static production build includes build-time rendered HTML and is published by GitHub Pages. A private Sites release
 is kept as a fallback. Git history provides the rollback path: revert a commit or
 redeploy a prior saved version.
 
@@ -55,3 +67,11 @@ the API publishing token are configured. See
 preview, export, and recovery details.
 Voyager 1 integration details and response contracts are in
 [`docs/VOYAGER1_ARTICLES_INTEGRATION.md`](docs/VOYAGER1_ARTICLES_INTEGRATION.md).
+
+## Private marketing desk
+
+Company lists, suppression, deliberate campaign approval, local email previews
+and attribution reporting live in the isolated [marketing module](marketing/README.md).
+Run `pnpm marketing:setup` then `pnpm marketing` locally. The shipped provider
+cannot send real mail. See [marketing handoff](docs/MARKETING-HANDOFF.md) and
+[Voyager 2 integration](docs/VOYAGER2-INTEGRATION.md) before production outreach.

@@ -7,7 +7,9 @@ export function Portrait() {
   const [hasPortrait, setHasPortrait] = useState(Boolean(founderPortrait));
 
   return (
-    <div className={`portrait-frame${hasPortrait ? "" : " portrait-frame-empty"}`}>
+    <div
+      className={`portrait-frame${hasPortrait ? "" : " portrait-frame-empty"}`}
+    >
       {hasPortrait ? (
         <img
           src={founderPortrait || undefined}
@@ -15,9 +17,19 @@ export function Portrait() {
           onError={() => setHasPortrait(false)}
         />
       ) : (
-        <div className="portrait-placeholder" aria-label="Steven Wittek monogram">
-          <span className="portrait-initials" aria-hidden="true">SW</span>
-          <span>Independent by design.<br />Personal by nature.</span>
+        <div
+          className="portrait-placeholder"
+          role="img"
+          aria-label="Steven Wittek monogram"
+        >
+          <span className="portrait-initials" aria-hidden="true">
+            SW
+          </span>
+          <span>
+            Independent by design.
+            <br />
+            Personal by nature.
+          </span>
         </div>
       )}
       <div className="portrait-caption">
