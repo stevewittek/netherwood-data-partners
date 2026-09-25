@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { resolve, relative, isAbsolute, sep } from 'node:path';
 
 const root = resolve(process.argv[2] || 'pages-dist');
 const snapshot = JSON.parse(await readFile(resolve(root, 'articles-snapshot.json'), 'utf8'));
@@ -22,7 +22,8 @@ async function checkUrl(value) {
   if (url.origin !== origin || url.protocol !== 'https:') return;
   const decoded = decodeURIComponent(url.pathname);
   const path = resolve(root, `.${decoded}`);
-  assert.ok(path === root || path.startsWith(`${root}/`), 'Asset traversal rejected');
+  const withinRoot = relative(root, path);
+  assert.ok(withinRoot !== '..' && !withinRoot.startsWith(`..${sep}`) && !isAbsolute(withinRoot), 'Asset traversal rejected');
   if (/\.[a-z0-9]+$/i.test(decoded)) { assert.ok((await stat(path)).isFile(), decoded); }
   else {
     assert.ok(decoded === '/' || decoded.endsWith('/'), `Non-canonical internal route ${decoded}`);
