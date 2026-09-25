@@ -50,3 +50,7 @@ yarn-error.log*
 /pages-site/.publication-candidates/
 /.publication-input/
 /.publication-state/
+
+# Private marketing data and local test outbox
+/marketing/data/
+/marketing/node_modules/
