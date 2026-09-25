@@ -1,5 +1,38 @@
 # Netherwood Data Partners site architecture
 
+## Migration revision — September 25, 2026
+
+The owner requested migration/modernization positioning, public lead-generation
+tools and a private prospecting foundation. The existing React/Vite static Pages
+deployment and Next/Vinext alternative are retained.
+
+New public routes: `/services/`, seven `/services/{slug}/` detail pages,
+`/migration-intake/` and `/migration-readiness/`. Shared navigation exposes these
+paths. Home/About and company knowledge now lead with vendor-neutral migration;
+all ten SQL-owned published articles, their routes and old homepage anchors remain.
+
+`build:pages` validates the same publication export, builds browser assets, builds
+a temporary Vite SSR bundle, and renders the public pages to HTML at build time.
+There is no runtime SSR service. React hydrates the same components. The renderer
+digest must match the validated article export, and `check-pages.mjs` checks full
+article-body parity as well as routes, metadata, schema and links. The custom 404
+uses client rendering for route-specific missing states. The temporary renderer
+lives in ignored `.static-render/` and is never deployed.
+
+Contact and guided intake reuse one Formspark transport with native POST,
+honeypot, validation, timeout/error status and visible business email. They do
+not depend on Voyager. The readiness result is computed locally without contact
+details. Only an explicit user action places enumerated answers in sessionStorage
+for an optional, expiring intake attachment. No inquiry is sent automatically.
+No general analytics package was present; existing disabled telemetry stays disabled.
+
+`internal/prospecting/` is a separate local Node application, excluded from every
+public build import/asset path. It binds only to `127.0.0.1`, uses owner-only data
+storage outside the checkout and has no collector or sender. See its README for
+the evidence model, human-review gates, suppression and operating limits. Public
+inquiries remain in the existing Formspark workflow and are not silently copied
+into prospecting.
+
 ## September 19, 2026 public design update
 
 The owner-approved redesign keeps the same production/static publishing

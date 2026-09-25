@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <title>Private prospecting desk | Netherwood Data Partners</title>
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#editor">Skip to company editor</a>
+    <header>
+      <p class="eyebrow">Netherwood Data Partners · local internal workspace</p>
+      <h1>Prospecting desk</h1>
+      <p>Research public business information, record the evidence, and review each introduction. This app does not collect websites or send messages.</p>
+      <div class="actions"><button id="new-lead" type="button">Add a company</button><a href="/api/export" download>Export private research archive</a></div>
+    </header>
+    <p id="status" role="status" aria-live="polite"></p>
+    <main>
+      <aside aria-labelledby="companies-heading">
+        <h2 id="companies-heading">Companies</h2>
+        <label>Search<input id="search" type="search" placeholder="Company, city, notes…"></label>
+        <label>County<select id="county-filter"><option value="">All counties</option><option>Union</option><option>Somerset</option><option>Middlesex</option><option value="other">Other / not recorded</option></select></label>
+        <label>Industry<select id="industry-filter"><option value="">All industries</option></select></label>
+        <label>Status<select id="status-filter"><option value="">All statuses</option></select></label>
+        <p id="company-count"></p>
+        <ul id="companies" class="company-list"></ul>
+      </aside>
+      <section id="editor" tabindex="-1" aria-labelledby="editor-heading">
+        <h2 id="editor-heading">Add a company</h2>
+        <p>No real companies or example evidence are preloaded. Unknown information should stay blank.</p>
+        <form id="lead-form">
+          <fieldset><legend>Business and public contact information</legend><div id="identity-fields" class="fields"></div></fieldset>
+          <fieldset><legend>Research and next action</legend><div id="research-fields" class="fields"></div><label class="check"><input id="do_not_contact" name="do_not_contact" type="checkbox"> Do not contact this company</label><p class="hint">Suppression is permanent in this version and disables drafting and approval. Routine edits cannot remove it.</p></fieldset>
+          <fieldset>
+            <legend>Facts, inferences and opportunities</legend>
+            <p>FACT is a sourced observation. INFERENCE is an unverified interpretation. OPPORTUNITY is a potential service fit. Only explicit, sourced facts contribute to scoring; a company's age or an old-looking website never proves an old internal system.</p>
+            <div id="evidence-list"></div>
+            <button id="add-evidence" type="button" class="secondary">Add evidence record</button>
+          </fieldset>
+          <div class="actions"><button type="submit">Save company and research</button><button id="delete-lead" type="button" class="secondary" disabled>Delete uncontacted record</button></div>
+          <p class="hint">Saving company details or evidence invalidates any prior outreach approval.</p>
+        </form>
+        <section aria-labelledby="scores-heading">
+          <h2 id="scores-heading">Evidence-based prioritization</h2>
+          <p>These are research-priority indicators, not probabilities, confirmed technology inventories, or fee estimates. Signal selection is a human research judgment. Zero means no supporting evidence has been recorded.</p>
+          <div id="scores"></div>
+        </section>
+        <section aria-labelledby="outreach-heading">
+          <h2 id="outreach-heading">Outreach draft and human review</h2>
+          <p>Research → qualify → draft → human review → approve. Sending and response tracking integrations are future work. An approval here records review of this exact draft; it does not send anything.</p>
+          <p id="outreach-state"></p>
+          <button id="generate-draft" type="button" disabled>Prepare an introduction for review</button>
+          <form id="draft-form" hidden>
+            <label>Subject<input id="draft-subject" maxlength="200" required></label>
+            <label>Draft<textarea id="draft-body" rows="12" maxlength="8000" required></textarea></label>
+            <button type="submit" class="secondary">Save draft and clear prior approval</button>
+          </form>
+          <form id="approval-form" hidden>
+            <label>Human reviewer's name<input id="reviewer" maxlength="100" minlength="2" required autocomplete="name"></label>
+            <label class="check"><input id="reviewed" type="checkbox" required> I reviewed the saved recipient details and exact draft, checked the evidence, and confirmed this introduction does not invent a problem.</label>
+            <button type="submit">Record approval — no message is sent</button>
+          </form>
+        </section>
+        <details>
+          <summary>Passive public research checklist</summary>
+          <p>Read ordinary publicly accessible company pages, public job postings, announcements, PDFs and forms. Record the URL, date, exact observation and why it matters. Respect website access restrictions and stop at authentication.</p>
+          <ul><li>Company history, location and industry; distinguish facts from estimates.</li><li>Publicly named ERP, CRM, Access, SQL Server, application, SharePoint or portal references; record their context and date.</li><li>Public forms, document processes, fax instructions and downloadable PDFs; these do not prove the internal workflow is manual.</li><li>Public expansion, acquisition or software replacement announcements.</li><li>CMS or website appearance describe the website only. They do not establish the internal technology stack.</li></ul>
+          <p>No port scans, vulnerability tests, credential testing, private record access, internal enumeration or authentication bypass. This app stores references and never fetches or probes them.</p>
+        </details>
+      </section>
+    </main>
+    <footer>Local owner workspace. Private data lives outside the repository. Export files contain research and suppression records; handle them as private business data.</footer>
+  </body>
+</html>

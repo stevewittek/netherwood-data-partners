@@ -50,3 +50,5 @@ yarn-error.log*
 /pages-site/.publication-candidates/
 /.publication-input/
 /.publication-state/
+/.static-render/
+/internal/prospecting/.data/

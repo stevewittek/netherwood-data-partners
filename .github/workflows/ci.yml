@@ -36,6 +36,8 @@ jobs:
         run: pnpm run lint
       - name: Publication tests
         run: pnpm test:publication
+      - name: Migration tools and private prospecting tests
+        run: pnpm test:migration
       - name: Test
         run: pnpm run test
       - name: Build static site

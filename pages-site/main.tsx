@@ -1,11 +1,17 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import SiteRouter from "../app/SiteRouter";
 import "../app/globals.css";
 import "../app/studio.css";
 
-createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root")!;
+const application = (
   <StrictMode>
     <SiteRouter />
-  </StrictMode>,
+  </StrictMode>
 );
+// GitHub Pages serves the same 404 document for unknown article/service paths.
+// Those render a route-specific missing state, so don't hydrate unrelated markup.
+if (root.hasChildNodes() && root.dataset.clientRoute !== "true")
+  hydrateRoot(root, application);
+else createRoot(root).render(application);

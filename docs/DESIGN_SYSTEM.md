@@ -1,5 +1,21 @@
 # Netherwood Data Partners design system
 
+## Migration-focused revision — September 25, 2026
+
+The owner explicitly authorized a major migration/modernization website revision,
+including homepage restructuring, clear migration process diagrams, guided intake
+and a readiness tool. Retain the warm-paper/forest/lime identity, self-hosted
+Manrope/DM Sans, wordmark, monogram and article typography. `app/migration.css`,
+`app/services.css` and `app/migration-tools.css` scope the new layouts. The global
+palette, shared stylesheet and existing article layouts are preserved.
+
+The homepage uses a readable source → preparation → destination diagram and
+ten numbered process steps. No generated photos, new image dependencies,
+animation framework, stock imagery or invented metrics were introduced.
+Navigation now links real Services, Readiness check, About, Articles and intake
+routes; all old homepage anchors remain. Before/after captures at 1440/768/390
+and 320px checks are recorded in `MIGRATION_IMPLEMENTATION.md`.
+
 ## Authorized redesign — September 19, 2026
 
 The owner explicitly requested a distinctive professional design and dual
