@@ -1,3 +1,5 @@
+import { CampaignAttributionCapture } from "./CampaignAttributionCapture";
+
 type SiteHeaderProps = {
   currentPage?:
     | "home"
@@ -22,6 +24,7 @@ function Brand() {
 export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
   return (
     <header className="site-header studio-header">
+      <CampaignAttributionCapture />
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>

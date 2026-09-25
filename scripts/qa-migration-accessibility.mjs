@@ -23,7 +23,11 @@ const report = {
   errors: [],
   blockedExternalRequests: [],
 };
-const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+const browser = await chromium.launch({
+  headless: true,
+  args: ["--no-sandbox"],
+  executablePath: process.env.NDP_BROWSER_EXECUTABLE || undefined,
+});
 
 function summarizeRules(rules) {
   return rules.map(({ id, impact, help, helpUrl, nodes }) => ({

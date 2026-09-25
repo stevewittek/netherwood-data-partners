@@ -38,6 +38,7 @@ const routes = [
 const browser = await chromium.launch({
   headless: true,
   args: ["--no-sandbox"],
+  executablePath: process.env.NDP_BROWSER_EXECUTABLE || undefined,
 });
 const report = {
   baseline,

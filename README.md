@@ -8,13 +8,11 @@ ungated readiness check reuse the existing static architecture. See
 [`docs/MIGRATION_IMPLEMENTATION.md`](docs/MIGRATION_IMPLEMENTATION.md) for this
 revision, checks, file inventory and next phase.
 
-## Local prospecting
-
-Run `pnpm prospecting` with Node 22.13+ and open `http://127.0.0.1:4319` on the
-same machine. This is a separate private workspace, never part of the public
-site. It stores data outside the repository and has no email sender or crawler.
-See [`internal/prospecting/README.md`](internal/prospecting/README.md).
-Run `pnpm test:migration` for readiness and prospecting tests.
+The public forms preserve a bounded first campaign touch in session storage and
+include only allowlisted UTM fields, the opaque `nwd_campaign` code and a path-only
+landing page with an inquiry. No cookie, referrer URL, advertising identifier or
+browsing history is collected. Run `pnpm test:migration` for readiness and
+attribution contract tests.
 
 ## Update the site
 
@@ -69,3 +67,11 @@ the API publishing token are configured. See
 preview, export, and recovery details.
 Voyager 1 integration details and response contracts are in
 [`docs/VOYAGER1_ARTICLES_INTEGRATION.md`](docs/VOYAGER1_ARTICLES_INTEGRATION.md).
+
+## Private marketing desk
+
+Company lists, suppression, deliberate campaign approval, local email previews
+and attribution reporting live in the isolated [marketing module](marketing/README.md).
+Run `pnpm marketing:setup` then `pnpm marketing` locally. The shipped provider
+cannot send real mail. See [marketing handoff](docs/MARKETING-HANDOFF.md) and
+[Voyager 2 integration](docs/VOYAGER2-INTEGRATION.md) before production outreach.

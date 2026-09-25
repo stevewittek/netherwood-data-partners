@@ -1,10 +1,11 @@
-# Migration and modernization candidate — September 25, 2026
+# Website and marketing integration candidate — September 25, 2026
 
-The owner explicitly authorized a major repositioning around small-business data
-migration and systems modernization. Implemented on `codex/migration-modernization`
-from `origin/main` at `b54819b`, in the linked worktree
-`/home/nasa/netherwood-migration-modernization`. The original checkout's unrelated
-local documentation is untouched. This candidate is **not deployed or merged**.
+The owner authorized integration and release of the migration/modernization
+website and the lightweight Voyager 1 marketing foundation. The isolated release
+branch combines `codex/migration-modernization` at `3cc9831` and
+`feat/voyager1-marketing` at `ce06ba9` from `origin/main` at `b54819b`. The original
+Voyager checkouts and their unrelated local work remain untouched. This candidate
+is **not deployed or merged** until the final checks and release workflow pass.
 
 - Home and About now explain vendor-neutral migration into the customer's chosen
   platform, grounded in the founder's database-engineering experience. Existing
@@ -16,30 +17,37 @@ local documentation is untouched. This candidate is **not deployed or merged**.
 - The existing static Pages build now prerenders readable HTML before hydration.
   Unique metadata/schema and 23 sitemap URLs cover the expanded site. Article
   renderer/export digest and full-body parity checks protect publication content.
-  Deployment/release controls are preserved; CI adds migration/prospecting tests.
-- A separate loopback-only prospecting app supports manual public evidence,
-  FACT/INFERENCE/OPPORTUNITY, source-backed scoring, private persistence/export,
-  draft review and sticky suppression. It has no email transport or crawler and
-  is excluded from public artifacts. No real prospects were collected.
-- Passed: lint, frontend/backend typechecks, 26 publication/pipeline tests,
-  eight readiness tests, 14 prospecting tests, 70 backend tests, both production
-  builds, static metadata/link/schema/sitemap checks and `git diff --check`.
+  Deployment/release controls are preserved; CI covers migration, attribution
+  and marketing safeguards.
+- The redundant score-based private prospecting workspace was removed. Voyager 1's
+  simpler company-list, provenance, durable suppression, frozen-recipient approval,
+  local simulation and attribution architecture is the single marketing foundation.
+- The public site reads only five bounded campaign tags, preserves one first touch
+  for the current browser tab, and includes those fields plus a path-only landing
+  page in Formspark inquiries. There are no cookies, pageview logs or browser calls
+  to the private marketing service. Storage denial and missing tags fail quietly.
+- Production email remains unavailable. Only the local disk provider is installed;
+  no sender credentials, public unsubscribe service or real outreach is enabled.
+- The integrated candidate passed lint, frontend/backend/marketing typechecks,
+  40 marketing tests, 11 readiness/attribution tests, 26 publication/pipeline
+  checks, 70 backend tests, the business-operations check, both production builds,
+  static metadata/link/schema/sitemap checks and `git diff --check`.
 - Browser checks passed: 69 renders at 1440/768/390, additional 320px/keyboard/
   reduced-motion checks, 23 no-JavaScript pages, missing and `index.html` routes,
-  year rollover, 21 public-tool scenarios and the private prospecting workflow.
-  No unexpected external requests, console or hydration errors. All 13 synthetic
-  form POSTs were intercepted locally. 35 axe scans reported zero violations;
+  year rollover and 22 public-tool scenarios, including the campaign-to-inquiry
+  contract. No unexpected external requests, console or hydration errors. All 14
+  synthetic form POSTs were intercepted locally. 35 axe scans reported zero violations;
   this is not a full assistive-technology certification.
-- Local screenshots/results are in ignored `outputs/migration-qa/` and
-  `outputs/prospecting/`. See `MIGRATION_IMPLEMENTATION.md` for the page/file
+- Local migration screenshots/results are in ignored `outputs/migration-qa/`.
+  See `MIGRATION_IMPLEMENTATION.md` for the page/file
   inventory, checks, limitations, release/rollback path and next phase;
   `MIGRATION_SEO_RESEARCH.md` and `MIGRATION_EDITORIAL_BACKLOG.md` hold the strategy.
 
-Remaining: owner review and normal release, authorized real inquiry receipt test,
-publication of new articles through the existing CMS, manually verified initial
-prospects, and private-store restore/duplicate/suppression reconciliation before
-any separately authorized passive collection or human-approved sending system.
-No DNS, secrets, production backend, SQL schema or external exposure was changed.
+Remaining: final integration validation and release, an authorized real inquiry
+receipt test, publication of new articles through the existing CMS, provider and
+sender selection, reliable public unsubscribe/click hosting, and an owner-reviewed
+Central New Jersey source list. No real form, email or ad was sent. No DNS, secret,
+production backend, SQL schema or external exposure was changed.
 
 ## Previous candidate — September 19, 2026
 

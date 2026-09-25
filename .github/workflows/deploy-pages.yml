@@ -82,6 +82,8 @@ jobs:
         if: steps.change.outputs.needed == 'true'
         run: |
           pnpm lint
+          pnpm test:marketing
+          pnpm typecheck:marketing
           pnpm test:publication
           pnpm test:migration
           npm test --prefix backend

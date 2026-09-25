@@ -16,7 +16,11 @@ const highRisk = Object.fromEntries(ids.map(id => [id, lowRisk[id] === 'yes' ? '
 const corsHeaders = { 'access-control-allow-origin': origin, 'access-control-allow-methods': 'POST, OPTIONS', 'access-control-allow-headers': 'Content-Type, Accept', 'content-type': 'application/json' };
 const report = { base, cases: [], pageErrors: [], blockedRequests: [], interceptedSubmissions: [], failures: [] };
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+const browser = await chromium.launch({
+  headless: true,
+  args: ['--no-sandbox'],
+  executablePath: process.env.NDP_BROWSER_EXECUTABLE || undefined,
+});
 
 async function runCase(name, test, options = {}) {
   const context = await browser.newContext({ viewport: { width: 390, height: 900 }, reducedMotion: 'reduce', ...options });
@@ -91,6 +95,7 @@ try {
     await runCase(`readiness ${label}`, async ({ page, fixture }) => {
       await showReadiness(page, values);
       assert.equal(await page.locator('#readiness-result-heading').textContent(), expected);
+      await page.waitForFunction(() => document.activeElement?.id === 'readiness-result-heading');
       assert.equal(await page.evaluate(() => document.activeElement?.id), 'readiness-result-heading');
       assert.equal(await page.locator('input[type="email"]').count(), 0);
       assert.equal(fixture.posts.length, 0);
@@ -207,6 +212,27 @@ try {
     await sendIntake(page);
     await page.locator('.contact-form-status--success').waitFor();
     assert.equal(payload(fixture).readiness_assessment, undefined);
+  });
+
+  await runCase('campaign first touch follows inquiry without personal query data', async ({ page, fixture }) => {
+    await visit(page, '/services/data-migration/?utm_source=email&utm_medium=outbound&utm_campaign=central_nj_synthetic&utm_content=service_intro&nwd_campaign=browser_contract_test&email=private%40example.invalid&gclid=not-collected');
+    await page.waitForFunction(() => window.sessionStorage.getItem('nwd.first_touch.v1'));
+    await visit(page, '/migration-intake/?utm_source=search&utm_medium=cpc&utm_campaign=must_not_replace_first_touch');
+    await fillIntake(page);
+    await sendIntake(page);
+    await page.locator('.contact-form-status--success').waitFor();
+
+    const submitted = payload(fixture);
+    assert.equal(submitted.utm_source, 'email');
+    assert.equal(submitted.utm_medium, 'outbound');
+    assert.equal(submitted.utm_campaign, 'central_nj_synthetic');
+    assert.equal(submitted.utm_content, 'service_intro');
+    assert.equal(submitted.nwd_campaign, 'browser_contract_test');
+    assert.equal(submitted.landing_page, '/services/data-migration/');
+    assert.equal(submitted.attribution_model, 'first_touch_v1');
+    assert.equal(submitted.gclid, undefined);
+    assert(!JSON.stringify(submitted).includes('private@example.invalid'));
+    assert(!JSON.stringify(submitted).includes('must_not_replace_first_touch'));
   });
 
   await runCase('intake success includes optional fields and resets', async ({ page, fixture }) => {

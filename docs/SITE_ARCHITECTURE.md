@@ -2,9 +2,10 @@
 
 ## Migration revision — September 25, 2026
 
-The owner requested migration/modernization positioning, public lead-generation
-tools and a private prospecting foundation. The existing React/Vite static Pages
-deployment and Next/Vinext alternative are retained.
+The owner requested migration/modernization positioning and public lead-generation
+tools. The existing React/Vite static Pages deployment and Next/Vinext alternative
+are retained. Voyager 1's separate lightweight marketing desk is the sole private
+campaign/list foundation; the redundant score-based prospecting workspace was removed.
 
 New public routes: `/services/`, seven `/services/{slug}/` detail pages,
 `/migration-intake/` and `/migration-readiness/`. Shared navigation exposes these
@@ -24,14 +25,12 @@ honeypot, validation, timeout/error status and visible business email. They do
 not depend on Voyager. The readiness result is computed locally without contact
 details. Only an explicit user action places enumerated answers in sessionStorage
 for an optional, expiring intake attachment. No inquiry is sent automatically.
-No general analytics package was present; existing disabled telemetry stays disabled.
-
-`internal/prospecting/` is a separate local Node application, excluded from every
-public build import/asset path. It binds only to `127.0.0.1`, uses owner-only data
-storage outside the checkout and has no collector or sender. See its README for
-the evidence model, human-review gates, suppression and operating limits. Public
-inquiries remain in the existing Formspark workflow and are not silently copied
-into prospecting.
+Campaign attribution uses separate session storage for one first touch in the
+current tab. It allows only UTM source/medium/campaign/content, opaque
+`nwd_campaign`, and a path-only landing page. The fields accompany an inquiry to
+Formspark; no browser request is made to the private marketing desk and no accepted
+inquiry is automatically counted as a conversion. No general analytics package was
+present; existing disabled telemetry stays disabled.
 
 ## September 19, 2026 public design update
 

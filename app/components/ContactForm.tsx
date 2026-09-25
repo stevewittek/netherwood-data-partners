@@ -1,7 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
+import {
+  ATTRIBUTION_MODEL,
+  browserSessionStorage,
+  CAMPAIGN_ATTRIBUTION_FIELDS,
+  captureFirstTouch,
+  hasCampaignAttribution,
+} from "../lib/campaign-attribution";
 
 const FORMSPARK_ACTION_URL = "https://submit-form.com/5bzGZaPs6";
 const SUBMISSION_TIMEOUT_MS = 15_000;
@@ -26,7 +33,28 @@ export function InquiryForm({
 }: InquiryFormProps) {
   const [submissionState, setSubmissionState] =
     useState<SubmissionState>("idle");
+  const formRef = useRef<HTMLFormElement>(null);
   const submissionInFlight = useRef(false);
+
+  useEffect(() => {
+    const attribution = captureFirstTouch(
+      new URL(window.location.href),
+      browserSessionStorage(),
+    );
+    const enabled = hasCampaignAttribution(attribution);
+    const fields = {
+      ...attribution,
+      attribution_model: ATTRIBUTION_MODEL,
+    };
+
+    for (const [name, value] of Object.entries(fields)) {
+      const input = formRef.current?.elements.namedItem(name);
+      if (!(input instanceof HTMLInputElement)) continue;
+      input.value = value ?? "";
+      input.defaultValue = value ?? "";
+      input.disabled = !enabled;
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     if (typeof window.fetch !== "function") return;
@@ -96,11 +124,17 @@ export function InquiryForm({
       className="contact-form"
       method="POST"
       onSubmit={handleSubmit}
+      ref={formRef}
       aria-busy={isSubmitting}
     >
       {children}
 
       <input name="source" type="hidden" value={source} />
+      {CAMPAIGN_ATTRIBUTION_FIELDS.map((field) => (
+        <input disabled key={field} name={field} type="hidden" />
+      ))}
+      <input disabled name="landing_page" type="hidden" />
+      <input disabled name="attribution_model" type="hidden" />
       <input
         aria-hidden="true"
         autoComplete="off"

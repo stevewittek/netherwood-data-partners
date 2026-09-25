@@ -5,8 +5,10 @@ September 25, 2026. Branch: `codex/migration-modernization`, based on current
 The original `/home/nasa/netherwood-data-partners` checkout has unrelated local
 documentation; its pull was correctly refused and its changes were preserved.
 This is a linked checkout of the existing repository, not a replacement project.
-Implementation commits: `072f4f4` (private prospecting foundation) and `eec9b3c`
-(public positioning, services, lead tools, static SEO and regression checks).
+Public implementation commit: `eec9b3c` (positioning, services, lead tools,
+static SEO and regression checks). The earlier `072f4f4` score-based private
+prospecting workspace was removed during integration in favor of Voyager 1's
+lighter campaign/list/suppression system.
 
 ## Implemented
 
@@ -32,11 +34,6 @@ Implementation commits: `072f4f4` (private prospecting foundation) and `eec9b3c`
   carry the enumerated answers into an inquiry, inspect/remove the attachment,
   and submit it through the existing Formspark integration. Expired/malformed
   handoffs and denied browser storage fail without blocking contact.
-- The local prospecting desk implements company CRUD, search/filters, source
-  evidence, research notes, all requested fields/statuses, explainable scoring,
-  editable introductions, explicit review approval, private export and sticky
-  do-not-contact suppression. Stored approvals bind the exact recipient and
-  draft; changes invalidate approval. It sends no messages and collects no sites.
 - A researched SEO intent map and prioritized 15-topic editorial backlog extend
   the strategy while retaining the SQL-owned published articles.
 
@@ -83,8 +80,8 @@ analytics package to migrate; disabled chat/telemetry remains disabled.
 
 Public forms retain direct Formspark delivery and independent email fallback.
 No API keys, database secrets or new application dependencies are introduced.
-Prospecting code and private records are absent from `pages-dist`. Its private
-store cannot be configured inside the repository and never uses production SQL.
+The integrated release adds bounded first-touch session attribution to the forms;
+the site does not contact or depend on the private marketing service.
 
 ## Verification and local evidence
 
@@ -96,8 +93,8 @@ formatted with temporary Prettier 3.6.2 without adding a dependency.
 Passed verification:
 
 - ESLint and frontend TypeScript checks.
-- 26 existing publication/pipeline tests, eight readiness tests, 14 private
-  prospecting tests, and 70 existing backend tests; backend strict typecheck.
+- 26 existing publication/pipeline tests, eight readiness tests and 70 existing
+  backend tests; backend strict typecheck.
 - Both production builds: Vinext (`pnpm test`) and static GitHub Pages.
 - Static validation of all 23 canonical routes, full article-body parity,
   internal links/anchors/assets, metadata, schema, sitemaps, robots and CNAME.
@@ -116,13 +113,8 @@ Passed verification:
   automated review prompts concerned decorative arrow glyphs and the preserved
   article gradient. Visual and keyboard checks were also performed; this is not
   a full assistive-technology or WCAG certification.
-- Private prospecting browser workflow at 1440/768/390 pixels: editing, evidence,
-  scoring, drafts, approval invalidation, suppression and persistence. Node tests
-  also cover loopback/Host/Origin/CSRF boundaries, concurrent edits, writer locks,
-  corrupt-store preservation and path/symlink containment.
-- No private prospecting modules or record markers in public artifacts. Published
-  snapshot, lockfiles, CNAME and social image remain unchanged. No new secrets or
-  runtime dependencies; `git diff --check` passes.
+- Published snapshot, lockfiles, CNAME and social image remained unchanged. No new
+  secrets or public runtime dependencies were introduced; `git diff --check` passed.
 
 Repeatable commands:
 
@@ -140,17 +132,17 @@ git diff --check
 ```
 
 Browser runners are `scripts/qa-migration.mjs`,
-`scripts/qa-migration-tools.mjs`, `scripts/qa-migration-accessibility.mjs` and
-`internal/prospecting/test/browser.mjs`. They accept a temporary Playwright module
+`scripts/qa-migration-tools.mjs` and `scripts/qa-migration-accessibility.mjs`.
+They accept a temporary Playwright module
 through `NDP_PLAYWRIGHT_MODULE`; accessibility additionally uses `NDP_AXE_MODULE`.
 These QA dependencies are not part of the site. Public QA blocks external
 requests and intercepts all simulated form submissions.
 
 Ignored local evidence: `outputs/migration-qa/before/` (39 baseline renders),
 `outputs/migration-qa/after/` (69 candidate renders, tools, keyboard/route/static
-checks), `outputs/migration-qa/accessibility/` and `outputs/prospecting/`.
-Screenshots cover Home/About/Articles/Contact before and after at 1440/768/390,
-all added pages, migration diagrams, readiness results and the private workspace.
+checks) and `outputs/migration-qa/accessibility/`. Screenshots cover Home/About/
+Articles/Contact before and after at 1440/768/390, all added pages, migration
+diagrams and readiness results.
 
 ## File inventory
 
@@ -166,9 +158,6 @@ all added pages, migration diagrams, readiness results and the private workspace
 - Static integration: `app/SiteRouter.tsx`, both `pages-site` HTML/TSX entries,
   `scripts/render-static.tsx`, `vite.prerender.config.ts`,
   `scripts/generate-static-pages.mjs`, `scripts/check-pages.mjs`.
-- Private workspace: `internal/prospecting/{model,store,server}.mjs`,
-  `internal/prospecting/ui/{index.html,app.js,style.css}`,
-  `internal/prospecting/test/{model.test,server.test,browser}.mjs`, and its README.
 - QA/config: three `scripts/qa-migration*.mjs` runners, `package.json`,
   `eslint.config.mjs`, `.gitignore`, CI and Pages workflow test additions.
 - Knowledge/docs: both public company-knowledge files, README, brand/design/
@@ -179,15 +168,10 @@ all added pages, migration diagrams, readiness results and the private workspace
 
 - No public deployment, merge to main, real form/email send or production change.
   Existing recipient/inbox behavior is preserved but not newly delivery-tested.
-- No real prospect collection or automated website analysis. The private app
-  supports manual public evidence and a research checklist; it does not crawl,
-  scan, authenticate to third-party sites or infer internal systems from website age.
-- No email sending integration; approval is a stored review decision only.
+- No real prospect collection, automated website analysis or outreach occurred.
+- No production email adapter is installed; production sending remains disabled.
 - No new articles inserted into the live SQL CMS. The 15-topic backlog is ready
   for the existing authoring workflow. Existing ten articles remain unchanged.
-- Prospecting is a single-user local foundation, not a multi-user CRM. Automated
-  backup/restore/import, duplicate-company/suppression reconciliation, richer
-  history, passive collection and CRM integration remain next-phase work.
 
 ## Recommended next phase
 
@@ -197,11 +181,10 @@ engagements to refine qualification and assessment scope. Publish the first
 backlog pieces through the existing CMS, beginning with the vendor/legacy-system
 responsibility gap and moving years of history into newly selected software.
 
-Populate a small manually reviewed Union/Somerset/Middlesex prospect set. Prove
-evidence quality before adding passive collection. Add tested private-store
-backup/restore and duplicate/suppression handling before any future CRM or
-human-approved delivery integration. No future sender should treat a generic
-status alone as authority to send.
+Run the synthetic campaign acceptance path in the integrated Voyager 1 marketing
+desk. Then prepare a small owner-reviewed Union/Somerset/Middlesex source list with
+provenance and usage rights. Do not send until a provider, sender identity, public
+unsubscribe service and explicit campaign approval are in place.
 
 Rollback: revert the focused revision commits before release or use the existing
 retained Pages artifact rollback workflow after a separately approved deployment.

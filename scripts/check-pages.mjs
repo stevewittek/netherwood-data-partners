@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
-import { resolve } from "node:path";
+import { isAbsolute, relative, resolve, sep } from "node:path";
 
 const root = resolve(process.argv[2] || "pages-dist");
 const snapshot = JSON.parse(
@@ -71,8 +71,11 @@ async function checkUrl(value, currentRoute = "/") {
   if (url.origin !== origin || url.protocol !== "https:") return;
   const decoded = decodeURIComponent(url.pathname);
   const path = resolve(root, `.${decoded}`);
+  const withinRoot = relative(root, path);
   assert.ok(
-    path === root || path.startsWith(`${root}/`),
+    withinRoot !== ".." &&
+      !withinRoot.startsWith(`..${sep}`) &&
+      !isAbsolute(withinRoot),
     "Asset traversal rejected",
   );
   if (/\.[a-z0-9]+$/i.test(decoded)) {

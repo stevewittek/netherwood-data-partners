@@ -51,4 +51,7 @@ yarn-error.log*
 /.publication-input/
 /.publication-state/
 /.static-render/
-/internal/prospecting/.data/
+
+# Private marketing data and local test outbox
+/marketing/data/
+/marketing/node_modules/
