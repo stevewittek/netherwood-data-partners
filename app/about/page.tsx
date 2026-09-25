@@ -7,18 +7,18 @@ import "./about.css";
 export const metadata: Metadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
   description:
-    "Meet Steven Wittek: database engineer, technology consultant, and founder of Netherwood. Hands-on experience since 2009, based in New Jersey.",
+    "Steven Wittek brings senior database engineering experience to small business data migrations and legacy systems modernization. Based in New Jersey.",
   alternates: { canonical: "/about/" },
   openGraph: {
     title: "About Steven Wittek | Netherwood Data Partners",
     description:
-      "Enterprise database experience. Personal, practical business technology help.",
+      "Enterprise database experience for small businesses moving beyond aging systems.",
     url: "/about/",
   },
   twitter: {
     title: "About Steven Wittek | Netherwood Data Partners",
     description:
-      "Enterprise database experience. Personal, practical business technology help.",
+      "Enterprise database experience for small businesses moving beyond aging systems.",
   },
 };
 
@@ -64,19 +64,21 @@ export default function AboutPage() {
           </p>
           <div className="long-form about-intro">
             <p>
-              I help people make sense of the systems their businesses depend
-              on. Sometimes that means getting deep into a SQL execution plan.
-              Sometimes it means helping an owner move years of records into
-              software that better fits the way they work.
+              I help established businesses move beyond aging software without
+              leaving their important history behind. I’m a database engineer
+              and DBA who is comfortable getting into a messy existing system,
+              finding how its data fits together and working out a practical
+              path forward.
             </p>
             <p>
               I have worked in technology since 2009. Netherwood Data Partners
-              brings that hands-on experience into a direct, personal consulting
-              relationship.
+              brings experience with demanding production databases to smaller
+              organizations that need that capability for a project.
             </p>
           </div>
-          <a className="button button-primary" href="/#contact">
-            Tell me what you’re working on <span aria-hidden="true">↗</span>
+          <a className="button button-primary" href="/migration-intake/">
+            Tell me what you’re trying to replace{" "}
+            <span aria-hidden="true">↗</span>
           </a>
         </div>
         <Portrait />
@@ -98,9 +100,9 @@ export default function AboutPage() {
         <div>
           <p className="eyebrow">Why Netherwood</p>
           <h2>
-            Good technology help
+            Big-company database experience.
             <br />
-            should feel human.
+            Small-business practicality.
           </h2>
         </div>
         <div className="long-form">
@@ -111,15 +113,16 @@ export default function AboutPage() {
             and the details seriously.
           </p>
           <p>
-            Those habits matter outside a large technology team, too. A
-            neighborhood business still needs trustworthy records. An owner
-            changing software still needs a sensible migration plan. A small
-            development team still needs someone who understands the database
-            underneath its application.
+            Large companies have DBAs, data engineers, architects and migration
+            specialists. Small businesses often face the same kinds of data
+            problems without those teams. Years of customers, jobs, invoices and
+            documents still need to arrive correctly in the replacement system.
           </p>
           <p>
-            I built Netherwood around that connection: technical depth,
-            explained clearly, with the person doing the work directly involved.
+            Netherwood makes that technical capability available on a project
+            basis. You work directly with me to understand what exists, prepare
+            the data, test the move and check the result. You choose the new
+            platform; I work with your software provider to help you get there.
           </p>
         </div>
       </section>
@@ -130,7 +133,7 @@ export default function AboutPage() {
             <h2>
               The depth behind
               <br />
-              the day-to-day help.
+              the migration work.
             </h2>
             <p>
               Examples from my engineering background and personal projects.
@@ -168,16 +171,18 @@ export default function AboutPage() {
             what, and how we will check the result.
           </p>
           <p>
-            I can work alongside your existing IT company, software provider, or
-            development team. If a problem needs a different specialist, I will
-            explain the boundary and discuss the next step with you.
+            I work with the people who know the day-to-day business and the
+            vendors who know the software. That means translating between an
+            employee’s “these invoices don’t look right” and the tables,
+            relationships and import rules underneath. If a project needs
+            another specialty, we discuss that scope together.
           </p>
           <p>
             Outside the technical work, I am a New Jersey local, a distance
             runner, and a family person. I value steady progress, clear
             communication, and finishing the work properly.
           </p>
-          <a className="studio-text-link" href="/#services">
+          <a className="studio-text-link" href="/services/">
             Explore how I can help <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -194,12 +199,13 @@ export default function AboutPage() {
           </div>
           <div>
             <p>
-              Bring the slow system, the software change, the database question,
-              or the setup you inherited. We can work out a useful starting
-              point.
+              Bring the old application, the new software you’ve selected or the
+              database nobody quite understands. We can work out a useful
+              starting point. Based in New Jersey, serving the Tri-State region
+              and remote US projects where practical.
             </p>
-            <a className="button button-light" href="/#contact">
-              Let’s talk <span aria-hidden="true">↗</span>
+            <a className="button button-light" href="/migration-intake/">
+              Talk about your migration <span aria-hidden="true">↗</span>
             </a>
             <p className="founder-appointment">
               Remote & local engagements · Meetings by appointment
