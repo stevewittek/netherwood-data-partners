@@ -12,7 +12,7 @@ const base = (process.env.NDP_QA_URL || "http://127.0.0.1:4175").replace(/\/$/, 
 const output = resolve("outputs/migration-qa/accessibility");
 await mkdir(output, { recursive: true });
 const snapshot = JSON.parse(await readFile("pages-site/articles-snapshot.json", "utf8"));
-const serviceSlugs = ["data-migration", "legacy-application-modernization", "business-software-migration", "legacy-systems-assessment", "database-engineering", "workflow-automation", "practical-ai"];
+const serviceSlugs = ["software-systems-support", "data-migration", "legacy-application-modernization", "business-software-migration", "legacy-systems-assessment", "database-engineering", "workflow-automation", "practical-ai"];
 const mobileRoutes = ["/", "/about/", "/articles/", "/services/", "/migration-intake/", "/migration-readiness/", ...serviceSlugs.map((slug) => `/services/${slug}/`), ...snapshot.articles.map((article) => `/articles/${article.slug}/`)];
 const desktopRoutes = ["/", "/about/", "/services/", "/services/data-migration/", "/services/legacy-systems-assessment/", "/services/database-engineering/", "/migration-intake/", "/migration-readiness/"];
 const report = {

@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import ChatWidget from "../ChatWidget";
-import { Portrait } from "../components/Portrait";
+import { aboutMetadata } from "../content/site";
+import "../community.css";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import "./about.css";
 
 export const metadata: Metadata = {
-  title: "About Steven Wittek | Netherwood Data Partners",
-  description:
-    "Steven Wittek brings senior database engineering experience to small business data migrations and legacy systems modernization. Based in New Jersey.",
+  ...aboutMetadata,
   alternates: { canonical: "/about/" },
   openGraph: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description:
-      "Enterprise database experience for small businesses moving beyond aging systems.",
+    description: aboutMetadata.description,
     url: "/about/",
   },
   twitter: {
     title: "About Steven Wittek | Netherwood Data Partners",
-    description:
-      "Enterprise database experience for small businesses moving beyond aging systems.",
+    description: aboutMetadata.description,
   },
 };
 
@@ -64,24 +61,43 @@ export default function AboutPage() {
           </p>
           <div className="long-form about-intro">
             <p>
-              I help established businesses move beyond aging software without
-              leaving their important history behind. I’m a database engineer
-              and DBA who is comfortable getting into a messy existing system,
-              finding how its data fits together and working out a practical
-              path forward.
+              I help businesses get their software, data and systems working
+              better together. I’m a database engineer and DBA who is
+              comfortable getting into an unfamiliar application, finding how
+              the information fits together and working through the problem with
+              the people who use it.
             </p>
             <p>
               I have worked in technology since 2009. Netherwood Data Partners
               brings experience with demanding production databases to smaller
-              organizations that need that capability for a project.
+              organizations that need personal help with a project or ongoing
+              support.
             </p>
           </div>
-          <a className="button button-primary" href="/migration-intake/">
-            Tell me what you’re trying to replace{" "}
-            <span aria-hidden="true">↗</span>
+          <a className="button button-primary" href="/#contact">
+            Tell me what you need help with <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <Portrait />
+        <figure className="community-about-visual">
+          <img
+            src="/images/community/netherwood-station.webp"
+            alt="The historic Netherwood station building in Plainfield, New Jersey"
+            width={1536}
+            height={1020}
+            fetchPriority="high"
+          />
+          <figcaption>
+            Local roots: Netherwood station. Photo by{" "}
+            <a href="https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg">
+              Jerrye & Roy Klotz MD
+            </a>
+            ,{" "}
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+              CC BY-SA 4.0
+            </a>
+            . Resized and cropped for display.
+          </figcaption>
+        </figure>
       </section>
       <div className="founder-facts">
         <div className="studio-wrap">
@@ -115,25 +131,26 @@ export default function AboutPage() {
           <p>
             Large companies have DBAs, data engineers, architects and migration
             specialists. Small businesses often face the same kinds of data
-            problems without those teams. Years of customers, jobs, invoices and
-            documents still need to arrive correctly in the replacement system.
+            problems without those teams. Customer records, jobs, invoices and
+            reports deserve the same care, whatever the size of the business.
           </p>
           <p>
             Netherwood makes that technical capability available on a project
-            basis. You work directly with me to understand what exists, prepare
-            the data, test the move and check the result. You choose the new
-            platform; I work with your software provider to help you get there.
+            basis, with ongoing support where agreed. You work directly with me
+            to understand the problem, agree a plan and check the result. That
+            might mean fixing an integration, tuning a database or helping you
+            move into a new platform.
           </p>
         </div>
       </section>
-      <section className="founder-experience">
+      <section className="founder-experience" id="professional-experience">
         <div className="studio-wrap">
           <div className="founder-experience-heading">
             <p className="eyebrow">Selected professional experience</p>
             <h2>
               The depth behind
               <br />
-              the migration work.
+              the hands-on help.
             </h2>
             <p>
               Examples from my engineering background and personal projects.
@@ -204,8 +221,8 @@ export default function AboutPage() {
               starting point. Based in New Jersey, serving the Tri-State region
               and remote US projects where practical.
             </p>
-            <a className="button button-light" href="/migration-intake/">
-              Talk about your migration <span aria-hidden="true">↗</span>
+            <a className="button button-light" href="/#contact">
+              Talk about your business <span aria-hidden="true">↗</span>
             </a>
             <p className="founder-appointment">
               Remote & local engagements · Meetings by appointment

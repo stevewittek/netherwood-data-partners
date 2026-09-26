@@ -7,6 +7,7 @@ const { chromium } = await import(
 );
 const base = process.env.NDP_QA_URL || "http://127.0.0.1:4175";
 const baseline = process.argv.includes("--baseline");
+const interactionsOnly = process.argv.includes("--interactions-only");
 const output = resolve("outputs/migration-qa", baseline ? "before" : "after");
 await mkdir(output, { recursive: true });
 const snapshot = JSON.parse(
@@ -19,6 +20,7 @@ const extra = baseline
       "/migration-intake/",
       "/migration-readiness/",
       ...[
+        "software-systems-support",
         "data-migration",
         "legacy-application-modernization",
         "business-software-migration",
@@ -48,7 +50,7 @@ const report = {
   checks: [],
 };
 try {
-  for (const width of [1440, 768, 390]) {
+  for (const width of interactionsOnly ? [] : [1440, 768, 390]) {
     const context = await browser.newContext({
       viewport: { width, height: 1000 },
       reducedMotion: "reduce",
@@ -67,6 +69,8 @@ try {
       await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
       await page.locator("h1").waitFor();
       await page.evaluate(() => document.fonts.ready);
+      await page.locator("img").evaluateAll(images => images.forEach(img => { img.loading = "eager"; }));
+      await page.evaluate(() => Promise.all([...document.images].map(img => img.decode().catch(() => {}))));
       const metrics = await page.evaluate(() => ({
         width: innerWidth,
         scrollWidth: document.documentElement.scrollWidth,
@@ -258,7 +262,7 @@ try {
       assert.ok(
         await staticPage
           .locator(
-            'a[href="mailto:contact@netherwooddatapartners.com"], a[href="/migration-intake/"]',
+            'a[href="mailto:contact@netherwooddatapartners.com"], a[href="/migration-intake/"], a[href="/#contact"]',
           )
           .count(),
         `Static contact path ${path}`,
@@ -273,7 +277,7 @@ try {
 } finally {
   await browser.close();
   await writeFile(
-    resolve(output, "browser-results.json"),
+    resolve(output, interactionsOnly ? "browser-interaction-results.json" : "browser-results.json"),
     JSON.stringify(report, null, 2),
   );
 }

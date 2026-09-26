@@ -1,13 +1,15 @@
 ---
 title: How Netherwood Data Partners Works
-url: /services/legacy-systems-assessment/
+url: /services/
 ---
 
 # How we work
 
-Steven starts with the work the client's staff need to get done, the system they
-want to leave behind and their chosen replacement, if there is one. Prospects
-do not need to understand the database underneath their software.
+Steven starts with the work the client's staff need to get done and the software
+or data problem getting in the way. The next step can be an investigation, a
+focused fix, reporting or integration work, ongoing support, or a planned
+migration. Prospects do not need to understand the database underneath their
+software. Scope and fees are agreed before paid work begins.
 
 The first paid engagement can be a legacy systems and migration assessment.
 It establishes what is in the agreed environment, where the important data
@@ -34,7 +36,8 @@ additional work starts. Do not imply employees, a standing partner team or
 unlimited help-desk availability.
 
 Prospective clients can email contact@netherwooddatapartners.com or use the
-migration inquiry form at /migration-intake/. Describe the business, current
+general inquiry form at /#contact. For a planned move, the guided migration
+inquiry form remains available at /migration-intake/. Describe the business, current
 software, desired change, chosen destination if known, location and relevant
 deadline. A free public readiness self-check at /migration-readiness/ reveals
 its result without requiring contact information; it is not a technical audit

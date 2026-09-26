@@ -1,3 +1,26 @@
+## Latest owner direction: industry systems
+
+Use equipment and recognizable work in established manufacturing, distribution
+and medical offices, with legacy-to-modern examples and practical AI assistance.
+The owner explicitly replaced the staged-people direction. Generated scenes
+are illustrative concepts, not actual clients or delivered product screenshots.
+Local station imagery and broader software/data/support offerings remain.
+See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+
+# Community website candidate — September 25, 2026 follow-up
+
+The website/marketing release below was subsequently merged as PR #16 at
+`840cf9a`; its CI and Pages deployment passed and public routes were verified.
+The owner's next request is a warm, photographic local technology business,
+representative of Plainfield's mixed community, with broader software/data/support
+positioning and a Netherwood station / Raritan Valley motif.
+
+`feat/community-technology-website` starts at that release. It adds a scoped
+photographic Home redesign, refreshed About/Services, a software-and-systems
+support service, and general contact routing. Migration capabilities remain.
+This is a review candidate, not an additional production deployment. See
+`COMMUNITY-REDESIGN.md` for its changes, source credits, checks and rollback.
+
 # Website and marketing integration candidate — September 25, 2026
 
 The owner authorized integration and release of the migration/modernization

@@ -1,0 +1,34 @@
+{
+  "direction": "Equipment and legacy-to-modern industry systems; replaces staged people imagery",
+  "assets": [
+    {
+      "name": "warehouse-systems",
+      "prompt": "Use case: photorealistic-natural. Asset: premium editorial website photograph, landscape 1536x1024. No people, no coffee, no plants, no staged teamwork, no logos, no holograms or glowing sci-fi effects. Believable established small-business infrastructure, authentic wear but clean and maintained. The subject is the WORK and legacy systems, not stock office decor. Screen text minimal and fictional; no personal data. Natural cinematic lighting, warm neutral and steel blue tones, crisp foreground detail. Scene: an established regional parts distributor warehouse. Foreground, a practical metal dispatch desk with a beige CRT terminal showing rows of green monospace inventory entries on black, a chunky keyboard, dot-matrix printer with continuous tractor-feed paper, and a handheld barcode scanner. Behind it recognizable long warehouse aisles of organized cartons and industrial shelving. On the RIGHT of the same wide scene a modern tablet on a stand shows a restrained white inventory interface and small conversational assistant panel. Legacy terminal on LEFT, modern tablet RIGHT, both actual physical devices, no collage seam. Compose both devices within center 80 percent so responsive cropping preserves them. Eye-level environmental photography, realistic cables and materials.",
+      "source": "exec-8f4f9fdf-65a7-4726-98c2-207fcb3d34c9.png",
+      "files": [
+        "public/images/community/warehouse-systems.webp",
+        "public/images/community/warehouse-systems-768.webp"
+      ]
+    },
+    {
+      "name": "manufacturing-systems",
+      "prompt": "Use case: photorealistic-natural. Asset: premium editorial website photograph, landscape 1536x1024. No people, no coffee, no plants, no staged teamwork, no logos, no holograms or glowing sci-fi effects. Believable established small-business infrastructure, authentic wear but clean and maintained. The subject is the WORK and legacy systems, not stock office decor. Screen text minimal and fictional; no personal data. Natural cinematic lighting, warm neutral and steel blue tones, crisp foreground detail. Scene: a working established precision manufacturing workshop, milling machines and steel parts visible in the background. Foreground shop-floor workstation with an older industrial PC displaying black screen with green tabular work-order text, a thick binder of job travelers and dot-matrix printout. Beside it, a modern rugged touch display with a clean work-order queue and a small plain-language assistant panel. Tools and machined components, clearly manufacturing rather than warehouse. Equipment dominates frame. Wide documentary photograph with balanced old and new physical systems; subtle daylight and overhead task lighting. No invented performance graphs or metrics.",
+      "source": "exec-e952421f-6c86-4861-ab27-21dc8f30dd19.png",
+      "files": [
+        "public/images/community/manufacturing-systems.webp",
+        "public/images/community/manufacturing-systems-768.webp"
+      ]
+    },
+    {
+      "name": "medical-office-systems",
+      "prompt": "Use case: photorealistic-natural. Asset: premium editorial website photograph, landscape 1536x1024. No people, no coffee, no plants, no staged teamwork, no logos, no holograms or glowing sci-fi effects. Believable established small-business infrastructure, authentic wear but clean and maintained. The subject is the WORK and legacy systems, not stock office decor. Screen text minimal and fictional; no personal data. Natural cinematic lighting, warm neutral and steel blue tones, crisp foreground detail. Scene: reception work area of a long-established small doctor's practice, no patients or staff. Foreground a beige office phone with coiled cord and line buttons, paper appointment book, older desktop monitor showing a black screen with green tab-based scheduling fields, labeled only APPOINTMENTS. Beside it a current slim monitor displays a clean white appointment queue and a simple conversational administrative assistant panel, no clinical advice or identifiable patient records. Background clearly medical: filing shelves, reception window and discreet exam-room doorway, neutral pale-blue walls. Welcoming natural light, realistic everyday equipment. Both old and new devices fully in frame, no collage seam.",
+      "source": "exec-547a2909-27d5-4d4b-a7db-bb977b29469d.png",
+      "files": [
+        "public/images/community/medical-office-systems.webp",
+        "public/images/community/medical-office-systems-768.webp"
+      ]
+    }
+  ],
+  "encoding": "1536 and 768 px WebP, quality 84; no content edits",
+  "notice": "Fictional AI-generated scenes and interface concepts, not client sites or implemented products."
+}
