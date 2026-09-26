@@ -1,14 +1,15 @@
 ---
-title: Data Migration and Systems Modernization Services
+title: Software, Data and Systems Support Services
 url: /services/
 ---
 
-# Data migration and systems modernization
+# Software, data and systems support
 
-Netherwood Data Partners helps established small and midsize businesses move
-from aging applications, databases, spreadsheets and servers into the modern
-business platforms they choose. Founder Steven Wittek is a senior database
-engineer and DBA and remains directly involved in the work.
+Netherwood Data Partners helps established small and midsize businesses with
+software support, data and database services, integrations, reporting and
+migrations. Founder Steven Wittek is a senior database engineer and DBA and
+remains directly involved in the work. A software replacement is not required
+to get help; a repair, investigation or better workflow may be the useful step.
 
 The business is vendor-neutral: your platform, your data, your choice. Customers
 can select an established SaaS, ERP, CRM, practice-management, accounting,
@@ -18,6 +19,9 @@ it. These categories do not imply partnerships or expertise in every product.
 
 ## Services
 
+- Software and systems support: investigate application and data problems,
+  coordinate with the product vendor, document fixes and agree ongoing support
+  where appropriate. See /services/software-systems-support/.
 - Data migration: legacy extraction, data cleanup, duplicate review, field
   mapping, transformation, ETL, CSV/import preparation, APIs and document
   migration; trial migrations, reconciliation, production cutover and validation.

@@ -1,0 +1,118 @@
+{
+  "cases": [
+    {
+      "name": "readiness straightforward",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "readiness planning",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "readiness complex",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "readiness unknown answers",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "readiness missing answers and stale result",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "intake required fields and invalid email stay local",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "conditional platform and assessment intent",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "readiness handoff explicit review and successful submit",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "readiness attachment can be removed before sending",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "expired handoff is discarded",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "malformed handoff is discarded",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "oversized handoff is discarded",
+      "passed": true,
+      "interceptedPosts": 0
+    },
+    {
+      "name": "storage denied keeps readiness and intake usable",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "campaign first touch follows inquiry without personal query data",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "intake success includes optional fields and resets",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "intake server failure preserves entries and permits retry",
+      "passed": true,
+      "interceptedPosts": 2
+    },
+    {
+      "name": "intake in-flight guard prevents duplicate requests",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "intake 15-second timeout preserves entries",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "existing contact form validation and success regression",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "existing contact form failure and fallback regression",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "native intake POST with fetch unavailable",
+      "passed": true,
+      "interceptedPosts": 1
+    },
+    {
+      "name": "native intake POST with JavaScript disabled",
+      "passed": true,
+      "interceptedPosts": 1
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "interceptedSubmissions": 14,
+  "blockedRequests": []
+}

@@ -36,12 +36,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
         >
           Services
         </a>
-        <a
-          href="/migration-readiness/"
-          aria-current={currentPage === "readiness" ? "page" : undefined}
-        >
-          Readiness check
-        </a>
+        <a href="/#community">Local roots</a>
         <a
           href="/about/"
           aria-current={currentPage === "about" ? "page" : undefined}
@@ -55,11 +50,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
           Articles
         </a>
       </nav>
-      <a
-        className="nav-cta"
-        href="/migration-intake/"
-        aria-current={currentPage === "contact" ? "page" : undefined}
-      >
+      <a className="nav-cta" href="/#contact">
         Let’s talk <span aria-hidden="true">↗</span>
       </a>
       <span id="main-content" tabIndex={-1} />
@@ -72,18 +63,20 @@ export function SiteFooter() {
       <div className="studio-footer-top">
         <div>
           <Brand />
-          <p>Your platform. Your data. Your choice.</p>
+          <p>Good people. Better systems. Rooted in Netherwood.</p>
         </div>
         <div className="studio-footer-links">
-          <a href="/services/data-migration/">Data migration</a>
+          <a href="/services/software-systems-support/">
+            Software & systems support
+          </a>
           <a href="/services/database-engineering/">Database engineering</a>
           <a href="/services/">All services</a>
           <a href="/migration-readiness/">Migration readiness</a>
           <a href="/about/">Meet Steven</a>
           <a href="/articles/">Articles & field notes</a>
         </div>
-        <a className="studio-text-link" href="/migration-intake/">
-          Talk about your migration <span aria-hidden="true">↗</span>
+        <a className="studio-text-link" href="/#contact">
+          Talk about your business <span aria-hidden="true">↗</span>
         </a>
       </div>
       <div className="studio-footer-bottom">

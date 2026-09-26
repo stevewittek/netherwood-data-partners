@@ -1,5 +1,19 @@
 # Netherwood Data Partners brand voice
 
+## Software, data and personal support — September 25, 2026 follow-up
+
+The owner asks for a neighborly specialist software/services/data business,
+with the warmth of a small family-oriented shop. Software and systems support,
+database engineering, connected workflows and migrations are now the primary
+service paths. Migration remains a specialty, not the prerequisite for getting
+help. This instruction supersedes the migration-led hierarchy below.
+
+Keep founder-led transparency: family-oriented tone is not a claim that family
+members work for Netherwood. Use local Plainfield/Netherwood and Raritan Valley
+community identity without inventing regional history or official affiliation.
+Generated people illustrate everyday business situations and do not substantiate
+client work. Real client stories, including Revival, still require approval.
+
 ## Current positioning — owner direction, September 25, 2026
 
 Netherwood helps established small and midsize businesses move from aging
