@@ -1,11 +1,11 @@
-# Community imagery
+# Industry and community imagery
 
-`business-collaboration`, `local-business-handshake` and `software-support`
-are AI-generated illustrative business scenes, created with the built-in
-image-generation tool on September 25, 2026. The people are fictional; they
-are not Steven Wittek, employees or actual clients. No scene documents a
-completed engagement. Both full-size and 768px WebP variants are provided.
-Generation prompts and source provenance: `docs/COMMUNITY-IMAGE-PROMPTS.json`.
+`warehouse-systems`, `manufacturing-systems` and `medical-office-systems` are
+AI-generated equipment and workflow concepts. They show fictional legacy and
+modern interfaces, not client facilities, actual product screenshots, delivered
+projects or endorsed vendors. No people are shown. Prompts and original source
+filenames are in `docs/INDUSTRY-IMAGE-PROMPTS.json`. Each scene has 1536px and
+768px WebP variants. The earlier staged people images have been removed.
 
 `netherwood-station.webp`: photograph by **Jerrye & Roy Klotz MD**, originally
 published as [NETHERWOOD STATION, UNION COUNTY, NJ.jpg](https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg).

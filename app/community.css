@@ -1,4 +1,4 @@
-/* Owner-authorized photography and local-community direction, September 2026. */
+/* Owner-authorized industry systems and local-community direction, September 2026. */
 .community-home {
   background: #faf9f4;
 }
@@ -771,5 +771,86 @@
   }
   .community-signal-strip > div {
     grid-template-columns: 1fr;
+  }
+}
+/* Equipment scenes retain both the legacy and modern devices at every width. */
+.community-home .community-hero-visual {
+  align-self: center;
+  min-height: 0;
+  height: auto;
+  background: #e9eae3;
+}
+.community-home .community-hero-visual > .community-photo {
+  position: static;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+.community-home .community-photo-label {
+  position: static;
+  padding: 18px 22px 38px;
+  box-shadow: none;
+}
+.community-home .community-scene-note {
+  bottom: 8px;
+}
+.systems-transition {
+  border-bottom: 1px solid var(--line);
+}
+.systems-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.systems-comparison > div {
+  padding: clamp(24px, 4vw, 48px);
+  min-width: 0;
+}
+.systems-legacy {
+  background: #162720;
+  color: #d8e6d8;
+}
+.systems-modern {
+  background: #edf0e8;
+  color: #203c32;
+}
+.systems-panel-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.systems-legacy pre {
+  color: #bde49e;
+  font:
+    16px/1.65 Consolas,
+    monospace;
+  white-space: pre-wrap;
+  margin: 26px 0;
+}
+.systems-comparison h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.2;
+  margin: 25px 0;
+}
+.systems-comparison p {
+  line-height: 1.65;
+}
+.systems-prompt {
+  padding: 18px 22px;
+  background: #fff;
+  border-left: 3px solid #466d56;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.systems-answer {
+  padding: 16px 0;
+  border-bottom: 1px solid #bac7b9;
+}
+@media (max-width: 640px) {
+  .systems-comparison {
+    grid-template-columns: 1fr;
+  }
+  .systems-legacy pre {
+    font-size: 14px;
   }
 }

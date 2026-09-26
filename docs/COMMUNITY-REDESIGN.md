@@ -101,3 +101,29 @@ database state, DNS and the production publishing service are outside this chang
 Use the existing static Pages release workflow after reviewing this candidate.
 There is no separate deployment mechanism. Revert the focused redesign commit
 to restore the prior website; no database or environment rollback is needed.
+
+## Industry systems revision
+
+The owner replaced the people-photo direction with equipment and workflows from
+established warehouses, manufacturers and medical practices. Home now shows
+legacy terminals, paper records, printers and phones alongside possible modern
+interfaces. A readable HTML comparison illustrates inventory lookup and an
+AI-assisted question with fictional data and human review. No live assistant,
+client result, vendor partnership or product implementation is implied.
+
+All three staged people assets were removed from public assets. Services uses
+the manufacturing scene. The station photograph, local rail motif, founder
+monogram, support services and contact behavior remain. Current prompts and
+asset paths are in INDUSTRY-IMAGE-PROMPTS.json; earlier community prompts and
+screenshots are historical evidence only.
+
+Rollback: revert this follow-up commit to return to the preceding imagery.
+
+Final industry revision checks passed: pinned pnpm lint, strict frontend
+TypeScript, both production builds, the 24-route static audit and diff check.
+Responsive review captured 18 before and 21 after pages at 1440/768/390,
+including About, Articles, Services and intake. No overflow, broken images or
+browser errors; 320px, keyboard, reduced-motion and no-JavaScript contact checks
+passed. Four automated accessibility scans of the affected Home/Services pages
+at desktop and phone widths reported zero violations. This is not a complete
+accessibility certification. Evidence: `evidence/2026-09-25/industry/`.

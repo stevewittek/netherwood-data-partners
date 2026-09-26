@@ -1,3 +1,12 @@
+## Latest owner direction: industry systems
+
+Use equipment and recognizable work in established manufacturing, distribution
+and medical offices, with legacy-to-modern examples and practical AI assistance.
+The owner explicitly replaced the staged-people direction. Generated scenes
+are illustrative concepts, not actual clients or delivered product screenshots.
+Local station imagery and broader software/data/support offerings remain.
+See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+
 # Netherwood Data Partners brand voice
 
 ## Software, data and personal support — September 25, 2026 follow-up

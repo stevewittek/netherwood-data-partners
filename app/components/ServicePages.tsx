@@ -95,12 +95,13 @@ export function ServicesIndex() {
         </p>
         <figure className="community-service-photo">
           <CommunityPhoto
-            name="software-support"
-            alt="Illustrative scene of a business manager and consultant investigating an application together"
+            name="manufacturing-systems"
+            alt="Illustrative manufacturing workstation with legacy work-order software and a modern shop-floor display"
             priority
           />
           <figcaption>
-            AI-generated illustrative scene; not actual clients or staff.
+            AI-generated industry concept; not a client site or product
+            screenshot.
           </figcaption>
         </figure>
       </section>

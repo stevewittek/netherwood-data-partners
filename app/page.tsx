@@ -66,18 +66,17 @@ export default function Home() {
             Rooted in Netherwood. Here for your business.
           </p>
           <h1>
-            Good people.
+            Established business.
             <br />
             <span>Better systems.</span>
           </h1>
           <p className="community-lede">
-            Personal help with the software, data and systems your business runs
-            on.
+            Your business has moved forward. Has your software?
           </p>
           <p className="community-hero-body">
-            From a stubborn application to a bigger change, get practical
-            technical help from someone who takes the time to understand your
-            work.
+            Green-screen terminals. Paper work orders. The same information
+            entered twice. Get hands-on help supporting older systems, moving
+            your data and connecting the next generation of software.
           </p>
           <div className="studio-actions">
             <a className="button button-primary" href="#contact">
@@ -100,20 +99,20 @@ export default function Home() {
         </div>
         <div className="community-hero-visual">
           <CommunityPhoto
-            name="business-collaboration"
-            alt="Illustrative scene of business owners and a software specialist reviewing a laptop together"
+            name="warehouse-systems"
+            alt="Illustrative warehouse dispatch desk with a green-screen inventory terminal, dot-matrix printer and modern inventory tablet"
             priority
           />
           <div className="community-photo-label">
             <span aria-hidden="true">↗</span>
             <p>
-              Technology is personal.
+              Warehouses & distribution
               <br />
-              <strong>So is the way we work.</strong>
+              <strong>From pick lists to connected inventory.</strong>
             </p>
           </div>
           <span className="community-scene-note">
-            AI-generated illustrative business scene
+            AI-generated systems concept
           </span>
         </div>
       </section>
@@ -127,6 +126,62 @@ export default function Home() {
           </a>
         </div>
       </div>
+      <section
+        className="community-section studio-wrap systems-transition"
+        aria-labelledby="systems-transition-heading"
+      >
+        <div className="community-section-heading">
+          <div>
+            <p className="eyebrow">Recognize the old routine?</p>
+            <h2 id="systems-transition-heading">
+              Tab. Tab. Enter.
+              <br />
+              There’s a better next step.
+            </h2>
+          </div>
+          <p>
+            Start with the records and processes your business depends on. Clean
+            up the data, connect the systems and introduce automation or AI
+            assistance where it helps the work.
+          </p>
+        </div>
+        <div className="systems-comparison">
+          <div className="systems-legacy">
+            <p className="systems-panel-label">01 / The familiar workaround</p>
+            <pre aria-label="Illustrative legacy inventory screen">
+              {
+                "INVENTORY CONTROL\n\nPART NO:  1042\nBIN:      A-07\nON HAND:  0028\n\nF1 HELP   F3 SEARCH\nTAB NEXT  ENTER SAVE\n\n> PRINT PICK LIST_"
+              }
+            </pre>
+            <p>Look up a code. Print a list. Re-enter it in another system.</p>
+          </div>
+          <div className="systems-modern">
+            <p className="systems-panel-label">02 / A possible next workflow</p>
+            <h3>
+              Ask a question.
+              <br />
+              Work from connected records.
+            </h3>
+            <div className="systems-prompt">
+              “Where is part 1042, and is there enough for this order?”
+            </div>
+            <p className="systems-answer">
+              <strong>Illustrative assistant response</strong>
+              <br />
+              “Bin A-07 shows 28 on hand. Which order should I check?”
+            </p>
+            <p>
+              Find the source record, check the answer and let a person approve
+              the next action.
+            </p>
+          </div>
+        </div>
+        <p className="community-image-note">
+          Example workflow with fictional data, not a live product or a
+          completed client project. The right solution depends on your software,
+          access controls and business process.
+        </p>
+      </section>
       <section className="community-section studio-wrap" id="services">
         <div className="community-section-heading">
           <div>
@@ -162,37 +217,34 @@ export default function Home() {
         <div className="studio-wrap community-section">
           <div className="community-section-heading">
             <div>
-              <p className="eyebrow">
-                For the businesses that make a neighborhood
-              </p>
+              <p className="eyebrow">Built around the work you do</p>
               <h2>
-                Your people.
+                The shop floor.
                 <br />
-                Your day-to-day.
+                The front office.
                 <br />
-                <span>That’s the starting point.</span>
+                <span>The systems behind them.</span>
               </h2>
             </div>
             <p>
-              The front office, the shop floor, the practice down the street.
-              Different businesses, with software and information that need to
-              work together.
+              Established manufacturers, distributors and medical practices
+              carry years of records and routines. Modernization starts by
+              understanding what must keep working.
             </p>
           </div>
           <div className="community-stories">
             <article>
               <CommunityPhoto
-                name="local-business-handshake"
-                alt="Illustrative scene of two business people smiling and shaking hands in a neighborhood workshop office"
+                name="manufacturing-systems"
+                alt="Illustrative machine shop with an older work-order terminal and paper job travelers beside a modern shop-floor display"
               />
               <div>
-                <p className="eyebrow">
-                  Manufacturers, trades & family businesses
-                </p>
-                <h3>Less time fighting the system.</h3>
+                <p className="eyebrow">Manufacturing & production</p>
+                <h3>From paper travelers to connected work orders.</h3>
                 <p>
-                  Customer records, job history, inventory and invoices. Help
-                  the office and the operation stay connected.
+                  Job history in one system. Parts in another. Printed
+                  instructions on the floor. Bring the records together, plan
+                  the move and help staff use the new workflow.
                 </p>
                 <a
                   className="studio-text-link"
@@ -204,16 +256,17 @@ export default function Home() {
             </article>
             <article>
               <CommunityPhoto
-                name="software-support"
-                alt="Illustrative scene of a practice manager and technology consultant working through an application together"
+                name="medical-office-systems"
+                alt="Illustrative medical reception with an older scheduling terminal, corded phone and paper appointment book beside modern administrative software"
               />
               <div>
-                <p className="eyebrow">Professional firms & practices</p>
-                <h3>Someone to work through it with you.</h3>
+                <p className="eyebrow">Medical offices & practices</p>
+                <h3>From phone tag to an organized front office.</h3>
                 <p>
-                  Application questions, reporting problems and information
-                  scattered across systems. Start with the work your people need
-                  to do.
+                  Aging scheduling software, paper reminders and repeated entry.
+                  Assess the administrative workflow, prepare records for your
+                  chosen platform and explore reminders or assisted call routing
+                  with your vendors.
                 </p>
                 <a
                   className="studio-text-link"
@@ -225,8 +278,8 @@ export default function Home() {
             </article>
           </div>
           <p className="community-image-note">
-            AI-generated scenes illustrate the kinds of businesses we support;
-            the people shown are not actual clients or Netherwood staff.
+            AI-generated industry concepts show possible old and new workflows,
+            not actual client sites, product screenshots or guaranteed results.
           </p>
         </div>
       </section>
