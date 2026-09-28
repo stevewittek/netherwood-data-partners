@@ -143,6 +143,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+      <section className="about-section studio-wrap"><div><p className="eyebrow">Software by Netherwood</p><h2>From practical problems<br />to practical tools.</h2></div><div className="long-form"><p>Alongside professional services, Netherwood Data Partners develops software and data tools grounded in database, integration and automation work. QueryVault, PageMover and an activity data connector represent that engineering side of the business.</p><p>These projects have different development stages. Their product pages explain what exists today, with public source links where available.</p><a className="studio-text-link" href="/products/">Explore Netherwood products <span aria-hidden="true">↗</span></a></div></section>
       <section className="founder-experience" id="professional-experience">
         <div className="studio-wrap">
           <div className="founder-experience-heading">

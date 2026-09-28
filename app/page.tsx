@@ -1,4 +1,5 @@
 import ChatWidget from "./ChatWidget";
+import { FeaturedProducts } from "./components/ProductPages";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { CommunityPhoto, CommunityRoots } from "./components/Community";
@@ -76,7 +77,7 @@ export default function Home() {
           <p className="community-hero-body">
             Green-screen terminals. Paper work orders. The same information
             entered twice. Get hands-on help supporting older systems, moving
-            your data and connecting the next generation of software.
+            your data and connecting the next generation of software. Netherwood also builds practical database tools and data connectors.
           </p>
           <div className="studio-actions">
             <a className="button button-primary" href="#contact">
@@ -335,6 +336,7 @@ export default function Home() {
           </li>
         </ol>
       </section>
+      <FeaturedProducts />
       <CommunityRoots />
       <section
         className="community-section studio-wrap community-founder"

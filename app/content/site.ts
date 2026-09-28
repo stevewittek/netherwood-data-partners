@@ -1,13 +1,13 @@
 export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
-  title: "Software, Data & Systems Support in New Jersey | Netherwood",
+  title: "Database Services & Software Products | Netherwood Data Partners",
   description:
-    "Personal software support, database engineering, integrations and migrations for New Jersey businesses. Local roots. Work directly with Steven Wittek.",
+    "Database engineering, software support, integrations and migrations for New Jersey businesses, alongside practical database tools and data connectors by Netherwood.",
 };
 export const aboutMetadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
   description:
-    "Meet Steven Wittek, the New Jersey database engineer behind Netherwood. Personal help with business software, data, systems and migrations.",
+    "Meet Steven Wittek, the New Jersey database engineer behind Netherwood. Professional services and practical software grounded in database engineering, integrations and automation.",
 };
 export const intakeMetadata = {
   title: "Talk About Your Data Migration | Netherwood Data Partners",
