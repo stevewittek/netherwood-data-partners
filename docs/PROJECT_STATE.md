@@ -1,3 +1,57 @@
+## Consulting + software products integration — September 28, 2026
+
+The site now presents Netherwood Data Partners as one company with two connected
+areas: professional software/data/database services and practical software
+products. This work started only after a complete local/remote audit. Voyager 2's
+pre-existing `PROJECT_STATE.md` edit and untracked
+`VOYAGER2_LAUNCH_STATUS.md` were preserved in commit `7f69a27`. The checkout was
+fast-forwarded from `417f2e8` to released `origin/main` at `840cf9a`, and the
+newest appropriate unfinished branch, `feat/community-technology-website` at
+`b9b5734`, was merged without rewriting its history.
+
+- `/products/` is a first-class landing page backed by
+  `app/content/products.ts`. Reusable cards and detail pages conditionally show
+  source, documentation and download destinations only when configured.
+- Product routes are `/products/queryvault/`,
+  `/products/sql-server-index-maintenance-visualizer/` and
+  `/products/garmin-ai-connector/`. The neutral Garmin connector slug keeps the
+  working RunBridge AI name easy to replace.
+- QueryVault is an active public-source project linked to the real
+  `stevewittek/Databases` repository and its detailed README. The repository has
+  no selected open-source license, so the website does not label it open source
+  or advertise a packaged release. The visualizer and RunBridge expose no
+  repository, store or download links.
+- RunBridge is explicitly in development. Its page contains only a high-level
+  development direction, working-name note, general business support route and
+  preliminary privacy direction. `/privacy/` explains that a detailed,
+  implementation-accurate product disclosure is required before release.
+- Home retains consulting first while adding a three-product section. Shared
+  desktop/mobile navigation and the footer expose Products; About now explains
+  that real-world engineering work informs Netherwood's tools.
+- The recent industry/community work is fully integrated. The warehouse hero,
+  manufacturing and medical-office generated scenes are served from
+  `public/images/community/`; the credited Netherwood station photograph remains
+  the community/About anchor. They are illustrative concepts, not product
+  screenshots or client work.
+- Static generation now emits 29 canonical public routes with unique metadata,
+  Open Graph/Twitter tags, product/collection schema, breadcrumbs, sitemap
+  entries, robots, 404 behavior and unchanged full bodies for all ten articles.
+
+Verified in the pinned Node 22.13.1 workflow: ESLint, strict frontend,
+marketing and backend typechecks; 40 marketing, 23 publication/admin, 3
+publication-pipeline, 11 migration/attribution and 70 backend tests; the
+business-operations check; the static Pages and Vinext production builds; and
+the 29-route metadata/link/schema/sitemap/article-parity audit. Browser
+regression rendered all 29 routes at 1440/768/390 with no browser errors,
+overflow or broken assets. The final 45-scan automated axe matrix reported zero
+violations; this is not a complete assistive-technology certification.
+
+Remaining product work is intentionally honest: choose any public repository or
+release path for the visualizer, finalize RunBridge's product name, implementation,
+supported-device scope and product-specific privacy notice, then add real
+store/download/documentation links. No fake availability, release date, customer,
+download, testimonial or pricing claim was added.
+
 ## Latest owner direction: industry systems
 
 Use equipment and recognizable work in established manufacturing, distribution

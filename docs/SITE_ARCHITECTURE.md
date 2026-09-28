@@ -1,5 +1,44 @@
 # Netherwood Data Partners site architecture
 
+## Consulting + products revision — September 28, 2026
+
+The current public architecture supports consulting and software under the
+single Netherwood Data Partners brand. This section supersedes older dated
+navigation notes below; those remain for provenance.
+
+`app/content/products.ts` is the centralized product catalog. It owns stable
+IDs/slugs, working display names, status, category, summaries, longer
+descriptions, optional images and destinations, platforms, source/license flags,
+featured state, features, privacy direction and support copy. Empty optional
+sections and links do not render. Adding a future product should require one
+catalog entry, not duplicated card markup.
+
+| Route | Current job | Primary implementation |
+| --- | --- | --- |
+| `/products/` | Introduce the product portfolio without overstating availability | `app/components/ProductPages.tsx`, `app/content/products.ts`, `app/products.css` |
+| `/products/{slug}/` | Render a reusable status-aware product detail page | `app/components/ProductPages.tsx`, `app/products/[slug]/page.tsx` |
+| `/privacy/` | Explain website inquiry handling and the pre-release product privacy boundary | `app/components/PrivacyPage.tsx`, `app/privacy/page.tsx` |
+
+The product slugs are `queryvault`,
+`sql-server-index-maintenance-visualizer` and the name-neutral
+`garmin-ai-connector`. RunBridge AI is display configuration, not routing
+architecture. Product pages support screenshots, documentation, platforms,
+privacy, support, GitHub/download destinations, release notes and related
+articles, but render only populated sections. Today only QueryVault has a
+verified public repository/documentation destination.
+
+The shared primary navigation is Services, Products, Articles and About; the
+brand returns Home and the CTA returns to the existing home contact form. The
+footer adds Contact and Privacy without inventing Terms or social destinations.
+Home keeps services prominent and includes reusable featured-product cards.
+
+The static Pages generator and Vinext routes both consume the same product
+records. Pages emits canonical HTML, collection/software schema and sitemap
+entries. `check-pages.mjs` verifies every route/link/schema, the real QueryVault
+source destination, absence of unverified repository/download links, and all
+existing article content. Products add no runtime, database, Voyager or CMS
+dependency.
+
 ## Community and support revision — September 25, 2026 follow-up
 
 Home/About/Services now introduce software support, data services, integrations
