@@ -90,7 +90,7 @@ jobs:
           npm run typecheck --prefix backend
           pnpm test
           pnpm build:pages
-          node scripts/check-pages.mjs
+          node --experimental-strip-types scripts/check-pages.mjs
           git diff --check
       - name: Preserve exact release for rollback
         if: steps.change.outputs.needed == 'true'

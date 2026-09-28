@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import Home from "./page";
+import { ProductsIndex, ProductDetailPage } from "./components/ProductPages";
+import PrivacyPage from "./privacy/page";
 import { ArticlePage, ArticlesIndex } from "./articles/Articles";
 import ArticlesAdmin from "./admin/ArticlesAdmin";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
@@ -25,6 +27,10 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   const pathname =
     requestedPath.replace(/\/index\.html$/, "/").replace(/\/+$/, "") || "/";
   if (pathname === "/") return <Home />;
+  if (pathname === "/products") return <ProductsIndex />;
+  if (pathname === "/privacy") return <PrivacyPage />;
+  const productMatch = pathname.match(/^\/products\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
+  if (productMatch) return <ProductDetailPage slug={productMatch[1]} />;
   if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/migration-intake") return <MigrationIntakePage />;
   if (pathname === "/migration-readiness") return <MigrationReadinessPage />;

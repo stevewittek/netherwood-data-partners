@@ -6,6 +6,7 @@ type SiteHeaderProps = {
     | "about"
     | "articles"
     | "services"
+    | "products"
     | "readiness"
     | "contact";
 };
@@ -36,7 +37,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
         >
           Services
         </a>
-        <a href="/#community">Local roots</a>
+        <a href="/products/" aria-current={currentPage === "products" ? "page" : undefined}>Products</a>
         <a
           href="/about/"
           aria-current={currentPage === "about" ? "page" : undefined}
@@ -63,7 +64,7 @@ export function SiteFooter() {
       <div className="studio-footer-top">
         <div>
           <Brand />
-          <p>Good people. Better systems. Rooted in Netherwood.</p>
+          <p>Professional services. Practical software. Rooted in Netherwood.</p>
         </div>
         <div className="studio-footer-links">
           <a href="/services/software-systems-support/">
@@ -71,9 +72,11 @@ export function SiteFooter() {
           </a>
           <a href="/services/database-engineering/">Database engineering</a>
           <a href="/services/">All services</a>
+          <a href="/products/">Products & data tools</a>
           <a href="/migration-readiness/">Migration readiness</a>
           <a href="/about/">Meet Steven</a>
           <a href="/articles/">Articles & field notes</a>
+          <a href="/privacy/">Privacy</a>
         </div>
         <a className="studio-text-link" href="/#contact">
           Talk about your business <span aria-hidden="true">↗</span>

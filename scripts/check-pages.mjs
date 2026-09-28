@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { products, productPath } from "../app/content/products.ts";
 import { readFile, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
@@ -28,6 +29,9 @@ const expected = [
   "/about/",
   "/articles/",
   "/services/",
+  "/products/",
+  ...products.map(productPath),
+  "/privacy/",
   "/migration-intake/",
   "/migration-readiness/",
   ...serviceSlugs.map((slug) => `/services/${slug}/`),
@@ -131,6 +135,18 @@ for (const route of expected) {
   }
   for (const [, value] of html.matchAll(/(?:src|href)="([^"]+)"/g))
     await checkUrl(value, route);
+  const product = products.find(p => route === productPath(p));
+  if (product) {
+    assert.ok(html.includes('<h1>' + escape(product.name) + '</h1>'), 'Correct product body ' + route);
+    assert.ok(html.includes(escape(product.status)), 'Current product status ' + route);
+    assert.ok(html.includes('Developed by Netherwood Data Partners'), 'Company publisher ' + route);
+    assert.ok(html.includes('creativeWorkStatus'), 'Product development schema ' + route);
+    for (const url of [product.githubUrl, product.docsUrl, product.downloadUrl, product.productUrl].filter(Boolean)) {
+      assert.ok(url.startsWith('https://'), 'Verified links require HTTPS');
+      assert.ok(html.includes(escape(url)), 'Configured external destination ' + route);
+    }
+    if (!product.downloadUrl) assert.ok(!/>Download(?:<| )/.test(html), 'No invented download ' + route);
+  }
   const article = snapshot.articles.find(
     (a) => route === `/articles/${a.slug}/`,
   );

@@ -9,6 +9,7 @@ import {
   readinessMetadata,
   organizationSchema,
 } from "../app/content/site.ts";
+import { products, productsMetadata, productMetadata } from "../app/content/products.ts";
 import { renderContentDigest, renderPage } from "../.static-render/render.mjs";
 
 const root = resolve(import.meta.dirname, "..");
@@ -163,6 +164,9 @@ await page(
   }),
 );
 const marketingPages = [
+  { path: "products", ...productsMetadata },
+  { path: "privacy", title: "Website Privacy | Netherwood Data Partners", description: "How the Netherwood website handles inquiries and limited campaign information, and where future product privacy disclosures will appear." },
+  ...products.map(product => ({path: `products/${product.slug}`, ...productMetadata(product), product})),
   { path: "services", ...servicesMetadata },
   { path: "migration-intake", ...intakeMetadata },
   { path: "migration-readiness", ...readinessMetadata },
@@ -222,11 +226,11 @@ for (const entry of marketingPages) {
                       item: `${siteUrl}/services/`,
                     },
                   ]
-                : []),
+                : entry.product ? [{"@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/`}] : []),
               {
                 "@type": "ListItem",
-                position: entry.service ? 3 : 2,
-                name: entry.service?.title || entry.title.split(" | ")[0],
+                position: entry.service || entry.product ? 3 : 2,
+                name: entry.service?.title || entry.product?.name || entry.title.split(" | ")[0],
                 item: canonical,
               },
             ],

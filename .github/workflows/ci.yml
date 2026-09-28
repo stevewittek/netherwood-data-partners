@@ -47,7 +47,7 @@ jobs:
       - name: Build static site
         run: |
           pnpm run build:pages
-          node scripts/check-pages.mjs
+          node --experimental-strip-types scripts/check-pages.mjs
 
   backend:
     name: Backend

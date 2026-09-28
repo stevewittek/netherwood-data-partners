@@ -1,0 +1,44 @@
+/* Product layouts reuse the established forest/paper typography and buttons. */
+.product-hero { padding-block: 64px 48px; }
+.product-hero h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); font-weight: 580; max-width: 900px; }
+.product-hero > p { max-width: 720px; }
+.product-hero > .eyebrow { margin-top: 28px; }
+.product-lede { font-size: 1.35rem; line-height: 1.55; }
+.product-publisher { font-weight: 700; }
+.product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.product-card { border-top: 2px solid var(--moss); padding: 24px 0; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.product-card-top { width: 100%; display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.product-initials { border: 1px solid var(--line); padding: 12px; font-family: var(--font-display); font-size: 1.25rem; font-weight: 650; }
+.product-status { font-size: .875rem; font-weight: 700; color: var(--ink); }
+.product-category, .product-name-note { font-size: .875rem; color: var(--ink-soft); }
+.product-category { margin-bottom: 8px; }
+.product-card h3 { font-size: 1.65rem; margin: 0; }
+.product-card h3 a { color: var(--ink); }
+.product-card > p:not(.product-category):not(.product-name-note) { flex: 1; }
+.product-name-note { margin-top: 6px; }
+.product-card img, .product-detail-body img { max-width: 100%; height: auto; }
+.product-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px; font-size: .875rem; }
+.product-all-link { margin-top: 24px; }
+.product-catalog { padding-bottom: 56px; }
+.product-catalog > h2 { font-size: 1.75rem; margin-bottom: 28px; }
+.product-consulting { border-top: 1px solid var(--line); padding-block: 40px 64px; }
+.product-detail-body { max-width: 900px; padding-block: 8px 64px; }
+.product-detail-body section { border-top: 1px solid var(--line); padding-block: 30px 20px; }
+.product-detail-body h2 { font-size: 1.75rem; }
+.product-detail-body p, .product-detail-body li { font-size: 1rem; line-height: 1.75; }
+.product-detail-body ul { padding-left: 24px; list-style: disc; }
+.product-detail-body li { margin-bottom: 8px; }
+.product-boundaries { background: var(--cream); padding: 24px !important; }
+.product-detail-body a { overflow-wrap: anywhere; }
+@media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; gap: 12px; } .product-hero { padding-block: 40px 32px; } }
+
+/* Keep long product names readable when browser text size is increased. */
+.product-hero h1 { margin-block: 24px; overflow-wrap: anywhere; }
+.product-hero > p { margin-block: 16px; }
+.product-card-top { flex-wrap: wrap; }
+.product-card h3 { overflow-wrap: anywhere; }
+.product-card > p { margin-block: 12px 20px; }
+.product-card > .product-category { margin-bottom: 8px; }
+.product-consulting h2 { font-size: 1.75rem; margin-bottom: 16px; }
+.product-consulting p { margin-bottom: 16px; }
+.product-detail-body p { margin-block: 16px; }
