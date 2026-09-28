@@ -19,6 +19,11 @@ const extra = baseline
       "/services/",
       "/migration-intake/",
       "/migration-readiness/",
+      "/products/",
+      "/products/queryvault/",
+      "/products/sql-server-index-maintenance-visualizer/",
+      "/products/garmin-ai-connector/",
+      "/privacy/",
       ...[
         "software-systems-support",
         "data-migration",

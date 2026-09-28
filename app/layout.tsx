@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1734,
         height: 907,
-        alt: "Netherwood Data Partners — Dependable data systems. Clearer decisions.",
+        alt: "Netherwood Data Partners — consulting, software and practical data tools.",
       },
     ],
   },

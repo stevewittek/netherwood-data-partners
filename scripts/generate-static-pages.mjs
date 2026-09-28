@@ -2,14 +2,15 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { readArticleSnapshot } from "../backend/src/article-snapshot.ts";
 import { services, servicesMetadata } from "../app/content/services.ts";
+import { products, productsMetadata } from "../app/content/products.ts";
 import {
   homeMetadata,
   aboutMetadata,
   intakeMetadata,
   readinessMetadata,
+  privacyMetadata,
   organizationSchema,
 } from "../app/content/site.ts";
-import { products, productsMetadata, productMetadata } from "../app/content/products.ts";
 import { renderContentDigest, renderPage } from "../.static-render/render.mjs";
 
 const root = resolve(import.meta.dirname, "..");
@@ -164,12 +165,10 @@ await page(
   }),
 );
 const marketingPages = [
-  { path: "products", ...productsMetadata },
-  { path: "privacy", title: "Website Privacy | Netherwood Data Partners", description: "How the Netherwood website handles inquiries and limited campaign information, and where future product privacy disclosures will appear." },
-  ...products.map(product => ({path: `products/${product.slug}`, ...productMetadata(product), product})),
   { path: "services", ...servicesMetadata },
   { path: "migration-intake", ...intakeMetadata },
   { path: "migration-readiness", ...readinessMetadata },
+  { path: "privacy", ...privacyMetadata },
   ...services.map((service) => ({
     path: `services/${service.slug}`,
     title: `${service.title} | Netherwood Data Partners`,
@@ -226,11 +225,90 @@ for (const entry of marketingPages) {
                       item: `${siteUrl}/services/`,
                     },
                   ]
-                : entry.product ? [{"@type": "ListItem", position: 2, name: "Products", item: `${siteUrl}/products/`}] : []),
+                : []),
               {
                 "@type": "ListItem",
-                position: entry.service || entry.product ? 3 : 2,
-                name: entry.service?.title || entry.product?.name || entry.title.split(" | ")[0],
+                position: entry.service ? 3 : 2,
+                name: entry.service?.title || entry.title.split(" | ")[0],
+                item: canonical,
+              },
+            ],
+          },
+        ],
+      },
+    }),
+  );
+}
+
+await page(
+  "products",
+  metaPage({
+    ...productsMetadata,
+    canonical: siteUrl + "/products/",
+    schemaId: "products-structured-data",
+    structured: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: productsMetadata.title,
+      description: productsMetadata.description,
+      url: siteUrl + "/products/",
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: products.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: product.name,
+          url: siteUrl + product.productUrl,
+        })),
+      },
+    },
+  }),
+);
+
+for (const product of products) {
+  const canonical = siteUrl + product.productUrl;
+  await page(
+    "products/" + product.slug,
+    metaPage({
+      title: product.name + " | Netherwood Data Partners",
+      description: product.summary,
+      canonical,
+      schemaId: "product-structured-data",
+      structured: {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            name: product.name,
+            description: product.summary,
+            url: canonical,
+            applicationCategory: product.category,
+            operatingSystem: product.platforms.join(", "),
+            creator: {
+              "@id": siteUrl + "/#organization",
+              "@type": "Organization",
+              name: "Netherwood Data Partners",
+            },
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: siteUrl + "/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Products",
+                item: siteUrl + "/products/",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: product.name,
                 item: canonical,
               },
             ],
@@ -313,11 +391,22 @@ ${articleUrls.join("\n")}
 `;
 await writeFile(resolve(output, "articles-sitemap.xml"), articleSitemap);
 
+const productSitemapUrls = [
+  "  <url><loc>" + siteUrl + "/products/</loc></url>",
+  ...products.map(
+    (product) =>
+      "  <url><loc>" +
+      siteUrl +
+      escapeHtml(product.productUrl) +
+      "</loc></url>",
+  ),
+].join("\n");
 const rootSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${siteUrl}/</loc></url>
   <url><loc>${siteUrl}/about/</loc></url>
 ${marketingPages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
+${productSitemapUrls}
 ${articleUrls.join("\n")}
 </urlset>
 `;

@@ -1,105 +1,194 @@
-import { siteUrl } from './site.ts';
+export type ProductStatus =
+  | "Active development"
+  | "Development preview"
+  | "In development";
+
+export type ProductFeature = {
+  title: string;
+  detail: string;
+};
 
 export type Product = {
   id: string;
   slug: string;
   name: string;
-  shortName?: string;
-  status: string;
+  shortName: string;
+  status: ProductStatus;
   category: string;
   summary: string;
   description: string[];
-  platforms?: string[];
-  features?: string[];
-  limitations?: string[];
   image?: { src: string; alt: string; width: number; height: number };
-  screenshots?: { src: string; alt: string; caption?: string; width: number; height: number }[];
+  platforms: string[];
   githubUrl?: string;
   docsUrl?: string;
   downloadUrl?: string;
-  productUrl?: string;
-  openSource?: boolean;
-  featured?: boolean;
-  workingName?: boolean;
+  productUrl: string;
+  openSource: boolean;
+  sourceAvailable?: boolean;
+  featured: boolean;
+  featureHeading: string;
+  features: ProductFeature[];
+  availabilityNote?: string;
+  namingNote?: string;
   privacy?: string[];
   support?: string;
-  releaseNotes?: { version: string; text: string }[];
+  screenshots?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption?: string;
+  }[];
+  releaseNotes?: { title: string; url: string }[];
   relatedArticles?: { title: string; url: string }[];
 };
 
-// Stable IDs are independent of names. Edit a slug here to change generated routes.
-// Add external links only after checking their destination and public visibility.
+export const productsMetadata = {
+  title: "Data Products, Apps & Developer Tools | Netherwood",
+  description:
+    "Database tools, SQL Server utilities and data connectors developed by Netherwood Data Partners alongside its consulting work.",
+};
+
 export const products: Product[] = [
   {
-    id: 'query-history', slug: 'queryvault', name: 'QueryVault', shortName: 'QV',
-    status: 'Active development', category: 'Database & developer tools', featured: true,
-    summary: 'Keep SQL Server Query Store history available for longer-term performance investigations.',
+    id: "queryvault",
+    slug: "queryvault",
+    name: "QueryVault",
+    shortName: "QueryVault",
+    status: "Active development",
+    category: "Database engineering tool",
+    summary:
+      "A SQL Server database project for preserving, organizing and analyzing historical Query Store data.",
     description: [
-      'QueryVault is a SQL Server database project that copies selected Query Store periods into a centralized archive. Query text, plans, runtime statistics and wait statistics can be retained beyond the source database’s retention window.',
-      'The archive supports performance investigations and reporting through a stable reporting interface. It is a database engineering tool, with deployment and operating documentation available in the public source repository.'
+      "SQL Server Query Store is valuable for investigating regressions and understanding workload behavior, but its history can age out as retention and storage limits are reached. QueryVault explores a practical way to archive that history in a purpose-built database.",
+      "The project combines T-SQL, a SQL Server database-project structure, partitioned storage, columnstore compression, retention controls, SQL Server Agent automation and PowerShell deployment helpers. It is an active engineering project and should be reviewed and tested outside business-critical environments before use.",
     ],
-    platforms: ['SQL Server'],
-    features: ['Historical Query Store archiving', 'Configurable retention and protected investigation periods', 'Reporting views and operational queries'],
-    limitations: ['QueryVault supplements Query Store; it is not a replacement for it or a live monitoring application.', 'Deployment requires appropriate database permissions and a review of storage, retention and source configuration.'],
-    githubUrl: 'https://github.com/stevewittek/Databases',
-    docsUrl: 'https://github.com/stevewittek/Databases/blob/master/README.md',
-    // Public source is verified. No open-source badge until a license is confirmed.
+    platforms: ["SQL Server 2016+", "SQL Server Agent (optional)", "PowerShell"],
+    githubUrl: "https://github.com/stevewittek/Databases",
+    docsUrl:
+      "https://github.com/stevewittek/Databases/blob/master/QueryVault/README.md",
+    productUrl: "/products/queryvault/",
     openSource: false,
-    support: 'For questions about the project or help evaluating it for your environment, contact Netherwood Data Partners.'
+    sourceAvailable: true,
+    featured: true,
+    featureHeading: "What the project covers",
+    features: [
+      {
+        title: "Historical Query Store archive",
+        detail:
+          "Copies Query Store entities into a centralized archive for longer-term performance analysis.",
+      },
+      {
+        title: "Purpose-built storage",
+        detail:
+          "Uses partitioned tables and clustered columnstore storage for retained performance history.",
+      },
+      {
+        title: "Retention controls",
+        detail:
+          "Tracks archive runs, retention dates and protected runs that should not be removed automatically.",
+      },
+      {
+        title: "Operational paths",
+        detail:
+          "Includes SQL Server Agent templates, reporting procedures and assisted deployment options.",
+      },
+    ],
+    availabilityNote:
+      "The source repository is public for review. No packaged download or supported production release is advertised, and no open-source license has been selected.",
+    support:
+      "Questions about the project or a database engineering engagement can be sent to Netherwood Data Partners.",
   },
   {
-    id: 'index-maintenance', slug: 'sql-server-index-visualizer', name: 'PageMover', shortName: 'PM',
-    status: 'Development preview', category: 'SQL Server index maintenance', featured: true,
-    summary: 'Explore SQL Server index fragmentation and maintenance through a classic Windows defragmenter-inspired interface.',
+    id: "index-maintenance-visualizer",
+    slug: "sql-server-index-maintenance-visualizer",
+    name: "SQL Server Index Maintenance Visualizer",
+    shortName: "Index Maintenance Visualizer",
+    status: "Development preview",
+    category: "SQL Server utility",
+    summary:
+      "A visual interface for exploring SQL Server index fragmentation and maintenance concepts, inspired by the classic disk defragmenter display.",
     description: [
-      'PageMover is the current application name for the SQL Server Index Defragmenter 95 project. It brings a familiar visual approach to investigating indexes, heaps and physical database pages.',
-      'The local utility includes analysis, a synthetic demonstration mode and review of proposed maintenance SQL. Maintenance is a deliberate action that needs the right permissions and an understanding of the database workload.'
+      "This work in progress explores a more visual way to understand SQL Server index fragmentation and index-maintenance activity. Its interface takes inspiration from the familiar block display of the classic Windows disk defragmenter.",
+      "The project is currently a development preview. Public source, documentation and downloads will only be linked here when they are ready and genuinely available.",
     ],
-    platforms: ['Windows', 'SQL Server'],
-    features: ['Visual index and heap analysis', 'Offline demonstration with synthetic data', 'Maintenance SQL review and before/after results'],
-    limitations: ['This is an unsigned developer preview, not a production-certified maintenance release.', 'Analysis and maintenance can consume resources or acquire locks. Evaluate the preview in a suitable development environment.'],
-    support: 'Public distribution details will be added when ready. Ask Netherwood about the development preview.'
+    platforms: ["SQL Server"],
+    productUrl: "/products/sql-server-index-maintenance-visualizer/",
+    openSource: false,
+    featured: true,
+    featureHeading: "Development direction",
+    features: [
+      {
+        title: "Visual fragmentation overview",
+        detail:
+          "Represent index fragmentation concepts in a format that is easier to scan and discuss.",
+      },
+      {
+        title: "Maintenance context",
+        detail:
+          "Connect visual states with the inspection and maintenance decisions a database professional makes.",
+      },
+      {
+        title: "SQL Server focus",
+        detail:
+          "Keep the experience grounded in SQL Server terminology rather than borrowing disk-maintenance rules literally.",
+      },
+    ],
+    availabilityNote:
+      "Development preview. There is no public repository, release date or download listed at this time.",
+    support:
+      "Development questions can be routed through the general Netherwood Data Partners contact address.",
   },
   {
-    id: 'activity-connector', slug: 'activity-data-connector', name: 'RunBridge AI', shortName: 'RB',
-    status: 'In development', category: 'Activity data connector', featured: true, workingName: true,
-    summary: 'A Garmin and iPhone integration project being developed for an AI-connected activity data experience.',
+    id: "garmin-ai-connector",
+    slug: "garmin-ai-connector",
+    name: "RunBridge AI",
+    shortName: "RunBridge",
+    status: "In development",
+    category: "Data connector",
+    summary:
+      "A Garmin, iPhone and ChatGPT-connected data experience being developed to make personal activity data easier to use in conversation.",
     description: [
-      'RunBridge AI is the working name for a Netherwood Data Partners project intended to make Garmin activity and watch data available through an iPhone companion and an AI-connected experience, including ChatGPT.',
-      'The iPhone companion currently has a simulated activity source and a local query interface. Garmin transport and the external AI connection remain work in progress. The project is not available as a public app.'
+      "RunBridge AI is being developed as a connection between Garmin activity or watch data, an iPhone-centered experience and ChatGPT-assisted conversation. The aim is to make a person’s own activity information easier to bring into useful questions and follow-up workflows.",
+      "The product is not publicly available. Installation steps, supported devices, store links and detailed technical claims will be added only after the implementation and release path have been verified.",
     ],
-    platforms: ['iPhone companion in development', 'Garmin integration planned'],
-    limitations: ['The name may change. No public release date or store installation is announced.', 'The planned Garmin and ChatGPT connections should not be treated as available integrations.'],
+    platforms: ["iPhone", "Garmin activity data", "ChatGPT (planned)"],
+    productUrl: "/products/garmin-ai-connector/",
+    openSource: false,
+    featured: true,
+    featureHeading: "Development direction",
+    features: [
+      {
+        title: "Activity-data connection",
+        detail:
+          "Bring selected Garmin activity or watch data into an experience designed for useful questions.",
+      },
+      {
+        title: "iPhone-centered use",
+        detail:
+          "Shape the product around a practical mobile flow rather than a desktop-only integration.",
+      },
+      {
+        title: "ChatGPT-connected experience",
+        detail:
+          "Explore ChatGPT-connected access while keeping data handling and user control central to the implementation.",
+      },
+    ],
+    availabilityNote:
+      "In development. There are no App Store, Garmin Connect IQ, public repository or download links yet.",
+    namingNote:
+      "RunBridge AI is a working product name and may change before release.",
     privacy: [
-      'Activity and device data can be sensitive. Product-specific privacy information will accompany the application before public release, describing the actual collection, storage, sharing, permissions and deletion behavior.',
-      'The design direction is to avoid selling activity data or using it for targeted advertising, and to limit sharing to what application functionality needs. These are development principles; the final disclosure must reflect the implemented product.'
+      "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
+      "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately.",
     ],
-    support: 'Questions about the project can go to the general Netherwood business contact. Installation and store links will be added when available.'
-  }
+    support:
+      "Until a dedicated support system exists, product questions can be sent to Netherwood Data Partners.",
+  },
 ];
-export const productsMetadata = {
-  title: 'Products & Data Tools | Netherwood Data Partners',
-  description: 'Explore QueryVault, the PageMover SQL Server visualizer and a Garmin activity data connector in development. Practical software by Netherwood Data Partners.'
-};
-export function getProduct(slug: string) { return products.find(product => product.slug === slug); }
-export function productPath(product: Product) { return '/products/' + product.slug + '/'; }
-export function productMetadata(product: Product) {
-  const title = product.name + ' | Netherwood Data Partners';
-  const url = siteUrl + productPath(product);
-  return {
-    title, description: product.summary, alternates: {canonical: url},
-    openGraph: {title, description: product.summary, url, type: 'website' as const},
-    twitter: {title, description: product.summary}
-  };
-}
-export function productSchema(product: Product) {
-  return {
-    '@context': 'https://schema.org', '@type': 'WebPage',
-    name: product.name, description: product.summary, url: siteUrl + productPath(product),
-    about: {
-      '@type': 'CreativeWork', name: product.name, description: product.summary,
-      creativeWorkStatus: product.status,
-      creator: {'@type': 'Organization', name: 'Netherwood Data Partners', '@id': siteUrl + '/#organization'}
-    }
-  };
+
+export const featuredProducts = products.filter((product) => product.featured);
+
+export function getProduct(slug: string): Product | undefined {
+  return products.find((product) => product.slug === slug);
 }

@@ -19,7 +19,15 @@ const paths = [
   `/articles/${snapshot.articles[0].slug}/`,
   "/migration-intake/",
 ];
-if (phase === "after") paths.push("/services/software-systems-support/");
+if (phase === "after")
+  paths.push(
+    "/services/software-systems-support/",
+    "/products/",
+    "/products/queryvault/",
+    "/products/sql-server-index-maintenance-visualizer/",
+    "/products/garmin-ai-connector/",
+    "/privacy/",
+  );
 const browser = await chromium.launch({ channel: "msedge", headless: true });
 const report = { routes: [], errors: [], checks: [] };
 try {

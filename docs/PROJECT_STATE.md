@@ -1,14 +1,56 @@
-## Consulting and software candidate — September 28, 2026
+## Consulting + software products integration — September 28, 2026
 
-PR #17 now combines the preserved community/industry candidate with a reusable
-Products catalog, three product detail pages and website Privacy. Home, About,
-navigation and footer represent services and software under Netherwood Data Partners.
-QueryVault has verified public source/docs links; private project links and
-unverified downloads are omitted. RunBridge remains a working name on a neutral
-activity-data-connector route. Prior work and generated images are preserved.
-See PRODUCTS_AUDIT.md and PRODUCTS_VERIFICATION.md for evidence and release boundaries.
-This is a validated review candidate; production deployment awaits the existing
-main/Pages workflow. Other dirty Voyager checkouts remain untouched.
+The site now presents Netherwood Data Partners as one company with two connected
+areas: professional software/data/database services and practical software
+products. This work started only after a complete local/remote audit. Voyager 2's
+pre-existing `PROJECT_STATE.md` edit and untracked
+`VOYAGER2_LAUNCH_STATUS.md` were preserved in commit `7f69a27`. The checkout was
+fast-forwarded from `417f2e8` to released `origin/main` at `840cf9a`, and the
+newest appropriate unfinished branch, `feat/community-technology-website` at
+`b9b5734`, was merged without rewriting its history.
+
+- `/products/` is a first-class landing page backed by
+  `app/content/products.ts`. Reusable cards and detail pages conditionally show
+  source, documentation and download destinations only when configured.
+- Product routes are `/products/queryvault/`,
+  `/products/sql-server-index-maintenance-visualizer/` and
+  `/products/garmin-ai-connector/`. The neutral Garmin connector slug keeps the
+  working RunBridge AI name easy to replace.
+- QueryVault is an active public-source project linked to the real
+  `stevewittek/Databases` repository and its detailed README. The repository has
+  no selected open-source license, so the website does not label it open source
+  or advertise a packaged release. The visualizer and RunBridge expose no
+  repository, store or download links.
+- RunBridge is explicitly in development. Its page contains only a high-level
+  development direction, working-name note, general business support route and
+  preliminary privacy direction. `/privacy/` explains that a detailed,
+  implementation-accurate product disclosure is required before release.
+- Home retains consulting first while adding a three-product section. Shared
+  desktop/mobile navigation and the footer expose Products; About now explains
+  that real-world engineering work informs Netherwood's tools.
+- The recent industry/community work is fully integrated. The warehouse hero,
+  manufacturing and medical-office generated scenes are served from
+  `public/images/community/`; the credited Netherwood station photograph remains
+  the community/About anchor. They are illustrative concepts, not product
+  screenshots or client work.
+- Static generation now emits 29 canonical public routes with unique metadata,
+  Open Graph/Twitter tags, product/collection schema, breadcrumbs, sitemap
+  entries, robots, 404 behavior and unchanged full bodies for all ten articles.
+
+Verified in the pinned Node 22.13.1 workflow: ESLint, strict frontend,
+marketing and backend typechecks; 40 marketing, 23 publication/admin, 3
+publication-pipeline, 11 migration/attribution and 70 backend tests; the
+business-operations check; the static Pages and Vinext production builds; and
+the 29-route metadata/link/schema/sitemap/article-parity audit. Browser
+regression rendered all 29 routes at 1440/768/390 with no browser errors,
+overflow or broken assets. The final 45-scan automated axe matrix reported zero
+violations; this is not a complete assistive-technology certification.
+
+Remaining product work is intentionally honest: choose any public repository or
+release path for the visualizer, finalize RunBridge's product name, implementation,
+supported-device scope and product-specific privacy notice, then add real
+store/download/documentation links. No fake availability, release date, customer,
+download, testimonial or pricing claim was added.
 
 ## Latest owner direction: industry systems
 
@@ -181,7 +223,75 @@ not override the current evidence above.
 
 Last verified: 2026-09-02 UTC on `codex/friday-launch-integration`. This
 records observed state, not plans.
+## Voyager 2 launch-hardening and article/AI audit — September 11, 2026
 
+Last verified: 2026-09-11 UTC on `main`. This records observed state, not plans.
+
+The Friday launch-hardening audit is recorded in
+[`VOYAGER2_LAUNCH_STATUS.md`](VOYAGER2_LAUNCH_STATUS.md). Current `main`, local
+production builds, all 49 backend tests, SQL schema/integrity, the rollback-only
+publishing workflow, the static outage snapshot, and the current full-plus-
+differential backup chain passed. The approved launch remains static and has no
+Voyager dependency. Authoring activation, isolated restore testing, off-device
+backup, and any approved public API ingress remain post-launch work.
+
+## 2026-09-11 article export and AI verification
+
+- Live host `voyager2` and repository `/home/nasa/netherwood-data-partners`
+  started from synchronized `main` at `b431beb`. The implementation is in local
+  commits `9f9a4ca` and `417f2e8`, not pushed. Pre-existing local documentation
+  edits were preserved. SQL Server `17.0.4075.5`, `NDP_Web`, the loopback API,
+  and loopback Ollama were live; the repository SQL preflight/schema check and
+  rollback-only article workflow passed. Shared QueryVault/CapLab and monitoring
+  services were not restarted or changed.
+- SQL and the API each return 10 published, due articles. The tracked static
+  snapshot also has 10, but its export time remains
+  `2026-08-24T02:11:34.373Z`. A full SQL/API/snapshot trace of
+  `why-sql-server-databases-slow-down-over-time` matched its ID, slug, dates,
+  6,061-byte HTML, and HTML/plain-text SHA-256 hashes exactly.
+- The new candidate export detected one existing divergence: article
+  `ac33f77f-3520-57a6-8456-9e1b4cbe7b7e` is titled `Azure SQL Migration Lesson`
+  in SQL/API and `Azure SQL Migration Lessons` in the tracked/live Pages
+  snapshot. Content, slug, tags, and dates match. The candidate was validated
+  and built but was not promoted because the title choice is a publication
+  approval, not a technical assumption.
+- Database writes never reached Pages automatically because the site has no
+  configured Voyager URL, the old exporter was manual, a Voyager worktree edit
+  neither commits nor pushes GitHub, and the Pages workflow runs from GitHub on
+  `main` pushes/manual dispatch. New native slug routes likewise require a
+  snapshot build/deploy.
+- A staged `netherwood.public-articles/v1` export now validates canonical public
+  content, count, ordering, due dates, sanitized HTML, IDs/slugs, and a SHA-256
+  content digest. It writes only an ignored candidate, reports additions/edits/
+  removals/scheduled-due content, requires exact-digest approval, and runs an
+  isolated full/Pages build before atomic promotion. Inactive user-systemd
+  templates check every 15 minutes; no timer, GitHub credential, commit, push,
+  or deployment was activated.
+- Authoring remains disabled: neither the `ndp_article_author` server login/
+  database user nor the three authoring environment settings exists; the
+  procedure-only `web_article_author` role does exist and admin routes return
+  `404`. Save Draft,
+  Publish, future scheduling, Unpublish, Archive, delete boundaries, and public
+  exclusion passed isolated API tests plus the live rollback-only SQL test.
+- Article knowledge ingestion did not previously exist: the bounded SQL export
+  returned 10 articles while zero article sources were indexed. The implemented
+  reconciliation indexed all 10 through existing `ndp_web_app` procedures;
+  a second pass reported all 10 unchanged. Tests prove edited hashes refresh and
+  sources/chunks are hidden after unpublish/archive/future exclusion without
+  affecting the five structured or two public-file sources.
+- Real local RAG ranked the NOLOCK and Azure articles first. A cited NOLOCK
+  answer took 143.8 seconds; Ollama used about 201% CPU and 3.07 GiB while the
+  request container used about 43 MiB, and a simultaneous SQL-backed article
+  read completed in 0.28 seconds. A source-text injection challenge took 176.1
+  seconds and ignored the injected marker. With the former 0.65 distance an
+  unsupported question took 119.2 seconds and cited irrelevant articles; the
+  evidence-based 0.35 default returned the same question deterministically in
+  1.54 seconds with no citations. The updated image passed 56 tests and strict
+  type checking, but the running API was not restarted.
+- Public chat is not ready: supported CPU answers still take 2.4-2.9 minutes,
+  only one generation can run, the host has 7.5 GiB RAM and unstable attached
+  storage history, and the refreshed image/threshold plus monitoring/load tests
+  are not deployed. GitHub Pages and static articles remain independent.
 ## Repository and publishing
 
 - The public application includes `/about`, `/articles`, native

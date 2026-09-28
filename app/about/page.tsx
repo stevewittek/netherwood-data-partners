@@ -41,7 +41,7 @@ const experience = [
   {
     number: "04",
     title: "Giving teams evidence they can use",
-    body: "I build reporting, monitoring, and investigation tools that make it easier to understand a system. My ongoing QueryVault project preserves query-performance history across test-environment refreshes, so changes can be compared without giving developers unrestricted production access.",
+    body: "I build reporting, monitoring, and investigation tools that make it easier to understand a system. QueryVault, an active SQL Server database project, archives Query Store history for longer-term performance analysis and operational review.",
     tools: "QueryVault · DMVs · Extended Events · Monitoring",
   },
 ];
@@ -57,21 +57,25 @@ export default function AboutPage() {
           <p className="about-role">
             Database engineer.
             <br />
+            Software builder.
+            <br />
             Practical problem solver.
           </p>
           <div className="long-form about-intro">
             <p>
               I help businesses get their software, data and systems working
-              better together. I’m a database engineer and DBA who is
-              comfortable getting into an unfamiliar application, finding how
-              the information fits together and working through the problem with
-              the people who use it.
+              better together—and I build practical tools for recurring
+              database, integration and automation problems. I’m a database
+              engineer and DBA who is comfortable getting into an unfamiliar
+              application, finding how the information fits together and working
+              through the problem with the people who use it.
             </p>
             <p>
               I have worked in technology since 2009. Netherwood Data Partners
               brings experience with demanding production databases to smaller
               organizations that need personal help with a project or ongoing
-              support.
+              support. It is also the home for the software products that grow
+              from that engineering work.
             </p>
           </div>
           <a className="button button-primary" href="/#contact">
@@ -118,7 +122,7 @@ export default function AboutPage() {
           <h2>
             Big-company database experience.
             <br />
-            Small-business practicality.
+            Practical services and software.
           </h2>
         </div>
         <div className="long-form">
@@ -141,9 +145,17 @@ export default function AboutPage() {
             might mean fixing an integration, tuning a database or helping you
             move into a new platform.
           </p>
+          <p>
+            The product side of Netherwood follows the same approach. QueryVault
+            and the other tools in development start with specific engineering
+            problems, clear boundaries and useful documentation—not a catalog
+            of invented features.
+          </p>
+          <a className="studio-text-link" href="/products/">
+            Explore Netherwood products <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
-      <section className="about-section studio-wrap"><div><p className="eyebrow">Software by Netherwood</p><h2>From practical problems<br />to practical tools.</h2></div><div className="long-form"><p>Alongside professional services, Netherwood Data Partners develops software and data tools grounded in database, integration and automation work. QueryVault, PageMover and an activity data connector represent that engineering side of the business.</p><p>These projects have different development stages. Their product pages explain what exists today, with public source links where available.</p><a className="studio-text-link" href="/products/">Explore Netherwood products <span aria-hidden="true">↗</span></a></div></section>
       <section className="founder-experience" id="professional-experience">
         <div className="studio-wrap">
           <div className="founder-experience-heading">

@@ -1,8 +1,8 @@
 import ChatWidget from "./ChatWidget";
-import { FeaturedProducts } from "./components/ProductPages";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { CommunityPhoto, CommunityRoots } from "./components/Community";
+import { ProductGrid } from "./components/ProductPages";
 import "./community.css";
 
 const services = [
@@ -77,7 +77,8 @@ export default function Home() {
           <p className="community-hero-body">
             Green-screen terminals. Paper work orders. The same information
             entered twice. Get hands-on help supporting older systems, moving
-            your data and connecting the next generation of software. Netherwood also builds practical database tools and data connectors.
+            your data and connecting the next generation of software. Explore
+            focused tools and connectors built from the same engineering work.
           </p>
           <div className="studio-actions">
             <a className="button button-primary" href="#contact">
@@ -94,7 +95,7 @@ export default function Home() {
             <p>
               Work directly with Steven Wittek.
               <br />
-              <strong>Your local database & systems specialist.</strong>
+              <strong>Your local data, software & systems specialist.</strong>
             </p>
           </div>
         </div>
@@ -121,7 +122,7 @@ export default function Home() {
         <div className="studio-wrap">
           <span>Small-business care.</span>
           <span>Senior technical experience.</span>
-          <span>Software · Data · Support</span>
+          <span>Consulting · Software · Data</span>
           <a href="#community">
             Along the Raritan Valley Line <span aria-hidden="true">↓</span>
           </a>
@@ -212,6 +213,29 @@ export default function Home() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+      <section className="home-products studio-wrap" id="products">
+        <div className="products-section-heading">
+          <div>
+            <p className="eyebrow">Products from Netherwood</p>
+            <h2>
+              Practical software for
+              <br />
+              data-heavy work.
+            </h2>
+          </div>
+          <p>
+            Alongside consulting, Netherwood builds database tools, utilities
+            and connectors. Public source and availability are listed only when
+            they actually exist.
+          </p>
+        </div>
+        <ProductGrid home />
+        <div className="home-products-link">
+          <a className="studio-text-link" href="/products/">
+            Explore all products <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
       <section className="community-people-band" id="when-to-call-us">
@@ -336,7 +360,6 @@ export default function Home() {
           </li>
         </ol>
       </section>
-      <FeaturedProducts />
       <CommunityRoots />
       <section
         className="community-section studio-wrap community-founder"

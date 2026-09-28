@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import Home from "./page";
-import { ProductsIndex, ProductDetailPage } from "./components/ProductPages";
-import PrivacyPage from "./privacy/page";
 import { ArticlePage, ArticlesIndex } from "./articles/Articles";
 import ArticlesAdmin from "./admin/ArticlesAdmin";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { ServiceDetailPage, ServicesIndex } from "./components/ServicePages";
 import MigrationIntakePage from "./migration-intake/page";
 import MigrationReadinessPage from "./migration-readiness/page";
+import { ProductDetailPage, ProductsIndex } from "./components/ProductPages";
+import PrivacyPage from "./components/PrivacyPage";
 
 export default function SiteRouter({ path }: { path?: string } = {}) {
   // On a direct /#contact (or cross-page CTA), the static shell has no anchor
@@ -27,17 +27,19 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   const pathname =
     requestedPath.replace(/\/index\.html$/, "/").replace(/\/+$/, "") || "/";
   if (pathname === "/") return <Home />;
+  if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/products") return <ProductsIndex />;
   if (pathname === "/privacy") return <PrivacyPage />;
-  const productMatch = pathname.match(/^\/products\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
-  if (productMatch) return <ProductDetailPage slug={productMatch[1]} />;
-  if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/migration-intake") return <MigrationIntakePage />;
   if (pathname === "/migration-readiness") return <MigrationReadinessPage />;
   const serviceMatch = pathname.match(
     /^\/services\/([a-z0-9]+(?:-[a-z0-9]+)*)$/,
   );
   if (serviceMatch) return <ServiceDetailPage slug={serviceMatch[1]} />;
+  const productMatch = pathname.match(
+    /^\/products\/([a-z0-9]+(?:-[a-z0-9]+)*)$/,
+  );
+  if (productMatch) return <ProductDetailPage slug={productMatch[1]} />;
   if (pathname === "/articles") return <ArticlesIndex />;
   if (pathname === "/admin/articles") return <ArticlesAdmin />;
   const articleMatch = pathname.match(

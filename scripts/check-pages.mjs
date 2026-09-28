@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { products, productPath } from "../app/content/products.ts";
 import { readFile, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
@@ -24,17 +23,22 @@ const serviceSlugs = [
   "workflow-automation",
   "practical-ai",
 ];
+const productSlugs = [
+  "queryvault",
+  "sql-server-index-maintenance-visualizer",
+  "garmin-ai-connector",
+];
 const expected = [
   "/",
   "/about/",
   "/articles/",
   "/services/",
   "/products/",
-  ...products.map(productPath),
   "/privacy/",
   "/migration-intake/",
   "/migration-readiness/",
   ...serviceSlugs.map((slug) => `/services/${slug}/`),
+  ...productSlugs.map((slug) => `/products/${slug}/`),
   ...snapshot.articles.map((a) => `/articles/${a.slug}/`),
 ];
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
@@ -133,20 +137,21 @@ for (const route of expected) {
     assert.equal(data["@graph"][0].url, `${origin}${route}`);
     assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
   }
+  if (route.startsWith("/products/") && route !== "/products/") {
+    const data = JSON.parse(
+      /<script[^>]+id="product-structured-data"[^>]*>(.*?)<\/script>/s.exec(
+        html,
+      )?.[1],
+    );
+    assert.equal(data["@graph"][0]["@type"], "SoftwareApplication");
+    assert.equal(
+      data["@graph"][0].creator.name,
+      "Netherwood Data Partners",
+    );
+    assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
+  }
   for (const [, value] of html.matchAll(/(?:src|href)="([^"]+)"/g))
     await checkUrl(value, route);
-  const product = products.find(p => route === productPath(p));
-  if (product) {
-    assert.ok(html.includes('<h1>' + escape(product.name) + '</h1>'), 'Correct product body ' + route);
-    assert.ok(html.includes(escape(product.status)), 'Current product status ' + route);
-    assert.ok(html.includes('Developed by Netherwood Data Partners'), 'Company publisher ' + route);
-    assert.ok(html.includes('creativeWorkStatus'), 'Product development schema ' + route);
-    for (const url of [product.githubUrl, product.docsUrl, product.downloadUrl, product.productUrl].filter(Boolean)) {
-      assert.ok(url.startsWith('https://'), 'Verified links require HTTPS');
-      assert.ok(html.includes(escape(url)), 'Configured external destination ' + route);
-    }
-    if (!product.downloadUrl) assert.ok(!/>Download(?:<| )/.test(html), 'No invented download ' + route);
-  }
   const article = snapshot.articles.find(
     (a) => route === `/articles/${a.slug}/`,
   );
@@ -172,6 +177,25 @@ for (const route of expected) {
     if (article.featuredImage) await checkUrl(article.featuredImage);
   }
   checks.push(route);
+}
+assert.ok(
+  documents
+    .get("/products/queryvault/")
+    .includes("https://github.com/stevewittek/Databases"),
+  "QueryVault has its verified public source link",
+);
+for (const route of [
+  "/products/sql-server-index-maintenance-visualizer/",
+  "/products/garmin-ai-connector/",
+]) {
+  assert.ok(
+    !documents.get(route).includes("github.com/"),
+    route + " does not advertise an unverified repository",
+  );
+  assert.ok(
+    !documents.get(route).includes(">Download<"),
+    route + " does not advertise a fake download",
+  );
 }
 for (const file of ["404.html", "admin/articles/index.html"])
   assert.match(await readFile(resolve(root, file), "utf8"), /noindex/);
