@@ -13,8 +13,9 @@ const output = resolve("outputs/migration-qa/accessibility");
 await mkdir(output, { recursive: true });
 const snapshot = JSON.parse(await readFile("pages-site/articles-snapshot.json", "utf8"));
 const serviceSlugs = ["software-systems-support", "data-migration", "legacy-application-modernization", "business-software-migration", "legacy-systems-assessment", "database-engineering", "workflow-automation", "practical-ai"];
-const mobileRoutes = ["/", "/about/", "/articles/", "/services/", "/migration-intake/", "/migration-readiness/", ...serviceSlugs.map((slug) => `/services/${slug}/`), ...snapshot.articles.map((article) => `/articles/${article.slug}/`)];
-const desktopRoutes = ["/", "/about/", "/services/", "/services/data-migration/", "/services/legacy-systems-assessment/", "/services/database-engineering/", "/migration-intake/", "/migration-readiness/"];
+const productSlugs = ["queryvault", "sql-server-index-maintenance-visualizer", "garmin-ai-connector"];
+const mobileRoutes = ["/", "/about/", "/articles/", "/services/", "/products/", "/privacy/", "/migration-intake/", "/migration-readiness/", ...serviceSlugs.map((slug) => `/services/${slug}/`), ...productSlugs.map((slug) => `/products/${slug}/`), ...snapshot.articles.map((article) => `/articles/${article.slug}/`)];
+const desktopRoutes = ["/", "/about/", "/services/", "/products/", "/products/queryvault/", "/products/garmin-ai-connector/", "/privacy/", "/services/data-migration/", "/services/legacy-systems-assessment/", "/services/database-engineering/", "/migration-intake/", "/migration-readiness/"];
 const report = {
   base,
   generatedAt: new Date().toISOString(),
