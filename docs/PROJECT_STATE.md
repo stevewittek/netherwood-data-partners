@@ -1,3 +1,15 @@
+## Consulting and software candidate — September 28, 2026
+
+PR #17 now combines the preserved community/industry candidate with a reusable
+Products catalog, three product detail pages and website Privacy. Home, About,
+navigation and footer represent services and software under Netherwood Data Partners.
+QueryVault has verified public source/docs links; private project links and
+unverified downloads are omitted. RunBridge remains a working name on a neutral
+activity-data-connector route. Prior work and generated images are preserved.
+See PRODUCTS_AUDIT.md and PRODUCTS_VERIFICATION.md for evidence and release boundaries.
+This is a validated review candidate; production deployment awaits the existing
+main/Pages workflow. Other dirty Voyager checkouts remain untouched.
+
 ## Latest owner direction: industry systems
 
 Use equipment and recognizable work in established manufacturing, distribution

@@ -224,3 +224,21 @@ Any new public feature must state its outage behavior before implementation.
 FEATURE_STATUS.md is the current register for chat, analytics, lead workflow,
 owner publishing access, Tools/Query Vault, portrait and other unfinished work.
 The functioning article pipeline does not close those features.
+
+## Consulting and software expansion — September 28, 2026
+
+The existing `feat/community-technology-website` candidate is extended through
+PR #17 to represent professional services and software under Netherwood Data
+Partners. Products are defined centrally and shared by static Pages/Vinext.
+New routes are `/products/`, three product details and `/privacy/`.
+
+QueryVault links its verified public source and README. No open-source license
+badge is asserted. PageMover and RunBridge repositories are private and omitted.
+RunBridge is a working name; its neutral activity-data-connector slug is stable.
+Development statuses and limitations replace unverified availability claims.
+Website privacy and planned product disclosure are separate in the copy.
+
+The existing fonts, tokens, generated industry scenes, station credit, eight
+services, contact transport, migration tools and article content are preserved.
+No public backend or second deployment channel was added. See PRODUCTS_AUDIT.md
+for the preservation audit and PRODUCTS_VERIFICATION.md for acceptance results.

@@ -1,3 +1,11 @@
+## Products review candidate — September 28, 2026
+
+PR #17 adds QueryVault, PageMover and the activity connector to a real Products
+area. This supersedes the historical Tools-route plan for the candidate. The
+source/license/distribution boundaries are in PRODUCTS_AUDIT.md. Product pages
+are informational; no unavailable download, store or private repository is
+linked. Production status still depends on merging and deploying PR #17.
+
 # Current feature register
 
 Reconciled September 19, 2026 against production source `29357a1`, the live

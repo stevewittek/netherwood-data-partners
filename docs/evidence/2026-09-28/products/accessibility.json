@@ -1,0 +1,202 @@
+[
+  {
+    "width": 1440,
+    "path": "/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 2
+      },
+      {
+        "id": "color-contrast",
+        "count": 23
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/about/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/articles/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 16
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/queryvault/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/sql-server-index-visualizer/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/activity-data-connector/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/privacy/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 2
+      },
+      {
+        "id": "color-contrast",
+        "count": 23
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/about/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/articles/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 16
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/queryvault/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/sql-server-index-visualizer/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/activity-data-connector/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/privacy/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  }
+]
