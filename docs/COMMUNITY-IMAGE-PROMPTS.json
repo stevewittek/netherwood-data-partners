@@ -1,0 +1,30 @@
+{
+  "mode": "Built-in image_gen tool",
+  "date": "2026-09-25",
+  "assets": [
+    {
+      "path": "public/images/community/business-collaboration.webp",
+      "prompt": "Use case: photorealistic-natural. Asset: wide landscape editorial website hero for a friendly independent software and data consultancy in Plainfield New Jersey. Show the actual everyday diversity of a New Jersey neighborhood business through fictional people: a medium-brown-skinned Latina business owner in her late forties with dark curly hair and a mustard blouse, a Black male operations manager in his fifties in a navy polo, and an East Asian woman software specialist in her thirties wearing a soft blue shirt. All three have equal agency, engaged together reviewing a laptop at a practical white laminate work table, one points to screen while the others smile naturally. Waist-up medium-wide angle with faces and laptop fully visible, central grouped composition adaptable to website crop. A real-looking modest local print and signage business office, sample paper swatches, printer in the background, ordinary steel filing shelves and large bright windows showing a hint of a brick New Jersey main street. No coffee shop styling, no reclaimed wood, no luxury office, no all-white casting, no token background people, no rigid corporate posing. The feeling is capable, neighborly, welcoming and collaborative, credible modern technology used in an actual small business. Clear natural daylight, realistic skin and hands, rich but restrained natural colors, documentary/editorial quality, 35mm photo, 3:2 landscape. No logos, no readable text, no invented testimonials or client claims, no science-fiction graphics.",
+      "sourceFile": "exec-b7dd30eb-7789-41cb-b0ff-0ca8a55b6843.png"
+    },
+    {
+      "path": "public/images/community/local-business-handshake.webp",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 editorial website photograph. A medium-brown-skinned Latino small manufacturing business owner in his late forties, wearing a clean blue work shirt, and a South Asian male software consultant in his forties wearing glasses and an olive casual button-down, smiling and shaking hands after a useful consultation. Both fictional ordinary people, naturally posed, faces and one clear anatomically correct handshake fully visible. Small New Jersey workshop office with a practical light gray desk, open laptop, a shelf of numbered plain binders with no legible text, and a glass partition overlooking a tidy machine shop. Natural daylight, neutral office surfaces, not a coffee shop or luxury startup. Eye-level medium-wide framing, people center, enough environment to see the software and real business setting. Warm, honest, upbeat mood, real skin texture, believable body proportions, soft warm natural colors, documentary photography. No reclaimed wood styling, no coffee props, no logos, no text, no fake testimonial, no famous person. A fictional illustrative scene, not evidence of a real client relationship.",
+      "sourceFile": "exec-f79dd343-ee3f-43df-ab10-906830752343.png"
+    },
+    {
+      "path": "public/images/community/software-support.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: horizontal 3:2 editorial website photo for business software support. A fictional Black woman in her forties, the manager of a small professional practice, and a friendly fictional male technology consultant in his fifties with neat dark hair and glasses, collaborating at a dual-monitor workstation in a modest bright neighborhood office. The manager in a sage green cardigan is pointing to a monitor while the consultant in a light shirt listens with a warm smile. Photograph taken from the side at seated eye level, with both faces visible, monitor side angle, laptop and notebook visible. Real-looking software application windows softly out of focus with no legible records, no real personal information. Plants, oak desk, cream walls, subtle terracotta decor and sunny window. Approachable family-business atmosphere, practical technology, natural unretouched skin, believable proportions, soft daylight, rich warm editorial photography. Composition balanced and loose for website crop, people take central 65 percent of frame. No logos, no text, no medical treatments or patients, no computer-generated graphics or holograms. These are anonymous fictional people, no actual client claim.",
+      "sourceFile": "exec-32fcd0f3-415c-4105-8d36-bafe396bba76.png"
+    }
+  ],
+  "optimization": "WebP encoding at quality 84, 1536px and 768px responsive variants; no image content edits.",
+  "station": {
+    "path": "public/images/community/netherwood-station.webp",
+    "source": "https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg",
+    "author": "Jerrye & Roy Klotz MD",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "changes": "Resized to 1536px, encoded as WebP; CSS crop and translucent overlay where displayed. This derivative photograph is licensed CC BY-SA 4.0."
+  }
+}

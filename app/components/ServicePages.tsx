@@ -1,6 +1,7 @@
 import { getService, services, type Service } from "../content/services";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import "../services.css";
+import { CommunityPhoto } from "./Community";
 
 function ServiceContact({ assessment = false }: { assessment?: boolean }) {
   return (
@@ -12,25 +13,23 @@ function ServiceContact({ assessment = false }: { assessment?: boolean }) {
         <div>
           <p className="eyebrow">A useful place to start</p>
           <h2 id="services-contact-heading">
-            Tell us what you’re trying to replace.
+            Tell us what’s getting in the way.
           </h2>
           <p>
-            What are you using now? What do you want to move to? What is getting
-            in the way? You do not need to know the database underneath it.
+            Bring the application question, the data problem or the change you
+            are considering. We can work out a useful next step together.
           </p>
         </div>
         <div className="services-contact-actions">
           <a
             className="button button-light"
             href={
-              assessment
-                ? "/migration-intake/?intent=assessment"
-                : "/migration-intake/"
+              assessment ? "/migration-intake/?intent=assessment" : "/#contact"
             }
           >
             {assessment
               ? "Request a systems assessment"
-              : "Talk about your migration"}
+              : "Talk about your business"}
             <span aria-hidden="true">↗</span>
           </a>
           <a href="mailto:contact@netherwooddatapartners.com">
@@ -65,23 +64,23 @@ function ServiceLink({ service, index }: { service: Service; index?: number }) {
 
 export function ServicesIndex() {
   return (
-    <main className="services-page">
+    <main className="services-page community-services-index">
       <SiteHeader currentPage="services" />
       <section className="studio-wrap services-hero">
-        <p className="eyebrow">Data migration & systems modernization</p>
+        <p className="eyebrow">Software · Data · Support</p>
         <h1>
-          Your platform.
+          The technology behind
           <br />
-          Your data. Your choice.
+          your everyday business.
         </h1>
         <p className="services-lede">
-          Move from aging applications, databases, spreadsheets and servers into
-          the business platform you choose. Netherwood brings the database
-          engineering that makes the move possible.
+          Software that needs attention. Data that needs to make sense. Systems
+          that need to work together. Get personal, technically grounded help
+          for the work in front of you.
         </p>
         <div className="studio-actions">
-          <a className="button button-primary" href="/migration-intake/">
-            Talk about your migration <span aria-hidden="true">↗</span>
+          <a className="button button-primary" href="/#contact">
+            Talk about your business <span aria-hidden="true">↗</span>
           </a>
           <a
             className="studio-text-link"
@@ -94,27 +93,38 @@ export function ServicesIndex() {
           Based in New Jersey · Central NJ, the Tri-State region and practical
           remote US projects
         </p>
+        <figure className="community-service-photo">
+          <CommunityPhoto
+            name="manufacturing-systems"
+            alt="Illustrative manufacturing workstation with legacy work-order software and a modern shop-floor display"
+            priority
+          />
+          <figcaption>
+            AI-generated industry concept; not a client site or product
+            screenshot.
+          </figcaption>
+        </figure>
       </section>
 
       <section className="services-band">
         <div className="studio-wrap services-split">
           <div>
-            <p className="eyebrow">The work between the systems</p>
+            <p className="eyebrow">A specialist in your corner</p>
             <h2>
-              The software vendor handles the new platform. Who handles the old
-              one?
+              Someone who can connect the business problem to the technical
+              detail.
             </h2>
           </div>
           <div className="services-prose">
             <p>
-              Your provider knows its product. Netherwood helps understand the
-              legacy environment, extract and prepare the information,
-              coordinate the import and verify the result with your staff.
+              Your staff knows the work. Your vendor knows its product.
+              Netherwood helps investigate the application, the data and the
+              connections between them, then works with you on a practical fix.
             </p>
             <p>
-              You choose and license your software. Netherwood provides scoped
-              consulting and project services around it, with optional support
-              agreed separately.
+              A focused issue, a planned project or ongoing support: agree the
+              scope and responsibilities before work begins. You keep control of
+              your software choices and your data.
             </p>
           </div>
         </div>
@@ -128,14 +138,13 @@ export function ServicesIndex() {
           <div>
             <p className="eyebrow">Find your starting point</p>
             <h2 id="services-list-heading">
-              From the first unknown
-              <br />
-              to the final handover.
+              Help for today.
+              <br />A plan for what’s next.
             </h2>
           </div>
           <p>
-            Start with an assessment, a selected replacement or a specific
-            database problem. The scope follows what your business needs.
+            Start with an application problem, a database question, a workflow
+            or a planned change. The scope follows what your business needs.
           </p>
         </div>
         <div className="services-list">
@@ -159,10 +168,10 @@ export function ServicesIndex() {
               comfortable with complex production systems.
             </p>
             <p>
-              A typical starting point is a defined assessment, followed by an
-              agreed migration project: prepare the data, rehearse the move,
-              coordinate cutover, validate and document. Fees, responsibilities
-              and any ongoing support are agreed before the work begins.
+              Start with the issue you need to solve. That may become a focused
+              investigation, a systems assessment, a project or ongoing support.
+              Fees, responsibilities and the way we will check the result are
+              agreed before work begins.
             </p>
             <a className="studio-text-link" href="/about/">
               Meet Steven <span aria-hidden="true">↗</span>
@@ -174,7 +183,7 @@ export function ServicesIndex() {
       <section className="studio-wrap services-section services-split">
         <div>
           <p className="eyebrow">Not sure how involved it will be?</p>
-          <h2>Start with a few practical questions.</h2>
+          <h2>Thinking about replacing a system?</h2>
         </div>
         <div className="services-prose">
           <p>
@@ -197,11 +206,11 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
   const service = getService(slug);
   if (!service) {
     return (
-      <main className="services-page">
+      <main className="services-page community-services-index">
         <SiteHeader currentPage="services" />
         <section className="studio-wrap services-hero">
           <h1>Service not found</h1>
-          <p>Explore the available migration and modernization services.</p>
+          <p>Explore the available software, data and support services.</p>
           <a className="studio-text-link" href="/services/">
             View services
           </a>
@@ -216,7 +225,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
     .filter((item): item is Service => Boolean(item));
 
   return (
-    <main className="services-page">
+    <main className="services-page community-services-index">
       <SiteHeader currentPage="services" />
       <section className="studio-wrap services-hero services-detail-hero">
         <a className="services-back" href="/services/">
@@ -229,9 +238,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
           <a
             className="button button-primary"
             href={
-              assessment
-                ? "/migration-intake/?intent=assessment"
-                : "/migration-intake/"
+              assessment ? "/migration-intake/?intent=assessment" : "/#contact"
             }
           >
             {assessment

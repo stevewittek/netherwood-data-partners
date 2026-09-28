@@ -1,4 +1,34 @@
+## Latest owner direction: industry systems
+
+Use equipment and recognizable work in established manufacturing, distribution
+and medical offices, with legacy-to-modern examples and practical AI assistance.
+The owner explicitly replaced the staged-people direction. Generated scenes
+are illustrative concepts, not actual clients or delivered product screenshots.
+Local station imagery and broader software/data/support offerings remain.
+See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+
 # Netherwood Data Partners design system
+
+## Community and photography revision — September 25, 2026
+
+The owner explicitly requested a warmer, visually rich local technology business,
+with people, business settings, the actual Netherwood station and an original
+Raritan Valley Line community motif. The follow-up asks for Plainfield's mixed
+community to be represented, rather than an all-white stock-office aesthetic.
+This supersedes the migration-only visual hierarchy below.
+
+Home uses three generated, clearly labeled fictional business scenes and a
+licensed photograph of the actual station. No generated person is presented as
+Steven, an employee or an actual client. About uses the station, with explicit
+credit, instead of inventing a founder headshot. The typography and green identity
+remain, with brighter page surfaces, substantial photography and scoped layout
+rules in `app/community.css`. Articles keep their existing reading layout.
+
+The community line is an original schematic of selected stops, not an official
+map or transit affiliation. Responsive layouts use a vertical line on phones.
+Source/license links appear with the station image; source and image-generation
+prompts are in `COMMUNITY-IMAGE-PROMPTS.json`. See `COMMUNITY-REDESIGN.md` for
+acceptance evidence and release status.
 
 ## Migration-focused revision — September 25, 2026
 

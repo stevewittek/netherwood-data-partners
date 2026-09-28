@@ -1,0 +1,222 @@
+{
+  "standard": "axe automated WCAG 2 A/AA, WCAG 2.1 A/AA, WCAG 2.2 AA and best-practice checks; not a complete accessibility certification",
+  "scans": [
+    {
+      "path": "/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/about/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-intake/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-readiness/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/software-systems-support/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/data-migration/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/legacy-application-modernization/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/business-software-migration/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/legacy-systems-assessment/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/database-engineering/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/workflow-automation/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/practical-ai/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/why-sql-server-databases-slow-down-over-time/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/sql-server-indexing-mistakes-that-hurt-performance/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/query-store-finding-the-queries-that-are-breaking-your-database/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/why-nolock-does-not-fix-blocking-problems/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/when-small-businesses-need-a-database-consultant/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/moving-legacy-applications-to-modern-sql-server-platforms/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/database-backups-what-companies-get-wrong/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/azure-sql-migration-lessons/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/performance-tuning-before-buying-more-hardware/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/articles/database-health-checks-explained/",
+      "width": 390,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-readiness/",
+      "width": 390,
+      "state": "result-and-method-expanded",
+      "violations": []
+    },
+    {
+      "path": "/migration-intake/",
+      "width": 390,
+      "state": "attached-assessment-and-platform-expanded",
+      "violations": []
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/about/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/data-migration/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/legacy-systems-assessment/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/services/database-engineering/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-intake/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-readiness/",
+      "width": 1440,
+      "state": "default",
+      "violations": []
+    },
+    {
+      "path": "/migration-readiness/",
+      "width": 1440,
+      "state": "result-and-method-expanded",
+      "violations": []
+    },
+    {
+      "path": "/migration-intake/",
+      "width": 1440,
+      "state": "attached-assessment-and-platform-expanded",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

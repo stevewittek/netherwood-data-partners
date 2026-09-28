@@ -1,0 +1,17 @@
+{
+  "baseline": false,
+  "routes": [],
+  "errors": [],
+  "externalRequests": [],
+  "checks": [
+    "/: 320px layout and keyboard skip/focus",
+    "/services/: 320px layout and keyboard skip/focus",
+    "/migration-intake/: 320px layout and keyboard skip/focus",
+    "/migration-readiness/: 320px layout and keyboard skip/focus",
+    "Preserved article search/filter behavior",
+    "Unknown route retains noindex 404",
+    "Missing articles/services and explicit index.html paths render without hydration errors",
+    "Footer year rollover hydrates without error",
+    "All 24 public routes readable with JavaScript disabled"
+  ]
+}

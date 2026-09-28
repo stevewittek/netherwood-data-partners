@@ -15,12 +15,78 @@ export type Service = {
 };
 
 export const servicesMetadata = {
-  title: "Data migration & modernization services | Netherwood Data Partners",
+  title: "Software, Data & Support Services | Netherwood Data Partners",
   description:
-    "Move business data out of aging software and into the platform you choose. Migration, legacy systems assessment and database engineering in NJ and beyond.",
+    "Software support, database engineering, connected workflows and careful migrations. Personal technical services for New Jersey businesses.",
 };
 
 export const services: Service[] = [
+  {
+    slug: "software-systems-support",
+    title: "Software & systems support",
+    description:
+      "Hands-on help with business applications, data problems, reporting and vendor coordination. A focused fix or ongoing support with an agreed scope.",
+    headline: "A real person to help work through the problem.",
+    intro:
+      "Your software is part of the working day. When an application misbehaves, a report stops making sense or a process depends on one person’s workaround, Netherwood can help investigate and agree a practical next step.",
+    situation: "The system is running. The work is getting stuck.",
+    situations: [
+      "Staff keep working around the same application problem.",
+      "Your software vendor needs technical details nobody has time to gather.",
+      "A report or integration is producing inconsistent information.",
+      "You need help after a software change, without hiring a full-time specialist.",
+    ],
+    approach: [
+      {
+        title: "Listen and reproduce",
+        detail:
+          "Understand what the person is trying to do, gather the relevant evidence and identify a repeatable example where possible.",
+      },
+      {
+        title: "Find the responsible layer",
+        detail:
+          "Check the application, database, data flow and vendor boundary. Explain what can be addressed directly and what needs the product provider.",
+      },
+      {
+        title: "Agree and check the change",
+        detail:
+          "Scope the work, access and recovery steps before making changes. Check the result against the business task with your staff.",
+      },
+      {
+        title: "Document and support",
+        detail:
+          "Leave clear notes and agree any follow-up or recurring support responsibilities.",
+      },
+    ],
+    deliverables: [
+      "A documented problem and findings",
+      "Agreed application or database fixes",
+      "Technical evidence for a vendor support case",
+      "Workflow and reporting improvements where scoped",
+      "Handover notes and agreed follow-up",
+    ],
+    technical:
+      "Database engineering, SQL Server troubleshooting, reporting, imports, integrations and legacy application investigation provide the technical foundation. Work begins with the actual environment and available access.",
+    boundary:
+      "Netherwood is an independent consultancy, not the software vendor. Product licensing, proprietary code changes and vendor-only fixes remain with the provider. Support hours, access and response expectations are agreed for each engagement; no 24/7 coverage is implied.",
+    questions: [
+      {
+        question: "Can we start with one issue?",
+        answer:
+          "Yes. A focused investigation can be the right starting point. We agree the problem, access, scope and fee before paid work begins.",
+      },
+      {
+        question: "Can you work with our software company?",
+        answer:
+          "Yes. Netherwood can help gather technical evidence, explain data and system dependencies, and coordinate agreed work with your existing provider. That does not imply a formal vendor partnership.",
+      },
+    ],
+    related: [
+      "database-engineering",
+      "workflow-automation",
+      "legacy-systems-assessment",
+    ],
+  },
   {
     slug: "data-migration",
     title: "Data migration",

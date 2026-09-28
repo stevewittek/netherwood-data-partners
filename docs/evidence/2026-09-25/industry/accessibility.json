@@ -1,0 +1,22 @@
+[
+  {
+    "width": 1440,
+    "path": "/",
+    "violations": []
+  },
+  {
+    "width": 1440,
+    "path": "/services/",
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "/",
+    "violations": []
+  },
+  {
+    "width": 390,
+    "path": "/services/",
+    "violations": []
+  }
+]

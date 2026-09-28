@@ -225,6 +225,9 @@ export default function ContactForm() {
           <label htmlFor="contact-service">What can we help with?</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
+            <option value="Software or systems support">
+              Software or systems support
+            </option>
             <option value="Data migration or software change">
               Data migration or software change
             </option>

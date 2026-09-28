@@ -1,5 +1,16 @@
 # Netherwood Data Partners site architecture
 
+## Community and support revision — September 25, 2026 follow-up
+
+Home/About/Services now introduce software support, data services, integrations
+and migrations with local community imagery. `/services/software-systems-support/`
+is generated from the existing service catalog by the same static publishing
+pipeline. There are 24 public sitemap routes with the current ten articles.
+The shared general contact CTA goes to `/#contact`; migration intake and
+readiness remain available for planned replacements. The only form change is
+one added software-support option. Transport, attribution and publication are
+preserved. No new service, hosting provider or runtime dependency is introduced.
+
 ## Migration revision — September 25, 2026
 
 The owner requested migration/modernization positioning and public lead-generation

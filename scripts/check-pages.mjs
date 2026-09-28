@@ -14,6 +14,7 @@ assert.equal(snapshot.articles.length, manifest.articleCount);
 assert.equal(manifest.chatEnabled, false);
 const origin = "https://netherwooddatapartners.com";
 const serviceSlugs = [
+  "software-systems-support",
   "data-migration",
   "legacy-application-modernization",
   "business-software-migration",
