@@ -63,10 +63,10 @@ export const products: Product[] = [
       "SQL Server Query Store is valuable for investigating regressions and understanding workload behavior, but its history can age out as retention and storage limits are reached. QueryVault explores a practical way to archive that history in a purpose-built database.",
       "The project combines T-SQL, a SQL Server database-project structure, partitioned storage, columnstore compression, retention controls, SQL Server Agent automation and PowerShell deployment helpers. It is an active engineering project and should be reviewed and tested outside business-critical environments before use.",
     ],
-    platforms: ["SQL Server 2016+", "SQL Server Agent (optional)", "PowerShell"],
+    platforms: ["SQL Server", "SQL Server Agent (optional)", "PowerShell"],
     githubUrl: "https://github.com/stevewittek/Databases",
     docsUrl:
-      "https://github.com/stevewittek/Databases/blob/master/QueryVault/README.md",
+      "https://github.com/stevewittek/Databases/blob/master/README.md",
     productUrl: "/products/queryvault/",
     openSource: false,
     sourceAvailable: true,
@@ -95,24 +95,24 @@ export const products: Product[] = [
       },
     ],
     availabilityNote:
-      "The source repository is public for review. No packaged download or supported production release is advertised, and no open-source license has been selected.",
+      "The source repository is public for review. The current archive workflow targets databases on the same SQL Server instance. No packaged download or supported production release is advertised, and no open-source license has been selected.",
     support:
       "Questions about the project or a database engineering engagement can be sent to Netherwood Data Partners.",
   },
   {
     id: "index-maintenance-visualizer",
     slug: "sql-server-index-maintenance-visualizer",
-    name: "SQL Server Index Maintenance Visualizer",
-    shortName: "Index Maintenance Visualizer",
+    name: "PageMover",
+    shortName: "PageMover",
     status: "Development preview",
     category: "SQL Server utility",
     summary:
-      "A visual interface for exploring SQL Server index fragmentation and maintenance concepts, inspired by the classic disk defragmenter display.",
+      "A local SQL Server index and heap analysis and maintenance utility with a classic Windows defragmenter-inspired interface.",
     description: [
-      "This work in progress explores a more visual way to understand SQL Server index fragmentation and index-maintenance activity. Its interface takes inspiration from the familiar block display of the classic Windows disk defragmenter.",
+      "PageMover is a Windows developer preview for inspecting SQL Server indexes and heaps, reviewing maintenance SQL, and comparing before-and-after statistics. Its interface takes inspiration from the classic Windows disk defragmenter.",
       "The project is currently a development preview. Public source, documentation and downloads will only be linked here when they are ready and genuinely available.",
     ],
-    platforms: ["SQL Server"],
+    platforms: ["Windows", "SQL Server"],
     productUrl: "/products/sql-server-index-maintenance-visualizer/",
     openSource: false,
     featured: true,
@@ -121,17 +121,17 @@ export const products: Product[] = [
       {
         title: "Visual fragmentation overview",
         detail:
-          "Represent index fragmentation concepts in a format that is easier to scan and discuss.",
+          "Inspect index and heap statistics, with optional physical-page views and a synthetic demonstration mode.",
       },
       {
-        title: "Maintenance context",
+        title: "Review before maintenance",
         detail:
-          "Connect visual states with the inspection and maintenance decisions a database professional makes.",
+          "Review the SQL plan before enabling maintenance and inspect measured before-and-after results.",
       },
       {
-        title: "SQL Server focus",
+        title: "Local developer preview",
         detail:
-          "Keep the experience grounded in SQL Server terminology rather than borrowing disk-maintenance rules literally.",
+          "An unsigned Windows preview intended for lab and development use; public distribution is not advertised.",
       },
     ],
     availabilityNote:

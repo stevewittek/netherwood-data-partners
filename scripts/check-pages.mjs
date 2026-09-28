@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { products } from "../app/content/products.ts";
 import { readFile, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
@@ -23,11 +24,7 @@ const serviceSlugs = [
   "workflow-automation",
   "practical-ai",
 ];
-const productSlugs = [
-  "queryvault",
-  "sql-server-index-maintenance-visualizer",
-  "garmin-ai-connector",
-];
+const productSlugs = products.map((product) => product.slug);
 const expected = [
   "/",
   "/about/",
@@ -138,6 +135,17 @@ for (const route of expected) {
     assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
   }
   if (route.startsWith("/products/") && route !== "/products/") {
+    const product = products.find((entry) => entry.productUrl === route);
+    assert.ok(product, 'Catalog entry ' + route);
+    assert.ok(html.includes(product.name), 'Product name ' + route);
+    assert.ok(html.includes(product.status), 'Product status ' + route);
+    for (const key of ['githubUrl', 'docsUrl', 'downloadUrl']) {
+      if (product[key]) {
+        assert.equal(new URL(product[key]).protocol, 'https:');
+        assert.ok(html.includes(product[key]), 'Configured link ' + route + ': ' + key);
+      }
+    }
+    if (!product.downloadUrl) assert.ok(!html.includes('>Download<'), 'Unavailable download ' + route);
     const data = JSON.parse(
       /<script[^>]+id="product-structured-data"[^>]*>(.*?)<\/script>/s.exec(
         html,
