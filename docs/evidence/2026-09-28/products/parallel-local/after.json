@@ -57,7 +57,7 @@
       "animations": 0
     },
     {
-      "path": "/products/sql-server-index-maintenance-visualizer/",
+      "path": "/products/sql-server-index-visualizer/",
       "width": 1440,
       "scrollWidth": 1440,
       "h1": 1,
@@ -65,7 +65,7 @@
       "animations": 0
     },
     {
-      "path": "/products/garmin-ai-connector/",
+      "path": "/products/activity-data-connector/",
       "width": 1440,
       "scrollWidth": 1440,
       "h1": 1,
@@ -137,7 +137,7 @@
       "animations": 0
     },
     {
-      "path": "/products/sql-server-index-maintenance-visualizer/",
+      "path": "/products/sql-server-index-visualizer/",
       "width": 768,
       "scrollWidth": 768,
       "h1": 1,
@@ -145,7 +145,7 @@
       "animations": 0
     },
     {
-      "path": "/products/garmin-ai-connector/",
+      "path": "/products/activity-data-connector/",
       "width": 768,
       "scrollWidth": 768,
       "h1": 1,
@@ -217,7 +217,7 @@
       "animations": 0
     },
     {
-      "path": "/products/sql-server-index-maintenance-visualizer/",
+      "path": "/products/sql-server-index-visualizer/",
       "width": 390,
       "scrollWidth": 390,
       "h1": 1,
@@ -225,7 +225,7 @@
       "animations": 0
     },
     {
-      "path": "/products/garmin-ai-connector/",
+      "path": "/products/activity-data-connector/",
       "width": 390,
       "scrollWidth": 390,
       "h1": 1,

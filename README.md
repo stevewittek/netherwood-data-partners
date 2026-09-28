@@ -82,7 +82,7 @@ The reusable catalog is `app/content/products.ts`. Cards and details live in
 `app/components/ProductPages.tsx`; `app/products/` supplies the Vinext routes.
 The Pages generator creates the same routes and includes them in the sitemap.
 Add only verified public source/docs/distribution links. Empty fields do not
-render controls or sections. Run `node scripts/qa-products.mjs` against the
+render controls or sections. Run `node --experimental-strip-types scripts/qa-products.mjs` against the
 local preview for responsive, navigation and no-JavaScript acceptance; set
 `NDP_PLAYWRIGHT_MODULE` to an existing Playwright module URL when needed.
 See `docs/PRODUCTS_AUDIT.md` and `docs/PRODUCTS_VERIFICATION.md`.

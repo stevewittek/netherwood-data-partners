@@ -1,3 +1,13 @@
+## Voyager 1 reconciliation follow-up — September 28, 2026
+
+The final safety fetch detected Voyager 2 main 7d370c3 and the merged PR #17.
+Parallel local work was preserved in three commits, then reconciled in a normal
+merge f74107b. This branch keeps the published routes and product design. The
+follow-up supplies verified PageMover naming/scope, the current QueryVault root
+README, shared catalog-driven route acceptance and before/after evidence.
+Both machines' histories are retained; the primary and publishing-desk checkouts
+are untouched. See PRODUCTS_AUDIT.md and PRODUCTS_VERIFICATION.md.
+
 ## Consulting + software products integration — September 28, 2026
 
 The site now presents Netherwood Data Partners as one company with two connected

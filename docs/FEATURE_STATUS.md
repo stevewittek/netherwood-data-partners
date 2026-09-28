@@ -1,10 +1,10 @@
-## Products review candidate — September 28, 2026
+## Products reconciliation — September 28, 2026
 
-PR #17 adds QueryVault, PageMover and the activity connector to a real Products
-area. This supersedes the historical Tools-route plan for the candidate. The
-source/license/distribution boundaries are in PRODUCTS_AUDIT.md. Product pages
-are informational; no unavailable download, store or private repository is
-linked. Production status still depends on merging and deploying PR #17.
+Voyager 2 published the consulting and software expansion on main at 7d370c3.
+PR #17 is merged. This follow-up preserves parallel local work, adopts the
+published product architecture, verifies PageMover and QueryVault details, and
+adds repeatable catalog-driven acceptance checks. See PRODUCTS_AUDIT.md and
+PRODUCTS_VERIFICATION.md for evidence and release boundaries.
 
 # Current feature register
 

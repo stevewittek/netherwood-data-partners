@@ -13,7 +13,7 @@ The primary checkout on D: has untracked `.vs/`. The separate publishing-desk
 checkout has edits to `app/admin/ArticlesAdmin.tsx`, `app/admin/admin-utils.ts`
 and `test/admin-publishing-desk.test.ts`. Those checkouts and their work remain
 untouched. No reset, clean, stash discard, forced checkout or force push occurred.
-PR #17 is the existing review workflow; main is checked out in the primary
+PR #17 was the initial review workflow; main is checked out in the primary
 checkout and should not be rewritten or switched by this task.
 
 ## Existing site and generated assets
@@ -66,8 +66,8 @@ sitemap use that catalog. Optional sections render only for populated values.
 
 - `/products/`
 - `/products/queryvault/`
-- `/products/sql-server-index-visualizer/` — current display name PageMover
-- `/products/activity-data-connector/` — display name RunBridge AI may change
+- `/products/sql-server-index-maintenance-visualizer/` — current display name PageMover
+- `/products/garmin-ai-connector/` — display name RunBridge AI may change
 - `/privacy/` — website data handling; no completed app privacy policy implied
 
 The activity route is independent of the working product name. New products
@@ -77,13 +77,12 @@ consulting identity are retained.
 
 ## Release and coordination
 
-Push focused commits to the existing feature branch and update PR #17. GitHub
+The final fetch found main advanced to 7d370c3 while local validation was running. PR #17 was merged and Voyager 2 published overlapping product work with passing CI/Pages runs. Local work was first preserved in 25fb3a5, bf8e6ef and e6379fe, then merged normally in f74107b. The published architecture and routes are retained; the private-project evidence, clearer public availability copy and supplementary validation are consolidated here. A follow-up review uses the existing feature branch. GitHub
 Pages remains the production channel; no competing Sites mirror, DNS change,
 backend exposure, SQL mutation or real contact submission is part of this task.
 A feature-branch push does not deploy production. Merge through the existing
 main workflow after review; that workflow imports the authoritative article
-export and deploys Pages. Before committing/pushing, fetch again and reconcile
-any changes from Voyager 2 rather than overwriting them.
+export and deploys Pages. The pre-merge local design and acceptance results are retained under evidence/2026-09-28/products/parallel-local; current evidence is recaptured against the resolved implementation.
 
 The separate dirty publishing-desk checkout needs its own review by the owner
 of that work. Product-specific privacy, actual store/distribution links, a

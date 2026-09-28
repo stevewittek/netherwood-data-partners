@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {products} from '../app/content/products.ts';
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 const {chromium} = await import(process.env.NDP_PLAYWRIGHT_MODULE || 'playwright');
@@ -11,7 +12,7 @@ const allPaths = baseline ? ['/', '/about/', '/services/', '/articles/', '/artic
 // Select a real existing article instead of guessing a slug.
 if (baseline) allPaths[4] = '/articles/'+JSON.parse(await readFile('pages-site/articles-snapshot.json','utf8')).articles[0].slug+'/';
 const sampleArticle = '/articles/'+JSON.parse(await readFile('pages-site/articles-snapshot.json','utf8')).articles[0].slug+'/';
-const paths = baseline ? allPaths : ['/', '/about/', '/services/', '/articles/', sampleArticle, '/products/', '/products/queryvault/', '/products/sql-server-index-visualizer/', '/products/activity-data-connector/', '/privacy/'];
+const paths = baseline ? allPaths : ['/', '/about/', '/services/', '/articles/', sampleArticle, '/products/', ...products.map(product=>product.productUrl), '/privacy/'];
 const browser = await chromium.launch({channel:'msedge',headless:true});
 const report = {renders:[], errors:[], checks:[]};
 try {

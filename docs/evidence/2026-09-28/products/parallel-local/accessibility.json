@@ -6,7 +6,7 @@
     "incomplete": [
       {
         "id": "aria-prohibited-attr",
-        "count": 5
+        "count": 2
       },
       {
         "id": "color-contrast",
@@ -50,14 +50,6 @@
     "violations": [],
     "incomplete": [
       {
-        "id": "aria-prohibited-attr",
-        "count": 3
-      },
-      {
-        "id": "color-contrast",
-        "count": 1
-      },
-      {
         "id": "link-in-text-block",
         "count": 1
       }
@@ -69,9 +61,16 @@
     "violations": [],
     "incomplete": [
       {
-        "id": "aria-prohibited-attr",
+        "id": "link-in-text-block",
         "count": 1
-      },
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/sql-server-index-visualizer/",
+    "violations": [],
+    "incomplete": [
       {
         "id": "link-in-text-block",
         "count": 1
@@ -80,28 +79,9 @@
   },
   {
     "width": 1440,
-    "path": "/products/sql-server-index-maintenance-visualizer/",
+    "path": "/products/activity-data-connector/",
     "violations": [],
     "incomplete": [
-      {
-        "id": "aria-prohibited-attr",
-        "count": 1
-      },
-      {
-        "id": "link-in-text-block",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "width": 1440,
-    "path": "/products/garmin-ai-connector/",
-    "violations": [],
-    "incomplete": [
-      {
-        "id": "aria-prohibited-attr",
-        "count": 1
-      },
       {
         "id": "link-in-text-block",
         "count": 1
@@ -126,7 +106,7 @@
     "incomplete": [
       {
         "id": "aria-prohibited-attr",
-        "count": 5
+        "count": 2
       },
       {
         "id": "color-contrast",
@@ -170,14 +150,6 @@
     "violations": [],
     "incomplete": [
       {
-        "id": "aria-prohibited-attr",
-        "count": 3
-      },
-      {
-        "id": "color-contrast",
-        "count": 1
-      },
-      {
         "id": "link-in-text-block",
         "count": 1
       }
@@ -189,9 +161,16 @@
     "violations": [],
     "incomplete": [
       {
-        "id": "aria-prohibited-attr",
+        "id": "link-in-text-block",
         "count": 1
-      },
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/sql-server-index-visualizer/",
+    "violations": [],
+    "incomplete": [
       {
         "id": "link-in-text-block",
         "count": 1
@@ -200,28 +179,9 @@
   },
   {
     "width": 390,
-    "path": "/products/sql-server-index-maintenance-visualizer/",
+    "path": "/products/activity-data-connector/",
     "violations": [],
     "incomplete": [
-      {
-        "id": "aria-prohibited-attr",
-        "count": 1
-      },
-      {
-        "id": "link-in-text-block",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "width": 390,
-    "path": "/products/garmin-ai-connector/",
-    "violations": [],
-    "incomplete": [
-      {
-        "id": "aria-prohibited-attr",
-        "count": 1
-      },
       {
         "id": "link-in-text-block",
         "count": 1
