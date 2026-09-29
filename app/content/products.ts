@@ -30,6 +30,7 @@ export type Product = {
   features: ProductFeature[];
   availabilityNote?: string;
   namingNote?: string;
+  setup?: { title: string; notes: string[] };
   privacy?: string[];
   support?: string;
   screenshots?: {
@@ -42,6 +43,8 @@ export type Product = {
   releaseNotes?: { title: string; url: string }[];
   relatedArticles?: { title: string; url: string }[];
 };
+
+export const motionRelayName = "Motion Relay";
 
 export const productsMetadata = {
   title: "Data Products, Apps & Developer Tools | Netherwood",
@@ -142,48 +145,60 @@ export const products: Product[] = [
   {
     id: "garmin-ai-connector",
     slug: "garmin-ai-connector",
-    name: "RunBridge AI",
-    shortName: "RunBridge",
+    name: motionRelayName,
+    shortName: motionRelayName,
     status: "In development",
-    category: "Data connector",
+    category: "Running data companion",
     summary:
-      "A Garmin, iPhone and ChatGPT-connected data experience being developed to make personal activity data easier to use in conversation.",
+      "An Apple-first running companion in development, bringing selected Garmin watch data into a clear phone view and an optional assistant connection.",
     description: [
-      "RunBridge AI is being developed as a connection between Garmin activity or watch data, an iPhone-centered experience and ChatGPT-assisted conversation. The aim is to make a person’s own activity information easier to bring into useful questions and follow-up workflows.",
-      "The product is not publicly available. Installation steps, supported devices, store links and detailed technical claims will be added only after the implementation and release path have been verified.",
+      `${motionRelayName} is an Apple-first companion for people who want useful Garmin run information without digging through technical screens. The private iPhone preview puts current run metrics and connection state within easy reach.`,
+      "A native Android companion is in development, with physical watch testing and feature parity still ahead. The optional assistant connection is being validated through a private setup flow.",
+      "The everyday experience is being shaped around a clear starting point for a run. Developer simulation and diagnostics are reserved for separate team builds and are excluded from public builds.",
     ],
-    platforms: ["iPhone", "Garmin activity data", "ChatGPT (planned)"],
+    platforms: ["iPhone preview", "Android parity planned", "Garmin watch data"],
     productUrl: "/products/garmin-ai-connector/",
     openSource: false,
     featured: true,
     featureHeading: "Development direction",
     features: [
       {
-        title: "Activity-data connection",
+        title: "Run information at a glance",
         detail:
-          "Bring selected Garmin activity or watch data into an experience designed for useful questions.",
+          "Put current run metrics and connection state first, with more detail available when it is useful.",
       },
       {
-        title: "iPhone-centered use",
+        title: "Garmin connection help",
         detail:
-          "Shape the product around a practical mobile flow rather than a desktop-only integration.",
+          "Help private testers choose a compatible watch, check its connection and understand when sharing is enabled.",
       },
       {
-        title: "ChatGPT-connected experience",
+        title: "Optional assistant connection",
         detail:
-          "Explore ChatGPT-connected access while keeping data handling and user control central to the implementation.",
+          "The private connector handles selected, short-lived run data. Public availability and supported integrations will be documented after verification.",
+      },
+      {
+        title: "Android parity",
+        detail:
+          "A native Android companion is in development; physical Garmin testing and feature parity remain to be validated.",
       },
     ],
     availabilityNote:
-      "In development. There are no App Store, Garmin Connect IQ, public repository or download links yet.",
-    namingNote:
-      "RunBridge AI is a working product name and may change before release.",
+      "Private development. There is no public App Store, Google Play or Garmin Connect IQ listing, download or paid subscription. Consumer accounts and additional integrations are planned, not available services today.",
+    setup: {
+      title: "Garmin connection and setup",
+      notes: [
+        "General installation is not available. A private test requires a compatible Garmin watch, a paired phone and the preview companion build.",
+        "For an approved test, pair the watch through Garmin Connect, then use the phone companion’s Settings to select the watch and check connection and sharing status. The watch data field must be installed and active before live run data can appear.",
+        "If the connection stalls, check the in-app status and that the watch data field is active. Netherwood can help with setup through the business contact below.",
+      ],
+    },
     privacy: [
       "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
       "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately.",
     ],
     support:
-      "Until a dedicated support system exists, product questions can be sent to Netherwood Data Partners.",
+      "Questions about private preview setup or future availability can be sent to Netherwood Data Partners. Public setup guidance will follow verified distribution.",
   },
 ];
 

@@ -25,8 +25,7 @@ function ProductVisual({ product }: { product: Product }) {
   const visualCode = {
     queryvault: "QV",
     "index-maintenance-visualizer": "PM",
-    "garmin-ai-connector": "RB",
-  }[product.id] ?? product.name.slice(0, 2).toUpperCase();
+  }[product.id] ?? product.name.split(/\s+/).map((word) => word[0]).join("").slice(0, 3).toUpperCase();
   return (
     <div
       className={`product-visual product-visual-${product.id}`}
@@ -295,6 +294,19 @@ export function ProductDetailPage({ slug }: { slug: string }) {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+      {product.setup && product.setup.notes.length > 0 && (
+        <section className="product-detail-overview studio-wrap">
+          <div>
+            <p className="eyebrow">Getting started</p>
+            <h2>{product.setup.title}</h2>
+          </div>
+          <div className="product-prose">
+            {product.setup.notes.map((note) => (
+              <p key={note}>{note}</p>
+            ))}
           </div>
         </section>
       )}

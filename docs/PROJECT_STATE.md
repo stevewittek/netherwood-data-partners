@@ -1,3 +1,7 @@
+## Motion Relay website identity — September 29, 2026
+
+Motion Relay is the approved customer-facing name for Netherwood Data Partners' Garmin-connected running companion. The existing `/products/garmin-ai-connector/` route, technical product ID and all unrelated services remain stable. The central catalog now supplies the name to cards, detail, metadata, schema and privacy copy. The Apple-first private preview and planned Android parity are described without claiming public installation, subscriptions or finished integrations. The private connector's legacy hostname and OAuth identifiers are compatibility paths, not website links. See [Motion Relay website audit](MOTION_RELAY_WEBSITE_AUDIT.md) for Cloudflare boundaries and owner follow-ups.
+
 ## Voyager 1 reconciliation follow-up — September 28, 2026
 
 The final safety fetch detected Voyager 2 main 7d370c3 and the merged PR #17.
