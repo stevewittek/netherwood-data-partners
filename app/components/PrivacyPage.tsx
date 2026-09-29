@@ -1,4 +1,5 @@
 import ChatWidget from "../ChatWidget";
+import { motionRelayName } from "../content/products";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import "../products.css";
 
@@ -57,7 +58,7 @@ export default function PrivacyPage() {
           </p>
         </article>
         <article>
-          <p className="eyebrow">RunBridge AI direction</p>
+          <p className="eyebrow">{motionRelayName} direction</p>
           <h2>No sale of activity data or targeted advertising</h2>
           <p>
             The current direction for the Garmin-connected product is not to

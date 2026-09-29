@@ -1,3 +1,11 @@
+## Products reconciliation — September 28, 2026
+
+Voyager 2 published the consulting and software expansion on main at 7d370c3.
+PR #17 is merged. This follow-up preserves parallel local work, adopts the
+published product architecture, verifies PageMover and QueryVault details, and
+adds repeatable catalog-driven acceptance checks. See PRODUCTS_AUDIT.md and
+PRODUCTS_VERIFICATION.md for evidence and release boundaries.
+
 # Current feature register
 
 Reconciled September 19, 2026 against production source `29357a1`, the live

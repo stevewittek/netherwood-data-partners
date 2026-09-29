@@ -24,9 +24,8 @@ function ProductVisual({ product }: { product: Product }) {
     );
   const visualCode = {
     queryvault: "QV",
-    "index-maintenance-visualizer": "IM",
-    "garmin-ai-connector": "RB",
-  }[product.id] ?? product.name.slice(0, 2).toUpperCase();
+    "index-maintenance-visualizer": "PM",
+  }[product.id] ?? product.name.split(/\s+/).map((word) => word[0]).join("").slice(0, 3).toUpperCase();
   return (
     <div
       className={`product-visual product-visual-${product.id}`}
@@ -155,9 +154,7 @@ export function ProductsIndex() {
             that show up in that work.
           </p>
           <p>
-            This is a working portfolio, not a pretend catalog. Some projects
-            have public source today; others remain clearly marked development
-            previews until there is something real to install or use.
+            Some projects offer public source today; others are development previews. Each product page explains its current scope and availability.
           </p>
           <div className="products-hero-actions">
             <a className="button button-primary" href="#product-list">
@@ -176,9 +173,7 @@ export function ProductsIndex() {
             <h2>Database tools, utilities and connectors.</h2>
           </div>
           <p>
-            Availability and links are shown only when they exist. Development
-            status is part of the product record, so each page can grow without
-            changing the site structure.
+            Explore the current scope, platforms and availability of each project. Public source, documentation and downloads are linked as they become ready to share.
           </p>
         </div>
         <ProductGrid />
@@ -270,10 +265,10 @@ export function ProductDetailPage({ slug }: { slug: string }) {
             <p key={paragraph}>{paragraph}</p>
           ))}
           {product.availabilityNote && (
-            <aside className="product-availability">
+            <div className="product-availability" role="note" aria-label="Availability">
               <strong>Availability</strong>
               <p>{product.availabilityNote}</p>
-            </aside>
+            </div>
           )}
         </div>
       </section>
@@ -299,6 +294,19 @@ export function ProductDetailPage({ slug }: { slug: string }) {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+      {product.setup && product.setup.notes.length > 0 && (
+        <section className="product-detail-overview studio-wrap">
+          <div>
+            <p className="eyebrow">Getting started</p>
+            <h2>{product.setup.title}</h2>
+          </div>
+          <div className="product-prose">
+            {product.setup.notes.map((note) => (
+              <p key={note}>{note}</p>
+            ))}
           </div>
         </section>
       )}

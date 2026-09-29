@@ -1,0 +1,452 @@
+[
+  {
+    "width": 1440,
+    "path": "/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 5
+      },
+      {
+        "id": "color-contrast",
+        "count": 23
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/about/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/articles/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 16
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 3
+      },
+      {
+        "id": "color-contrast",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/queryvault/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\">",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/sql-server-index-maintenance-visualizer/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\"><strong>Availability</strong><p>Development preview. There is no public repository, release date or download listed at this time.</p></aside>",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/products/garmin-ai-connector/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\"><strong>Availability</strong><p>In development. There are no App Store, Garmin Connect IQ, public repository or download links yet.</p></aside>",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/privacy/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 5
+      },
+      {
+        "id": "color-contrast",
+        "count": 23
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/about/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/articles/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 16
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 3
+      },
+      {
+        "id": "color-contrast",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/queryvault/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\">",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/sql-server-index-maintenance-visualizer/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\"><strong>Availability</strong><p>Development preview. There is no public repository, release date or download listed at this time.</p></aside>",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/products/garmin-ai-connector/",
+    "violations": [
+      {
+        "id": "landmark-complementary-is-top-level",
+        "impact": "moderate",
+        "tags": [
+          "cat.semantics",
+          "best-practice"
+        ],
+        "description": "Ensure the complementary landmark or aside is at top level",
+        "help": "Aside should not be contained in another landmark",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside class=\"product-availability\"><strong>Availability</strong><p>In development. There are no App Store, Garmin Connect IQ, public repository or download links yet.</p></aside>",
+            "target": [
+              "aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "count": 1
+      },
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "path": "/privacy/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "link-in-text-block",
+        "count": 1
+      }
+    ]
+  }
+]

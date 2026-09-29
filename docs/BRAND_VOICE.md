@@ -1,11 +1,12 @@
-## Latest owner direction: industry systems
+## Latest owner direction: cross-industry consulting
 
-Use equipment and recognizable work in established manufacturing, distribution
-and medical offices, with legacy-to-modern examples and practical AI assistance.
-The owner explicitly replaced the staged-people direction. Generated scenes
-are illustrative concepts, not actual clients or delivered product screenshots.
-Local station imagery and broader software/data/support offerings remain.
-See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+Lead Home with the business problem and consulting work: mapping legacy data,
+moving records safely, connecting systems and creating reporting people can use.
+Do not let one factory, warehouse, shop or software product define the company.
+Law firms, medical practices, distributors and other businesses are examples,
+not clients. Generated people and interfaces are illustrative concepts, never
+evidence of delivered work or guaranteed results. Keep products on their
+dedicated page. See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
 
 # Netherwood Data Partners brand voice
 

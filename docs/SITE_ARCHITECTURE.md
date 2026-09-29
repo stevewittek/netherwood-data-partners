@@ -21,7 +21,7 @@ catalog entry, not duplicated card markup.
 
 The product slugs are `queryvault`,
 `sql-server-index-maintenance-visualizer` and the name-neutral
-`garmin-ai-connector`. RunBridge AI is display configuration, not routing
+`garmin-ai-connector`. Motion Relay is display configuration, not routing
 architecture. Product pages support screenshots, documentation, platforms,
 privacy, support, GitHub/download destinations, release notes and related
 articles, but render only populated sections. Today only QueryVault has a

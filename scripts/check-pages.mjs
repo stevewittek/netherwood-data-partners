@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile, stat } from "node:fs/promises";
+import { motionRelayName, products } from "../app/content/products.ts";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
 const root = resolve(process.argv[2] || "pages-dist");
@@ -23,11 +24,7 @@ const serviceSlugs = [
   "workflow-automation",
   "practical-ai",
 ];
-const productSlugs = [
-  "queryvault",
-  "sql-server-index-maintenance-visualizer",
-  "garmin-ai-connector",
-];
+const productSlugs = products.map((product) => product.slug);
 const expected = [
   "/",
   "/about/",
@@ -109,6 +106,7 @@ async function checkUrl(value, currentRoute = "/") {
 }
 for (const route of expected) {
   const html = await readFile(resolve(root, `.${route}`, "index.html"), "utf8");
+  assert.doesNotMatch(html, /\b(?:RunBridge(?: AI)?|One Bridge|PaceRelay)\b/i, `Obsolete customer name ${route}`);
   const title = /<title>(.*?)<\/title>/s.exec(html)?.[1];
   assert.ok(title && !titles.has(title), `Missing/duplicate title ${route}`);
   titles.add(title);
@@ -138,12 +136,31 @@ for (const route of expected) {
     assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
   }
   if (route.startsWith("/products/") && route !== "/products/") {
+    const product = products.find((entry) => entry.productUrl === route);
+    assert.ok(product, 'Catalog entry ' + route);
+    assert.ok(html.includes(product.name), 'Product name ' + route);
+    assert.ok(html.includes(product.status), 'Product status ' + route);
+    for (const key of ['githubUrl', 'docsUrl', 'downloadUrl']) {
+      if (product[key]) {
+        assert.equal(new URL(product[key]).protocol, 'https:');
+        assert.ok(html.includes(product[key]), 'Configured link ' + route + ': ' + key);
+      }
+    }
+    if (!product.downloadUrl) assert.ok(!html.includes('>Download<'), 'Unavailable download ' + route);
     const data = JSON.parse(
       /<script[^>]+id="product-structured-data"[^>]*>(.*?)<\/script>/s.exec(
         html,
       )?.[1],
     );
     assert.equal(data["@graph"][0]["@type"], "SoftwareApplication");
+    assert.equal(data["@graph"][0].name, product.name);
+    assert.ok(title.includes(product.name), `Product title ${route}`);
+    if (product.id === "garmin-ai-connector") {
+      assert.equal(product.name, motionRelayName);
+      assert.ok(html.includes(`property="og:title" content="${motionRelayName} | Netherwood Data Partners"`));
+      assert.ok(html.includes(`name="twitter:title" content="${motionRelayName} | Netherwood Data Partners"`));
+      assert.ok(html.includes(product.setup?.title ?? "Garmin connection and setup"));
+    }
     assert.equal(
       data["@graph"][0].creator.name,
       "Netherwood Data Partners",
@@ -177,6 +194,11 @@ for (const route of expected) {
     if (article.featuredImage) await checkUrl(article.featuredImage);
   }
   checks.push(route);
+}
+for (const file of await readdir(resolve(root, "assets"))) {
+  if (!file.endsWith(".js")) continue;
+  const javascript = await readFile(resolve(root, "assets", file), "utf8");
+  assert.doesNotMatch(javascript, /\b(?:RunBridge(?: AI)?|One Bridge|PaceRelay)\b/i, `Obsolete bundled name ${file}`);
 }
 assert.ok(
   documents

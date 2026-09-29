@@ -30,6 +30,7 @@ export type Product = {
   features: ProductFeature[];
   availabilityNote?: string;
   namingNote?: string;
+  setup?: { title: string; notes: string[] };
   privacy?: string[];
   support?: string;
   screenshots?: {
@@ -42,6 +43,8 @@ export type Product = {
   releaseNotes?: { title: string; url: string }[];
   relatedArticles?: { title: string; url: string }[];
 };
+
+export const motionRelayName = "Motion Relay";
 
 export const productsMetadata = {
   title: "Data Products, Apps & Developer Tools | Netherwood",
@@ -63,10 +66,10 @@ export const products: Product[] = [
       "SQL Server Query Store is valuable for investigating regressions and understanding workload behavior, but its history can age out as retention and storage limits are reached. QueryVault explores a practical way to archive that history in a purpose-built database.",
       "The project combines T-SQL, a SQL Server database-project structure, partitioned storage, columnstore compression, retention controls, SQL Server Agent automation and PowerShell deployment helpers. It is an active engineering project and should be reviewed and tested outside business-critical environments before use.",
     ],
-    platforms: ["SQL Server 2016+", "SQL Server Agent (optional)", "PowerShell"],
+    platforms: ["SQL Server", "SQL Server Agent (optional)", "PowerShell"],
     githubUrl: "https://github.com/stevewittek/Databases",
     docsUrl:
-      "https://github.com/stevewittek/Databases/blob/master/QueryVault/README.md",
+      "https://github.com/stevewittek/Databases/blob/master/README.md",
     productUrl: "/products/queryvault/",
     openSource: false,
     sourceAvailable: true,
@@ -95,24 +98,24 @@ export const products: Product[] = [
       },
     ],
     availabilityNote:
-      "The source repository is public for review. No packaged download or supported production release is advertised, and no open-source license has been selected.",
+      "The source repository is public for review. The current archive workflow targets databases on the same SQL Server instance. No packaged download or supported production release is advertised, and no open-source license has been selected.",
     support:
       "Questions about the project or a database engineering engagement can be sent to Netherwood Data Partners.",
   },
   {
     id: "index-maintenance-visualizer",
     slug: "sql-server-index-maintenance-visualizer",
-    name: "SQL Server Index Maintenance Visualizer",
-    shortName: "Index Maintenance Visualizer",
+    name: "PageMover",
+    shortName: "PageMover",
     status: "Development preview",
     category: "SQL Server utility",
     summary:
-      "A visual interface for exploring SQL Server index fragmentation and maintenance concepts, inspired by the classic disk defragmenter display.",
+      "A local SQL Server index and heap analysis and maintenance utility with a classic Windows defragmenter-inspired interface.",
     description: [
-      "This work in progress explores a more visual way to understand SQL Server index fragmentation and index-maintenance activity. Its interface takes inspiration from the familiar block display of the classic Windows disk defragmenter.",
+      "PageMover is a Windows developer preview for inspecting SQL Server indexes and heaps, reviewing maintenance SQL, and comparing before-and-after statistics. Its interface takes inspiration from the classic Windows disk defragmenter.",
       "The project is currently a development preview. Public source, documentation and downloads will only be linked here when they are ready and genuinely available.",
     ],
-    platforms: ["SQL Server"],
+    platforms: ["Windows", "SQL Server"],
     productUrl: "/products/sql-server-index-maintenance-visualizer/",
     openSource: false,
     featured: true,
@@ -121,17 +124,17 @@ export const products: Product[] = [
       {
         title: "Visual fragmentation overview",
         detail:
-          "Represent index fragmentation concepts in a format that is easier to scan and discuss.",
+          "Inspect index and heap statistics, with optional physical-page views and a synthetic demonstration mode.",
       },
       {
-        title: "Maintenance context",
+        title: "Review before maintenance",
         detail:
-          "Connect visual states with the inspection and maintenance decisions a database professional makes.",
+          "Review the SQL plan before enabling maintenance and inspect measured before-and-after results.",
       },
       {
-        title: "SQL Server focus",
+        title: "Local developer preview",
         detail:
-          "Keep the experience grounded in SQL Server terminology rather than borrowing disk-maintenance rules literally.",
+          "An unsigned Windows preview intended for lab and development use; public distribution is not advertised.",
       },
     ],
     availabilityNote:
@@ -142,48 +145,60 @@ export const products: Product[] = [
   {
     id: "garmin-ai-connector",
     slug: "garmin-ai-connector",
-    name: "RunBridge AI",
-    shortName: "RunBridge",
+    name: motionRelayName,
+    shortName: motionRelayName,
     status: "In development",
-    category: "Data connector",
+    category: "Running data companion",
     summary:
-      "A Garmin, iPhone and ChatGPT-connected data experience being developed to make personal activity data easier to use in conversation.",
+      "An Apple-first running companion in development, bringing selected Garmin watch data into a clear phone view and an optional assistant connection.",
     description: [
-      "RunBridge AI is being developed as a connection between Garmin activity or watch data, an iPhone-centered experience and ChatGPT-assisted conversation. The aim is to make a person’s own activity information easier to bring into useful questions and follow-up workflows.",
-      "The product is not publicly available. Installation steps, supported devices, store links and detailed technical claims will be added only after the implementation and release path have been verified.",
+      `${motionRelayName} is an Apple-first companion for people who want useful Garmin run information without digging through technical screens. The private iPhone preview puts current run metrics and connection state within easy reach.`,
+      "A native Android companion is in development, with physical watch testing and feature parity still ahead. The optional assistant connection is being validated through a private setup flow.",
+      "The everyday experience is being shaped around a clear starting point for a run. Developer simulation and diagnostics are reserved for separate team builds and are excluded from public builds.",
     ],
-    platforms: ["iPhone", "Garmin activity data", "ChatGPT (planned)"],
+    platforms: ["iPhone preview", "Android parity planned", "Garmin watch data"],
     productUrl: "/products/garmin-ai-connector/",
     openSource: false,
     featured: true,
     featureHeading: "Development direction",
     features: [
       {
-        title: "Activity-data connection",
+        title: "Run information at a glance",
         detail:
-          "Bring selected Garmin activity or watch data into an experience designed for useful questions.",
+          "Put current run metrics and connection state first, with more detail available when it is useful.",
       },
       {
-        title: "iPhone-centered use",
+        title: "Garmin connection help",
         detail:
-          "Shape the product around a practical mobile flow rather than a desktop-only integration.",
+          "Help private testers choose a compatible watch, check its connection and understand when sharing is enabled.",
       },
       {
-        title: "ChatGPT-connected experience",
+        title: "Optional assistant connection",
         detail:
-          "Explore ChatGPT-connected access while keeping data handling and user control central to the implementation.",
+          "The private connector handles selected, short-lived run data. Public availability and supported integrations will be documented after verification.",
+      },
+      {
+        title: "Android parity",
+        detail:
+          "A native Android companion is in development; physical Garmin testing and feature parity remain to be validated.",
       },
     ],
     availabilityNote:
-      "In development. There are no App Store, Garmin Connect IQ, public repository or download links yet.",
-    namingNote:
-      "RunBridge AI is a working product name and may change before release.",
+      "Private development. There is no public App Store, Google Play or Garmin Connect IQ listing, download or paid subscription. Consumer accounts and additional integrations are planned, not available services today.",
+    setup: {
+      title: "Garmin connection and setup",
+      notes: [
+        "General installation is not available. A private test requires a compatible Garmin watch, a paired phone and the preview companion build.",
+        "For an approved test, pair the watch through Garmin Connect, then use the phone companion’s Settings to select the watch and check connection and sharing status. The watch data field must be installed and active before live run data can appear.",
+        "If the connection stalls, check the in-app status and that the watch data field is active. Netherwood can help with setup through the business contact below.",
+      ],
+    },
     privacy: [
       "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
       "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately.",
     ],
     support:
-      "Until a dedicated support system exists, product questions can be sent to Netherwood Data Partners.",
+      "Questions about private preview setup or future availability can be sent to Netherwood Data Partners. Public setup guidance will follow verified distribution.",
   },
 ];
 

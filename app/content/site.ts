@@ -1,8 +1,8 @@
 export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
-  title: "Data Consulting & Software Products in New Jersey | Netherwood",
+  title: "Data Migration & Systems Consulting in New Jersey | Netherwood",
   description:
-    "Database and data engineering services plus practical SQL Server tools, integrations and data connectors from Netherwood Data Partners.",
+    "Data migration, systems integration, database engineering and reporting for established businesses moving from legacy software to modern platforms.",
 };
 export const aboutMetadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
@@ -50,8 +50,8 @@ export const organizationSchema = {
     "Legacy systems modernization",
     "SQL Server",
     "Database engineering",
-    "Software products",
-    "Developer tools",
+    "Business systems consulting",
+    "Reporting and analytics",
     "APIs",
     "Data connectors",
     "Monitoring and automation",

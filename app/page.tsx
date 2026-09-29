@@ -2,7 +2,6 @@ import ChatWidget from "./ChatWidget";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { CommunityPhoto, CommunityRoots } from "./components/Community";
-import { ProductGrid } from "./components/ProductPages";
 import "./community.css";
 
 const services = [
@@ -67,18 +66,19 @@ export default function Home() {
             Rooted in Netherwood. Here for your business.
           </p>
           <h1>
-            Established business.
+            Move your data forward.
             <br />
-            <span>Better systems.</span>
+            <span>Make better decisions.</span>
           </h1>
           <p className="community-lede">
-            Your business has moved forward. Has your software?
+            Practical data migration, integration and reporting for established
+            businesses.
           </p>
           <p className="community-hero-body">
-            Green-screen terminals. Paper work orders. The same information
-            entered twice. Get hands-on help supporting older systems, moving
-            your data and connecting the next generation of software. Explore
-            focused tools and connectors built from the same engineering work.
+            Whether you are replacing case-management software, moving records
+            into a cloud EHR, modernizing inventory or connecting another
+            business system, Netherwood helps map the source, prepare the data
+            and build reporting your team can trust.
           </p>
           <div className="studio-actions">
             <a className="button button-primary" href="#contact">
@@ -101,16 +101,16 @@ export default function Home() {
         </div>
         <div className="community-hero-visual">
           <CommunityPhoto
-            name="warehouse-systems"
-            alt="Illustrative warehouse dispatch desk with a green-screen inventory terminal, dot-matrix printer and modern inventory tablet"
+            name="business-data-consulting"
+            alt="Illustrative business team reviewing a legacy-to-cloud data migration map and reporting dashboard"
             priority
           />
           <div className="community-photo-label">
             <span aria-hidden="true">↗</span>
             <p>
-              Warehouses & distribution
+              Migration · Integration · Reporting
               <br />
-              <strong>From pick lists to connected inventory.</strong>
+              <strong>From legacy records to useful business insight.</strong>
             </p>
           </div>
           <span className="community-scene-note">
@@ -152,10 +152,10 @@ export default function Home() {
             <p className="systems-panel-label">01 / The familiar workaround</p>
             <pre aria-label="Illustrative legacy inventory screen">
               {
-                "INVENTORY CONTROL\n\nPART NO:  1042\nBIN:      A-07\nON HAND:  0028\n\nF1 HELP   F3 SEARCH\nTAB NEXT  ENTER SAVE\n\n> PRINT PICK LIST_"
+                "SOURCE RECORDS\n\nRECORD ID: 1042\nSTATUS:    ACTIVE\nOWNER:     07\n\nF1 HELP   F3 SEARCH\nTAB NEXT  ENTER SAVE\n\n> EXPORT RECORD_"
               }
             </pre>
-            <p>Look up a code. Print a list. Re-enter it in another system.</p>
+            <p>Look up a record. Print a report. Re-enter it somewhere else.</p>
           </div>
           <div className="systems-modern">
             <p className="systems-panel-label">02 / A possible next workflow</p>
@@ -165,12 +165,13 @@ export default function Home() {
               Work from connected records.
             </h3>
             <div className="systems-prompt">
-              “Where is part 1042, and is there enough for this order?”
+              “Which records can move, and which fields need review?”
             </div>
             <p className="systems-answer">
               <strong>Illustrative assistant response</strong>
               <br />
-              “Bin A-07 shows 28 on hand. Which order should I check?”
+              “The source fields are mapped. These exceptions need a person to
+              review them before import.”
             </p>
             <p>
               Find the source record, check the answer and let a person approve
@@ -215,67 +216,44 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="home-products studio-wrap" id="products">
-        <div className="products-section-heading">
-          <div>
-            <p className="eyebrow">Products from Netherwood</p>
-            <h2>
-              Practical software for
-              <br />
-              data-heavy work.
-            </h2>
-          </div>
-          <p>
-            Alongside consulting, Netherwood builds database tools, utilities
-            and connectors. Public source and availability are listed only when
-            they actually exist.
-          </p>
-        </div>
-        <ProductGrid home />
-        <div className="home-products-link">
-          <a className="studio-text-link" href="/products/">
-            Explore all products <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
       <section className="community-people-band" id="when-to-call-us">
         <div className="studio-wrap community-section">
           <div className="community-section-heading">
             <div>
               <p className="eyebrow">Built around the work you do</p>
               <h2>
-                The shop floor.
+                The professional office.
                 <br />
-                The front office.
+                The medical practice.
                 <br />
                 <span>The systems behind them.</span>
               </h2>
             </div>
             <p>
-              Established manufacturers, distributors and medical practices
-              carry years of records and routines. Modernization starts by
-              understanding what must keep working.
+              Law firms, medical practices, distributors and other established
+              businesses carry years of records and routines. Modernization
+              starts by understanding what must keep working.
             </p>
           </div>
           <div className="community-stories">
             <article>
               <CommunityPhoto
-                name="manufacturing-systems"
-                alt="Illustrative machine shop with an older work-order terminal and paper job travelers beside a modern shop-floor display"
+                name="professional-office-systems"
+                alt="Illustrative professional office reviewing older records beside a modern cloud document and reporting system"
               />
               <div>
-                <p className="eyebrow">Manufacturing & production</p>
-                <h3>From paper travelers to connected work orders.</h3>
+                <p className="eyebrow">Law firms & professional offices</p>
+                <h3>Move years of records without losing the business context.</h3>
                 <p>
-                  Job history in one system. Parts in another. Printed
-                  instructions on the floor. Bring the records together, plan
-                  the move and help staff use the new workflow.
+                  Matters, documents, contacts and billing history may live in
+                  different places. Map what belongs in the new platform,
+                  validate the move and help staff work from reliable records.
                 </p>
                 <a
                   className="studio-text-link"
-                  href="/services/workflow-automation/"
+                  href="/services/data-migration/"
                 >
-                  Make everyday work easier <span aria-hidden="true">↗</span>
+                  Plan the data move <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </article>

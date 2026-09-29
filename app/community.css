@@ -773,7 +773,7 @@
     grid-template-columns: 1fr;
   }
 }
-/* Equipment scenes retain both the legacy and modern devices at every width. */
+/* Homepage consulting imagery remains readable at every responsive width. */
 .community-home .community-hero-visual {
   align-self: center;
   min-height: 0;
@@ -784,7 +784,7 @@
   position: static;
   height: auto;
   aspect-ratio: 3 / 2;
-  object-fit: contain;
+  object-fit: cover;
 }
 .community-home .community-photo-label {
   position: static;

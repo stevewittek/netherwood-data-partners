@@ -1,3 +1,17 @@
+## Motion Relay website identity — September 29, 2026
+
+Motion Relay is the approved customer-facing name for Netherwood Data Partners' Garmin-connected running companion. The existing `/products/garmin-ai-connector/` route, technical product ID and all unrelated services remain stable. The central catalog now supplies the name to cards, detail, metadata, schema and privacy copy. The Apple-first private preview and planned Android parity are described without claiming public installation, subscriptions or finished integrations. The private connector's legacy hostname and OAuth identifiers are compatibility paths, not website links. See [Motion Relay website audit](MOTION_RELAY_WEBSITE_AUDIT.md) for Cloudflare boundaries and owner follow-ups.
+
+## Voyager 1 reconciliation follow-up — September 28, 2026
+
+The final safety fetch detected Voyager 2 main 7d370c3 and the merged PR #17.
+Parallel local work was preserved in three commits, then reconciled in a normal
+merge f74107b. This branch keeps the published routes and product design. The
+follow-up supplies verified PageMover naming/scope, the current QueryVault root
+README, shared catalog-driven route acceptance and before/after evidence.
+Both machines' histories are retained; the primary and publishing-desk checkouts
+are untouched. See PRODUCTS_AUDIT.md and PRODUCTS_VERIFICATION.md.
+
 ## Consulting + software products integration — September 28, 2026
 
 The site now presents Netherwood Data Partners as one company with two connected
@@ -52,14 +66,15 @@ supported-device scope and product-specific privacy notice, then add real
 store/download/documentation links. No fake availability, release date, customer,
 download, testimonial or pricing claim was added.
 
-## Latest owner direction: industry systems
+## Latest owner direction: cross-industry consulting
 
-Use equipment and recognizable work in established manufacturing, distribution
-and medical offices, with legacy-to-modern examples and practical AI assistance.
-The owner explicitly replaced the staged-people direction. Generated scenes
-are illustrative concepts, not actual clients or delivered product screenshots.
-Local station imagery and broader software/data/support offerings remain.
-See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+Home now leads with data migration, integration and reporting for established
+businesses. The product catalog remains on `/products/` rather than appearing
+on Home. A generic consulting hero and a professional-office example broaden
+the visual direction beyond factories and warehouses; generated people and
+interfaces remain illustrative, not clients or delivered projects. Equipment
+scenes remain available on relevant service pages. See
+INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
 
 # Community website candidate — September 25, 2026 follow-up
 
@@ -181,6 +196,18 @@ archived. Final SQL, deployed website, and article AI digests match at ten artic
 These dated notes are retained for provenance, not current acceptance gates.
 
 # Project state
+
+## Cross-industry consulting homepage — September 29, 2026
+
+- Home leads with data migration, systems integration and reporting for
+  established businesses rather than a warehouse or the product catalog.
+- The hero is a fictional cross-industry consulting scene with a legacy-to-cloud
+  data map and restrained reporting visuals. A professional-office scene adds a
+  law-firm use case without implying an actual client.
+- The Home product-card section is removed; the Products navigation and dedicated
+  catalog/detail routes remain intact.
+- Law firms, medical practices, distributors and other businesses are examples,
+  not clients or delivered-project claims.
 
 ## Voyager 1 business operations and acceptance update
 
