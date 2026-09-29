@@ -66,14 +66,15 @@ supported-device scope and product-specific privacy notice, then add real
 store/download/documentation links. No fake availability, release date, customer,
 download, testimonial or pricing claim was added.
 
-## Latest owner direction: industry systems
+## Latest owner direction: cross-industry consulting
 
-Use equipment and recognizable work in established manufacturing, distribution
-and medical offices, with legacy-to-modern examples and practical AI assistance.
-The owner explicitly replaced the staged-people direction. Generated scenes
-are illustrative concepts, not actual clients or delivered product screenshots.
-Local station imagery and broader software/data/support offerings remain.
-See INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
+Home now leads with data migration, integration and reporting for established
+businesses. The product catalog remains on `/products/` rather than appearing
+on Home. A generic consulting hero and a professional-office example broaden
+the visual direction beyond factories and warehouses; generated people and
+interfaces remain illustrative, not clients or delivered projects. Equipment
+scenes remain available on relevant service pages. See
+INDUSTRY-IMAGE-PROMPTS.json and COMMUNITY-REDESIGN.md.
 
 # Community website candidate — September 25, 2026 follow-up
 
@@ -195,6 +196,18 @@ archived. Final SQL, deployed website, and article AI digests match at ten artic
 These dated notes are retained for provenance, not current acceptance gates.
 
 # Project state
+
+## Cross-industry consulting homepage — September 29, 2026
+
+- Home leads with data migration, systems integration and reporting for
+  established businesses rather than a warehouse or the product catalog.
+- The hero is a fictional cross-industry consulting scene with a legacy-to-cloud
+  data map and restrained reporting visuals. A professional-office scene adds a
+  law-firm use case without implying an actual client.
+- The Home product-card section is removed; the Products navigation and dedicated
+  catalog/detail routes remain intact.
+- Law firms, medical practices, distributors and other businesses are examples,
+  not clients or delivered-project claims.
 
 ## Voyager 1 business operations and acceptance update
 

@@ -1,11 +1,12 @@
 # Industry and community imagery
 
-`warehouse-systems`, `manufacturing-systems` and `medical-office-systems` are
-AI-generated equipment and workflow concepts. They show fictional legacy and
-modern interfaces, not client facilities, actual product screenshots, delivered
-projects or endorsed vendors. No people are shown. Prompts and original source
-filenames are in `docs/INDUSTRY-IMAGE-PROMPTS.json`. Each scene has 1536px and
-768px WebP variants. The earlier staged people images have been removed.
+`business-data-consulting`, `professional-office-systems`, `warehouse-systems`,
+`manufacturing-systems` and `medical-office-systems` are AI-generated consulting,
+equipment and workflow concepts. They show fictional people, legacy systems and
+modern interfaces, not Netherwood staff, clients, client facilities, actual
+product screenshots, delivered projects or endorsed vendors. Prompts and original
+source filenames are in `docs/INDUSTRY-IMAGE-PROMPTS.json`. Each scene has 1536px
+and 768px WebP variants.
 
 `netherwood-station.webp`: photograph by **Jerrye & Roy Klotz MD**, originally
 published as [NETHERWOOD STATION, UNION COUNTY, NJ.jpg](https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg).

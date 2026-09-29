@@ -5,6 +5,7 @@ const { chromium } = await import(
   process.env.NDP_PLAYWRIGHT_MODULE || "playwright"
 );
 const base = process.env.NDP_QA_URL || "http://127.0.0.1:4176";
+const browserChannel = process.env.NDP_BROWSER_CHANNEL || "msedge";
 const phase = process.argv.includes("--baseline") ? "before" : "after";
 const output = resolve("outputs/community-qa", phase);
 await mkdir(output, { recursive: true });
@@ -28,7 +29,7 @@ if (phase === "after")
     "/products/garmin-ai-connector/",
     "/privacy/",
   );
-const browser = await chromium.launch({ channel: "msedge", headless: true });
+const browser = await chromium.launch({ channel: browserChannel, headless: true });
 const report = { routes: [], errors: [], checks: [] };
 try {
   for (const width of [1440, 768, 390]) {

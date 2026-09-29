@@ -1,5 +1,29 @@
 # Community, software and systems support redesign
 
+## Cross-industry consulting revision — September 29, 2026
+
+The owner refocused Home on the consulting business rather than the software
+catalog or any single industry. The hero now shows a fictional business team
+reviewing a legacy-to-cloud data map and reporting dashboard. Home copy names
+law firms, medical practices, distributors and other established businesses
+without claiming they are clients. A professional-office example replaces the
+manufacturing example on Home; manufacturing and warehouse imagery remain
+available on relevant service pages.
+
+The complete product-card section was removed from Home. The Products navigation
+item, `/products/` index and product details remain unchanged. Home metadata now
+leads with data migration and systems consulting. Two new generated image pairs,
+their prompts and disclosure are recorded in `INDUSTRY-IMAGE-PROMPTS.json` and
+`public/images/community/CREDITS.md`.
+
+Acceptance checks passed on September 29: ESLint, TypeScript, the Vinext
+production build, the GitHub Pages static build and the static release checker.
+Browser QA rendered 36 route/viewport combinations at 1440, 768 and 390 pixels
+with no overflow, broken images, page errors or running reduced-motion
+animations. The 320-pixel overflow, keyboard skip-link and no-JavaScript
+contact-form checks also passed. The QA runner accepts `NDP_BROWSER_CHANNEL` so
+the same review can use Edge on Windows or Chrome on macOS.
+
 Owner request: September 25, 2026. Branch: `feat/community-technology-website`.
 Baseline: released `origin/main` at `840cf9a`. This branch is a review candidate;
 the existing production site stays in place until this revision is released.

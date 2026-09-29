@@ -1,6 +1,24 @@
 {
-  "direction": "Equipment and legacy-to-modern industry systems; replaces staged people imagery",
+  "direction": "Cross-industry consulting and legacy-to-modern systems; homepage emphasizes business outcomes while service pages retain relevant industry examples",
   "assets": [
+    {
+      "name": "business-data-consulting",
+      "prompt": "Use case: photorealistic-natural. Asset: premium editorial website hero, landscape 1536x1024. A diverse business team and experienced technical consultant collaborate in a neutral professional conference room. A large display presents a fictional, non-branded migration plan from older on-premises records and a legacy server through mapped data nodes into a cloud platform, alongside a pie chart, bar chart, gently rising line graph and ERD-style relationships. The scene must apply across law firms, medical practices, distributors and other established businesses. Warm daylight, calm confidence, forest-green and restrained blue accents. No readable names, client data, logos, percentages, claims, warehouse, factory, medical room, legal cliches, staged handshake, holograms or watermark.",
+      "source": "exec-998a874a-7592-4dee-8507-90cd64c43ae5.png",
+      "files": [
+        "public/images/community/business-data-consulting.webp",
+        "public/images/community/business-data-consulting-768.webp"
+      ]
+    },
+    {
+      "name": "professional-office-systems",
+      "prompt": "Use case: photorealistic-natural. Asset: premium editorial website section image, landscape 1536x1024. An established professional office carefully modernizes its records: two diverse professionals review a migration plan beside organized paper files, an older beige computer and a modern monitor with an abstract cloud document workflow and reporting chart. Preserve a realistic, confidential, methodical mood. Remove all readable words, labels, slogans, dates, client information, legal terminology, product names and watermarks; use neutral lines, icons, mapping nodes and unlabeled charts instead. No legal cliches, warehouse, factory, medical room, holograms or staged handshake.",
+      "source": "exec-b3cc16bb-2539-4d94-9760-f2fb76a7f693.png",
+      "files": [
+        "public/images/community/professional-office-systems.webp",
+        "public/images/community/professional-office-systems-768.webp"
+      ]
+    },
     {
       "name": "warehouse-systems",
       "prompt": "Use case: photorealistic-natural. Asset: premium editorial website photograph, landscape 1536x1024. No people, no coffee, no plants, no staged teamwork, no logos, no holograms or glowing sci-fi effects. Believable established small-business infrastructure, authentic wear but clean and maintained. The subject is the WORK and legacy systems, not stock office decor. Screen text minimal and fictional; no personal data. Natural cinematic lighting, warm neutral and steel blue tones, crisp foreground detail. Scene: an established regional parts distributor warehouse. Foreground, a practical metal dispatch desk with a beige CRT terminal showing rows of green monospace inventory entries on black, a chunky keyboard, dot-matrix printer with continuous tractor-feed paper, and a handheld barcode scanner. Behind it recognizable long warehouse aisles of organized cartons and industrial shelving. On the RIGHT of the same wide scene a modern tablet on a stand shows a restrained white inventory interface and small conversational assistant panel. Legacy terminal on LEFT, modern tablet RIGHT, both actual physical devices, no collage seam. Compose both devices within center 80 percent so responsive cropping preserves them. Eye-level environmental photography, realistic cables and materials.",
@@ -30,5 +48,5 @@
     }
   ],
   "encoding": "1536 and 768 px WebP, quality 84; no content edits",
-  "notice": "Fictional AI-generated scenes and interface concepts, not client sites or implemented products."
+  "notice": "Fictional AI-generated scenes and interface concepts, not staff, clients, client sites or implemented products."
 }
