@@ -1,3 +1,12 @@
+## Motion Connect website review candidate — October 1, 2026
+
+The existing Garmin connector product is being updated with Motion Connect
+watch artwork, its approved Connect IQ listing, separate unavailable phone
+downloads, and a public setup route. See `MOTION_CONNECT_WEBSITE.md` for
+source provenance, naming, validation and the review/publication boundary.
+This branch is not a production release. The current consulting-first Home
+layout keeps the product catalog on `/products/`.
+
 ## Motion Relay website identity — September 29, 2026
 
 Motion Relay is the approved customer-facing name for Netherwood Data Partners' Garmin-connected running companion. The existing `/products/garmin-ai-connector/` route, technical product ID and all unrelated services remain stable. The central catalog now supplies the name to cards, detail, metadata, schema and privacy copy. The Apple-first private preview and planned Android parity are described without claiming public installation, subscriptions or finished integrations. The private connector's legacy hostname and OAuth identifiers are compatibility paths, not website links. See [Motion Relay website audit](MOTION_RELAY_WEBSITE_AUDIT.md) for Cloudflare boundaries and owner follow-ups.

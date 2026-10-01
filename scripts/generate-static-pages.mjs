@@ -241,6 +241,17 @@ for (const entry of marketingPages) {
 }
 
 await page(
+  "motionrelay/setup",
+  metaPage({
+    title: "Motion Connect and Motion Relay setup | Netherwood Data Partners",
+    description: "Install the MotionRelay Garmin data field and understand the Motion Relay phone companion and authorized AI connection.",
+    canonical: `${siteUrl}/motionrelay/setup/`,
+    schemaId: "setup-structured-data",
+    structured: { "@context": "https://schema.org", "@type": "WebPage", name: "Motion Connect and Motion Relay setup", url: `${siteUrl}/motionrelay/setup/` },
+  }),
+);
+
+await page(
   "products",
   metaPage({
     ...productsMetadata,
@@ -406,6 +417,7 @@ const rootSitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>${siteUrl}/</loc></url>
   <url><loc>${siteUrl}/about/</loc></url>
 ${marketingPages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
+  <url><loc>${siteUrl}/motionrelay/setup/</loc></url>
 ${productSitemapUrls}
 ${articleUrls.join("\n")}
 </urlset>

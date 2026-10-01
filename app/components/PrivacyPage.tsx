@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             records how product-specific privacy information will be handled as
             Netherwood software moves toward release.
           </p>
-          <p className="privacy-updated">Last updated September 28, 2026.</p>
+          <p className="privacy-updated">Last updated October 1, 2026.</p>
         </div>
       </section>
       <section className="privacy-content studio-wrap">
@@ -42,34 +42,37 @@ export default function PrivacyPage() {
           </p>
         </article>
         <article>
-          <p className="eyebrow">Products in development</p>
-          <h2>Privacy details will follow the implementation</h2>
+          <p className="eyebrow">Motion Connect and Motion Relay</p>
+          <h2>Watch field available; phone companions forthcoming</h2>
           <p>
             This marketing website does not currently provide a public account,
             product sign-in or upload flow for Garmin, health, fitness or
-            activity data. A product that handles personal data will receive a
-            product-specific notice before public release.
+            activity data. The MotionRelay Garmin Connect IQ data field is
+            publicly listed. It accesses available live activity readings for
+            the Motion Connect watch screen and phone connection. The separate
+            Motion Relay iPhone and Android store listings are not public yet.
           </p>
           <p>
-            That notice must accurately describe data access, storage,
-            retention, sharing, deletion and the services required for the
-            product to work. It will not be presented as complete while the
-            implementation is still changing.
+            The connected phone and AI experience requires separate setup and
+            authorization. The watch download alone does not send readings to
+            an AI account. Companion privacy details will be checked against
+            the release build and its data flow before phone publication.
           </p>
         </article>
         <article>
           <p className="eyebrow">{motionRelayName} direction</p>
-          <h2>No sale of activity data or targeted advertising</h2>
+          <h2>Activity data is for the connection you choose</h2>
           <p>
-            The current direction for the Garmin-connected product is not to
-            sell personal Garmin, running, health, fitness or activity data and
-            not to use it for targeted advertising. Data sharing is intended to
-            be limited to what is needed for the application to function.
+            The current Garmin listing says Motion Relay does not sell workout
+            data, use it for targeted advertising, or collect GPS tracks or
+            precise coordinates through this live feed. When you choose to
+            connect ChatGPT, the metrics you send are shared with OpenAI under
+            your account settings and its applicable terms.
           </p>
           <p>
-            These principles do not replace the detailed product notice. The
-            final disclosure will be checked against the actual data flow before
-            release.
+            These points summarize the published watch listing. They do not
+            replace the detailed phone companion notice that must match the
+            public release build.
           </p>
         </article>
         <article>

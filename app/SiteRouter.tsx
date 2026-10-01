@@ -8,6 +8,7 @@ import MigrationIntakePage from "./migration-intake/page";
 import MigrationReadinessPage from "./migration-readiness/page";
 import { ProductDetailPage, ProductsIndex } from "./components/ProductPages";
 import PrivacyPage from "./components/PrivacyPage";
+import { MotionRelaySetupPage } from "./components/MotionRelaySetupPage";
 
 export default function SiteRouter({ path }: { path?: string } = {}) {
   // On a direct /#contact (or cross-page CTA), the static shell has no anchor
@@ -30,6 +31,7 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/products") return <ProductsIndex />;
   if (pathname === "/privacy") return <PrivacyPage />;
+  if (pathname === "/motionrelay/setup") return <MotionRelaySetupPage />;
   if (pathname === "/migration-intake") return <MigrationIntakePage />;
   if (pathname === "/migration-readiness") return <MigrationReadinessPage />;
   const serviceMatch = pathname.match(
