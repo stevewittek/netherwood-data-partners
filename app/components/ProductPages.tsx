@@ -6,6 +6,7 @@ import {
   type Product,
 } from "../content/products";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
+import { motionRelayDownloads, motionRelayRoutes } from "../content/motion-relay";
 import "../products.css";
 
 function ProductVisual({ product }: { product: Product }) {
@@ -91,6 +92,35 @@ function ProductLinks({ product, includeDetail = true }: {
         </a>
       )}
     </div>
+  );
+}
+
+function MotionRelayDownloads() {
+  return (
+    <section className="product-downloads studio-wrap" aria-labelledby="motion-downloads-title">
+      <div>
+        <p className="eyebrow">Downloads</p>
+        <h2 id="motion-downloads-title">Start with the watch. Add the phone companion.</h2>
+        <p>The Garmin download installs a Connect IQ data field inside a compatible watch activity. Motion Relay on the phone is a separate required companion for the complete watch-to-AI connection.</p>
+      </div>
+      <div className="platform-download-grid">
+        {Object.values(motionRelayDownloads).map((entry) => (
+          <article key={entry.storeName}>
+            <p>{entry.storeName}</p>
+            {entry.storeName === "Apple App Store" && <img className="platform-icon" src="/images/motion-relay/motion-relay-icon.webp" alt="Motion Relay phone app icon" width="640" height="640" loading="lazy" />}
+            <h3>{entry.available ? entry.label : `${entry.storeName} — coming soon`}</h3>
+            {entry.available && entry.url ? (
+              <a className="button button-primary" href={entry.url} target="_blank" rel="noreferrer">
+                {entry.label} <span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <button className="button platform-download-disabled" type="button" disabled aria-disabled="true">Coming soon</button>
+            )}
+          </article>
+        ))}
+      </div>
+      <p className="product-download-note">A compatible Garmin device, Garmin Connect, the Motion Relay phone companion, internet access, and a supported authorized AI account are needed for the complete experience. <a href={motionRelayRoutes.setup}>Read setup instructions</a>.</p>
+    </section>
   );
 }
 
@@ -272,6 +302,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           )}
         </div>
       </section>
+      {product.downloadExperience === "motion-relay" && <MotionRelayDownloads />}
       {product.features.length > 0 && (
         <section className="product-detail-features">
           <div className="studio-wrap">

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { motionRelayName, products } from "../app/content/products.ts";
+import { products } from "../app/content/products.ts";
+import { motionRelayDownloads } from "../app/content/motion-relay.ts";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
@@ -32,6 +33,7 @@ const expected = [
   "/services/",
   "/products/",
   "/privacy/",
+  "/motionrelay/setup/",
   "/migration-intake/",
   "/migration-readiness/",
   ...serviceSlugs.map((slug) => `/services/${slug}/`),
@@ -156,10 +158,18 @@ for (const route of expected) {
     assert.equal(data["@graph"][0].name, product.name);
     assert.ok(title.includes(product.name), `Product title ${route}`);
     if (product.id === "garmin-ai-connector") {
-      assert.equal(product.name, motionRelayName);
-      assert.ok(html.includes(`property="og:title" content="${motionRelayName} | Netherwood Data Partners"`));
-      assert.ok(html.includes(`name="twitter:title" content="${motionRelayName} | Netherwood Data Partners"`));
+      assert.equal(product.name, "Motion Connect");
       assert.ok(html.includes(product.setup?.title ?? "Garmin connection and setup"));
+      assert.ok(html.includes(motionRelayDownloads.garmin.url));
+      for (const platform of [motionRelayDownloads.iphone, motionRelayDownloads.android]) {
+        if (platform.available && platform.url) assert.ok(html.includes(platform.url));
+        else {
+          assert.ok(html.includes(`${platform.storeName} — coming soon`));
+          assert.ok(!html.includes(`href="${platform.url}"`));
+        }
+      }
+      assert.equal((html.match(/aria-disabled="true"/g) || []).length,
+        [motionRelayDownloads.iphone, motionRelayDownloads.android].filter((platform) => !platform.available || !platform.url).length);
     }
     assert.equal(
       data["@graph"][0].creator.name,
@@ -206,10 +216,7 @@ assert.ok(
     .includes("https://github.com/stevewittek/Databases"),
   "QueryVault has its verified public source link",
 );
-for (const route of [
-  "/products/sql-server-index-maintenance-visualizer/",
-  "/products/garmin-ai-connector/",
-]) {
+for (const route of ["/products/sql-server-index-maintenance-visualizer/"]) {
   assert.ok(
     !documents.get(route).includes("github.com/"),
     route + " does not advertise an unverified repository",

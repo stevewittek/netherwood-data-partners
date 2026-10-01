@@ -218,8 +218,10 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
+.product-visual-image::before,
+.product-visual-image::after { display: none; }
 .product-visual::before,
 .product-visual::after {
   position: absolute;
@@ -398,6 +400,7 @@
   margin: 18px 0 0;
 }
 .product-detail-overview,
+.product-downloads,
 .product-detail-facts,
 .product-support,
 .product-screenshots,
@@ -408,6 +411,40 @@
   padding-block: 100px;
   border-top: 1px solid var(--line);
 }
+.product-downloads {
+  display: block;
+}
+.product-downloads > div:first-child > p:last-child {
+  max-width: 720px;
+  margin-top: 20px;
+  color: var(--ink-soft);
+}
+.platform-download-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 42px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+.platform-download-grid article {
+  min-height: 220px;
+  padding: 28px;
+  background: #f7f7ef;
+}
+.platform-download-grid article > p {
+  margin: 0;
+  color: var(--moss);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.platform-download-grid h3 { margin: 18px 0 30px; font-size: 22px; }
+.platform-icon { display: block; width: 58px; height: 58px; margin-top: 18px; border-radius: 12px; }
+.platform-download-disabled { cursor: not-allowed; opacity: .56; }
+.product-download-note { margin-top: 24px; color: var(--ink-soft); font-size: 13px; }
+.product-download-note a { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .product-screenshot-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -611,6 +648,7 @@
   margin-top: 32px;
 }
 @media (max-width: 980px) {
+  .platform-download-grid { grid-template-columns: 1fr; }
   .product-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -627,6 +665,7 @@
   .products-practice > div,
   .product-privacy > div,
   .product-detail-overview,
+  .product-downloads,
   .product-detail-facts,
   .product-support,
   .product-screenshots,
@@ -658,6 +697,7 @@
   .products-list,
   .product-detail-features,
   .product-detail-overview,
+  .product-downloads,
   .product-detail-facts,
   .product-support,
   .product-screenshots,

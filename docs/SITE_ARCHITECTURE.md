@@ -1,5 +1,16 @@
 # Netherwood Data Partners site architecture
 
+## Motion Connect download update — October 1, 2026
+
+The existing `/products/garmin-ai-connector/` route now presents Motion Connect
+and the separate Motion Relay phone companions. The watch button links to the
+verified MotionRelay Connect IQ listing. Phone availability and store URLs live
+in `app/content/motion-relay.ts`, and unavailable stores render disabled
+controls. `/motionrelay/setup/` is a static and Vinext route with canonical
+metadata and a sitemap entry. The current consulting-first Home layout retains
+the Products navigation but no Home product catalog. See
+`MOTION_CONNECT_WEBSITE.md` for provenance, evidence and release instructions.
+
 ## Consulting + products revision — September 28, 2026
 
 The current public architecture supports consulting and software under the
