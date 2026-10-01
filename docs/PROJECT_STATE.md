@@ -1,11 +1,13 @@
-## Motion Connect website review candidate — October 1, 2026
+## Motion Connect website release — October 1, 2026
 
-The existing Garmin connector product is being updated with Motion Connect
+The existing Garmin connector product was updated with Motion Connect
 watch artwork, its approved Connect IQ listing, separate unavailable phone
 downloads, and a public setup route. See `MOTION_CONNECT_WEBSITE.md` for
-source provenance, naming, validation and the review/publication boundary.
-This branch is not a production release. The current consulting-first Home
-layout keeps the product catalog on `/products/`.
+source provenance, naming, validation and release evidence. PR #20 merged as
+`119c1dfa`; the gated Pages deployment and main CI passed, and the public
+product/setup routes passed production smoke tests. The current consulting-first
+Home layout keeps the product catalog on `/products/`. GitHub Project tracking
+remains pending because the available token lacks Project scopes.
 
 ## Motion Relay website identity — September 29, 2026
 

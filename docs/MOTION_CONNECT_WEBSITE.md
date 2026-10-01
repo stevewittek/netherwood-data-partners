@@ -1,10 +1,11 @@
-# Motion Connect website review candidate — October 1, 2026 (America/New_York)
+# Motion Connect website publication — October 1, 2026 (America/New_York)
 
 The customer page is `/products/garmin-ai-connector/`; the permanent setup route is
 `/motionrelay/setup/`. These routes are built into GitHub Pages and the Next/Vinext
-application. This branch is a review candidate and has not been merged or published.
+application. PR #20 was merged and published through the gated GitHub Pages
+workflow on October 1, 2026.
 Tracking: [issue #19](https://github.com/stevewittek/netherwood-data-partners/issues/19)
-and [review PR #20](https://github.com/stevewittek/netherwood-data-partners/pull/20).
+and [merged PR #20](https://github.com/stevewittek/netherwood-data-partners/pull/20).
 The existing GitHub Project's item, current October 1 iteration and In Review
 status could not be set: the available GitHub token lacks `read:project` and
 `project` scopes. This remains a tracking task after a Project-scoped credential
@@ -22,7 +23,7 @@ the phone companion or complete the authorized AI connection.
 
 The only live download is
 <https://apps.garmin.com/apps/48fdea2a-2703-4873-a483-13cae2a9f1ec>.
-Apple App Store and Google Play listings are unavailable as of this review.
+Apple App Store and Google Play listings were unavailable at publication.
 Their controls are native disabled buttons, including on those phones. No
 unverified store URL is shipped.
 
@@ -81,7 +82,7 @@ copy has the same SHA-256. No real person's fitness readings are included.
    at desktop and phone widths. Inspect the built HTML for exactly the new
    store URL and a still-disabled other platform. Submit a new focused PR.
 
-## Release boundary
+## Validation and production release
 
 Review screenshots: [desktop product](evidence/2026-10-01/motion-connect-1440.webp),
 [mobile product](evidence/2026-10-01/motion-connect-390.webp),
@@ -95,13 +96,18 @@ Root ESLint, strict frontend TypeScript, the Vinext production build,
 `build:pages`, the 30-route static metadata/link/schema/sitemap check, and
 `git diff --check` passed with Node 24.19.0 and pnpm 11.19.0. The article
 digest remains `ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8`.
-No production deploy, real inquiry, app release, or connector operation was
-performed.
+PR #20 merged as `119c1dfa0b45340bd78e229d72a6e5ed53022df6`.
+[Publish website run 36942172150](https://github.com/stevewittek/netherwood-data-partners/actions/runs/36942172150)
+and [main CI run 36942172178](https://github.com/stevewittek/netherwood-data-partners/actions/runs/36942172178)
+passed. The live `/publication.json` reported that exact source commit and the
+unchanged article digest above. Product, setup, privacy, sitemap and new assets
+returned HTTP 200. The live product HTML carried the correct title, Garmin
+URL and two disabled phone controls. A second browser pass on the production
+domain passed the same 18 renders and keyboard/no-JavaScript checks. No real
+inquiry, app release, or connector operation was performed.
 
-Approval of this PR is the next step. After review, merge through the normal
-`main` workflow; the gated Pages publication workflow and its production smoke
-test are separate actions. Verify the published commit, both routes, Garmin
-destination, phone button states, metadata and sitemap after publication.
-Rollback is a revert of the focused merge, followed by the existing Pages
-rollback workflow if required. The website has no Next Role Command Center,
+The website has no Next Role Command Center,
 connector, Voyager, SQL, or AI runtime dependency.
+If a regression is found, revert the focused merge and use the existing Pages
+rollback workflow if necessary. The product issue remains open for Project
+tracking and owner review of its completion criteria.
