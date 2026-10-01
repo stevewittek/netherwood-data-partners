@@ -3,6 +3,12 @@
 The customer page is `/products/garmin-ai-connector/`; the permanent setup route is
 `/motionrelay/setup/`. These routes are built into GitHub Pages and the Next/Vinext
 application. This branch is a review candidate and has not been merged or published.
+Tracking: [issue #19](https://github.com/stevewittek/netherwood-data-partners/issues/19)
+and [review PR #20](https://github.com/stevewittek/netherwood-data-partners/pull/20).
+The existing GitHub Project's item, current October 1 iteration and In Review
+status could not be set: the available GitHub token lacks `read:project` and
+`project` scopes. This remains a tracking task after a Project-scoped credential
+is available; issue #19 stays open.
 
 ## Verified naming and availability
 
