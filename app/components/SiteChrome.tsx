@@ -78,6 +78,8 @@ export function SiteFooter() {
           <a href="/about/">About</a>
           <a href="/#contact">Contact</a>
           <a href="/privacy/">Privacy</a>
+          <a href="/privacy/motion-relay/">Motion Relay privacy</a>
+          <a href="/privacy/motion-relay/delete/">Delete Motion Relay membership</a>
         </div>
         <a className="studio-text-link" href="/#contact">
           Talk about your business <span aria-hidden="true">↗</span>

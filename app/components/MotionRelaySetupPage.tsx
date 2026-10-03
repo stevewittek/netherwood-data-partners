@@ -18,7 +18,7 @@ export function MotionRelaySetupPage() {
         <div><p className="eyebrow">Watch setup</p><h2>Add the data field to an activity.</h2></div>
         <div className="product-prose">
           <p>1. Pair a compatible Garmin watch with Garmin Connect on your phone.</p>
-          <p>2. Install MotionRelay from the Connect IQ Store and sync it to your watch.</p>
+          <p>2. Open the MotionRelay Connect IQ listing, tap Install, and sync the data field to your watch.</p>
           <p>3. Open a compatible activity, edit its data screens, and add MotionRelay as a Connect IQ data field. A full-screen, single-field page gives the clearest Motion Connect status display.</p>
         </div>
       </section>

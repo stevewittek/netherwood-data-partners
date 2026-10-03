@@ -33,6 +33,8 @@ const expected = [
   "/services/",
   "/products/",
   "/privacy/",
+  "/privacy/motion-relay/",
+  "/privacy/motion-relay/delete/",
   "/motionrelay/setup/",
   "/migration-intake/",
   "/migration-readiness/",
@@ -163,7 +165,11 @@ for (const route of expected) {
       assert.ok(html.includes(motionRelayDownloads.garmin.url));
       for (const platform of [motionRelayDownloads.iphone, motionRelayDownloads.android]) {
         if (platform.available && platform.url) assert.ok(html.includes(platform.url));
-        else {
+        else if (platform.storeName === "Google Play") {
+          assert.ok(html.includes("Google Play — public availability pending"));
+          assert.ok(html.includes(platform.url), "Package-based pending listing is an intentional link exception until public testing/review finishes");
+          assert.ok(html.includes("Not available yet"));
+        } else {
           assert.ok(html.includes(`${platform.storeName} — coming soon`));
           assert.ok(!html.includes(`href="${platform.url}"`));
         }

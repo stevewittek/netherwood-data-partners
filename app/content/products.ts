@@ -169,7 +169,7 @@ export const products: Product[] = [
       "Motion Relay is the separate iPhone or Android companion. With sharing enabled and an authorized connection, it can pass a redacted current snapshot to ChatGPT. The watch download alone does not provide the complete experience.",
       `The Garmin listing is available now. ${phoneAvailability}`,
     ],
-    platforms: ["Garmin Connect IQ", iphoneAvailable ? "iPhone companion" : "iPhone companion coming soon", androidAvailable ? "Android companion" : "Android companion coming soon"],
+    platforms: ["Garmin Connect IQ", iphoneAvailable ? "iPhone companion" : "iPhone companion coming soon", androidAvailable ? "Android companion" : "Android companion — Google Play public availability pending"],
     productUrl: "/products/garmin-ai-connector/",
     openSource: false,
     featured: true,
@@ -199,14 +199,14 @@ export const products: Product[] = [
     setup: {
       title: "Garmin connection and setup",
       notes: [
-        "Pair your compatible Garmin watch with Garmin Connect, install MotionRelay from Connect IQ, then add it as a data field inside a compatible activity. A full-screen, single-field page gives the clearest Motion Connect display.",
+        "Pair your compatible Garmin watch with Garmin Connect, open the MotionRelay Connect IQ listing and tap Install, then add it as a data field inside a compatible activity. A full-screen, single-field page gives the clearest Motion Connect display.",
         "Install Motion Relay from your phone’s store when its listing is available. Open it, choose your paired Garmin watch, and complete the sharing and account setup.",
         "Start the activity and keep the required phone connection available. “Phone received” means the phone acknowledged the watch packet; it does not confirm delivery to ChatGPT.",
       ],
     },
     privacy: [
       "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
-      "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately.",
+      "Current-run sharing is off by default and requires your action. See the Motion Relay privacy notice for data handling and deletion choices.",
     ],
     support:
       "Setup guidance and support are available from Netherwood Data Partners. Store buttons are enabled only when their real listings are public.",
