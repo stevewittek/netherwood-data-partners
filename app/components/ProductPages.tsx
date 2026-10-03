@@ -108,13 +108,13 @@ function MotionRelayDownloads() {
           <article key={entry.storeName}>
             <p>{entry.storeName}</p>
             {entry.storeName === "Apple App Store" && <img className="platform-icon" src="/images/motion-relay/motion-relay-icon.webp" alt="Motion Relay phone app icon" width="640" height="640" loading="lazy" />}
-            <h3>{entry.available ? entry.label : `${entry.storeName} — coming soon`}</h3>
+            <h3>{entry.available ? entry.label : `${entry.storeName} — ${entry.storeName === "Google Play" ? "public availability pending" : "coming soon"}`}</h3>
             {entry.available && entry.url ? (
               <a className="button button-primary" href={entry.url} target="_blank" rel="noreferrer">
                 {entry.label} <span aria-hidden="true">↗</span>
               </a>
             ) : (
-              <button className="button platform-download-disabled" type="button" disabled aria-disabled="true">Coming soon</button>
+              <><button className="button platform-download-disabled" type="button" disabled aria-disabled="true">Not available yet</button>{entry.storeName === "Google Play" && entry.url && <p><a href={entry.url} target="_blank" rel="noreferrer">View the Google Play listing status <span aria-hidden="true">↗</span></a><br />{motionRelayDownloads.android.status}</p>}</>
             )}
           </article>
         ))}
@@ -401,8 +401,8 @@ export function ProductDetailPage({ slug }: { slug: string }) {
               {product.privacy.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <a className="studio-text-link" href="/privacy/">
-                Read the website privacy overview <span aria-hidden="true">↗</span>
+              <a className="studio-text-link" href={product.downloadExperience === "motion-relay" ? motionRelayRoutes.privacy : "/privacy/"}>
+                Read the privacy notice <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>

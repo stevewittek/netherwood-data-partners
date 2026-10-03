@@ -9,6 +9,8 @@ import {
   intakeMetadata,
   readinessMetadata,
   privacyMetadata,
+  motionRelayPrivacyMetadata,
+  motionRelayDeletionMetadata,
   organizationSchema,
 } from "../app/content/site.ts";
 import { renderContentDigest, renderPage } from "../.static-render/render.mjs";
@@ -169,6 +171,8 @@ const marketingPages = [
   { path: "migration-intake", ...intakeMetadata },
   { path: "migration-readiness", ...readinessMetadata },
   { path: "privacy", ...privacyMetadata },
+  { path: "privacy/motion-relay", ...motionRelayPrivacyMetadata },
+  { path: "privacy/motion-relay/delete", ...motionRelayDeletionMetadata },
   ...services.map((service) => ({
     path: `services/${service.slug}`,
     title: `${service.title} | Netherwood Data Partners`,

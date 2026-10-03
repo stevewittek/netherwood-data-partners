@@ -22,7 +22,15 @@ export const readinessMetadata = {
 export const privacyMetadata = {
   title: "Privacy | Netherwood Data Partners",
   description:
-    "How the Netherwood website handles inquiries and how product-specific privacy disclosures will be prepared before software releases.",
+    "Website privacy information and direct links to the Motion Relay privacy notice and membership deletion instructions.",
+};
+export const motionRelayPrivacyMetadata = {
+  title: "Motion Relay Privacy Notice | Netherwood Data Partners",
+  description: "How Motion Relay handles current activity data, optional sharing, membership information, retention and user controls.",
+};
+export const motionRelayDeletionMetadata = {
+  title: "Delete Motion Relay Membership | Netherwood Data Partners",
+  description: "How to request deletion of a Motion Relay membership and associated data without reinstalling the Android app.",
 };
 export const organizationSchema = {
   "@context": "https://schema.org",
