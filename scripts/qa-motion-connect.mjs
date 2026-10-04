@@ -68,7 +68,7 @@ try {
   await page.getByLabel(/Voice is available/).check();
   await page.getByLabel(/pre-release testing/).check();
   await page.getByRole("button", { name: "Request beta access" }).click();
-  await page.getByText("Your beta tester request has been received.").waitFor();
+  await page.getByText(/Your beta tester request has been received/).waitFor();
   assert.equal(betaPayload.source, "Motion Relay beta tester signup");
   assert.equal(betaPayload.phone_platform, "Android");
   assert.equal(betaPayload.garmin_watch_model, "Synthetic Garmin Model");

@@ -25,12 +25,17 @@ export function MotionRelayBetaSignup() {
             private workout data in this form. Signing up does not guarantee a
             testing invitation.
           </p>
+          <p>
+            If your request is approved, you will receive an email confirming
+            that you have been added as a tester, along with the installation
+            link and next steps for your phone platform.
+          </p>
         </div>
         <div className="contact-copy">
           <InquiryForm
             source="Motion Relay beta tester signup"
             submitLabel="Request beta access"
-            successMessage="Thank you. Your beta tester request has been received."
+            successMessage="Thank you. Your beta tester request has been received. If approved, you will receive an email confirming that you have been added as a tester, with the installation link and next steps."
           >
             <div className="contact-form-grid">
               <div className="contact-field">
