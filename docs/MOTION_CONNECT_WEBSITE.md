@@ -1,5 +1,14 @@
 # Motion Connect website publication — October 1, 2026 (America/New_York)
 
+## Beta tester signup follow-up — October 4, 2026
+
+The existing Motion Connect product page now contains the Motion Relay beta
+tester form at `/products/garmin-ai-connector/#beta-signup`. It reuses the
+existing Formspark submission boundary and collects only contact/platform/device
+details plus two explicit eligibility acknowledgements. Browser validation uses
+a mocked Formspark response; it does not transmit a real signup. Publish and
+verify the website before adding this URL to the public Garmin description.
+
 The customer page is `/products/garmin-ai-connector/`; the permanent setup route is
 `/motionrelay/setup/`. These routes are built into GitHub Pages and the Next/Vinext
 application. PR #20 was merged and published through the gated GitHub Pages

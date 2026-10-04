@@ -1,3 +1,15 @@
+## Motion Relay beta tester signup — October 4, 2026
+
+The Motion Connect product page now includes a focused Motion Relay beta tester
+signup using the site's existing Formspark transport. It asks for name, email,
+iPhone or Android, optional phone model, Garmin watch model, confirmation that
+ChatGPT Voice is available in the official mobile app, and acknowledgement of
+pre-release testing. It tells applicants not to submit credentials, health
+details or workout data and does not guarantee an invitation. The public Garmin
+listing copy should link directly to
+`/products/garmin-ai-connector/#beta-signup` only after this website change is
+deployed and verified. No real signup was sent during local validation.
+
 ## Motion Connect website release — October 1, 2026
 
 The existing Garmin connector product was updated with Motion Connect

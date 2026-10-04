@@ -7,7 +7,12 @@ const { chromium } = await import(process.env.NDP_PLAYWRIGHT_MODULE || "playwrig
 const base = process.env.NDP_QA_URL || "http://127.0.0.1:4175";
 const output = resolve("outputs/motion-connect-qa");
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.NDP_PLAYWRIGHT_EXECUTABLE
+    ? { executablePath: process.env.NDP_PLAYWRIGHT_EXECUTABLE }
+    : {}),
+});
 const results = [];
 try {
   for (const width of [1440, 768, 390]) {
@@ -43,11 +48,36 @@ try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await page.goto(base + "/products/garmin-ai-connector/", { waitUntil: "networkidle" });
   assert.equal(await page.getByRole("link", { name: "Get the Garmin watch app" }).getAttribute("href"), motionRelayDownloads.garmin.url);
-  const unavailable = page.getByRole("button", { name: "Coming soon" });
+  const unavailable = page.getByRole("button", { name: "Not available yet" });
   assert.equal(await unavailable.count(), [motionRelayDownloads.iphone, motionRelayDownloads.android].filter((entry) => !entry.available || !entry.url).length);
   for (const button of await unavailable.all()) assert.equal(await button.isEnabled(), false);
+  await page.getByRole("link", { name: "Sign up to help test Motion Relay" }).click();
+  assert.equal(await page.locator("#beta-signup").count(), 1);
+  assert.equal(await page.getByLabel("Phone platform").getAttribute("required"), "");
+  assert.equal(await page.getByLabel("Garmin watch model").getAttribute("required"), "");
+  assert.equal(await page.getByLabel(/Voice is available/).getAttribute("required"), "");
+  let betaPayload;
+  await page.route("https://submit-form.com/**", async (route) => {
+    betaPayload = route.request().postDataJSON();
+    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+  });
+  await page.getByLabel("Name").fill("Synthetic Beta Tester");
+  await page.getByLabel("Email").fill("beta-tester@example.invalid");
+  await page.getByLabel("Phone platform").selectOption("Android");
+  await page.getByLabel("Garmin watch model").fill("Synthetic Garmin Model");
+  await page.getByLabel(/Voice is available/).check();
+  await page.getByLabel(/pre-release testing/).check();
+  await page.getByRole("button", { name: "Request beta access" }).click();
+  await page.getByText(/Your beta tester request has been received/).waitFor();
+  assert.equal(betaPayload.source, "Motion Relay beta tester signup");
+  assert.equal(betaPayload.phone_platform, "Android");
+  assert.equal(betaPayload.garmin_watch_model, "Synthetic Garmin Model");
+  assert.equal(betaPayload.chatgpt_voice_available, "confirmed");
+  assert.equal(betaPayload.beta_testing_acknowledged, "confirmed");
+  assert.equal(await page.getByLabel("Email").inputValue(), "");
+  await page.goto(base + "/products/garmin-ai-connector/", { waitUntil: "networkidle" });
   await page.keyboard.press("Tab");
-  assert.equal(await page.locator(":focus").innerText(), "Skip to content");
+  assert.equal((await page.locator(":focus").textContent()).trim(), "Skip to content");
   await page.keyboard.press("Enter");
   assert.equal(await page.locator(":focus").getAttribute("id"), "main-content");
   await page.close();

@@ -20,6 +20,7 @@ type InquiryFormProps = {
   children: ReactNode;
   source?: string;
   submitLabel?: string;
+  successMessage?: string;
   onSuccess?: () => void;
 };
 
@@ -29,6 +30,7 @@ export function InquiryForm({
   children,
   source = "Netherwood Data Partners website",
   submitLabel = "Send inquiry",
+  successMessage = "Thank you. Your inquiry has been sent.",
   onSuccess,
 }: InquiryFormProps) {
   const [submissionState, setSubmissionState] =
@@ -164,7 +166,7 @@ export function InquiryForm({
         role={submissionState === "error" ? "alert" : "status"}
       >
         {submissionState === "success" && (
-          <p>Thank you. Your inquiry has been sent.</p>
+          <p>{successMessage}</p>
         )}
         {submissionState === "error" && (
           <p>

@@ -7,6 +7,7 @@ import {
 } from "../content/products";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import { motionRelayDownloads, motionRelayRoutes } from "../content/motion-relay";
+import { MotionRelayBetaSignup } from "./MotionRelayBetaSignup";
 import "../products.css";
 
 function ProductVisual({ product }: { product: Product }) {
@@ -120,6 +121,7 @@ function MotionRelayDownloads() {
         ))}
       </div>
       <p className="product-download-note">A compatible Garmin device, Garmin Connect, the Motion Relay phone companion, internet access, and a supported authorized AI account are needed for the complete experience. <a href={motionRelayRoutes.setup}>Read setup instructions</a>.</p>
+      <p className="product-download-note">The iPhone and Android companions are in beta and are not publicly available yet. <a href={motionRelayRoutes.betaSignup}>Sign up to help test Motion Relay</a>.</p>
     </section>
   );
 }
@@ -303,6 +305,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         </div>
       </section>
       {product.downloadExperience === "motion-relay" && <MotionRelayDownloads />}
+      {product.downloadExperience === "motion-relay" && <MotionRelayBetaSignup />}
       {product.features.length > 0 && (
         <section className="product-detail-features">
           <div className="studio-wrap">
