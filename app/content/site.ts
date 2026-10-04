@@ -32,6 +32,10 @@ export const motionRelayDeletionMetadata = {
   title: "Delete Motion Relay Membership | Netherwood Data Partners",
   description: "How to request deletion of a Motion Relay membership and associated data without reinstalling the Android app.",
 };
+export const motionRelayTermsMetadata = {
+  title: "Motion Relay Terms of Service | Netherwood Data Partners",
+  description: "Terms for Motion Relay accounts, live fitness-metric relay, assistant connections, subscriptions, safety and third-party services.",
+};
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
