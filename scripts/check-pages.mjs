@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { products } from "../app/content/products.ts";
-import { motionRelayDownloads } from "../app/content/motion-relay.ts";
+import { motionRelayDownloads, motionRelayRoutes } from "../app/content/motion-relay.ts";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 
@@ -161,6 +161,11 @@ for (const route of expected) {
       assert.equal(product.name, "Motion Connect");
       assert.ok(html.includes(product.setup?.title ?? "Garmin connection and setup"));
       assert.ok(html.includes(motionRelayDownloads.garmin.url));
+      assert.ok(html.includes('id="beta-signup"'));
+      assert.ok(html.includes('name="phone_platform"'));
+      assert.ok(html.includes('name="garmin_watch_model"'));
+      assert.ok(html.includes('name="chatgpt_voice_available"'));
+      assert.ok(html.includes(motionRelayRoutes.betaSignup));
       for (const platform of [motionRelayDownloads.iphone, motionRelayDownloads.android]) {
         if (platform.available && platform.url) assert.ok(html.includes(platform.url));
         else {

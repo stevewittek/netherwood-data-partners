@@ -445,6 +445,42 @@
 .platform-download-disabled { cursor: not-allowed; opacity: .56; }
 .product-download-note { margin-top: 24px; color: var(--ink-soft); font-size: 13px; }
 .product-download-note a { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.product-beta-signup {
+  color: #f5f5ed;
+  background: #23382f;
+}
+.product-beta-signup-layout {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 70px;
+  padding-block: 100px;
+}
+.product-beta-signup h2 { margin: 14px 0 24px; }
+.product-beta-signup > div > div:first-child > p:not(.eyebrow) {
+  max-width: 540px;
+  color: #ced7cf;
+  line-height: 1.7;
+}
+.product-beta-signup .eyebrow { color: var(--lime); }
+.product-beta-signup .contact-copy { padding-top: 0; }
+.product-beta-signup .contact-form { margin-top: 0; }
+.product-beta-signup .contact-field-wide { grid-column: 1 / -1; }
+.product-beta-signup .beta-confirmation {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  color: #f5f5ed;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.product-beta-signup .beta-confirmation input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--lime);
+}
+.product-beta-signup .contact-privacy { color: #aebdb6; }
 .product-screenshot-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -666,6 +702,7 @@
   .product-privacy > div,
   .product-detail-overview,
   .product-downloads,
+  .product-beta-signup-layout,
   .product-detail-facts,
   .product-support,
   .product-screenshots,
@@ -698,6 +735,7 @@
   .product-detail-features,
   .product-detail-overview,
   .product-downloads,
+  .product-beta-signup-layout,
   .product-detail-facts,
   .product-support,
   .product-screenshots,
@@ -712,6 +750,7 @@
   .product-feature-grid {
     grid-template-columns: 1fr;
   }
+  .product-beta-signup .contact-field-wide { grid-column: auto; }
   .product-card:last-child {
     grid-column: auto;
   }
