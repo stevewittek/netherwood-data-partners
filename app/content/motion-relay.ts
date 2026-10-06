@@ -9,5 +9,5 @@ export const motionRelayRoutes = {
   setup: "/motionrelay/setup/",
   privacy: "/privacy/motion-relay/",
   deletion: "/privacy/motion-relay/delete/",
-  support: "/#contact",
+  support: "/support/motion-relay/",
 } as const;

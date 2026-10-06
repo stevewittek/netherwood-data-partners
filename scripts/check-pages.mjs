@@ -36,6 +36,7 @@ const expected = [
   "/privacy/motion-relay/",
   "/privacy/motion-relay/delete/",
   "/terms/motion-relay/",
+  "/support/motion-relay/",
   "/motionrelay/setup/",
   "/migration-intake/",
   "/migration-readiness/",

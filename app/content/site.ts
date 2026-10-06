@@ -36,6 +36,11 @@ export const motionRelayTermsMetadata = {
   title: "Motion Relay Terms of Service | Netherwood Data Partners",
   description: "Terms for Motion Relay accounts, live fitness-metric relay, assistant connections, subscriptions, safety and third-party services.",
 };
+export const motionRelaySupportMetadata = {
+  title: "Motion Relay Support | Netherwood Data Partners",
+  description:
+    "Setup help, connection troubleshooting and direct support for the Motion Relay phone apps and Motion Connect Garmin data field.",
+};
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
