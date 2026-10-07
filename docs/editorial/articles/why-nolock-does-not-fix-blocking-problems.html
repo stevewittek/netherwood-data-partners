@@ -1,0 +1,28 @@
+<p>NOLOCK changes read consistency. It can avoid waits for ordinary data locks, but it neither diagnoses the blocker nor guarantees a correct result or an absence of waits.</p>
+<h2>Read uncommitted means the result may be wrong</h2>
+<p>A dirty read can return a value written by a transaction that later rolls back. The problem is broader than seeing an uncommitted balance. While pages and rows change, an allocation-order scan may miss rows, encounter rows more than once, or combine values that never existed together as a committed state. Repeating the query can produce a different answer even when the application believes it is reading one logical moment.</p>
+<p>Invoices, inventory and reconciliation need agreed consistency. The business owner should approve that requirement; a hint added during an incident should not silently change it.</p>
+<h2>NOLOCK does not mean no locks</h2>
+<p>The hint affects data-lock behavior, but SQL Server still uses locks for metadata and schema coordination. A query can wait for a schema modification lock during a deployment or index operation. It can also wait on latches, memory, CPU scheduling, storage, network activity, or a worker thread. None of those waits is repaired by read-uncommitted access.</p>
+<p>The hint also does nothing to make a writing transaction shorter. Other writers can still queue behind it, and integrity checks or downstream actions can still suffer. If the real complaint is that order entry blocks order entry, applying <code>NOLOCK</code> to a dashboard avoids the central issue.</p>
+<h2>Find the head of the blocking chain</h2>
+<p>Capture evidence while blocking is occurring. Identify the waiting statement, the session blocking it, and the head blocker at the top of the chain. Record transaction start time, current and last statement, database, application name, host identity where trustworthy, wait resource, isolation level, and whether the session is sleeping with an open transaction.</p>
+<blockquote><p>Killing a visible blocked session treats the queue. Finding why the head blocker retained locks treats the event.</p></blockquote>
+<p>Common causes include an application transaction that covers user think time, error handling that neglects rollback, a batch modifying too many rows at once, a missing index that makes an update scan, and jobs scheduled into the peak workload. Each has a concrete remedy. Without the chain, the response becomes guesswork.</p>
+<h2>Reduce the work and transaction duration</h2>
+<ul>
+<li>Keep transactions focused on the statements that must succeed or fail together.</li>
+<li>Do not open a transaction before waiting for user input or remote service calls.</li>
+<li>Index selective predicates used by updates and deletes so fewer rows and keys are touched.</li>
+<li>Process large maintenance changes in controlled batches when the business rules allow it.</li>
+<li>Ensure every error path commits or rolls back deliberately and returns pooled connections cleanly.</li>
+</ul>
+<p>Query tuning helps concurrency even when a reader keeps the default isolation level. A seek that completes in milliseconds generally holds shared locks for less time than a scan that reads the entire table. Be careful, however, not to add a wide index solely for one blocking incident without measuring its cost to the writes already under pressure.</p>
+<h2>Consider row versioning with full awareness</h2>
+<p>Read committed snapshot isolation can allow readers using read committed semantics to obtain committed row versions instead of waiting for many data modifications. Snapshot isolation provides explicit transaction-level behavior. These are database design choices, not emergency hints.</p>
+<p>Row versioning moves work rather than eliminating it. SQL Server must maintain versions, and long-running readers can extend version retention. Capacity, monitoring, application assumptions, update-conflict handling, and workloads that still require locking all need review. Test representative transactions and reports before changing a production database option.</p>
+<h2>Distinguish blocking from deadlocks</h2>
+<p>Blocking is normal coordination: one session waits for another to release a resource. It becomes a problem when the duration or scope violates the service requirement. A deadlock is a cycle in which sessions wait on one another, so SQL Server chooses a victim. The deadlock graph identifies resources and statement order; <code>NOLOCK</code> is not a general deadlock solution.</p>
+<p>For repeatable deadlocks, examine access order, indexes, transaction scope, isolation, and retry behavior. Applications should handle a deadlock victim as a transient failure only when retrying the whole logical transaction is safe and bounded.</p>
+<h2>Make consistency an explicit requirement</h2>
+<p>Agree on required consistency. Investigate the blocking evidence, shorten transactions, improve access paths and review competing work and isolation. Document any accepted inconsistency instead of scattering unexplained hints.</p>

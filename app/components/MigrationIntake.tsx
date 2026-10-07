@@ -247,7 +247,7 @@ export default function MigrationIntake() {
         </div>
         <div className="contact-field">
           <label htmlFor="migration-description">
-            Tell us about the move <span>(optional)</span>
+            Describe the project <span>(optional)</span>
           </label>
           <textarea
             id="migration-description"

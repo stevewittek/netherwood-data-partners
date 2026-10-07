@@ -1,0 +1,33 @@
+<p>A performance incident may end before you can investigate. Query Store retains query text, plans and aggregated runtime history that the plan cache may no longer contain.</p>
+<h2>What Query Store can answer</h2>
+<p>Query Store helps determine which queries consumed resources during a specific interval, whether a query changed plans, and how performance differed between those plans. It can reveal a regression after a deployment, a plan that works for one parameter pattern but not another, or a workload that gradually became more expensive without a plan change.</p>
+<p>Query Store aggregates runtime data. Use live session evidence for blocking and application or operating-system records for problems outside SQL Server.</p>
+<h2>Configure it as an operational system</h2>
+<p>Turning Query Store on with defaults and forgetting it is not enough. Review the capture policy, maximum storage, cleanup behavior, runtime statistics interval, and retention period against the database workload. An ad hoc system generating large amounts of unique SQL text needs different settings from an application using stable parameterized statements.</p>
+<ul>
+<li>Retain enough history to cover month-end, weekly processing, and other meaningful business cycles.</li>
+<li>Monitor actual Query Store size and read-only state so collection does not stop unnoticed.</li>
+<li>Exclude or reduce capture of low-value, one-time statements when they crowd out important history.</li>
+<li>Confirm that restores, replicas, and support procedures treat Query Store data as intended.</li>
+</ul>
+<p>Configuration should be tested under the real workload. Collection has overhead, though sensible capture and retention settings usually make it manageable. The objective is useful evidence, not indefinite storage of every statement ever submitted.</p>
+<h2>Start with the incident window</h2>
+<p>When investigating, define the affected operation, database, and UTC time window before sorting any report. Broad lists of the highest total CPU queries often surface routine background work rather than the incident. Compare the bad interval with a known good interval and examine duration, CPU, logical reads, execution count, row count, and waits where the SQL Server version exposes them.</p>
+<p>Total resource use and per-execution resource use answer different questions. A moderately expensive query executed very frequently can consume the server. A single query with extreme duration may explain one user complaint while having little system-wide impact. Keep both perspectives visible.</p>
+<h2>Compare plan history carefully</h2>
+<p>A plan change close to the regression is strong evidence, but timing alone is not proof. Open the competing plans and compare estimates, actual behavior if separately captured, join algorithms, access methods, memory grants, spills, parallelism, and lookup volume. Then relate those differences to parameter values, statistics changes, indexes, and data distribution.</p>
+<table><caption>Questions for a regressed query</caption><thead><tr><th scope="col">Observation</th><th scope="col">Next check</th></tr></thead><tbody><tr><td>One plan is consistently slower</td><td>Statistics, indexes, optimizer choice, and safe plan correction</td></tr><tr><td>Each plan wins for different inputs</td><td>Parameter sensitivity and workload segmentation</td></tr><tr><td>The plan is unchanged but reads increased</td><td>Data growth, predicate selectivity, and result volume</td></tr><tr><td>Duration rose while CPU stayed similar</td><td>Blocking, storage latency, memory grants, or external waits</td></tr></tbody></table>
+<h2>Use plan forcing as a stabilizer</h2>
+<p>Query Store can force a known plan, which is valuable when a severe regression needs quick containment. Treat forcing as a controlled operational change. Document the reason, owner, expected benefit, validation measurements, and review date. Watch for force failures and for workload changes that make the selected plan unsuitable.</p>
+<p>A forced plan does not repair stale statistics, a missing access path, parameter-sensitive design, or a query that requests unnecessary data. Once the incident is stable, diagnose and correct the underlying cause. Then test whether forcing can be removed. Query Store hints can influence behavior without changing application text, but they deserve the same change control and follow-up.</p>
+<h2>Build a repeatable regression workflow</h2>
+<ol>
+<li>Record the user-visible symptom and exact time range.</li>
+<li>Find queries whose runtime behavior changed in that range.</li>
+<li>Separate execution-count changes from per-execution regressions.</li>
+<li>Compare plans and relevant wait categories.</li>
+<li>Apply the least risky stabilizing action.</li>
+<li>Validate against normal and edge-case parameters.</li>
+<li>Implement the durable query, statistics, index, or application correction.</li>
+</ol>
+<blockquote><p>Review new regressions and highly variable queries routinely. Record the query, time interval, plan history and evidence in the incident notes. Maintain Query Store so the next investigation has usable history.</p></blockquote>

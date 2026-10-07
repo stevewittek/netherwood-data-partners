@@ -9,33 +9,15 @@ export function MotionRelayBetaSignup() {
         <div>
           <p className="eyebrow">Beta testing</p>
           <h2>Help test the Motion Relay phone apps.</h2>
-          <p>
-            Netherwood is looking for iPhone and Android testers who use a
-            compatible Garmin watch and can try the complete watch-to-phone
-            experience before the companion apps are publicly released.
-          </p>
-          <p>
-            A free or paid ChatGPT account is acceptable. You must already have
-            Voice available in the official ChatGPT mobile app. Voice access
-            and limits can vary by plan, region, app version and account
-            settings.
-          </p>
-          <p>
-            Do not include passwords, account credentials, health details or
-            private workout data in this form. Signing up does not guarantee a
-            testing invitation.
-          </p>
-          <p>
-            If your request is approved, you will receive an email confirming
-            that you have been added as a tester, along with the installation
-            link and next steps for your phone platform.
-          </p>
+          <p>Use a Garmin watch and want to help test Motion Relay? Tell me your watch and phone models.</p>
+          <p>This group requires ChatGPT mobile Voice access. Voice alone does not establish Motion compatibility; your invitation will confirm the supported setup.</p>
+          <p>Leave out passwords, health details and workout data. Invitations are not guaranteed. Approved testers receive installation instructions by email.</p>
         </div>
         <div className="contact-copy">
           <InquiryForm
             source="Motion Relay beta tester signup"
             submitLabel="Request beta access"
-            successMessage="Thank you. Your beta tester request has been received. If approved, you will receive an email confirming that you have been added as a tester, with the installation link and next steps."
+            successMessage="Your request has been received. If approved, you will receive an email with the installation link and next steps."
           >
             <div className="contact-form-grid">
               <div className="contact-field">

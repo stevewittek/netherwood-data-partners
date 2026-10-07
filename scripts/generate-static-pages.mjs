@@ -333,9 +333,9 @@ for (const product of products) {
 await page(
   "articles",
   metaPage({
-    title: "Articles & Field Notes | Netherwood Data Partners",
+    title: "Articles | Netherwood Data Partners",
     description:
-      "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.",
+      "Notes on SQL Server performance, recovery and data migrations.",
     canonical: `${siteUrl}/articles/`,
   }),
 );
@@ -366,7 +366,6 @@ for (const article of articles) {
       image,
       published: article.publishedDate,
       modified: article.modifiedDate,
-      author: article.author,
       structured: {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -374,7 +373,6 @@ for (const article of articles) {
         description,
         datePublished: article.publishedDate,
         dateModified: article.modifiedDate,
-        author: { "@type": "Person", name: article.author },
         publisher: {
           "@type": "Organization",
           name: "Netherwood Data Partners",

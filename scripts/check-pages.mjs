@@ -159,7 +159,7 @@ for (const route of expected) {
     assert.ok(title.includes(product.name), `Product title ${route}`);
     if (product.id === "garmin-ai-connector") {
       assert.equal(product.name, "Motion Connect");
-      assert.ok(html.includes(product.setup?.title ?? "Garmin connection and setup"));
+      assert.ok(html.includes(`href="${motionRelayRoutes.setup}"`), "Motion setup remains reachable");
       assert.ok(html.includes(motionRelayDownloads.garmin.url));
       assert.ok(html.includes('id="beta-signup"'));
       assert.ok(html.includes('name="phone_platform"'));

@@ -11,9 +11,7 @@ export default function PrivacyPage() {
         <div>
           <p className="eyebrow">Privacy</p>
           <h1>
-            Clear information.
-            <br />
-            Specific to the product.
+            Website and product privacy.
           </h1>
         </div>
         <div className="products-hero-copy">

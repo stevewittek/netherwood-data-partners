@@ -1,3 +1,27 @@
+## Homepage refinement — October 7, 2026
+
+The company, services and products lead Home. Keep the owner's name on About
+only; remove personal signoffs and biography from Home and shared promotional
+copy. Keep the running/data origin story and detailed product explanations on
+the Motion product page. Home carries concise product links and service areas.
+Preserve the existing theme and all inquiry/beta forms. This supersedes the
+October 6 homepage watch-image and founder-story arrangement below.
+
+## Current owner direction — October 6, 2026
+
+Netherwood is an independent data and software business led by Steven Wittek.
+Lead with apps, data connections, metrics and database tools. SQL Server and
+database engineering establish the technical background. Consulting remains
+available for focused work; preserve all service routes, business inquiries,
+migration intake and the Motion beta signup.
+
+Preserve the existing colors, typography, theme, buttons and Motion artwork.
+Use the existing watch preview and a small station photograph on Home. Retain
+other image files. Describe Motion through the owner’s experience using ChatGPT
+during a run and wanting to connect Garmin readings. Keep component roles and
+verified availability explicit. This direction supersedes earlier consulting-
+first positioning below. See `EDITORIAL_REVISION.md` for the local candidate.
+
 ## Motion Relay beta tester signup — October 4, 2026
 
 The Motion Connect product page now includes a focused Motion Relay beta tester

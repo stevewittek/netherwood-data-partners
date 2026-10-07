@@ -1,494 +1,62 @@
 import ChatWidget from "./ChatWidget";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
-import { CommunityPhoto, CommunityRoots } from "./components/Community";
+import { motionRelayRoutes } from "./content/motion-relay";
 import "./community.css";
+import "./editorial.css";
 
 const services = [
-  {
-    number: "01",
-    title: "Software & systems support",
-    text: "Work through application issues, awkward workarounds and vendor questions. Get a clear next step and hands-on help.",
-    link: "/services/software-systems-support/",
-    label: "Get your systems working",
-    id: "business-systems",
-  },
-  {
-    number: "02",
-    title: "Data & database services",
-    text: "Make sense of your records, improve SQL Server performance, review recovery plans and build reporting you can use.",
-    link: "/services/database-engineering/",
-    label: "Look after your data",
-    id: "database-services",
-  },
-  {
-    number: "03",
-    title: "Connected workflows",
-    text: "Help your applications talk to each other. Connect imports, reports and everyday processes so your staff can spend less time moving information.",
-    link: "/services/workflow-automation/",
-    label: "Connect the pieces",
-  },
-  {
-    number: "04",
-    title: "Migrations & modernization",
-    text: "When it is time for something new, understand the old system, prepare the information and plan the move into your chosen platform.",
-    link: "/services/data-migration/",
-    label: "Plan a better move",
-  },
-];
-const faqs = [
-  [
-    "Can you help with the software we already use?",
-    "Yes. Start with what is getting in the way: application errors, inconsistent records, slow reports or a workflow that keeps breaking. We review the system and agree what Netherwood can take on, what belongs with your software vendor and what needs another specialist.",
-  ],
-  [
-    "Do we have to replace our systems?",
-    "No. The useful answer may be a repair, a cleaner process, an integration or a better report. Migration is one option when the existing system no longer fits.",
-  ],
-  [
-    "Who will we work with?",
-    "You work directly with Steven Wittek, Netherwood’s founder and database engineer. The scope, fees and any ongoing support are agreed before work begins. Additional specialties can be discussed when a project needs them.",
-  ],
-  [
-    "Do you offer ongoing support?",
-    "Yes, on an agreed scope. That can include database support, application troubleshooting, reporting or help after a system change. Availability, responsibilities and response expectations are set together.",
-  ],
+  { id: "database-services", title: "Database performance", text: "SQL Server investigations, query tuning, monitoring and recovery reviews.", href: "/services/database-engineering/" },
+  { id: "business-systems", title: "Applications and integrations", text: "Investigate application problems and connect data between existing systems.", href: "/services/workflow-automation/" },
+  { title: "Data migrations", text: "Map records, rehearse the move and check the result against agreed business rules.", href: "/services/data-migration/" },
+  { title: "Systems assessments", text: "Understand an older application, its dependencies and the options for its next stage.", href: "/services/legacy-systems-assessment/" },
 ];
 
 export default function Home() {
   return (
-    <main className="studio-home community-home">
+    <main className="studio-home community-home editorial-home">
       <SiteHeader />
       <section className="community-hero" id="top">
         <div className="community-hero-copy">
-          <p className="eyebrow">
-            <span className="location-dot" />
-            Rooted in Netherwood. Here for your business.
-          </p>
-          <h1>
-            Move your data forward.
-            <br />
-            <span>Make better decisions.</span>
-          </h1>
-          <p className="community-lede">
-            Practical data migration, integration and reporting for established
-            businesses.
-          </p>
-          <p className="community-hero-body">
-            Whether you are replacing case-management software, moving records
-            into a cloud EHR, modernizing inventory or connecting another
-            business system, Netherwood helps map the source, prepare the data
-            and build reporting your team can trust.
-          </p>
+          <p className="eyebrow"><span className="location-dot" />Data &amp; software · New Jersey</p>
+          <h1>Software built<br /><span>around data.</span></h1>
+          <p className="community-lede">Apps, connected systems and the metrics that help explain how they work.</p>
+          <p className="community-hero-body">Netherwood Data Partners develops apps and database tools, connects systems, and helps businesses improve how their data works.</p>
           <div className="studio-actions">
-            <a className="button button-primary" href="#contact">
-              Let’s talk about your business <span aria-hidden="true">↗</span>
-            </a>
-            <a className="studio-text-link" href="#services">
-              See how we can help <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-          <div className="community-signoff">
-            <span className="community-monogram" aria-hidden="true">
-              SW
-            </span>
-            <p>
-              Work directly with Steven Wittek.
-              <br />
-              <strong>Your local data, software & systems specialist.</strong>
-            </p>
+            <a className="button button-primary" href="/services/">Explore services <span aria-hidden="true">↗</span></a>
+            <a className="studio-text-link" href="/products/">View products <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div className="community-hero-visual">
-          <CommunityPhoto
-            name="business-data-consulting"
-            alt="Illustrative business team reviewing a legacy-to-cloud data migration map and reporting dashboard"
-            priority
-          />
-          <div className="community-photo-label">
-            <span aria-hidden="true">↗</span>
-            <p>
-              Migration · Integration · Reporting
-              <br />
-              <strong>From legacy records to useful business insight.</strong>
-            </p>
-          </div>
-          <span className="community-scene-note">
-            AI-generated systems concept
-          </span>
-        </div>
-      </section>
-      <div className="community-signal-strip">
-        <div className="studio-wrap">
-          <span>Small-business care.</span>
-          <span>Senior technical experience.</span>
-          <span>Consulting · Software · Data</span>
-          <a href="#community">
-            Along the Raritan Valley Line <span aria-hidden="true">↓</span>
-          </a>
-        </div>
-      </div>
-      <section
-        className="community-section studio-wrap systems-transition"
-        aria-labelledby="systems-transition-heading"
-      >
-        <div className="community-section-heading">
-          <div>
-            <p className="eyebrow">Recognize the old routine?</p>
-            <h2 id="systems-transition-heading">
-              Tab. Tab. Enter.
-              <br />
-              There’s a better next step.
-            </h2>
-          </div>
-          <p>
-            Start with the records and processes your business depends on. Clean
-            up the data, connect the systems and introduce automation or AI
-            assistance where it helps the work.
-          </p>
-        </div>
-        <div className="systems-comparison">
-          <div className="systems-legacy">
-            <p className="systems-panel-label">01 / The familiar workaround</p>
-            <pre aria-label="Illustrative legacy inventory screen">
-              {
-                "SOURCE RECORDS\n\nRECORD ID: 1042\nSTATUS:    ACTIVE\nOWNER:     07\n\nF1 HELP   F3 SEARCH\nTAB NEXT  ENTER SAVE\n\n> EXPORT RECORD_"
-              }
-            </pre>
-            <p>Look up a record. Print a report. Re-enter it somewhere else.</p>
-          </div>
-          <div className="systems-modern">
-            <p className="systems-panel-label">02 / A possible next workflow</p>
-            <h3>
-              Ask a question.
-              <br />
-              Work from connected records.
-            </h3>
-            <div className="systems-prompt">
-              “Which records can move, and which fields need review?”
-            </div>
-            <p className="systems-answer">
-              <strong>Illustrative assistant response</strong>
-              <br />
-              “The source fields are mapped. These exceptions need a person to
-              review them before import.”
-            </p>
-            <p>
-              Find the source record, check the answer and let a person approve
-              the next action.
-            </p>
-          </div>
-        </div>
-        <p className="community-image-note">
-          Example workflow with fictional data, not a live product or a
-          completed client project. The right solution depends on your software,
-          access controls and business process.
-        </p>
+        <figure className="community-hero-visual editorial-company-visual" id="community">
+          <img src="/images/community/netherwood-station.webp" alt="Netherwood station in Plainfield, New Jersey" width={1536} height={1020} fetchPriority="high" />
+          <figcaption>Netherwood, New Jersey. <a href="https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg">Photo: Jerrye &amp; Roy Klotz MD</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Resized for display.</figcaption>
+        </figure>
       </section>
       <section className="community-section studio-wrap" id="services">
-        <div className="community-section-heading">
-          <div>
-            <p className="eyebrow">A specialist in your corner</p>
-            <h2>
-              You know your business.
-              <br />
-              We get into the technology.
-            </h2>
-          </div>
-          <p>
-            Keep what works. Fix what gets in the way. Bring the pieces
-            together—with clear explanations and a practical plan.
-          </p>
-        </div>
-        <div className="community-services">
-          {services.map((service) => (
-            <article key={service.number} id={service.id}>
-              <span className="community-service-number">
-                {service.number}
-                <span aria-hidden="true">↗</span>
-              </span>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <a href={service.link}>
-                {service.label} <span aria-hidden="true">↗</span>
-              </a>
-            </article>
-          ))}
+        <div className="community-section-heading" id="when-to-call-us"><div><p className="eyebrow">Services</p><h2>Connect systems.<br />Improve performance.</h2></div><p id="engagements">Focused software and data work for local businesses and technical teams. Scope, fees and availability are agreed before work begins.</p></div>
+        <div className="community-services">{services.map((service, index) => <article key={service.title} id={service.id}><span className="community-service-number">{String(index + 1).padStart(2, "0")}</span><h3>{service.title}</h3><p>{service.text}</p><a href={service.href}>View service <span aria-hidden="true">↗</span></a></article>)}</div>
+        <div className="studio-actions"><a className="studio-text-link" href="/services/">All services <span aria-hidden="true">↗</span></a></div>
+      </section>
+      <section className="community-people-band" id="products">
+        <div className="community-section studio-wrap community-working">
+          <div><p className="eyebrow">Products</p><h2>Apps and database tools.</h2><p>Explore the software, check current availability and find setup or testing information on each product page.</p><a className="studio-text-link" href="/products/">Browse products <span aria-hidden="true">↗</span></a></div>
+          <ol>
+            <li><span>01</span><div><h3><a href={motionRelayRoutes.product}>Motion Connect + Motion Relay <span aria-hidden="true">↗</span></a></h3></div></li>
+            <li><span>02</span><div><h3><a href="/products/queryvault/">QueryVault <span aria-hidden="true">↗</span></a></h3></div></li>
+            <li><span>03</span><div><h3><a href="/products/sql-server-index-maintenance-visualizer/">PageMover <span aria-hidden="true">↗</span></a></h3></div></li>
+          </ol>
         </div>
       </section>
-      <section className="community-people-band" id="when-to-call-us">
-        <div className="studio-wrap community-section">
-          <div className="community-section-heading">
-            <div>
-              <p className="eyebrow">Built around the work you do</p>
-              <h2>
-                The professional office.
-                <br />
-                The medical practice.
-                <br />
-                <span>The systems behind them.</span>
-              </h2>
-            </div>
-            <p>
-              Law firms, medical practices, distributors and other established
-              businesses carry years of records and routines. Modernization
-              starts by understanding what must keep working.
-            </p>
-          </div>
-          <div className="community-stories">
-            <article>
-              <CommunityPhoto
-                name="professional-office-systems"
-                alt="Illustrative professional office reviewing older records beside a modern cloud document and reporting system"
-              />
-              <div>
-                <p className="eyebrow">Law firms & professional offices</p>
-                <h3>Move years of records without losing the business context.</h3>
-                <p>
-                  Matters, documents, contacts and billing history may live in
-                  different places. Map what belongs in the new platform,
-                  validate the move and help staff work from reliable records.
-                </p>
-                <a
-                  className="studio-text-link"
-                  href="/services/data-migration/"
-                >
-                  Plan the data move <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-            <article>
-              <CommunityPhoto
-                name="medical-office-systems"
-                alt="Illustrative medical reception with an older scheduling terminal, corded phone and paper appointment book beside modern administrative software"
-              />
-              <div>
-                <p className="eyebrow">Medical offices & practices</p>
-                <h3>From phone tag to an organized front office.</h3>
-                <p>
-                  Aging scheduling software, paper reminders and repeated entry.
-                  Assess the administrative workflow, prepare records for your
-                  chosen platform and explore reminders or assisted call routing
-                  with your vendors.
-                </p>
-                <a
-                  className="studio-text-link"
-                  href="/services/software-systems-support/"
-                >
-                  Talk through the problem <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-          </div>
-          <p className="community-image-note">
-            AI-generated industry concepts show possible old and new workflows,
-            not actual client sites, product screenshots or guaranteed results.
-          </p>
-        </div>
+      <section className="community-section studio-wrap community-working" id="about">
+        <div><p className="eyebrow">About Netherwood</p><h2>A foundation in data.<br />A focus on software.</h2></div>
+        <div id="approach"><p>Based in New Jersey, Netherwood brings SQL Server and database engineering experience to app development, integrations and consulting.</p><p>The focus is practical: understand the system, connect the right information and measure what improves.</p><a className="studio-text-link" href="/about/">About the company <span aria-hidden="true">↗</span></a></div>
       </section>
-      <section
-        className="community-section studio-wrap community-working"
-        id="approach"
-      >
-        <div>
-          <p className="eyebrow">A personal way of working</p>
-          <h2>
-            Start with a conversation.
-            <br />
-            Leave with a next step.
-          </h2>
-          <p>
-            Explain it in your own words. You don’t need to know what database
-            is underneath—or arrive with a technical brief.
-          </p>
-          <a className="studio-text-link" href="#contact">
-            Tell Steven what’s happening <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <ol>
-          <li>
-            <span>01</span>
-            <div>
-              <h3>Understand the business.</h3>
-              <p>
-                Listen to your people, look at the system and find where things
-                are getting stuck.
-              </p>
-            </div>
-          </li>
-          <li>
-            <span>02</span>
-            <div>
-              <h3>Agree on useful work.</h3>
-              <p>
-                A focused fix, a systems assessment, a project or ongoing
-                support. Scope and fees come first.
-              </p>
-            </div>
-          </li>
-          <li>
-            <span>03</span>
-            <div>
-              <h3>Do the work. Explain the result.</h3>
-              <p>
-                Check it with you, document the important details and agree what
-                support comes next.
-              </p>
-            </div>
-          </li>
-        </ol>
+      <section className="studio-insights studio-wrap" id="insights"><div><p className="eyebrow">Articles</p><h2>Notes from database work.</h2><p>SQL Server performance, recovery and migration decisions.</p></div><a className="studio-text-link" href="/articles/">Read articles <span aria-hidden="true">↗</span></a></section>
+      <section className="contact studio-contact community-contact" id="contact">
+        <div><p className="eyebrow">Contact</p><h2>App questions.<br /><span>Business inquiries.</span></h2><p className="studio-contact-intro">Ask about a product, report a problem, or describe a data project. For testing invitations, use the <a href={motionRelayRoutes.betaSignup}>Motion beta signup</a>.</p><div className="studio-contact-details"><span>New Jersey · Meetings by appointment</span><a href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a></div></div>
+        <div className="contact-copy"><ContactForm /></div>
       </section>
-      <CommunityRoots />
-      <section
-        className="community-section studio-wrap community-founder"
-        id="about"
-      >
-        <div className="community-founder-card">
-          <p className="eyebrow">The person behind Netherwood</p>
-          <span className="community-founder-initials" aria-hidden="true">
-            SW<span>↗</span>
-          </span>
-          <h3>Steven Wittek</h3>
-          <p>
-            Founder · Database engineer
-            <br />
-            New Jersey local · Family person
-          </p>
-          <a className="studio-text-link" href="/about/">
-            Meet Steven <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div>
-          <p className="eyebrow">Local roots. Serious technical depth.</p>
-          <h2>
-            A small shop.
-            <br />A lot of care for
-            <br />
-            what keeps you going.
-          </h2>
-          <p>
-            Netherwood is an independent, founder-led consultancy. You work
-            directly with Steven, whose technology experience since 2009
-            includes production databases, reporting, recovery, integrations and
-            system changes.
-          </p>
-          <p>
-            That experience belongs here, too—in the businesses, offices and
-            workshops around us.
-          </p>
-          <div className="community-expertise">
-            <span>SQL Server & Azure SQL</span>
-            <span>Business applications</span>
-            <span>Data & reporting</span>
-            <span>Integration & recovery</span>
-          </div>
-          <a
-            className="studio-text-link"
-            href="/about/#professional-experience"
-          >
-            Explore Steven’s professional experience{" "}
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </section>
-      <section className="community-assessment" id="engagements">
-        <div className="studio-wrap">
-          <div>
-            <p className="eyebrow">When it’s time for a bigger change</p>
-            <h2>Let’s work out what comes next.</h2>
-            <p>
-              A systems assessment gives you a clearer view of your software,
-              data, dependencies and options. And when you’re ready to move,
-              migration is one of our specialties.
-            </p>
-          </div>
-          <div>
-            <a
-              className="button button-primary"
-              href="/services/legacy-systems-assessment/"
-            >
-              Explore a systems assessment <span aria-hidden="true">↗</span>
-            </a>
-            <a className="studio-text-link" href="/migration-readiness/">
-              Try the migration readiness check{" "}
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a className="studio-text-link" href="/migration-intake/">
-              Tell us about a planned move <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-      <section className="studio-section studio-wrap studio-faq">
-        <div>
-          <p className="eyebrow">Before we talk</p>
-          <h2>A few useful answers.</h2>
-        </div>
-        <div>
-          {faqs.map(([question, answer]) => (
-            <details key={question}>
-              <summary>
-                {question}
-                <span aria-hidden="true">+</span>
-              </summary>
-              <p>{answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-      <section className="studio-insights studio-wrap" id="insights">
-        <div>
-          <p className="eyebrow">Field notes</p>
-          <h2>Useful thinking, shared openly.</h2>
-          <p>
-            Practical articles on databases, performance, recovery and the
-            systems behind everyday business.
-          </p>
-        </div>
-        <a className="studio-text-link" href="/articles/">
-          Read the field notes <span aria-hidden="true">↗</span>
-        </a>
-      </section>
-      <section
-        className="contact studio-contact community-contact"
-        id="contact"
-      >
-        <div>
-          <p className="eyebrow">Your neighborhood technology conversation</p>
-          <h2>
-            Tell us what’s
-            <br />
-            <span>getting in the way.</span>
-          </h2>
-          <p className="studio-contact-intro">
-            A software question. A report that doesn’t add up. A system you’ve
-            outgrown. Start with what’s happening, and we’ll work out a useful
-            next step.
-          </p>
-          <div className="studio-contact-details">
-            <span>
-              New Jersey · Tri-State · Remote projects where practical
-            </span>
-            <span>Work directly with Steven · Meetings by appointment</span>
-            <a href="mailto:contact@netherwooddatapartners.com">
-              contact@netherwooddatapartners.com
-            </a>
-          </div>
-        </div>
-        <div className="contact-copy">
-          <p>A few details are all you need to start.</p>
-          <ContactForm />
-          <p className="contact-email-fallback">
-            Prefer email? Write to{" "}
-            <a href="mailto:contact@netherwooddatapartners.com">
-              contact@netherwooddatapartners.com
-            </a>
-            .
-          </p>
-        </div>
-      </section>
-      <SiteFooter />
-      <ChatWidget />
+      <SiteFooter /><ChatWidget />
     </main>
   );
 }

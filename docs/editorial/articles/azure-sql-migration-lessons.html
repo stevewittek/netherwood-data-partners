@@ -1,0 +1,31 @@
+<p>An Azure SQL migration changes operating responsibilities. Choose the service model, verify application dependencies and test connectivity, cost and performance before cutover.</p>
+<h2>Choose among different services, not one generic cloud database</h2>
+<p>Azure SQL Database, Azure SQL Managed Instance, and SQL Server on Azure Virtual Machines provide different levels of instance compatibility and administrative control. SQL Database suits applications that fit a database-scoped managed model. Managed Instance preserves more instance-level behavior. A virtual machine offers the most familiar SQL Server surface while leaving more operating-system, patching, backup, and availability responsibility with the customer.</p>
+<p>Inventory cross-database queries, jobs, linked servers, CLR, files, transactions, agents, identity and recovery needs. Assign redesign work to an owner; database size does not establish compatibility.</p>
+<h2>Assess the application path end to end</h2>
+<p>A database assessment can report unsupported engine features yet miss a connection string hidden in a scheduled task, an old driver that lacks current encryption support, or a report server that relies on Windows delegation. Search source, deployment configuration, integration servers, desktop clients, and job definitions. Observe actual connections across a full business cycle.</p>
+<p>Test connection pooling, transient fault handling, command timeouts, retry boundaries, and transaction behavior. A retry must encompass the complete safe unit of work; blindly retrying one statement can duplicate business actions or leave a multi-step transaction inconsistent.</p>
+<h2>Network latency becomes part of query design</h2>
+<p>An application that sits next to its database can conceal a chatty access pattern. Move the database to Azure while leaving the application elsewhere, and hundreds of small round trips become visible to users. Measure from the intended application location, through the planned private or public network controls, name resolution, firewalls, and gateways.</p>
+<p>Reduce unnecessary round trips, return only needed columns and rows, and keep application and database tiers appropriately close. Validate large transfers and reporting extracts separately from transactional calls. A fast query inside the database can still produce a slow user experience if the application fetches and processes an excessive result set.</p>
+<h2>Design identity before cutover</h2>
+<p>Decide whether applications and people will use Microsoft Entra identities, managed identities, contained database users, or another supported approach. Prefer identities that avoid embedded long-lived passwords and grant only required permissions. Include deployment tools, monitoring, data pipelines, and emergency administration in the design.</p>
+<p>Test token acquisition and renewal, group membership propagation, failover behavior, and access from automation. Maintain a controlled emergency path, but do not turn it into a shared daily administrator account. Log and review privileged changes.</p>
+<h2>Size with workload evidence</h2>
+<p>On-premises CPU count and memory do not translate directly into a cloud service tier. Capture CPU, data and log I/O, storage size and growth, memory behavior, concurrency, tempdb use, log generation, and important query latency. Include month-end and seasonal peaks. Then run representative load tests on the proposed target.</p>
+<p>Managed-service limits and governance matter as much as headline capacity. Review maximum database size, log throughput, worker and session behavior, maintenance effects, backup retention, zone support, and scaling time for the selected option and region. Use current platform documentation during design because service capabilities change.</p>
+<h2>Rehearse movement and cutover</h2>
+<p>Online migration services can reduce downtime, but they do not eliminate a final synchronization and ownership change. Rehearse with production-like volume and change rate. Measure initial load, ongoing replication lag, final catch-up, application deployment, DNS or configuration change, and validation.</p>
+<ol>
+<li>Define the write freeze or final synchronization boundary.</li>
+<li>Verify target logins, permissions, schema, and configuration.</li>
+<li>Reconcile critical counts, totals, and recent transactions.</li>
+<li>Run user workflows and scheduled operations.</li>
+<li>Observe performance and platform health before acceptance.</li>
+<li>Keep a time-bounded rollback decision with explicit data handling.</li>
+</ol>
+<h2>Understand the new operating contract</h2>
+<p>Azure may automate backups, patching, and parts of high availability depending on the service, but the customer still owns data correctness, access, query performance, retention choices, monitoring, application resilience, and recovery validation. Test point-in-time restore and, where required, regional recovery. Confirm who receives alerts and who can act on them.</p>
+<p>Build dashboards around business symptoms as well as platform metrics. A database can remain within service limits while one critical query regresses. Preserve Query Store history, configure useful alerts, and establish a review process for expensive or variable statements.</p>
+<h2>Control cost through architecture and observation</h2>
+<p>Estimate compute, storage, retention, transfer, replicas and licensing, then compare actual costs after migration. Investigate inefficient queries before scaling. Close temporary access and document recovery, service limits and escalation paths.</p>

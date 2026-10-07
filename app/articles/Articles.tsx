@@ -26,7 +26,7 @@ export type PublicArticle = {
 
 type Snapshot = { generatedAt: string | null; articles: PublicArticle[] };
 const staticSnapshot = snapshot as Snapshot;
-const indexDescription = "Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.";
+const indexDescription = "Notes on SQL Server performance, recovery and data migrations.";
 
 function isArticle(value: unknown): value is PublicArticle {
   if (!value || typeof value !== "object") return false;
@@ -98,7 +98,7 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
       ? article.seoTitle || `${article.title} | Netherwood Data Partners`
       : requestedSlug && noindex
         ? "Article not found | Netherwood Data Partners"
-        : "Articles & Field Notes | Netherwood Data Partners";
+        : "Articles | Netherwood Data Partners";
     const description = article?.seoDescription || article?.summary || indexDescription;
     const socialImage = absoluteImage(article?.featuredImage);
     document.title = title;
@@ -115,7 +115,7 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
     if (article) {
       setMeta("article:published_time", article.publishedDate, true);
       setMeta("article:modified_time", article.modifiedDate, true);
-      setMeta("article:author", article.author, true);
+      removeMeta("article:author", true);
     } else {
       removeMeta("article:published_time", true);
       removeMeta("article:modified_time", true);
@@ -142,7 +142,6 @@ function usePageMetadata(article?: PublicArticle, noindex = false, requestedSlug
         description,
         datePublished: article.publishedDate,
         dateModified: article.modifiedDate,
-        author: { "@type": "Person", name: article.author },
         publisher: { "@type": "Organization", name: "Netherwood Data Partners", url: "https://netherwooddatapartners.com/" },
         mainEntityOfPage: `https://netherwooddatapartners.com${canonicalPath}`,
         image: socialImage,
@@ -163,7 +162,7 @@ function ArticlePreview({ article, featured = false }: { article: PublicArticle;
       <div className="article-preview-copy">
         <h2><a href={`/articles/${article.slug}/`}>{article.title}</a></h2>
         <p>{article.summary}</p>
-        <a className="article-read-link" href={`/articles/${article.slug}/`}>Read field note <span aria-hidden="true">→</span></a>
+        <a className="article-read-link" href={`/articles/${article.slug}/`}>Read article <span aria-hidden="true">→</span></a>
       </div>
     </article>
   );
@@ -205,9 +204,9 @@ export function ArticlesIndex() {
     <main>
       <SiteHeader currentPage="articles" />
       <header className="articles-masthead">
-        <p className="eyebrow">Netherwood insights</p>
-        <h1>Articles &amp; Field Notes</h1>
-        <p>Practical notes on software changes, moving business data, backups and the technical work behind reliable systems.</p>
+        <p className="eyebrow">Database work</p>
+        <h1>Articles</h1>
+        <p>Notes on SQL Server performance, recovery and data migrations.</p>
       </header>
       <section className="articles-publication">
         {articles.length > 0 ? (
@@ -239,7 +238,7 @@ export function ArticlesIndex() {
               <>
                 {featuredArticle ? (
                   <section className="articles-featured" aria-labelledby="featured-article-heading">
-                    <p className="eyebrow" id="featured-article-heading">Featured insight</p>
+                    <p className="eyebrow" id="featured-article-heading">Featured article</p>
                     <ArticlePreview article={featuredArticle} featured />
                   </section>
                 ) : null}
@@ -254,7 +253,7 @@ export function ArticlesIndex() {
               </>
             ) : (
               <div className="articles-empty articles-no-results">
-                <p className="eyebrow">No matching field notes</p>
+                <p className="eyebrow">No matching articles</p>
                 <h2>Try a broader search.</h2>
                 <p>No published articles match the current category and search terms.</p>
                 <button className="button articles-clear-filters" type="button" onClick={clearFilters}>Clear filters</button>
@@ -265,8 +264,8 @@ export function ArticlesIndex() {
         {articles.length === 0 ? (
           <div className="articles-empty">
             <p className="eyebrow">Publication desk</p>
-            <h2>Field notes are being prepared.</h2>
-            <p>The first practical articles will appear here after publication.</p>
+            <h2>No articles are published yet.</h2>
+            <p>Please check back later.</p>
           </div>
         ) : null}
       </section>
@@ -302,7 +301,7 @@ export function ArticlePage({ slug }: { slug: string }) {
       <SiteHeader currentPage="articles" />
       <section className="article-not-found">
         <p className="eyebrow">Article not found</p>
-        <h1>This field note is not available.</h1>
+        <h1>This article is not available.</h1>
         <p>It may still be a draft, may have been archived, or the address may be incorrect.</p>
         <a className="button button-primary" href="/articles/">View published articles</a>
       </section>
@@ -315,11 +314,11 @@ export function ArticlePage({ slug }: { slug: string }) {
       <SiteHeader currentPage="articles" />
       <article>
         <header className="article-header">
-          <a href="/articles/" className="article-back">← Articles &amp; Field Notes</a>
+          <a href="/articles/" className="article-back">← Articles</a>
           <div className="article-kicker"><span>{article.category}</span><time dateTime={article.publishedDate}>{dateLabel(article.publishedDate)}</time></div>
           <h1>{article.title}</h1>
           <p className="article-deck">{article.summary}</p>
-          <div className="article-byline"><span>By {article.author}</span><span className="byline-divider" aria-hidden="true">·</span><span>Updated {dateLabel(article.modifiedDate)}</span></div>
+          <div className="article-byline"><span>Updated {dateLabel(article.modifiedDate)}</span></div>
           {article.featuredImage ? <img className="article-hero-image" src={article.featuredImage} alt="" /> : null}
         </header>
         <div className="article-layout">
@@ -334,12 +333,12 @@ export function ArticlePage({ slug }: { slug: string }) {
       {related.length ? (
         <section className="related-articles">
           <p className="eyebrow">Continue reading</p>
-          <h2>Related field notes</h2>
+          <h2>Related articles</h2>
           <div>{related.map((item) => <a href={`/articles/${item.slug}/`} key={item.articleId}><span>{item.category}</span><strong>{item.title}</strong></a>)}</div>
         </section>
       ) : null}
       <section className="article-cta">
-        <div><p className="eyebrow">Working through a similar problem?</p><h2>Bring us the system, the symptoms and the stakes.</h2></div>
+        <div><p className="eyebrow">Working through a similar problem?</p><h2>Discuss your database question.</h2></div>
         <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">Start a conversation</a>
       </section>
       <SiteFooter />
