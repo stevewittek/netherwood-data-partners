@@ -142,11 +142,11 @@ export const products: Product[] = [
     name: "Motion Relay",
     shortName: "Motion Relay",
     status: "Active development",
-    category: "Running data companion",
-    summary: "Motion Relay connects available Garmin activity readings through a watch data field and phone companion to a supported assistant connection.",
+    category: "Live workout conversations",
+    summary: "Bring live Garmin watch metrics into real-time conversations with ChatGPT Voice. Ask about your pace, effort and progress while you move. No need to look at your watch. Just ask.",
     description: [
       "Data and running are two of my interests. While using ChatGPT to get work done during a run, I wanted the conversation to include readings from my Garmin.",
-      "That became Motion Relay. The goal is useful feedback about my run without repeatedly checking the screen."
+      "That became Motion Relay: a way to talk through an active workout with live metrics in the conversation. Keep moving, ask a question and explore what your numbers mean for the goals you share."
     ],
     platforms: [
       "Garmin Connect IQ",
@@ -156,7 +156,7 @@ export const products: Product[] = [
     productUrl: "/products/garmin-ai-connector/",
     openSource: false,
     featured: true,
-    featureHeading: "The watch measures. Relay connects. The assistant interprets.",
+    featureHeading: "Live metrics. A conversation that keeps up.",
     downloadExperience: "motion-relay",
     image: {
       src: "/images/motion-relay/motion-connect-watch.webp",
@@ -167,15 +167,15 @@ export const products: Product[] = [
     features: [
       {
         title: "Watch data field",
-        detail: "The Garmin data field sends available activity readings to the phone companion."
+        detail: "Your Garmin data field sends available live readings, including pace, heart rate and distance, to the phone companion."
       },
       {
         title: "Phone companion",
         detail: "The phone companion carries and organizes those readings for sharing you authorize."
       },
       {
-        title: "Connected assistant",
-        detail: "The assistant interprets the information it receives. Readings depend on the watch, activity and sensors; fresh delivery depends on the connection."
+        title: "ChatGPT Voice",
+        detail: "Talk about your active workout and ask follow-up questions using the readings shared through your supported ChatGPT connection."
       }
     ],
     availabilityNote: `The Garmin listing is MotionRelay — Beta Preview. ${phoneAvailability} Confirm the supported phone and assistant setup before installing.`,

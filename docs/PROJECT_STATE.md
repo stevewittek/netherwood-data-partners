@@ -1,3 +1,16 @@
+## Motion Relay live workout messaging — October 7, 2026
+
+Lead product copy with live Garmin watch metrics, real-time ChatGPT Voice
+conversations and hands-free questions about an active workout. Do not claim
+market-first status or universal compatibility. Example questions depend on
+available current readings and goals the user shares; ascent remaining refers
+to a supplied climbing target, not route or terrain prediction.
+
+Garmin, iPhone and Android links share one branded row on the catalog and
+product page. The owner confirmed phone listings are pending and authorized
+store homepages as placeholders. Keep explicit pending labels and beta signup;
+replace placeholders only with confirmed listing or testing URLs.
+
 ## Final Motion Relay naming — October 7, 2026
 
 The owner confirmed Motion Relay is the sole product name for both the watch

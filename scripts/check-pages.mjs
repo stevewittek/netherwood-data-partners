@@ -173,15 +173,17 @@ for (const route of expected) {
       assert.ok(html.includes('name="garmin_watch_model"'));
       assert.ok(html.includes('name="chatgpt_voice_available"'));
       assert.ok(html.includes(motionRelayRoutes.betaSignup));
-      for (const platform of [motionRelayDownloads.iphone, motionRelayDownloads.android]) {
-        if (platform.available && platform.url) assert.ok(html.includes(platform.url));
+      assert.ok(html.includes('aria-label="Motion Relay apps"'));
+      assert.ok(html.includes('ChatGPT Voice'));
+      assert.ok(html.includes('Just ask.'));
+      for (const platform of Object.values(motionRelayDownloads)) {
+        if (platform.available && platform.url) assert.ok(html.includes(`href="${platform.url}"`));
         else {
-          assert.ok(html.includes(`${platform.storeName} — coming soon`));
-          assert.ok(!html.includes(`href="${platform.url}"`));
+          assert.ok(html.includes(`homepage — Motion Relay listing pending"`));
+          assert.ok(html.includes(`href="${platform.storeHome}"`));
+          assert.ok(!html.includes('href="null"'));
         }
       }
-      assert.equal((html.match(/aria-disabled="true"/g) || []).length,
-        [motionRelayDownloads.iphone, motionRelayDownloads.android].filter((platform) => !platform.available || !platform.url).length);
     }
     assert.equal(
       data["@graph"][0].creator.name,
