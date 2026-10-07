@@ -202,7 +202,7 @@ export function ProductsIndex() {
             <h2>Running data and database tools.</h2>
           </div>
           <p>
-            Motion connects activity readings. QueryVault and PageMover support database investigation.
+            Motion Relay connects activity readings. QueryVault and PageMover support database investigation.
           </p>
         </div>
         <ProductGrid />

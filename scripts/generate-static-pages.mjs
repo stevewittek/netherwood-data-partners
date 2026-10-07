@@ -243,11 +243,11 @@ for (const entry of marketingPages) {
 await page(
   "motionrelay/setup",
   metaPage({
-    title: "Motion Connect and Motion Relay setup | Netherwood Data Partners",
+    title: "Motion Relay setup | Netherwood Data Partners",
     description: "Install the MotionRelay Garmin data field and understand the Motion Relay phone companion and authorized AI connection.",
     canonical: `${siteUrl}/motionrelay/setup/`,
     schemaId: "setup-structured-data",
-    structured: { "@context": "https://schema.org", "@type": "WebPage", name: "Motion Connect and Motion Relay setup", url: `${siteUrl}/motionrelay/setup/` },
+    structured: { "@context": "https://schema.org", "@type": "WebPage", name: "Motion Relay setup", url: `${siteUrl}/motionrelay/setup/` },
   }),
 );
 

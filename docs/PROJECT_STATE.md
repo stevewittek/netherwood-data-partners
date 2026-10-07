@@ -1,3 +1,12 @@
+## Final Motion Relay naming — October 7, 2026
+
+The owner confirmed Motion Relay is the sole product name for both the watch
+data field and phone companion. This supersedes all earlier Motion Connect
+naming instructions. Public copy, metadata and accessible image descriptions
+use Motion Relay. Existing asset filenames and product URLs remain stable.
+The outdated simulator screenshot carrying the former name is no longer shown;
+original artwork and site styling are preserved.
+
 ## Homepage refinement — October 7, 2026
 
 The company, services and products lead Home. Keep the owner's name on About

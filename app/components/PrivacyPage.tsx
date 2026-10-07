@@ -40,14 +40,14 @@ export default function PrivacyPage() {
           </p>
         </article>
         <article>
-          <p className="eyebrow">Motion Connect and Motion Relay</p>
+          <p className="eyebrow">Motion Relay</p>
           <h2>Watch field available; phone companions forthcoming</h2>
           <p>
             This marketing website does not currently provide a public account,
             product sign-in or upload flow for Garmin, health, fitness or
             activity data. The MotionRelay Garmin Connect IQ data field is
             publicly listed. It accesses available live activity readings for
-            the Motion Connect watch screen and phone connection. The separate
+            the Motion Relay watch screen and phone connection. The separate
             Motion Relay iPhone and Android store listings are not public yet.
           </p>
           <p>
