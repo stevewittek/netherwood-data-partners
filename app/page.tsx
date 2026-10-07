@@ -41,7 +41,7 @@ export default function Home() {
         <div className="community-section studio-wrap community-working">
           <div><p className="eyebrow">Products</p><h2>Apps and database tools.</h2><p>Explore the software, check current availability and find setup or testing information on each product page.</p><a className="studio-text-link" href="/products/">Browse products <span aria-hidden="true">↗</span></a></div>
           <ol>
-            <li><span>01</span><div><h3><a href={motionRelayRoutes.product}>Motion Connect + Motion Relay <span aria-hidden="true">↗</span></a></h3></div></li>
+            <li><span>01</span><div><h3><a href={motionRelayRoutes.product}>Motion Relay <span aria-hidden="true">↗</span></a></h3></div></li>
             <li><span>02</span><div><h3><a href="/products/queryvault/">QueryVault <span aria-hidden="true">↗</span></a></h3></div></li>
             <li><span>03</span><div><h3><a href="/products/sql-server-index-maintenance-visualizer/">PageMover <span aria-hidden="true">↗</span></a></h3></div></li>
           </ol>

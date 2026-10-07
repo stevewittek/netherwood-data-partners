@@ -12,7 +12,7 @@ apps, database tools and consulting services.
 
 ## Software
 
-Motion Connect is the Garmin data field; Motion Relay is the phone companion
+Motion Relay includes a Garmin data field and a phone companion
 and data bridge. The idea began while Steven was using ChatGPT during a run and
 wanted the conversation to include readings from his Garmin. The watch measures
 the activity, Relay carries and organizes available readings, and a supported

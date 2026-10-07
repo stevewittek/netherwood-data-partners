@@ -51,7 +51,7 @@ export default function AboutPage() {
         <div><p className="eyebrow">Why I build</p><h2>Follow the data.<br />Understand the system.</h2></div>
         <div className="long-form">
           <p>I’m interested in how systems behave: where information comes from, how it moves, and what the measurements tell us. That curiosity runs through my database work and app development.</p>
-          <p>QueryVault began with a database problem: keeping query history available for later investigation. Motion Connect and Motion Relay began while I was using ChatGPT during a run and wanted the conversation to include readings from my Garmin.</p>
+          <p>QueryVault began with a database problem: keeping query history available for later investigation. Motion Relay began while I was using ChatGPT during a run and wanted the conversation to include readings from my Garmin.</p>
           <p>The questions are different, but the work has something in common: connect the right information, make its limits clear, and check what actually improves.</p>
           <a className="studio-text-link" href="/products/garmin-ai-connector/">The Motion story <span aria-hidden="true">↗</span></a>
         </div>

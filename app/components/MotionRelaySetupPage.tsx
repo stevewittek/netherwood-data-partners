@@ -8,11 +8,11 @@ export function MotionRelaySetupPage() {
     <main className="products-page product-detail-page">
       <SiteHeader currentPage="products" />
       <section className="products-hero studio-wrap">
-        <div><p className="eyebrow">Motion Connect + Motion Relay</p><h1 id="main-content" tabIndex={-1}>Connect your watch<br />and phone.</h1></div>
+        <div><p className="eyebrow">Motion Relay</p><h1 id="main-content" tabIndex={-1}>Connect your watch<br />and phone.</h1></div>
         <div className="products-hero-copy"><p>First, confirm access to the Motion Relay phone companion and the supported assistant setup. The watch download alone is not enough.</p><a className="button button-primary" href={motionRelayRoutes.betaSignup}>Request beta access <span aria-hidden="true">↗</span></a><p><a href={motionRelayRoutes.product}>Check current availability</a></p></div>
       </section>
       <section className="product-detail-overview studio-wrap">
-        <div><p className="eyebrow">Watch</p><h2>Add Motion Connect.</h2></div>
+        <div><p className="eyebrow">Watch</p><h2>Add Motion Relay.</h2></div>
         <div className="product-prose"><p>1. Pair your compatible watch in Garmin Connect.</p><p>2. Install the data field, currently listed as MotionRelay — Beta Preview, from Connect IQ.</p><p>3. Add it to your activity’s data screens. Use a full-screen, single-field page for the status display.</p><a className="studio-text-link" href={motionRelayDownloads.garmin.url} target="_blank" rel="noreferrer">Get the Garmin data field <span aria-hidden="true">↗</span></a></div>
       </section>
       <section className="product-detail-overview studio-wrap">

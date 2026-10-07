@@ -63,7 +63,7 @@ export const motionRelayName = "Motion Relay";
 export const productsMetadata = {
   title: "Data Products, Apps & Developer Tools | Netherwood",
   description:
-    "Apps, database tools and data connections from Netherwood Data Partners. Explore Motion Connect, Motion Relay, QueryVault and PageMover.",
+    "Apps, database tools and data connections from Netherwood Data Partners. Explore Motion Relay, QueryVault and PageMover.",
 };
 
 export const products: Product[] = [
@@ -139,14 +139,14 @@ export const products: Product[] = [
   {
     id: "garmin-ai-connector",
     slug: "garmin-ai-connector",
-    name: "Motion Connect",
-    shortName: "Motion Connect",
+    name: "Motion Relay",
+    shortName: "Motion Relay",
     status: "Active development",
     category: "Running data companion",
-    summary: "Motion Connect is the Garmin data field. Motion Relay is the phone companion that carries available readings to a supported assistant connection.",
+    summary: "Motion Relay connects available Garmin activity readings through a watch data field and phone companion to a supported assistant connection.",
     description: [
       "Data and running are two of my interests. While using ChatGPT to get work done during a run, I wanted the conversation to include readings from my Garmin.",
-      "That became Motion Connect and Motion Relay. The goal is useful feedback about my run without repeatedly checking the screen."
+      "That became Motion Relay. The goal is useful feedback about my run without repeatedly checking the screen."
     ],
     platforms: [
       "Garmin Connect IQ",
@@ -160,17 +160,17 @@ export const products: Product[] = [
     downloadExperience: "motion-relay",
     image: {
       src: "/images/motion-relay/motion-connect-watch.webp",
-      alt: "Motion Connect watch artwork with a foot and three telemetry streams",
+      alt: "Motion Relay watch artwork with a foot and three telemetry streams",
       width: 640,
       height: 640
     },
     features: [
       {
-        title: "Motion Connect",
+        title: "Watch data field",
         detail: "The Garmin data field sends available activity readings to the phone companion."
       },
       {
-        title: "Motion Relay",
+        title: "Phone companion",
         detail: "The phone companion carries and organizes those readings for sharing you authorize."
       },
       {
@@ -183,16 +183,7 @@ export const products: Product[] = [
       "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
       "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately."
     ],
-    support: "For help, describe your watch, phone and the problem. Leave out private data and credentials.",
-    screenshots: [
-      {
-        src: "/images/motion-relay/motion-connect-phone-received.webp",
-        alt: "Motion Connect data field in the Garmin simulator: Phone received; Cloud not confirmed",
-        width: 484,
-        height: 686,
-        caption: "Garmin simulator state preview. Phone received confirms phone acknowledgement, not AI delivery."
-      }
-    ]
+    support: "For help, describe your watch, phone and the problem. Leave out private data and credentials."
   }
 ];
 
