@@ -1,6 +1,7 @@
 import { CampaignAttributionCapture } from "./CampaignAttributionCapture";
 
 type SiteHeaderProps = {
+  skipTarget?: string;
   currentPage?:
     | "home"
     | "about"
@@ -12,21 +13,21 @@ type SiteHeaderProps = {
 };
 function Brand() {
   return (
-    <a className="brand" href="/" aria-label="Netherwood Data Partners home">
+    <a className="brand" href="/">
       <span className="brand-mark" aria-hidden="true">
         N
       </span>
       <span className="brand-name">
-        Netherwood<strong>Data Partners</strong>
+        Netherwood{" "}<strong>Data Partners</strong>
       </span>
     </a>
   );
 }
-export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
+export function SiteHeader({ currentPage = "home", skipTarget = "main-content" }: SiteHeaderProps) {
   return (
     <header className="site-header studio-header">
       <CampaignAttributionCapture />
-      <a className="skip-link" href="#main-content">
+      <a className="skip-link" href={`#${skipTarget}`}>
         Skip to content
       </a>
       <Brand />
@@ -59,7 +60,6 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
       <a className="nav-cta" href="/#contact">
         Contact <span aria-hidden="true">↗</span>
       </a>
-      <span id="main-content" tabIndex={-1} />
     </header>
   );
 }

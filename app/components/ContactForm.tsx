@@ -161,6 +161,7 @@ export function InquiryForm({
       </div>
 
       <div
+        aria-atomic="true"
         aria-live={submissionState === "error" ? "assertive" : "polite"}
         className={`contact-form-status contact-form-status--${submissionState}`}
         role={submissionState === "error" ? "alert" : "status"}

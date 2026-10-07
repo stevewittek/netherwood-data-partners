@@ -27,7 +27,7 @@ export default function MigrationReadinessPage() {
       <SiteHeader currentPage="readiness" />
       <section className="migration-tool-hero studio-wrap">
         <p className="eyebrow">Free migration readiness self-check</p>
-        <h1>Is your business ready to replace its old software?</h1>
+        <h1 id="main-content" tabIndex={-1}>Is your business ready to replace its old software?</h1>
         <p>
           Fourteen questions about what to check before moving your data. Answer with what you know.
         </p>

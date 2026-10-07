@@ -6,7 +6,7 @@ import { homeMetadata, organizationSchema } from "./content/site";
 export const metadata: Metadata = {
   metadataBase: new URL("https://netherwooddatapartners.com"),
   verification: { google: "PCfDpB6puoZJ2YmRBVwP3tqiBWZUKvSqEsuDDESt8Zw" },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon-netherwood.svg" },
   ...homeMetadata,
   alternates: { canonical: "/" },
   openGraph: {

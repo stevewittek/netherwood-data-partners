@@ -53,7 +53,7 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
       <SiteHeader />
       <section className="article-not-found">
         <p className="eyebrow">Page not found</p>
-        <h1>There is nothing at this address.</h1>
+        <h1 id="main-content" tabIndex={-1}>There is nothing at this address.</h1>
         <a className="button button-primary" href="/">
           Return home
         </a>

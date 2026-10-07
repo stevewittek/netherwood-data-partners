@@ -19,7 +19,7 @@ export default function Home() {
       <section className="community-hero" id="top">
         <div className="community-hero-copy">
           <p className="eyebrow"><span className="location-dot" />Data &amp; software · New Jersey</p>
-          <h1>Software built<br /><span>around data.</span></h1>
+          <h1 id="main-content" tabIndex={-1}>Software built<br /><span>around data.</span></h1>
           <p className="community-lede">Apps, connected systems and the metrics that help explain how they work.</p>
           <p className="community-hero-body">Netherwood Data Partners develops apps and database tools, connects systems, and helps businesses improve how their data works.</p>
           <div className="studio-actions">
@@ -34,7 +34,7 @@ export default function Home() {
       </section>
       <section className="community-section studio-wrap" id="services">
         <div className="community-section-heading" id="when-to-call-us"><div><p className="eyebrow">Services</p><h2>Connect systems.<br />Improve performance.</h2></div><p id="engagements">Focused software and data work for local businesses and technical teams. Scope, fees and availability are agreed before work begins.</p></div>
-        <div className="community-services">{services.map((service, index) => <article key={service.title} id={service.id}><span className="community-service-number">{String(index + 1).padStart(2, "0")}</span><h3>{service.title}</h3><p>{service.text}</p><a href={service.href}>View service <span aria-hidden="true">↗</span></a></article>)}</div>
+        <div className="community-services">{services.map((service, index) => <article key={service.title} id={service.id}><span className="community-service-number">{String(index + 1).padStart(2, "0")}</span><h3>{service.title}</h3><p>{service.text}</p><a href={service.href} aria-label={`View service: ${service.title}`}>View service <span aria-hidden="true">↗</span></a></article>)}</div>
         <div className="studio-actions"><a className="studio-text-link" href="/services/">All services <span aria-hidden="true">↗</span></a></div>
       </section>
       <section className="community-people-band" id="products">

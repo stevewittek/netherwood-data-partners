@@ -14,3 +14,8 @@
   font-size: 12px;
   line-height: 1.6;
 }
+
+/* Keep the existing green palette; small product numbers need 4.5:1 contrast. */
+.editorial-home .community-people-band .community-working li > span {
+  color: #51715c;
+}
