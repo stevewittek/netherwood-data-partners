@@ -1,0 +1,426 @@
+[
+  {
+    "version": "4.14.0",
+    "url": "/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 46,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/about/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 32,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "#featured-article-heading"
+          ],
+          [
+            ".article-preview-featured > .article-preview-meta > span"
+          ],
+          [
+            "time[datetime=\"2026-08-22T14:00:00.000Z\"]"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > h2 > a"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > p"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > .article-read-link"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            ".articles-list > article:nth-child(2) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(3) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(4) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(5) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(6) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(7) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(8) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(9) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(10) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 39,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 29,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#product-list\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 38,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/privacy/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 29,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/motionrelay/setup/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 28,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/migration-intake/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 40,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/migration-readiness/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 38,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/software-systems-support/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/data-migration/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/legacy-application-modernization/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/business-software-migration/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/legacy-systems-assessment/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/database-engineering/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/workflow-automation/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/practical-ai/",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/queryvault/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 32,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/sql-server-index-maintenance-visualizer/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 32,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/garmin-ai-connector/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 42,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/why-sql-server-databases-slow-down-over-time/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/sql-server-indexing-mistakes-that-hurt-performance/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 30,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/query-store-finding-the-queries-that-are-breaking-your-database/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/why-nolock-does-not-fix-blocking-problems/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 30,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/when-small-businesses-need-a-database-consultant/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 30,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/moving-legacy-applications-to-modern-sql-server-platforms/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/database-backups-what-companies-get-wrong/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/azure-sql-migration-lessons/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 30,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/performance-tuning-before-buying-more-hardware/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/database-health-checks-explained/",
+    "violations": [],
+    "incomplete": [],
+    "passes": 35,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "version": "4.14.0",
+    "url": "/404.html",
+    "violations": [],
+    "incomplete": [],
+    "passes": 28,
+    "overflow": false,
+    "width": 768
+  }
+]

@@ -187,7 +187,7 @@ export const products: Product[] = [
     screenshots: [
       {
         src: "/images/motion-relay/motion-connect-phone-received.webp",
-        alt: "Garmin simulator preview of the Motion Connect watch data field showing Phone received",
+        alt: "Motion Connect data field in the Garmin simulator: Phone received; Cloud not confirmed",
         width: 484,
         height: 686,
         caption: "Garmin simulator state preview. Phone received confirms phone acknowledgement, not AI delivery."

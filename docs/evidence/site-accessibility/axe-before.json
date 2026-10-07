@@ -1,0 +1,1121 @@
+[
+  {
+    "version": "4.14.0",
+    "url": "/",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "li:nth-child(1) > span"
+            ],
+            "html": "<span>01</span>",
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #557761, background color: #ecefe7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "li:nth-child(2) > span"
+            ],
+            "html": "<span>02</span>",
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #557761, background color: #ecefe7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              "li:nth-child(3) > span"
+            ],
+            "html": "<span>03</span>",
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #557761, background color: #ecefe7, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 45
+  },
+  {
+    "version": "4.14.0",
+    "url": "/about/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 32
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "#featured-article-heading"
+          ],
+          [
+            ".article-preview-featured > .article-preview-meta > span"
+          ],
+          [
+            "time[datetime=\"2026-08-22T14:00:00.000Z\"]"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > h2 > a"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > p"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > .article-read-link"
+          ],
+          [
+            ".article-preview-featured > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            ".articles-list > article:nth-child(2) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(3) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(4) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(5) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(6) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(7) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(8) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(9) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ],
+          [
+            "article:nth-child(10) > .article-preview-copy > .article-read-link > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 38
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 29
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "help": "Elements must only use permitted ARIA attributes",
+        "targets": [
+          [
+            "article:nth-child(1) > .product-card-body > .product-card-meta > .product-badges[aria-label=\"Product status\"]"
+          ],
+          [
+            "article:nth-child(2) > .product-card-body > .product-card-meta > .product-badges[aria-label=\"Product status\"]"
+          ],
+          [
+            "article:nth-child(3) > .product-card-body > .product-card-meta > .product-badges[aria-label=\"Product status\"]"
+          ]
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#product-list\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/privacy/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 29
+  },
+  {
+    "version": "4.14.0",
+    "url": "/motionrelay/setup/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 28
+  },
+  {
+    "version": "4.14.0",
+    "url": "/migration-intake/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 40
+  },
+  {
+    "version": "4.14.0",
+    "url": "/migration-readiness/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 38
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/software-systems-support/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/data-migration/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/legacy-application-modernization/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/business-software-migration/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/legacy-systems-assessment/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/database-engineering/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/workflow-automation/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/services/practical-ai/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "targets": [
+          [
+            "a[href$=\"#service-approach\"] > span[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ],
+    "passes": 33
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/queryvault/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "help": "Elements must only use permitted ARIA attributes",
+        "targets": [
+          [
+            ".product-badges"
+          ]
+        ]
+      }
+    ],
+    "passes": 32
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/sql-server-index-maintenance-visualizer/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "help": "Elements must only use permitted ARIA attributes",
+        "targets": [
+          [
+            ".product-badges"
+          ]
+        ]
+      }
+    ],
+    "passes": 32
+  },
+  {
+    "version": "4.14.0",
+    "url": "/products/garmin-ai-connector/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              "header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "help": "Elements must only use permitted ARIA attributes",
+        "targets": [
+          [
+            ".product-badges"
+          ]
+        ]
+      }
+    ],
+    "passes": 42
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/why-sql-server-databases-slow-down-over-time/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/sql-server-indexing-mistakes-that-hurt-performance/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 30
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/query-store-finding-the-queries-that-are-breaking-your-database/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/why-nolock-does-not-fix-blocking-problems/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 30
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/when-small-businesses-need-a-database-consultant/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 30
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/moving-legacy-applications-to-modern-sql-server-platforms/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/database-backups-what-companies-get-wrong/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/azure-sql-migration-lessons/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 30
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/performance-tuning-before-buying-more-hardware/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  },
+  {
+    "version": "4.14.0",
+    "url": "/articles/database-health-checks-explained/",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "target": [
+              ".site-header > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "div:nth-child(1) > .brand[href=\"/\"][aria-label=\"Netherwood Data Partners home\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"/\" aria-label=\"Netherwood Data Partners home\"><span class=\"brand-mark\" aria-hidden=\"true\">N</span><span class=\"brand-name\">Netherwood<strong>Data Partners</strong></span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [],
+    "passes": 35
+  }
+]

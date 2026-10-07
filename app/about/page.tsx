@@ -33,7 +33,7 @@ export default function AboutPage() {
       <section className="about-hero studio-wrap">
         <div>
           <p className="eyebrow">The person behind Netherwood</p>
-          <h1>Steven Wittek.</h1>
+          <h1 id="main-content" tabIndex={-1}>Steven Wittek.</h1>
           <p className="about-role">Data professional.<br />Independent developer.<br />Runner.</p>
           <div className="long-form about-intro">
             <p>I build apps, work with databases and connect information between systems. SQL Server and database engineering are the foundation of my work.</p>

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
       <section className="products-hero studio-wrap">
         <div>
           <p className="eyebrow">Privacy</p>
-          <h1>
+          <h1 id="main-content" tabIndex={-1}>
             Website and product privacy.
           </h1>
         </div>

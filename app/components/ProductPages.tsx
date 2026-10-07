@@ -49,7 +49,7 @@ function ProductVisual({ product }: { product: Product }) {
 
 function ProductBadges({ product }: { product: Product }) {
   return (
-    <div className="product-badges" aria-label="Product status">
+    <div className="product-badges" role="group" aria-label="Product status">
       <span>{product.status}</span>
       {product.openSource && <span>Open source</span>}
       {!product.openSource && product.sourceAvailable && (
@@ -73,7 +73,7 @@ function ProductLinks({ product, includeDetail = true }: {
   return (
     <div className="product-links">
       {includeDetail && (
-        <a className="product-link-primary" href={product.productUrl}>
+        <a className="product-link-primary" href={product.productUrl} aria-label={`Learn more about ${product.name}`}>
           Learn more <span aria-hidden="true">↗</span>
         </a>
       )}
@@ -174,7 +174,7 @@ export function ProductsIndex() {
       <section className="products-hero studio-wrap">
         <div>
           <p className="eyebrow">Independent software</p>
-          <h1>
+          <h1 id="main-content" tabIndex={-1}>
             Apps and tools<br />built around data.
           </h1>
         </div>
@@ -230,7 +230,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         <SiteHeader currentPage="products" />
         <section className="product-not-found studio-wrap">
           <p className="eyebrow">Product not found</p>
-          <h1>There is no product at this address.</h1>
+          <h1 id="main-content" tabIndex={-1}>There is no product at this address.</h1>
           <a className="button button-primary" href="/products/">
             View products
           </a>
@@ -250,7 +250,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
             <span>{product.name}</span>
           </nav>
           <p className="eyebrow">{product.category}</p>
-          <h1>{product.name}</h1>
+          <h1 id="main-content" tabIndex={-1}>{product.name}</h1>
           {product.namingNote && (
             <p className="product-name-note">{product.namingNote}</p>
           )}

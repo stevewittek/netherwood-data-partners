@@ -112,6 +112,13 @@ for (const route of expected) {
   const title = /<title>(.*?)<\/title>/s.exec(html)?.[1];
   assert.ok(title && !titles.has(title), `Missing/duplicate title ${route}`);
   titles.add(title);
+  if (route === "/") assert.equal(title, "Netherwood Data Partners", "Company homepage tab title");
+  assert.match(html, /<html[^>]+lang="en"/, `Document language ${route}`);
+  assert.match(html, /<link[^>]+rel="icon"[^>]+href="\/favicon-netherwood\.svg"/, `Company favicon ${route}`);
+  assert.match(html, /<h1[^>]+id="main-content"[^>]+tabindex="-1"/, `Keyboard skip target ${route}`);
+  for (const image of html.matchAll(/<img\b[^>]*>/g)) {
+    assert.match(image[0], /\balt="[^"]*"/, `Image alternative text ${route}`);
+  }
   assert.ok(
     html.includes(`rel="canonical" href="${origin}${route}"`),
     `Canonical ${route}`,

@@ -1,0 +1,26 @@
+{
+  "articleGradient": {
+    "backgroundEndpoints": [
+      [
+        248,
+        247,
+        241
+      ],
+      [
+        242.83,
+        246.23,
+        224.39
+      ]
+    ],
+    "minimumRatios": {
+      "[70, 109, 86]": 5.33,
+      "[70, 84, 90]": 7.14,
+      "[32, 60, 50]": 10.89
+    }
+  },
+  "homeProductNumbers": {
+    "foreground": "#51715c",
+    "background": "#ecefe7",
+    "ratio": 4.67
+  }
+}

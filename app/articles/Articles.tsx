@@ -162,7 +162,7 @@ function ArticlePreview({ article, featured = false }: { article: PublicArticle;
       <div className="article-preview-copy">
         <h2><a href={`/articles/${article.slug}/`}>{article.title}</a></h2>
         <p>{article.summary}</p>
-        <a className="article-read-link" href={`/articles/${article.slug}/`}>Read article <span aria-hidden="true">→</span></a>
+        <a className="article-read-link" href={`/articles/${article.slug}/`} aria-label={`Read article: ${article.title}`}>Read article <span aria-hidden="true">→</span></a>
       </div>
     </article>
   );
@@ -205,7 +205,7 @@ export function ArticlesIndex() {
       <SiteHeader currentPage="articles" />
       <header className="articles-masthead">
         <p className="eyebrow">Database work</p>
-        <h1>Articles</h1>
+        <h1 id="main-content" tabIndex={-1}>Articles</h1>
         <p>Notes on SQL Server performance, recovery and data migrations.</p>
       </header>
       <section className="articles-publication">
@@ -301,7 +301,7 @@ export function ArticlePage({ slug }: { slug: string }) {
       <SiteHeader currentPage="articles" />
       <section className="article-not-found">
         <p className="eyebrow">Article not found</p>
-        <h1>This article is not available.</h1>
+        <h1 id="main-content" tabIndex={-1}>This article is not available.</h1>
         <p>It may still be a draft, may have been archived, or the address may be incorrect.</p>
         <a className="button button-primary" href="/articles/">View published articles</a>
       </section>
@@ -316,7 +316,7 @@ export function ArticlePage({ slug }: { slug: string }) {
         <header className="article-header">
           <a href="/articles/" className="article-back">← Articles</a>
           <div className="article-kicker"><span>{article.category}</span><time dateTime={article.publishedDate}>{dateLabel(article.publishedDate)}</time></div>
-          <h1>{article.title}</h1>
+          <h1 id="main-content" tabIndex={-1}>{article.title}</h1>
           <p className="article-deck">{article.summary}</p>
           <div className="article-byline"><span>Updated {dateLabel(article.modifiedDate)}</span></div>
           {article.featuredImage ? <img className="article-hero-image" src={article.featuredImage} alt="" /> : null}

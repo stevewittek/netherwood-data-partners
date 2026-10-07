@@ -1,6 +1,6 @@
 export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
-  title: "Data & Software Development | Netherwood Data Partners",
+  title: "Netherwood Data Partners",
   description:
     "Apps, database tools and connected systems from Netherwood Data Partners. Explore software products and services for data integration, SQL Server and business applications.",
 };

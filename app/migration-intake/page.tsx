@@ -17,7 +17,7 @@ export default function MigrationIntakePage() {
       <SiteHeader currentPage="contact" />
       <section className="migration-tool-hero studio-wrap">
         <p className="eyebrow">Migration or assessment</p>
-        <h1>Describe the project.</h1>
+        <h1 id="main-content" tabIndex={-1}>Describe the project.</h1>
         <p>
           Tell me what you use, what needs to change and what you know so far.
         </p>

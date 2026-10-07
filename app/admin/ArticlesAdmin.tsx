@@ -662,10 +662,10 @@ export default function ArticlesAdmin() {
   if (!authenticated) {
     return (
       <main className="admin-page">
-        <SiteHeader />
+        <SiteHeader skipTarget="admin-title" />
         <section className="admin-login" aria-labelledby="admin-title">
           <p className="eyebrow">Private publishing</p>
-          <h1 id="admin-title">Article desk</h1>
+          <h1 id="admin-title" tabIndex={-1}>Article desk</h1>
           <p>
             Connect to Voyager 2 to manage SQL-backed articles. Credentials and tokens are held only in this
             session’s browser memory; the desk does not persist them in browser storage.
