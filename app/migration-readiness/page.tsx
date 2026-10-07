@@ -29,9 +29,7 @@ export default function MigrationReadinessPage() {
         <p className="eyebrow">Free migration readiness self-check</p>
         <h1>Is your business ready to replace its old software?</h1>
         <p>
-          Fourteen plain-language questions to help you see what to investigate
-          before moving your business data. You do not need to know what
-          database runs underneath your software.
+          Fourteen questions about what to check before moving your data. Answer with what you know.
         </p>
         <p className="migration-small-print">
           See the full result without providing a name or email. This guide does

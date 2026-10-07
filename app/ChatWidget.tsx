@@ -115,7 +115,7 @@ export default function ChatWidget() {
       const body = await response.json() as { message?: string; sources?: unknown; error?: string };
       if (!response.ok) {
         if (response.status === 503 && body.error === "chat_busy") {
-          setReply("The local assistant is helping another visitor. Please try again in about two minutes.");
+          setReply("Chat is busy. Please try again later or email contact@netherwooddatapartners.com.");
           return;
         }
         throw new Error("unavailable");

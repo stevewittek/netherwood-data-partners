@@ -42,7 +42,6 @@ export async function generateMetadata({ params }: ArticleRouteProps): Promise<M
       url: `/articles/${article.slug}/`,
       publishedTime: article.publishedDate,
       modifiedTime: article.modifiedDate,
-      authors: [article.author],
       images,
     },
     twitter: {

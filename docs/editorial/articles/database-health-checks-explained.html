@@ -1,0 +1,29 @@
+<p>A database health check combines system evidence with business requirements. Its output should be prioritized findings with clear next actions and stated limits.</p>
+<h2>Scope begins with the business service</h2>
+<p>Before collecting server details, identify the applications and processes that matter, their operating hours, acceptable interruption, recovery expectations, and known symptoms. A reporting archive and a live order system should not receive identical priorities. Record recent upgrades, incidents, ownership, vendors, and planned changes so observations have context.</p>
+<p>Define the instances, applications, replicas, jobs and backup locations covered. State exclusions: recovery cannot be proven without access to the necessary files and a restore environment.</p>
+<h2>Recovery and integrity come first</h2>
+<p>Confirm that every required database is protected by a backup sequence consistent with its recovery model and business objectives. Review job history, backup age, destinations, retention, encryption dependencies, and monitoring. Then examine the most recent documented restore test. If no restore has been completed, report recovery as unproven rather than assuming the files are sufficient.</p>
+<p>Review database consistency-check history and any unresolved errors. Check page verification settings and look for evidence of I/O-related problems in SQL Server and operating-system logs. Integrity work must be planned carefully on large systems, but postponing it indefinitely leaves the organization unable to state whether its data structures are sound.</p>
+<h2>Performance review needs history</h2>
+<p>A quiet hour is not representative evidence. Use Query Store, monitoring history, and job schedules to understand normal and peak workloads. Review expensive and variable queries, plan regressions, blocking, deadlocks, waits, memory grants, file latency, growth events, and capacity trends.</p>
+<p>Configuration checklists are useful prompts but require interpretation. Maximum server memory depends on the host and co-located services. Parallelism settings depend on workload and query behavior. Tempdb file layout should be evaluated with measured contention. A setting that differs from a popular recommendation is not automatically a defect.</p>
+<h2>Security is permissions plus operating practice</h2>
+<p>Inventory logins, server roles, database roles, application identities, disabled accounts, and authentication policy. Flag applications using system-administrator privileges and shared human accounts without clear ownership. Review encryption in transit, backup protection, audit obligations, and where credentials are stored.</p>
+<ul>
+<li>Use named, least-privileged identities for people and services.</li>
+<li>Separate routine administration from emergency elevated access.</li>
+<li>Remove or disable access through an approved owner-reviewed process.</li>
+<li>Keep passwords, tokens, and private keys out of reports and repositories.</li>
+<li>Document who reviews access and how often.</li>
+</ul>
+<p>A health check should not make sweeping permission changes during discovery. Access changes can interrupt legacy applications. Validate dependencies, prepare scripts and rollback, and obtain application-owner approval.</p>
+<h2>Operational details prevent repeat incidents</h2>
+<p>Review failed and overlapping jobs, alert destinations, maintenance duration, file capacity, autogrowth configuration, patch posture, service accounts, and restart behavior. Determine whether someone reads alerts and has an actionable runbook. Monitoring that sends mail to a former employee is not an operational control.</p>
+<p>For availability groups, clusters, or managed-service replicas, check synchronization and recent events, then ask for the latest failover exercise. A healthy dashboard shows current state; a controlled exercise demonstrates that applications, connection routing, permissions, and people can complete the transition.</p>
+<h2>Findings should be prioritized and reproducible</h2>
+<p>Each finding should state the observed condition, evidence and timestamp, business consequence, recommended action, implementation risk, and a way to verify completion. Separate confirmed findings from items that require further investigation. Avoid alarming labels unsupported by impact.</p>
+<table><caption>A useful priority model</caption><thead><tr><th scope="col">Priority</th><th scope="col">Typical meaning</th></tr></thead><tbody><tr><td>Immediate</td><td>Credible threat to recovery, integrity, security, or current service</td></tr><tr><td>Near term</td><td>Material weakness likely to cause incidents or block planned work</td></tr><tr><td>Planned</td><td>Maintainability, efficiency, or capacity improvement with manageable risk</td></tr><tr><td>Observe</td><td>Trend or uncertain condition that needs more representative evidence</td></tr></tbody></table>
+<p>The report should include an executive summary and enough technical detail for a qualified implementer. Raw diagnostic output can be attached, but it should not replace explanation. Scripts must be reviewed for the specific environment and should not expose credentials or sensitive business data.</p>
+<h2>A health check is a starting point</h2>
+<p>Assign owners and dates, retest important findings and update operating documentation. Repeat the review after major changes. Between reviews, monitor recovery evidence, integrity, capacity, jobs, access and query behavior.</p>

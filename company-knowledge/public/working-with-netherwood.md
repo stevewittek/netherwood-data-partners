@@ -1,49 +1,37 @@
 ---
-title: How Netherwood Data Partners Works
-url: /services/
+title: About Netherwood Data Partners
+url: /about/
 ---
 
-# How we work
+# An independent data and software business
 
-Steven starts with the work the client's staff need to get done and the software
-or data problem getting in the way. The next step can be an investigation, a
-focused fix, reporting or integration work, ongoing support, or a planned
-migration. Prospects do not need to understand the database underneath their
-software. Scope and fees are agreed before paid work begins.
+Steven Wittek is a data professional and independent developer in New Jersey.
+He has worked in technology since 2009, with SQL Server and database engineering
+as the foundation of his work. Netherwood Data Partners brings together his
+apps, database tools and consulting services.
 
-The first paid engagement can be a legacy systems and migration assessment.
-It establishes what is in the agreed environment, where the important data
-lives, how applications depend on each other and which questions remain open.
-Possible deliverables include inventories, data-location and dependency maps,
-backup observations, data-quality findings, migration options, risk areas and
-a preliminary plan. Scope and fees are agreed before paid work begins.
+## Software
 
-A migration project can include discovery, extraction, cleanup, field mapping,
-transformation, trial migrations, production loading, validation, business
-cutover and documentation. Work is coordinated with the customer's software
-provider. Record counts, business totals, relationships and representative staff
-workflows are checked against agreed acceptance criteria. A rollback plan,
-archive requirements and the support handover are discussed before cutover.
+Motion Connect is the Garmin data field; Motion Relay is the phone companion
+and data bridge. The idea began while Steven was using ChatGPT during a run and
+wanted the conversation to include readings from his Garmin. The watch measures
+the activity, Relay carries and organizes available readings, and a supported
+assistant interprets the information it receives. The product page explains
+current access and limitations: /products/garmin-ai-connector/.
 
-The customer chooses and licenses their platform. Netherwood provides the
-professional migration, integration and database-engineering services around
-it. Optional follow-on projects can improve reporting, automate workflows or
-explore practical AI with controlled information access and human review.
+QueryVault archives SQL Server Query Store history for later investigation.
+PageMover is a development preview for inspecting indexes and maintenance SQL.
+Their availability is explained at /products/.
 
-Netherwood is founder-led. If a project needs another specialty, Steven discusses
-the scope, responsibilities and appropriate provider with the client before
-additional work starts. Do not imply employees, a standing partner team or
-unlimited help-desk availability.
+## Contact and consulting
 
-Prospective clients can email contact@netherwooddatapartners.com or use the
-general inquiry form at /#contact. For a planned move, the guided migration
-inquiry form remains available at /migration-intake/. Describe the business, current
-software, desired change, chosen destination if known, location and relevant
-deadline. A free public readiness self-check at /migration-readiness/ reveals
-its result without requiring contact information; it is not a technical audit
-of the actual environment. Sharing the result with Netherwood is optional.
-Do not send credentials, patient records or private customer information through
-an inquiry form or chat.
+App questions, product feedback, beta-testing inquiries and local-business
+questions are welcome. Use /#contact or contact@netherwooddatapartners.com.
+Motion testing requests use /products/garmin-ai-connector/#beta-signup.
+An inquiry does not guarantee a testing invitation or start a paid engagement.
 
-No chiropractic-office success story or measured client outcome is approved
-for publication yet. A proposed pilot is not a completed engagement.
+For consulting, Steven reviews the problem and agrees on scope, fees and
+availability. Vendor responsibilities and any additional expertise are discussed
+before work begins. No standing team, unlimited support or guaranteed result is
+implied. Credentials and private customer, patient or workout records should not
+be included in forms or chat.

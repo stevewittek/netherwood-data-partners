@@ -2,11 +2,11 @@
 
 The public website for Netherwood Data Partners.
 
-The site focuses on small business data migration and systems modernization,
-with database engineering as its technical foundation. Migration intake and the
-ungated readiness check reuse the existing static architecture. See
-[`docs/MIGRATION_IMPLEMENTATION.md`](docs/MIGRATION_IMPLEMENTATION.md) for this
-revision, checks, file inventory and next phase.
+The site presents an independent data and software business: apps, data
+connections and database tools, with consulting for focused projects.
+The existing theme, Motion branding, beta signup and business inquiry forms
+remain in place. See [the editorial revision](docs/EDITORIAL_REVISION.md)
+for the local candidate and validation status.
 
 The public forms preserve a bounded first campaign touch in session storage and
 include only allowlisted UTM fields, the opaque `nwd_campaign` code and a path-only

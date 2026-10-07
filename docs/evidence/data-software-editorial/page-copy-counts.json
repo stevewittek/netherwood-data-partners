@@ -1,0 +1,219 @@
+[
+  {
+    "route": "/about/",
+    "before": 737,
+    "after": 439,
+    "reduction": 40.4,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/admin/articles/",
+    "before": 58,
+    "after": 58,
+    "reduction": 0.0,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/azure-sql-migration-lessons/",
+    "before": 929,
+    "after": 923,
+    "reduction": 0.6,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/database-backups-what-companies-get-wrong/",
+    "before": 902,
+    "after": 896,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/database-health-checks-explained/",
+    "before": 888,
+    "after": 882,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/",
+    "before": 481,
+    "after": 471,
+    "reduction": 2.1,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/moving-legacy-applications-to-modern-sql-server-platforms/",
+    "before": 912,
+    "after": 906,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/performance-tuning-before-buying-more-hardware/",
+    "before": 885,
+    "after": 879,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/query-store-finding-the-queries-that-are-breaking-your-database/",
+    "before": 860,
+    "after": 854,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/sql-server-indexing-mistakes-that-hurt-performance/",
+    "before": 942,
+    "after": 936,
+    "reduction": 0.6,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/when-small-businesses-need-a-database-consultant/",
+    "before": 879,
+    "after": 873,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/why-nolock-does-not-fix-blocking-problems/",
+    "before": 920,
+    "after": 914,
+    "reduction": 0.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/articles/why-sql-server-databases-slow-down-over-time/",
+    "before": 924,
+    "after": 918,
+    "reduction": 0.6,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/",
+    "before": 1246,
+    "after": 563,
+    "reduction": 54.8,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/migration-intake/",
+    "before": 510,
+    "after": 444,
+    "reduction": 12.9,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/migration-readiness/",
+    "before": 446,
+    "after": 434,
+    "reduction": 2.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/motionrelay/setup/",
+    "before": 223,
+    "after": 192,
+    "reduction": 13.9,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/privacy/",
+    "before": 340,
+    "after": 338,
+    "reduction": 0.6,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/products/garmin-ai-connector/",
+    "before": 871,
+    "after": 477,
+    "reduction": 45.2,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/products/",
+    "before": 277,
+    "after": 171,
+    "reduction": 38.3,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/products/queryvault/",
+    "before": 293,
+    "after": 158,
+    "reduction": 46.1,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/products/sql-server-index-maintenance-visualizer/",
+    "before": 228,
+    "after": 122,
+    "reduction": 46.5,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/business-software-migration/",
+    "before": 660,
+    "after": 444,
+    "reduction": 32.7,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/data-migration/",
+    "before": 659,
+    "after": 443,
+    "reduction": 32.8,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/database-engineering/",
+    "before": 593,
+    "after": 372,
+    "reduction": 37.3,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/",
+    "before": 541,
+    "after": 291,
+    "reduction": 46.2,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/legacy-application-modernization/",
+    "before": 634,
+    "after": 442,
+    "reduction": 30.3,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/legacy-systems-assessment/",
+    "before": 661,
+    "after": 444,
+    "reduction": 32.8,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/practical-ai/",
+    "before": 632,
+    "after": 435,
+    "reduction": 31.2,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/software-systems-support/",
+    "before": 550,
+    "after": 390,
+    "reduction": 29.1,
+    "form_contract_unchanged": true
+  },
+  {
+    "route": "/services/workflow-automation/",
+    "before": 607,
+    "after": 419,
+    "reduction": 31.0,
+    "form_contract_unchanged": true
+  }
+]

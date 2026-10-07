@@ -1,0 +1,28 @@
+<p>Database help is useful when a specific problem affects the business: delayed work, unreliable reports, an unsupported platform or uncertain recovery. Start with a defined question and scope.</p>
+
+<h2>Performance problems affect daily work</h2>
+<p>Repeated slowdowns are an early signal. Month-end reports run into the workday, screens time out, imports take longer each week, or staff schedule tasks around a database they expect to stall. General IT monitoring may show that the server is online while missing query regressions, blocking, poor indexing, or a log configuration problem.</p>
+<p>Capture the affected operation and rank corrections by impact and implementation risk. An unfiltered index list or unsupported hardware recommendation is not a useful result.</p>
+<h2>No one has proved recovery works</h2>
+<p>A successful backup job is not the same as a recoverable business system. The backup may omit a database, write to the same failing storage, use retention shorter than the discovery window for corruption, or depend on credentials unavailable during an emergency. Most importantly, no one may have restored it.</p>
+<p>Bring in database expertise when recovery time and acceptable data loss have never been translated into a tested backup design. A useful engagement verifies backup chains, performs a restore to an isolated location, checks consistency, documents timing, and assigns ownership for alerts and periodic tests.</p>
+<h2>A change carries one-way risk</h2>
+<p>Migrations, major upgrades, storage moves, application replacements, and large data corrections deserve specialist planning when rollback would be difficult. A consultant can inventory dependencies, identify deprecated features, estimate outage steps, design rehearsal and validation, and prepare a decision point for rollback.</p>
+<p>This is especially important when an application vendor supports its product but not the surrounding database platform. Clarify responsibilities before the change: who owns the application test, who validates data, who controls DNS or connection changes, and who has authority to stop the cutover.</p>
+<h2>Reporting numbers do not agree</h2>
+<p>Conflicting revenue, inventory, or service metrics are not solved by another dashboard. The problem may be duplicated joins, misunderstood effective dates, inconsistent status rules, late-arriving transactions, or extracts taken at different points in time. Database analysis can trace each number back to source tables and transformations.</p>
+<p>The deliverable should include agreed definitions, reconciliation queries, data-quality exceptions, and ownership. Technical accuracy alone is insufficient if the finance and operations teams use different meanings for the same label.</p>
+<h2>Security and access grew informally</h2>
+<p>Shared administrator accounts, applications connecting as highly privileged users, former employees retaining access, and backup files stored without protection are common signs that the environment outgrew its setup. A database consultant can map logins to actual needs, reduce permissions, review encryption and audit requirements, and coordinate changes with application owners.</p>
+<p>Credentials should never be copied into a report or source repository. Changes should use named, least-privileged identities and include a tested recovery path so tightening security does not accidentally strand the business application.</p>
+<h2>What a right-sized engagement looks like</h2>
+<ul>
+<li>A clear question, such as whether the company can restore within four hours or why order entry slows each afternoon.</li>
+<li>Read-only evidence gathering before production changes.</li>
+<li>A short prioritized findings report with business impact, proof, effort, and risk.</li>
+<li>Implementation scripts or runbooks that another qualified person can review.</li>
+<li>Knowledge transfer to the employee or provider who will own routine operation.</li>
+</ul>
+<p>Ask a prospective consultant how they protect credentials, test rollback, distinguish observations from assumptions, and validate results. Be cautious with anyone who promises a fix before seeing evidence, requires unrestricted remote access by default, or creates dependence on undocumented tools only they can operate.</p>
+<h2>Prepare before the first working session</h2>
+<p>Prepare symptoms, system inventory, operating hours, backup details, recent changes and vendor contacts. Arrange approved access without emailing passwords. Agree who owns the findings and when work returns to your IT team or provider.</p>

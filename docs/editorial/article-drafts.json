@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "why-sql-server-databases-slow-down-over-time",
+    "title": "Why SQL Server Databases Slow Down Over Time",
+    "draft": "docs/editorial/articles/why-sql-server-databases-slow-down-over-time.html",
+    "originalWords": 860,
+    "draftWords": 697,
+    "reductionPercent": 19.0,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "5c914054-7d6a-5bb4-89e9-7fa3093cae76",
+    "sourceHtmlSha256": "602db753acc4a9ed83d0c31ad01dd1bf8eba86884ff453eea972368ee4bd3338",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "sql-server-indexing-mistakes-that-hurt-performance",
+    "title": "SQL Server Indexing Mistakes That Hurt Performance",
+    "draft": "docs/editorial/articles/sql-server-indexing-mistakes-that-hurt-performance.html",
+    "originalWords": 879,
+    "draftWords": 731,
+    "reductionPercent": 16.8,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "f818df3d-9435-5d62-b629-0dd5485ef3bf",
+    "sourceHtmlSha256": "69811ca83b40bd0cdf7bdab248e289ad31f10a240c06519f295f0a14922092e0",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "query-store-finding-the-queries-that-are-breaking-your-database",
+    "title": "Query Store: Finding the Queries That Are Breaking Your Database",
+    "draft": "docs/editorial/articles/query-store-finding-the-queries-that-are-breaking-your-database.html",
+    "originalWords": 799,
+    "draftWords": 674,
+    "reductionPercent": 15.6,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "daac638e-a853-5827-bc1d-4696a5b6fb54",
+    "sourceHtmlSha256": "f29ec8d88b78373fe2913de9fd9c00ef06e90dc1838cbbf78886351ead09fd90",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "why-nolock-does-not-fix-blocking-problems",
+    "title": "Why NOLOCK Does Not Fix Blocking Problems",
+    "draft": "docs/editorial/articles/why-nolock-does-not-fix-blocking-problems.html",
+    "originalWords": 857,
+    "draftWords": 720,
+    "reductionPercent": 16.0,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "73b4a094-1235-5e5a-9658-8c36059b7cc4",
+    "sourceHtmlSha256": "3325a64677db858e51488f2bb3915b572ffcf9132502310e9e909a4931dbe89a",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "when-small-businesses-need-a-database-consultant",
+    "title": "When Small Businesses Need a Database Consultant",
+    "draft": "docs/editorial/articles/when-small-businesses-need-a-database-consultant.html",
+    "originalWords": 814,
+    "draftWords": 621,
+    "reductionPercent": 23.7,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "a838f245-99b9-5e29-b2e6-03ca364c98af",
+    "sourceHtmlSha256": "74f90b60d81e65372e28cf01888cd967d26858a0c38c81b20db91da4c0ef1080",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "moving-legacy-applications-to-modern-sql-server-platforms",
+    "title": "Moving Legacy Applications to Modern SQL Server Platforms",
+    "draft": "docs/editorial/articles/moving-legacy-applications-to-modern-sql-server-platforms.html",
+    "originalWords": 848,
+    "draftWords": 711,
+    "reductionPercent": 16.2,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "776c5f54-dfed-52fe-8e5f-255f789403f9",
+    "sourceHtmlSha256": "d812b5f11ca6052f177a56e9d09a79862825a513ec9af92065a961a33b33993e",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "database-backups-what-companies-get-wrong",
+    "title": "Database Backups: What Companies Get Wrong",
+    "draft": "docs/editorial/articles/database-backups-what-companies-get-wrong.html",
+    "originalWords": 837,
+    "draftWords": 697,
+    "reductionPercent": 16.7,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "24ab5744-8afe-5b54-ac6b-c19cd4d46306",
+    "sourceHtmlSha256": "873e76612de00e058723c8170b60a22d56b45e22e22161456314eebe94a67e28",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "azure-sql-migration-lessons",
+    "title": "Azure SQL Migration Lesson",
+    "draft": "docs/editorial/articles/azure-sql-migration-lessons.html",
+    "originalWords": 862,
+    "draftWords": 726,
+    "reductionPercent": 15.8,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "ac33f77f-3520-57a6-8456-9e1b4cbe7b7e",
+    "sourceHtmlSha256": "8456d3fd4ff846c4e542ba60830b4d9e324817e433c679d631db4b4311822d01",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "performance-tuning-before-buying-more-hardware",
+    "title": "Performance Tuning Before Buying More Hardware",
+    "draft": "docs/editorial/articles/performance-tuning-before-buying-more-hardware.html",
+    "originalWords": 825,
+    "draftWords": 635,
+    "reductionPercent": 23.0,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "121fdae9-e7e9-52f2-9574-94dbbf680d6e",
+    "sourceHtmlSha256": "acb770525c0898da4ee14ab60b08464a835a32c2b1294c478ff6af1815ee87d2",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  },
+  {
+    "slug": "database-health-checks-explained",
+    "title": "Database Health Checks Explained",
+    "draft": "docs/editorial/articles/database-health-checks-explained.html",
+    "originalWords": 823,
+    "draftWords": 677,
+    "reductionPercent": 17.7,
+    "status": "Editorial draft only; not imported or published",
+    "sourceArticleId": "a43d9fba-4c7e-5804-9459-93f324f7c3d5",
+    "sourceHtmlSha256": "549ec9bf92046c445a973c7642a05d6fe924beeab1099f2df4fdd6a5a7096e7e",
+    "sourcePublicationDigest": "ac062026f7b108e1225a471f31cd78cabb32fbc4276dc5fa1d6f85f2faa650e8"
+  }
+]

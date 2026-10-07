@@ -1,0 +1,27 @@
+<p>Indexes trade faster access for storage and write costs. Choose them for the workload, rather than adding every recommendation or trying to eliminate every scan.</p>
+<h2>Adding every missing-index recommendation</h2>
+<p>The missing-index dynamic management views describe indexes that could have helped individual optimization events. They do not understand the complete workload, account fully for write cost, or consolidate similar suggestions. After a busy week, they may propose several variations of the same index with slightly different key and included columns.</p>
+<p>Group recommendations by table, compare existing indexes and inspect the affected queries. Prioritize execution frequency and business impact alongside estimated improvement.</p>
+<h2>Creating overlapping indexes</h2>
+<p>Consider indexes beginning with <code>CustomerId</code>, <code>CustomerId, OrderDate</code>, and <code>CustomerId, OrderDate, Status</code>. They are not automatically duplicates, but they deserve a joint review. Their include lists, uniqueness, filters, sort direction, query usage, and size determine whether each has a distinct purpose.</p>
+<p>Overlapping indexes consume memory and lengthen write operations. They also make maintenance take longer. Before combining or removing one, capture a representative period of seeks, scans, lookups, and updates. Remember that SQL Server restarts and database detach operations reset much of this usage evidence.</p>
+<h2>Putting key columns in an unhelpful order</h2>
+<p>The order of index keys determines how efficiently SQL Server can seek and preserve ordering. The most selective column is not automatically the correct leading key. The leading columns should match common equality predicates, range predicates, joins, and ordering requirements across the workload.</p>
+<p>An index on <code>OrderDate, CustomerId</code> can serve a date-range report well but may not support a request for all orders from one customer unless a useful date condition is also supplied. Reversing the keys changes that tradeoff. Design from actual query predicates and plans, then validate with realistic parameter values.</p>
+<h2>Using INCLUDE as unlimited storage</h2>
+<p>Included columns can eliminate lookups without affecting key order, but very wide covering indexes carry a price. More pages must be read into memory. Updates to included values touch the index. Rebuilds, backups, integrity operations, and replicas move more data. Large character columns are especially easy to add for convenience and expensive to retain.</p>
+<p>A lookup is not inherently bad. A selective query returning a handful of rows may use lookups efficiently. The same plan becomes troublesome when an estimate is wrong and thousands of rows are retrieved. Fixing the estimate or query pattern can be better than covering every output column.</p>
+<h2>Choosing a poor clustered key</h2>
+<p>The clustered key is carried in every nonclustered index as the row locator. A wide clustered key silently widens the rest of the indexing structure. A frequently changing key can move rows, while a nonsequential key can distribute inserts across many pages. None of these properties makes a design universally wrong, but the cost multiplies on a busy, heavily indexed table.</p>
+<ul>
+<li>Prefer a clustered key that is narrow, stable, unique, and appropriate for common access patterns.</li>
+<li>If the chosen key is not unique, understand that SQL Server may add an internal uniquifier.</li>
+<li>Separate the logical primary key decision from the physical clustering decision when the workload calls for it.</li>
+</ul>
+<h2>Applying fill factor and fragmentation rules everywhere</h2>
+<p>A low fill factor reserves space on index pages, but it also increases page count immediately. That means more reads, a larger buffer pool footprint, and more maintenance. It can help an index that experiences measured page splits in the middle of the key range; it is not a standard remedy for all indexes.</p>
+<p>Likewise, rebuilding every index above a fixed fragmentation percentage ignores index size and workload. A tiny index can show high percentage fragmentation while fitting in very few pages. A large read-mostly index may perform well without constant rebuilding. Base thresholds on page count, observed scan behavior, maintenance windows, log generation, and high-availability impact.</p>
+<h2>Ignoring filtered and purpose-built options</h2>
+<p>When queries repeatedly target a small stable subset, such as open work items or rows with a nullable completion date, a filtered index can be smaller and more precise than a full-table index. Computed columns can make an otherwise non-sargable business expression indexable when defined correctly. Columnstore can serve analytic workloads, but it should not be attached casually to an operational table without testing write and maintenance behavior.</p>
+<h2>Measure the whole transaction cost</h2>
+<p>Record duration, reads, CPU, frequency and plan shape before a change. Include write costs where relevant. Test creation, removal and rollback, then review the index set after releases and major growth.</p>

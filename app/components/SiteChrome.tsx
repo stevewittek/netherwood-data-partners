@@ -32,16 +32,16 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
       <Brand />
       <nav aria-label="Primary navigation">
         <a
-          href="/services/"
-          aria-current={currentPage === "services" ? "page" : undefined}
-        >
-          Services
-        </a>
-        <a
           href="/products/"
           aria-current={currentPage === "products" ? "page" : undefined}
         >
           Products
+        </a>
+        <a
+          href="/services/"
+          aria-current={currentPage === "services" ? "page" : undefined}
+        >
+          Services
         </a>
         <a
           href="/articles/"
@@ -57,7 +57,7 @@ export function SiteHeader({ currentPage = "home" }: SiteHeaderProps) {
         </a>
       </nav>
       <a className="nav-cta" href="/#contact">
-        Let’s talk <span aria-hidden="true">↗</span>
+        Contact <span aria-hidden="true">↗</span>
       </a>
       <span id="main-content" tabIndex={-1} />
     </header>
@@ -69,18 +69,18 @@ export function SiteFooter() {
       <div className="studio-footer-top">
         <div>
           <Brand />
-          <p>Consulting, software and data tools. Rooted in Netherwood.</p>
+          <p>Independent software and data engineering.</p>
         </div>
         <div className="studio-footer-links">
-          <a href="/services/">Services</a>
           <a href="/products/">Products</a>
+          <a href="/services/">Services</a>
           <a href="/articles/">Articles</a>
           <a href="/about/">About</a>
           <a href="/#contact">Contact</a>
           <a href="/privacy/">Privacy</a>
         </div>
         <a className="studio-text-link" href="/#contact">
-          Talk about your business <span aria-hidden="true">↗</span>
+          Contact Netherwood <span aria-hidden="true">↗</span>
         </a>
       </div>
       <div className="studio-footer-bottom">
@@ -88,7 +88,7 @@ export function SiteFooter() {
           © <span suppressHydrationWarning>{new Date().getFullYear()}</span>{" "}
           Netherwood Data Partners
         </p>
-        <p>Founder-led. New Jersey based. Meetings by appointment.</p>
+        <p>New Jersey based. Meetings by appointment.</p>
       </div>
     </footer>
   );

@@ -1,0 +1,28 @@
+<p>More hardware can help when capacity is the constraint. First identify the slow operation, the limiting resource and the workload consuming it.</p>
+<h2>Define the symptom before reading server averages</h2>
+<p>Start with the business operation: which screen, report, import, or batch is slow; when it occurs; how long it normally takes; and what changed. A daily CPU average can hide a fifteen-minute saturation that coincides with order processing. Conversely, a server can show high utilization while meeting every service requirement.</p>
+<p>Compare incident and normal periods using CPU, memory pressure, storage, log activity, waits, blocking and response time. Correlation narrows the search; it does not establish cause.</p>
+<h2>Find the workload that consumes the resource</h2>
+<p>Instance-level pressure is the sum of requests. Use Query Store and live diagnostic evidence to connect that pressure to databases, queries, plans, jobs, and time windows. Look at both total consumption and per-execution cost. A query running constantly can matter more than the single slowest statement.</p>
+<p>Examine whether execution frequency changed after an application release, a job moved into peak hours, or a reporting tool began refreshing more often. Hardware cannot correct an accidental loop or a retry policy that turns one timeout into a storm of duplicate work.</p>
+<h2>Correct avoidable reads and CPU</h2>
+<p>Large scans, poor cardinality estimates, implicit conversions, non-sargable predicates, lookup amplification, and unnecessary sorting commonly consume capacity. Compare estimated and observed row counts. Check whether a useful index exists and whether its key order supports the predicate. Review statistics and parameter sensitivity rather than assuming every bad plan is fixed by recompilation.</p>
+<ul>
+<li>Select only the columns and rows the consumer needs.</li>
+<li>Make predicates searchable where the business logic allows it.</li>
+<li>Consolidate overlapping indexes while protecting important access paths.</li>
+<li>Batch large modifications to control log, lock, and resource pressure.</li>
+<li>Move discretionary work away from critical operating windows.</li>
+</ul>
+<p>Measure before and after with the same representative parameters and data volume. A query that becomes fast for one customer but slower for most others is not a complete improvement.</p>
+<h2>Address concurrency, not just consumption</h2>
+<p>A blocked request can appear to need more capacity while doing no useful CPU work. Find the head blocker, transaction age, access path, and application boundary. Shorten transactions, correct error handling, and index modification predicates when appropriate. Adding processors does not release a lock held while an application waits for user input.</p>
+<p>Memory-grant contention can likewise be concentrated in a few queries with inaccurate estimates or large sorts and hashes. More memory may provide relief, but correcting the plan or result shape can improve both latency and concurrency.</p>
+<h2>Check configuration and file behavior</h2>
+<p>Review SQL Server maximum memory in the context of the operating system and other services. Confirm file autogrowth uses sensible fixed increments and that data and log paths have adequate, measured performance. Investigate repeated growth rather than merely increasing free space. Validate tempdb configuration against observed allocation and I/O behavior instead of applying a copied file-count rule.</p>
+<p>Maintenance also consumes capacity. Index rebuilds can generate substantial log and I/O, update statistics, and affect replicas. Ensure tasks are needed, complete within their windows, and do not overlap business peaks. A failed or perpetually running maintenance plan is an operational defect, not a reason by itself to upgrade the server.</p>
+<h2>Know when hardware is the correct conclusion</h2>
+<p>If efficient demand still exceeds capacity, test the proposed configuration and state what should improve. Include failover margin, seasonal load, licensing and operating costs. Use measurements to support the purchase.</p>
+<table><caption>A defensible capacity case</caption><thead><tr><th scope="col">Finding</th><th scope="col">Evidence</th></tr></thead><tbody><tr><td>CPU constrained</td><td>Sustained runnable work from efficient important queries during required volume</td></tr><tr><td>Memory constrained</td><td>Measured pressure and workload benefit after grant and configuration review</td></tr><tr><td>Storage constrained</td><td>File-level latency and throughput at the device limit under necessary I/O</td></tr><tr><td>Growth constrained</td><td>Trend and forecast tied to business demand and an agreed service target</td></tr></tbody></table>
+
+<blockquote></blockquote>

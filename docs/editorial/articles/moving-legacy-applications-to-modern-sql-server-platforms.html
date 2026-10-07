@@ -1,0 +1,29 @@
+<p>A database restore is only part of an application migration. Drivers, jobs, file shares, logins and integrations may determine whether the application works at the destination.</p>
+<h2>Begin with workload and dependency discovery</h2>
+<p>Inventory every database, instance-level object, integration, and operational job associated with the application. Include logins and role mappings, SQL Agent schedules, Database Mail, linked servers, credentials, certificates, file paths, command-line utilities, reporting connections, ETL packages, and backup processes. Review actual connection and execution evidence because documentation often omits an infrequent month-end process.</p>
+<p>Record version, edition, collation, compatibility, recovery and availability settings. Capture critical operations and batch timings so the target can be compared with the source.</p>
+<h2>Choose the target from requirements</h2>
+<p>A modern target might be a supported SQL Server instance on new infrastructure, SQL Server in a virtual machine, Azure SQL Managed Instance, or Azure SQL Database. The right option follows from required features, administrative responsibility, availability, latency, security boundaries, cost behavior, and the application's ability to change.</p>
+<p>Do not select a platform from the database size alone. A small database can depend heavily on instance-level features. A large database with a clean, self-contained application pattern may fit a managed service well. Document which party will own backups, patching, monitoring, identity, network controls, and incident response after migration.</p>
+<h2>Separate compatibility from correctness</h2>
+<p>Assessment tools can identify unsupported syntax and features, but passing an assessment does not prove application behavior. Test authentication, transaction isolation assumptions, date and string handling, collation-sensitive comparisons, error processing, timeouts, and client-driver support. Exercise both ordinary workflows and unusual cases such as duplicate submissions, canceled batches, and a failed downstream service.</p>
+<p>Changing the database compatibility level can alter optimizer behavior independently of the engine upgrade. Preserve Query Store history or establish a new baseline, then test important queries at the intended level. Plan correction should be based on evidence rather than lowering compatibility indefinitely as a substitute for tuning.</p>
+<h2>Rehearse the data movement</h2>
+<p>Choose a migration method that fits database size, change rate, allowed outage, encryption, and target platform. Backup and restore may be ideal for one environment; log shipping, distributed availability technology, replication, or a platform migration service may be appropriate elsewhere. Each option has prerequisites and a different failure surface.</p>
+<ol>
+<li>Run a full rehearsal with production-like volume.</li>
+<li>Measure backup, transfer, restore, upgrade, recovery, and validation time separately.</li>
+<li>Script instance-level dependencies and verify ownership and permissions.</li>
+<li>Run integrity checks and reconcile critical row counts and business totals.</li>
+<li>Test the application through the same network and identity path planned for production.</li>
+</ol>
+<p>Rehearsal results should drive the cutover estimate. A spreadsheet guess cannot reveal a slow transfer link, a certificate problem, or the time needed to rebuild an index after a version change.</p>
+<h2>Design cutover and rollback together</h2>
+<p>A cutover runbook should identify owners, UTC timestamps, entry criteria, stop conditions, communication points, exact commands, validation, and the moment after which rollback becomes more complex. Freeze or control writes before the final synchronization. Do not allow the old and new systems to accept independent production changes unless a tested reconciliation design exists.</p>
+<table><caption>Essential cutover decisions</caption><thead><tr><th scope="col">Decision</th><th scope="col">Required evidence</th></tr></thead><tbody><tr><td>Proceed</td><td>Successful rehearsal, current backup, target health, and available owners</td></tr><tr><td>Accept target</td><td>Application smoke tests, data reconciliation, jobs, monitoring, and performance</td></tr><tr><td>Roll back</td><td>Defined trigger, preserved source, connection reversal, and data-change plan</td></tr></tbody></table>
+<p>Rollback is not merely reconnecting to the old server. If users have written data on the target, the business must decide whether and how those changes return. Set that decision boundary before the outage begins.</p>
+<h2>Modernize in controlled stages</h2>
+<p>A migration already changes engine, infrastructure, network, and operations. Rewriting application data access at the same time can make faults difficult to isolate. Unless an unsupported dependency forces the issue, first establish equivalent behavior on the target. Then modernize schemas, queries, deployment practices, and integrations through separate measured changes.</p>
+<p>Some technical debt should be removed before moving: unsupported drivers, hard-coded administrator credentials, unmaintainable backup processes, and integrity problems can make migration unsafe. The distinction is between prerequisites needed for a controlled move and optional improvements that can follow it.</p>
+<h2>Operate the new platform from day one</h2>
+<p>Prove recovery, alerting and performance at the target. Document support access and responsibilities. Protect the source for its agreed retention period, prevent accidental reconnection, remove temporary access and update the recovery runbook.</p>

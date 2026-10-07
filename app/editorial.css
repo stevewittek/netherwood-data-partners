@@ -1,0 +1,16 @@
+/* Homepage image placement only; retain the shared theme and responsive grid. */
+.editorial-home .editorial-company-visual {
+  align-self: center;
+  padding: 32px;
+}
+.editorial-company-visual > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.editorial-company-visual figcaption {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.6;
+}

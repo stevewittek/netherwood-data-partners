@@ -1,18 +1,18 @@
 export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
-  title: "Data Migration & Systems Consulting in New Jersey | Netherwood",
+  title: "Data & Software Development | Netherwood Data Partners",
   description:
-    "Data migration, systems integration, database engineering and reporting for established businesses moving from legacy software to modern platforms.",
+    "Apps, database tools and connected systems from Netherwood Data Partners. Explore software products and services for data integration, SQL Server and business applications.",
 };
 export const aboutMetadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
   description:
-    "Meet Steven Wittek, the New Jersey database engineer behind Netherwood’s consulting services, software products and practical data tools.",
+    "Meet Steven Wittek, the independent developer and data professional behind Netherwood’s apps, database tools and consulting work.",
 };
 export const intakeMetadata = {
-  title: "Talk About Your Data Migration | Netherwood Data Partners",
+  title: "Discuss a Data Migration | Netherwood Data Partners",
   description:
-    "Tell Netherwood what you are using, what you want to replace and what worries you. An approachable migration inquiry for small and midsize businesses.",
+    "Describe your existing system, planned migration or assessment. Contact Netherwood Data Partners about the work you need.",
 };
 export const readinessMetadata = {
   title: "Is Your Business Ready to Replace Its Old Software? | Netherwood",
@@ -32,11 +32,6 @@ export const organizationSchema = {
   url: `${siteUrl}/`,
   description: homeMetadata.description,
   email: "contact@netherwooddatapartners.com",
-  founder: {
-    "@type": "Person",
-    name: "Steven Wittek",
-    url: `${siteUrl}/about/`,
-  },
   areaServed: [
     "New Jersey",
     "Union County, NJ",
@@ -46,6 +41,8 @@ export const organizationSchema = {
     "United States",
   ],
   knowsAbout: [
+    "Software development",
+    "Apps and data connections",
     "Data migration",
     "Legacy systems modernization",
     "SQL Server",

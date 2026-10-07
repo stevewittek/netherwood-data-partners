@@ -224,7 +224,7 @@ export default function ContactForm() {
         </div>
 
         <div className="contact-field">
-          <label htmlFor="contact-service">What can we help with?</label>
+          <label htmlFor="contact-service">Inquiry topic</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
             <option value="Software or systems support">
@@ -258,7 +258,7 @@ export default function ContactForm() {
       </div>
 
       <div className="contact-field">
-        <label htmlFor="contact-message">How can we help?</label>
+        <label htmlFor="contact-message">Your question or project</label>
         <textarea
           aria-describedby="contact-message-hint"
           id="contact-message"
@@ -270,9 +270,8 @@ export default function ContactForm() {
           rows={6}
         />
         <p className="contact-field-hint" id="contact-message-hint">
-          Describe your business, software, location and what you want to
-          change. Please leave out passwords and private customer or patient
-          records.
+          Describe your app question or business project. Please leave out
+          passwords and private customer, patient or activity records.
         </p>
       </div>
     </InquiryForm>

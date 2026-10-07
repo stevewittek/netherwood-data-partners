@@ -1,0 +1,28 @@
+<p>A successful backup job does not prove that the application can be recovered. Restore evidence must cover the required recovery point and time to restore service.</p>
+<h2>Starting with a schedule instead of a recovery objective</h2>
+<p>A nightly full backup is a schedule, not a requirement. The business must first define the maximum tolerable data loss and the time available to restore service. Those are commonly described as the recovery point objective and recovery time objective. They should be stated for each important system because payroll, an internal archive, and live order processing rarely have identical needs.</p>
+<p>A nightly full backup cannot meet a fifteen-minute data-loss requirement alone. Include log-backup needs, transfer, restore, validation and application startup in recovery planning.</p>
+<h2>Trusting job success without checking the artifact</h2>
+<p>A job can report success while writing to a location with inadequate retention or while omitting a newly created database. Files can later be deleted, truncated, or made inaccessible by a credential change. Monitor both execution and outcomes: expected databases, backup type, finish time, age, size anomalies, checksum settings, destination capacity, and copy or replication status.</p>
+<p>Use backup verification as one layer, but understand its limits. Reading backup metadata and checksums can detect some damage; it does not run database recovery or prove the restored application works. Only a restore exercises the relevant sequence.</p>
+<h2>Breaking the log chain unintentionally</h2>
+<p>Point-in-time recovery under the full recovery model depends on an unbroken transaction log backup chain after an appropriate full backup. Switching recovery models, failing log backups, replacing a database, or misunderstanding copy-only operations can change what recovery is possible. Log files that grow without limit often indicate that log backups are absent or failing, but truncation state must be diagnosed rather than guessed.</p>
+<p>Document which full, differential, and log backups form the recovery sequence. During an incident, restore operators should not have to infer file order from names alone. Keep authoritative metadata and a tested script that can select the intended recovery point.</p>
+<h2>Keeping every copy in one failure domain</h2>
+<p>A backup stored on the same server protects against some logical failures but not loss of that server. A copy on a share joined to the same identity boundary may still be vulnerable to the same destructive account or ransomware event. Recovery design should include separate failure domains and, where appropriate, an immutable or offline copy.</p>
+<ul>
+<li>Encrypt backups when required and protect the keys or certificates separately.</li>
+<li>Restrict write and delete rights more tightly than read access needed for restore.</li>
+<li>Transfer copies over protected channels and monitor arrival at the secondary location.</li>
+<li>Set retention from business, regulatory, and corruption-discovery needs.</li>
+<li>Test restoration when the primary identity or network service is unavailable.</li>
+</ul>
+<p>Encryption without key recovery is permanent data loss. Record key custody and test it with the same discipline as the backup file.</p>
+<h2>Never timing a restore</h2>
+<p>Restore tests often stop when the database reaches an online state. A complete exercise measures file retrieval, restore, recovery, integrity validation, login and permission repair, job enablement, connection changes, and application verification. Large databases should be tested on infrastructure representative of the recovery target because storage throughput can dominate the timeline.</p>
+<table><caption>Evidence from a useful restore test</caption><thead><tr><th scope="col">Area</th><th scope="col">Recorded result</th></tr></thead><tbody><tr><td>Recovery point</td><td>Exact UTC time reached and expected data-loss window</td></tr><tr><td>Recovery time</td><td>Duration by retrieval, restore, validation, and service startup</td></tr><tr><td>Integrity</td><td>Database checks and business reconciliation completed</td></tr><tr><td>Access</td><td>Required logins, jobs, keys, and application connections verified</td></tr></tbody></table>
+<h2>Ignoring human access and ownership</h2>
+<p>A technically valid backup is useless if no available person can reach it during an outage. Avoid dependence on one employee's account, memory, or laptop. Name primary and backup owners, protect credentials in an approved secrets system, and make the recovery runbook available during a network or identity failure.</p>
+<p>The runbook should use exact server roles and approved locations without embedding passwords. It should explain who can authorize a restore, how to prevent users from connecting too early, how to choose a recovery point, and how the business validates results.</p>
+<h2>Treating high availability as a backup</h2>
+<p>Retain dated restore evidence covering files, credentials, infrastructure and instructions. Revisit objectives after changes to the application or business, and test recovery with the people responsible for it.</p>

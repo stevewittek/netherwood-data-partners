@@ -101,8 +101,8 @@ function MotionRelayDownloads() {
     <section className="product-downloads studio-wrap" aria-labelledby="motion-downloads-title">
       <div>
         <p className="eyebrow">Downloads</p>
-        <h2 id="motion-downloads-title">Start with the watch. Add the phone companion.</h2>
-        <p>The Garmin download installs a Connect IQ data field inside a compatible watch activity. Motion Relay on the phone is a separate required companion for the complete watch-to-AI connection.</p>
+        <h2 id="motion-downloads-title">Check access before installing.</h2>
+        <p>Confirm phone access before installing the Garmin data field.</p>
       </div>
       <div className="platform-download-grid">
         {Object.values(motionRelayDownloads).map((entry) => (
@@ -120,8 +120,7 @@ function MotionRelayDownloads() {
           </article>
         ))}
       </div>
-      <p className="product-download-note">A compatible Garmin device, Garmin Connect, the Motion Relay phone companion, internet access, and a supported authorized AI account are needed for the complete experience. <a href={motionRelayRoutes.setup}>Read setup instructions</a>.</p>
-      <p className="product-download-note">The iPhone and Android companions are in beta and are not publicly available yet. <a href={motionRelayRoutes.betaSignup}>Sign up to help test Motion Relay</a>.</p>
+      <p className="product-download-note"><a href={motionRelayRoutes.setup}>Read setup instructions</a>.</p>
     </section>
   );
 }
@@ -156,7 +155,9 @@ export function ProductCard({
 }
 
 export function ProductGrid({ home = false }: { home?: boolean }) {
-  const entries = home ? featuredProducts : products;
+  const entries = [...(home ? featuredProducts : products)].sort((a, b) =>
+    Number(b.id === "garmin-ai-connector") - Number(a.id === "garmin-ai-connector"),
+  );
   return (
     <div className={`product-grid${home ? " product-grid-home" : ""}`}>
       {entries.map((product) => (
@@ -172,21 +173,17 @@ export function ProductsIndex() {
       <SiteHeader currentPage="products" />
       <section className="products-hero studio-wrap">
         <div>
-          <p className="eyebrow">Consulting + software</p>
+          <p className="eyebrow">Independent software</p>
           <h1>
-            Practical tools.
-            <br />
-            Built from real data work.
+            Apps and tools<br />built around data.
           </h1>
         </div>
         <div className="products-hero-copy">
           <p>
-            Netherwood Data Partners provides hands-on database and data
-            engineering services—and builds focused software for the problems
-            that show up in that work.
+            I build software for problems I encounter in database work and while running. Each product connects useful information to a specific task.
           </p>
           <p>
-            Some projects offer public source today; others are development previews. Each product page explains its current scope and availability.
+            Check each product’s availability before getting started.
           </p>
           <div className="products-hero-actions">
             <a className="button button-primary" href="#product-list">
@@ -202,42 +199,18 @@ export function ProductsIndex() {
         <div className="products-section-heading">
           <div>
             <p className="eyebrow">Current products</p>
-            <h2>Database tools, utilities and connectors.</h2>
+            <h2>Running data and database tools.</h2>
           </div>
           <p>
-            Explore the current scope, platforms and availability of each project. Public source, documentation and downloads are linked as they become ready to share.
+            Motion connects activity readings. QueryVault and PageMover support database investigation.
           </p>
         </div>
         <ProductGrid />
       </section>
-      <section className="products-practice">
-        <div className="studio-wrap">
-          <div>
-            <p className="eyebrow">One engineering practice</p>
-            <h2>Services inform the software. Software sharpens the services.</h2>
-          </div>
-          <div>
-            <p>
-              Database performance investigations lead to better diagnostic
-              tools. Repeated integration work leads to reusable connectors.
-              Operational problems lead to small utilities that make the next
-              job clearer and safer.
-            </p>
-            <p>
-              Both sides belong under Netherwood Data Partners: careful
-              consulting for organizations that need direct help, and practical
-              products for people who need a focused tool.
-            </p>
-            <a className="studio-text-link" href="/about/">
-              About Netherwood <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
       <section className="products-contact studio-wrap">
         <p>Developed by Netherwood Data Partners</p>
         <div>
-          <h2>Have a product question or a data problem to solve?</h2>
+          <h2>Questions or product feedback?</h2>
           <a className="button button-primary" href="/#contact">
             Contact Netherwood <span aria-hidden="true">↗</span>
           </a>
@@ -284,13 +257,14 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           <p className="product-detail-summary">{product.summary}</p>
           <ProductBadges product={product} />
           <ProductLinks product={product} includeDetail={false} />
+          {product.downloadExperience === "motion-relay" && <div className="product-links"><a className="product-link-primary" href={motionRelayRoutes.betaSignup}>Request beta access <span aria-hidden="true">↗</span></a><a href={motionRelayRoutes.setup}>Setup and help <span aria-hidden="true">↗</span></a></div>}
         </div>
         <ProductVisual product={product} />
       </section>
       <section className="product-detail-overview studio-wrap">
         <div>
           <p className="eyebrow">Overview</p>
-          <h2>What it is—and where it stands.</h2>
+          <h2>Why I’m building it.</h2>
         </div>
         <div className="product-prose">
           {product.description.map((paragraph) => (
@@ -314,10 +288,6 @@ export function ProductDetailPage({ slug }: { slug: string }) {
                 <p className="eyebrow">Product scope</p>
                 <h2>{product.featureHeading}</h2>
               </div>
-              <p>
-                The description reflects the project’s current verified scope,
-                not a promise of future release features.
-              </p>
             </div>
             <div className="product-feature-grid">
               {product.features.map((feature, index) => (
@@ -348,7 +318,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         <section className="product-screenshots studio-wrap">
           <div>
             <p className="eyebrow">Screenshots</p>
-            <h2>See the product in context.</h2>
+            <h2>Watch preview.</h2>
           </div>
           <div className="product-screenshot-grid">
             {product.screenshots.map((screenshot) => (
@@ -369,36 +339,12 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
       )}
-      <section className="product-detail-facts studio-wrap">
-        <div>
-          <p className="eyebrow">Project details</p>
-          <h2>Built and supported under the Netherwood name.</h2>
-        </div>
-        <dl>
-          <div>
-            <dt>Status</dt>
-            <dd>{product.status}</dd>
-          </div>
-          <div>
-            <dt>Supported or planned platforms</dt>
-            <dd>{product.platforms.join(" · ")}</dd>
-          </div>
-          <div>
-            <dt>Developer</dt>
-            <dd>Netherwood Data Partners</dd>
-          </div>
-          <div>
-            <dt>Founder / developer</dt>
-            <dd>Steve Wittek</dd>
-          </div>
-        </dl>
-      </section>
       {product.privacy && product.privacy.length > 0 && (
         <section className="product-privacy">
           <div className="studio-wrap">
             <div>
               <p className="eyebrow">Privacy direction</p>
-              <h2>Personal activity data needs a precise disclosure.</h2>
+              <h2>Activity data and sharing.</h2>
             </div>
             <div className="product-prose">
               {product.privacy.map((paragraph) => (
@@ -445,7 +391,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
       <section className="product-support studio-wrap">
         <div>
           <p className="eyebrow">Support & questions</p>
-          <h2>Talk to the company building it.</h2>
+          <h2>Contact the developer.</h2>
         </div>
         <div>
           <p>{product.support}</p>
