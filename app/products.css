@@ -804,3 +804,26 @@
     padding: 31px 24px;
   }
 }
+
+/* Motion Relay platform links: a single compact row at every viewport. */
+.motion-platform-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 24px 0 28px; list-style: none; max-width: 640px; }
+.motion-platform-links li { min-width: 0; }
+.motion-platform-links a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 64px; height: 100%; padding: 10px 6px; border: 1px solid var(--line); border-radius: 3px; color: var(--ink); background: var(--paper); text-decoration: none; }
+.motion-platform-links a:hover { border-color: var(--ink); }
+.motion-platform-links svg { width: 22px; height: 22px; flex-shrink: 0; }
+.motion-platform-links strong, .motion-platform-links small { display: block; }
+.motion-platform-links strong { font-size: 13px; line-height: 1.4; }
+.motion-platform-links small { font-size: 11px; line-height: 1.5; color: var(--ink-soft); }
+.motion-questions ul { padding-left: 20px; }
+.motion-questions li { margin: 0 0 16px; }
+.motion-question-note { font-size: 13px; }
+@media (max-width: 480px) {
+  .motion-platform-links { gap: 5px; }
+  .motion-platform-links a { flex-direction: column; gap: 5px; text-align: center; padding: 10px 3px; }
+}
+
+.motion-store-note { margin: -14px 0 24px; color: var(--ink-soft); font-size: 12px; }
+.motion-store-note a { text-decoration: underline; text-underline-offset: 3px; }
+
+.motion-download-brand { display: flex; align-items: center; gap: 12px; }
+.motion-download-brand img { border-radius: 9px; }
