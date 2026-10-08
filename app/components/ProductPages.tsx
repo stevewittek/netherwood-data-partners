@@ -375,8 +375,8 @@ export function ProductDetailPage({ slug }: { slug: string }) {
               {product.privacy.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <a className="studio-text-link" href="/privacy/">
-                Read the website privacy overview <span aria-hidden="true">↗</span>
+              <a className="studio-text-link" href={product.downloadExperience === "motion-relay" ? motionRelayRoutes.privacy : "/privacy/"}>
+                Read the privacy notice <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>

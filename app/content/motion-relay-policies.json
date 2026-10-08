@@ -1,0 +1,283 @@
+{
+  "version": "2026-10-08",
+  "updated": "October 8, 2026",
+  "pages": {
+    "privacy": {
+      "title": "Motion Relay privacy policy",
+      "intro": "Motion Relay is provided by Netherwood Data Partners, LLC. This policy covers the phone apps, connector and related account services. The public preview is intended for people in the United States who are 18 or older.",
+      "sections": [
+        {
+          "title": "Workout measurements",
+          "paragraphs": [
+            "Depending on your watch, activity and sensors, Motion Relay receives measurements such as heart rate, pace, speed, distance, elapsed time, cadence, power, elevation, oxygen saturation, calories and training effect. Session identifiers, sequence numbers, activity state and timestamps help check the source, freshness and ordering of readings. A measurement may be unavailable.",
+            "Motion Relay does not collect GPS tracks or precise location history through this relay. Precise coordinates, navigation destinations, device serial numbers and raw watch packets are excluded from assistant snapshots. Fitness data is not sold or used for targeted advertising."
+          ],
+          "links": []
+        },
+        {
+          "title": "Your phone and optional health access",
+          "paragraphs": [
+            "Current workout readings are held in memory. A complete current or last workout saved across app or phone restarts is planned and is not part of this preview. Do not rely on Motion Relay as your workout record. Garmin records your activity separately.",
+            "On iPhone, optional Apple Health access is read-only and requires permission. It can provide resting heart rate, heart-rate variability, VO2 max and current-day active energy. Motion Relay does not write Health data or request workout routes. You can revoke access in Apple settings."
+          ],
+          "links": []
+        },
+        {
+          "title": "Sharing with your assistant",
+          "paragraphs": [
+            "Live assistant sharing is optional. When you enable it, Motion Relay sends eligible measurements over HTTPS to its connector. Separately authorizing a ChatGPT connection allows ChatGPT to retrieve permitted results. Opening ChatGPT alone does not authorize access.",
+            "Garmin, Apple, Google and OpenAI/ChatGPT operate their own services. Their account records, activity history and conversations are governed by their own controls. Stopping Motion Relay sharing does not erase data already included in an assistant conversation. The separately planned in-app coach is not enabled by these policies."
+          ],
+          "links": []
+        },
+        {
+          "title": "Accounts and optional compact backup",
+          "paragraphs": [
+            "Account services handle an opaque user identifier, an optional nickname, device and authorization records, consent choices, feature access and credential-expiration information. Protected credentials are used to authenticate requests; server authorization records use credential hashes. Motion Relay does not receive your Garmin, Apple, Google or ChatGPT password.",
+            "Where offered, compact completed-activity backup requires separate consent and sends completed summaries to the account service. It is different from a complete chart series: it does not upload raw five-second samples or GPS routes. Turning off backup stops future backup; it does not itself delete earlier summaries. Use account deletion to request removal of linked records. Availability and controls can differ between phone platforms."
+          ],
+          "links": []
+        },
+        {
+          "title": "Service providers and technical information",
+          "paragraphs": [
+            "Microsoft Azure hosts the account database. Cloudflare and the connector host help deliver and secure connector traffic. These systems may process IP addresses, request times and security events. App stores and operating systems may process their own distribution and diagnostic information.",
+            "Support requests contain the contact details and message you choose to send. We use them to respond to the request. Do not send credentials, invitation codes, private workout readings or precise location in support messages."
+          ],
+          "links": []
+        },
+        {
+          "title": "Retention and deletion",
+          "paragraphs": [
+            "Live connector data is temporary and held in memory. By default, the connector expires the latest snapshot after 90 seconds, rolling samples after 20 minutes and a completed summary after 30 minutes. A restart can clear this data sooner. These windows are separate from account records and optional compact backup.",
+            "Account, consent, device authorization, entitlement and compact-summary records persist separately from live readings. Account deletion requests target linked account and fitness records. Network/security logs, support messages and provider backups have separate retention controls; deleting an app or clearing a live snapshot does not erase those copies.",
+            "Use the deletion instructions to understand the available controls and ownership-verification limitations. Deletion of Motion Relay records does not delete records held independently by Garmin, app stores or OpenAI/ChatGPT."
+          ],
+          "links": [
+            {
+              "label": "Account and data deletion",
+              "href": "/privacy/motion-relay/delete/"
+            }
+          ]
+        },
+        {
+          "title": "Your choices",
+          "paragraphs": [
+            "You can leave sharing off, stop sending new readings, revoke optional Apple Health permission, withdraw optional backup consent where offered, or request account deletion. Stopping sharing is different from deleting data already sent. A future phone-local workout store will need its own deletion control before it is offered.",
+            "For privacy questions or requests concerning access, correction or deletion, contact us. We need to verify ownership before acting on account records. Do not email account credentials."
+          ],
+          "links": [
+            {
+              "label": "contact@NetherwoodDataPartners.com",
+              "href": "mailto:contact@NetherwoodDataPartners.com"
+            },
+            {
+              "label": "Support",
+              "href": "/support/motion-relay/"
+            }
+          ]
+        },
+        {
+          "title": "Security and changes",
+          "paragraphs": [
+            "Motion Relay uses authenticated HTTPS for connector sharing and platform credential protection. No system is completely secure. Material changes to this policy will be reflected on this page. New optional data uses require their own disclosure and applicable permission."
+          ],
+          "links": [
+            {
+              "label": "Terms",
+              "href": "/terms/motion-relay/"
+            }
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Motion Relay terms of service",
+      "intro": "These terms cover Motion Relay by Netherwood Data Partners, LLC. The public preview is for United States residents age 18 or older who can enter this agreement. By affirmatively accepting these terms, you agree to them. If you do not agree, do not use the service.",
+      "sections": [
+        {
+          "title": "The preview service",
+          "paragraphs": [
+            "Motion Relay receives compatible activity measurements and, when you allow sharing, makes eligible readings available to an assistant you separately authorize. Availability depends on your watch, sensors, phone, permissions, network and independent services.",
+            "The preview can contain errors, gaps and interruptions. Readings and assistant responses may be inaccurate, stale, incomplete or unavailable. Check your source device and use independent judgment. A successful connection does not guarantee continuous background delivery.",
+            "A complete phone-local current or last workout saved across restarts is planned, not part of this preview. Optional compact completed-activity backup, where offered with separate consent, is a different feature. Neither replaces Garmin’s activity record."
+          ],
+          "links": []
+        },
+        {
+          "title": "Fitness and safety",
+          "paragraphs": [
+            "Motion Relay is informational fitness software. It is not medical advice, diagnosis, treatment, emergency monitoring, navigation or rescue. Do not use it to decide whether emergency care is needed. Stop activity and seek appropriate help for an emergency or alarming symptoms.",
+            "Choose activity appropriate to your condition and surroundings. Follow traffic, trail and facility rules. Use phones and headphones only when safe. Automated interpretations do not replace attention to your surroundings or qualified professional advice."
+          ],
+          "links": []
+        },
+        {
+          "title": "Accounts and acceptable use",
+          "paragraphs": [
+            "Use only accounts and devices you are authorized to access. Do not share credentials, access another person’s data, bypass access controls or interfere with the service. Revoke access for a lost or transferred device. Account requests require ownership verification.",
+            "We may restrict access when reasonably necessary to protect users or the service. Preview features may change or become unavailable."
+          ],
+          "links": []
+        },
+        {
+          "title": "Sharing, backup and independent services",
+          "paragraphs": [
+            "Assistant sharing, optional Apple Health access and compact completed-activity backup are separate choices. Read the privacy policy for their data boundaries. Garmin, Apple, Google and OpenAI/ChatGPT have their own terms and controls. Your assistant account history is outside Motion Relay’s deletion controls."
+          ],
+          "links": [
+            {
+              "label": "Privacy",
+              "href": "/privacy/motion-relay/"
+            }
+          ]
+        },
+        {
+          "title": "Paid features",
+          "paragraphs": [
+            "These terms do not activate a subscription or the in-app coach. Any future paid offering must show its features, price, renewal and cancellation terms before purchase. If you have a subscription through an app store, manage cancellation through that store; deleting Motion Relay does not itself cancel the subscription."
+          ],
+          "links": []
+        },
+        {
+          "title": "Stopping use and deleting an account",
+          "paragraphs": [
+            "You can stop using Motion Relay or stop sharing. Use the deletion page for account and data requests. Disconnecting a device, uninstalling the app and deleting an account are different actions."
+          ],
+          "links": [
+            {
+              "label": "Account and data deletion",
+              "href": "/privacy/motion-relay/delete/"
+            }
+          ]
+        },
+        {
+          "title": "Your rights and questions",
+          "paragraphs": [
+            "Nothing in these terms removes rights or obligations that cannot lawfully be waived. Questions about the service or these terms can be sent to the business contact."
+          ],
+          "links": [
+            {
+              "label": "contact@NetherwoodDataPartners.com",
+              "href": "mailto:contact@NetherwoodDataPartners.com"
+            },
+            {
+              "label": "Support",
+              "href": "/support/motion-relay/"
+            }
+          ]
+        }
+      ]
+    },
+    "deletion": {
+      "title": "Delete your Motion Relay account or data",
+      "intro": "These instructions cover Motion Relay by Netherwood Data Partners, LLC, for the United States adult preview. Account deletion, stopping sharing and disconnecting a device are different actions.",
+      "sections": [
+        {
+          "title": "Request deletion in the app",
+          "paragraphs": [
+            "If you still have authenticated access, open Motion Relay account settings and choose the account-deletion action. On iPhone it is labelled “Delete Motion Relay account.” Confirm the action and wait for the service’s confirmation or receipt. An offline or failed request is not completed deletion.",
+            "The account-deletion request targets linked account, nickname, membership, entitlement, consent and completed-summary records. It also needs to revoke associated access. Do not treat a disconnect message as proof that all records were deleted."
+          ],
+          "links": []
+        },
+        {
+          "title": "If you no longer have app access",
+          "paragraphs": [
+            "Email the business contact with the subject “Motion Relay membership deletion.” Describe the access problem without including passwords, bearer tokens, invitation codes, payment receipts, raw watch packets or private health readings.",
+            "A nickname, approximate registration date or email alone does not prove account ownership. Recovery for users without an authenticated app is limited, and we may be unable to verify ownership. We will not delete someone’s account based only on an unverified email. There is no guaranteed completion time for an unverified request."
+          ],
+          "links": [
+            {
+              "label": "contact@NetherwoodDataPartners.com",
+              "href": "mailto:contact@NetherwoodDataPartners.com?subject=Motion%20Relay%20membership%20deletion"
+            }
+          ]
+        },
+        {
+          "title": "Data and services with separate controls",
+          "paragraphs": [
+            "Stopping sharing stops new uploads; it does not erase an assistant conversation. Turning off compact backup stops future backup, not earlier summaries. The planned complete phone-local workout store is not part of this preview and is not covered by a working local deletion control today.",
+            "Garmin activity records, Apple/Google store records and ChatGPT/OpenAI conversation or account history must be managed through those services. Cancel a store subscription separately. Provider backups, security records and support communications have separate retention controls; do not assume uninstalling the phone app erases them."
+          ],
+          "links": []
+        },
+        {
+          "title": "Questions and confirmation",
+          "paragraphs": [
+            "Keep the deletion receipt if the app provides one. Contact support if the request fails or remains pending. Do not send the account credential to support."
+          ],
+          "links": [
+            {
+              "label": "Privacy",
+              "href": "/privacy/motion-relay/"
+            },
+            {
+              "label": "Support",
+              "href": "/support/motion-relay/"
+            }
+          ]
+        }
+      ]
+    },
+    "support": {
+      "title": "Motion Relay support",
+      "intro": "Get help with Motion Relay by Netherwood Data Partners, LLC, and the Motion Connect Garmin data field. The public preview is intended for United States adults age 18 or older.",
+      "sections": [
+        {
+          "title": "Before contacting us",
+          "paragraphs": [
+            "Check that Garmin Connect can see your intended watch, Bluetooth is on, and Motion Connect is added to the activity’s data screen. Start the activity timer on your watch. For an initial test, keep Motion Relay open on your phone.",
+            "Phone reception and assistant authorization are separate steps. An assistant connection does not establish that new workout readings are arriving. Check the update time before relying on an answer. Background reception has not been verified for this preview."
+          ],
+          "links": [
+            {
+              "label": "Watch and phone setup",
+              "href": "/motionrelay/setup/"
+            }
+          ]
+        },
+        {
+          "title": "Contact",
+          "paragraphs": [
+            "Email the business contact with the subject “Motion Relay support.” Include your phone platform, watch model, app version and a short description of the problem. Do not send credentials, invitation codes, private health details, raw watch packets or precise location. Remove personal information from any screenshot you choose to send.",
+            "Support is handled by the owner of Netherwood Data Partners, LLC. No response-time or around-the-clock support guarantee is offered."
+          ],
+          "links": [
+            {
+              "label": "contact@NetherwoodDataPartners.com",
+              "href": "mailto:contact@NetherwoodDataPartners.com?subject=Motion%20Relay%20support"
+            }
+          ]
+        },
+        {
+          "title": "Privacy and account requests",
+          "paragraphs": [
+            "Use the privacy policy and deletion instructions for data questions and account requests. Lost app access does not establish account ownership; support cannot delete by nickname alone."
+          ],
+          "links": [
+            {
+              "label": "Privacy",
+              "href": "/privacy/motion-relay/"
+            },
+            {
+              "label": "Account and data deletion",
+              "href": "/privacy/motion-relay/delete/"
+            },
+            {
+              "label": "Terms",
+              "href": "/terms/motion-relay/"
+            }
+          ]
+        },
+        {
+          "title": "Emergencies",
+          "paragraphs": [
+            "Motion Relay is not an emergency service or medical monitor. Stop activity and seek appropriate help for an emergency or alarming symptoms. Do not wait for an email response."
+          ],
+          "links": []
+        }
+      ]
+    }
+  }
+}

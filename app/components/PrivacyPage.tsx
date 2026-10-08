@@ -1,5 +1,4 @@
 import ChatWidget from "../ChatWidget";
-import { motionRelayName } from "../content/products";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import "../products.css";
 
@@ -41,37 +40,9 @@ export default function PrivacyPage() {
         </article>
         <article>
           <p className="eyebrow">Motion Relay</p>
-          <h2>Watch field available; phone companions forthcoming</h2>
-          <p>
-            This marketing website does not currently provide a public account,
-            product sign-in or upload flow for Garmin, health, fitness or
-            activity data. The MotionRelay Garmin Connect IQ data field is
-            publicly listed. It accesses available live activity readings for
-            the Motion Relay watch screen and phone connection. The separate
-            Motion Relay iPhone and Android store listings are not public yet.
-          </p>
-          <p>
-            The connected phone and AI experience requires separate setup and
-            authorization. The watch download alone does not send readings to
-            an AI account. Companion privacy details will be checked against
-            the release build and its data flow before phone publication.
-          </p>
-        </article>
-        <article>
-          <p className="eyebrow">{motionRelayName} direction</p>
-          <h2>Activity data is for the connection you choose</h2>
-          <p>
-            The current Garmin listing says Motion Relay does not sell workout
-            data, use it for targeted advertising, or collect GPS tracks or
-            precise coordinates through this live feed. When you choose to
-            connect ChatGPT, the metrics you send are shared with OpenAI under
-            your account settings and its applicable terms.
-          </p>
-          <p>
-            These points summarize the published watch listing. They do not
-            replace the detailed phone companion notice that must match the
-            public release build.
-          </p>
+          <h2>Phone app and connector privacy</h2>
+          <p><a href="/privacy/motion-relay/">Read the Motion Relay privacy policy</a> for the United States adult preview, optional sharing and compact backup.</p>
+          <p><a href="/privacy/motion-relay/delete/">Account and data deletion</a> · <a href="/terms/motion-relay/">Terms</a> · <a href="/support/motion-relay/">Support</a></p>
         </article>
         <article>
           <p className="eyebrow">Questions</p>

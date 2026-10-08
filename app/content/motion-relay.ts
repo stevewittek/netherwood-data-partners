@@ -8,6 +8,7 @@ export const motionRelayRoutes = {
   product: "/products/garmin-ai-connector/",
   betaSignup: "/products/garmin-ai-connector/#beta-signup",
   setup: "/motionrelay/setup/",
-  privacy: "/privacy/",
-  support: "/#contact",
+  privacy: "/privacy/motion-relay/",
+  deletion: "/privacy/motion-relay/delete/",
+  support: "/support/motion-relay/",
 } as const;
