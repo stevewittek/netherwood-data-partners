@@ -8,7 +8,10 @@ import MigrationIntakePage from "./migration-intake/page";
 import MigrationReadinessPage from "./migration-readiness/page";
 import { ProductDetailPage, ProductsIndex } from "./components/ProductPages";
 import PrivacyPage from "./components/PrivacyPage";
+import { MotionRelayPrivacyPage, MotionRelayDeletionPage } from "./components/MotionRelayPrivacyPage";
+import { MotionRelayTermsPage } from "./components/MotionRelayTermsPage";
 import { MotionRelaySetupPage } from "./components/MotionRelaySetupPage";
+import { MotionRelaySupportPage } from "./components/MotionRelaySupportPage";
 
 export default function SiteRouter({ path }: { path?: string } = {}) {
   // On a direct /#contact (or cross-page CTA), the static shell has no anchor
@@ -31,7 +34,11 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/products") return <ProductsIndex />;
   if (pathname === "/privacy") return <PrivacyPage />;
+  if (pathname === "/privacy/motion-relay") return <MotionRelayPrivacyPage />;
+  if (pathname === "/privacy/motion-relay/delete") return <MotionRelayDeletionPage />;
+  if (pathname === "/terms/motion-relay") return <MotionRelayTermsPage />;
   if (pathname === "/motionrelay/setup") return <MotionRelaySetupPage />;
+  if (pathname === "/support/motion-relay") return <MotionRelaySupportPage />;
   if (pathname === "/migration-intake") return <MigrationIntakePage />;
   if (pathname === "/migration-readiness") return <MigrationReadinessPage />;
   const serviceMatch = pathname.match(

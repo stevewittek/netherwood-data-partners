@@ -1,0 +1,750 @@
+{
+  "results": [
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/motionrelay/setup/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/articles/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 1440,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/motionrelay/setup/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/articles/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 768,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/support/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0,
+      "axe": {
+        "violations": [],
+        "incomplete": []
+      },
+      "linkStatus": [
+        {
+          "href": "/",
+          "status": 200
+        },
+        {
+          "href": "/products/",
+          "status": 200
+        },
+        {
+          "href": "/services/",
+          "status": 200
+        },
+        {
+          "href": "/articles/",
+          "status": 200
+        },
+        {
+          "href": "/about/",
+          "status": 200
+        },
+        {
+          "href": "/motionrelay/setup/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/motion-relay/delete/",
+          "status": 200
+        },
+        {
+          "href": "/terms/motion-relay/",
+          "status": 200
+        },
+        {
+          "href": "/privacy/",
+          "status": 200
+        }
+      ],
+      "skipLink": "Skip to content",
+      "skipTarget": "main-content"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/about/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/articles/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 390,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "brokenImages": 0
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 320,
+      "textSize": "200%",
+      "overflow": false
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 320,
+      "textSize": "200%",
+      "overflow": false
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 320,
+      "textSize": "200%",
+      "overflow": false
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 320,
+      "textSize": "200%",
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "failed": []
+}
