@@ -20,6 +20,25 @@ export function MotionRelayPolicyPage({ kind }: { kind: keyof typeof policies.pa
           </article>
         ))}
       </section>
+      {kind === "support" && (
+        <section className="product-screenshots studio-wrap" aria-labelledby="watch-status-help">
+          <div>
+            <p className="eyebrow">Watch status examples</p>
+            <h2 id="watch-status-help">Check the connection stage.</h2>
+            <p>These Garmin simulator screenshots illustrate the watch status display. They do not verify a physical connection or delivery to your assistant.</p>
+          </div>
+          <div className="product-screenshot-grid">
+            <figure>
+              <img src="/images/motion-relay/motion-connect-connecting.webp" alt="Garmin simulator showing Motion Connect with the status Connecting" width={484} height={686} loading="lazy" decoding="async" />
+              <figcaption>Connecting: check Garmin Connect, your selected watch and the phone app.</figcaption>
+            </figure>
+            <figure>
+              <img src="/images/motion-relay/motion-connect-phone-received.webp" alt="Garmin simulator showing Motion Connect with Phone received and Cloud not confirmed" width={484} height={686} loading="lazy" decoding="async" />
+              <figcaption>Phone received — Cloud not confirmed: the phone acknowledged the watch message. This does not confirm assistant delivery; check the phone and assistant connection separately.</figcaption>
+            </figure>
+          </div>
+        </section>
+      )}
       <SiteFooter />
     </main>
   );

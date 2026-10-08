@@ -1,6 +1,15 @@
-# Motion Relay preview policy candidate — October 8, 2026
+# Motion Relay preview policies — October 8, 2026
 
-Status: validated website candidate; not merged, deployed or proof of public-preview readiness.
+Status: owner-approved policies published. [PR #28](https://github.com/stevewittek/netherwood-data-partners/pull/28)
+merged as `e08e0f0a7684415f5c7ac7c1c0d3d0d5a5067b8e`; [Pages run 37792668512](https://github.com/stevewittek/netherwood-data-partners/actions/runs/37792668512)
+succeeded. All four public policy/support routes return 200 and the live publication manifest matches.
+Publication does not establish public-preview readiness. The owner explicitly approved publishing
+and app/store link updates after reviewing these documents.
+
+The source/preparation sections below preserve the initial candidate evidence and must not be read
+as current 404/no-publication status. Current product/store evidence is maintained in Motion Relay
+`docs/policy-publication-2026-10-08.md`. Google Play privacy URL is saved, pending required setup and
+review; support email and HTTPS support URL are published. Apple metadata needs renewed sign-in.
 Operator: Netherwood Data Partners, LLC. Audience: United States adults 18+. Owner approved
 policy preparation/publication without waiting for counsel; no professional-review claim is made.
 The owner will monitor contact@NetherwoodDataPartners.com and wants compact completed-activity
@@ -91,3 +100,16 @@ arrived in the monitored business mailbox. No customer or workout data is includ
 A specific send-authorization question was presented. Do not send without the answer. Sending only
 proves transmission; the owner must confirm receipt in the monitored destination. Keep private
 message identifiers, full headers and mailbox credentials out of GitHub evidence.
+
+## Support status illustrations follow-up
+
+Reused two existing public, synthetic Garmin simulator screenshots on the support page: Connecting
+and Phone received / Cloud not confirmed. Both retain descriptive alt text, intrinsic dimensions,
+lazy loading and text captions explaining that phone acknowledgement does not prove assistant
+delivery. The section explicitly labels simulator examples; no private activity, credential or
+changing phone UI image was added. Existing screenshot grid styles are reused; no CSS, artwork,
+policy payload, shared navigation or deployment configuration changed.
+
+Pinned lint, Vinext test/build, static Pages build and whitespace checks passed. Responsive/link/
+keyboard/axe results and screenshots are in `docs/evidence/2026-10-08-support-help/`.
+The required responsive matrix also checks Home/About/Articles/product for regressions.
