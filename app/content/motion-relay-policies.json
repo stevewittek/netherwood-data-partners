@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-08",
-  "updated": "October 8, 2026",
+  "version": "2026-10-10",
+  "updated": "October 10, 2026",
   "pages": {
     "privacy": {
       "title": "Motion Relay privacy policy",
@@ -17,7 +17,9 @@
         {
           "title": "Your phone and optional health access",
           "paragraphs": [
-            "Current workout readings are held in memory. A complete current or last workout saved across app or phone restarts is planned and is not part of this preview. Do not rely on Motion Relay as your workout record. Garmin records your activity separately.",
+            "Android test version 0.3.0 (version code 6) includes experimental phone-local storage of one current or last workout for users with verified Metrics access. It saves eligible numeric readings received from the watch, along with timing, device/session association and interruption markers. It does not store GPS tracks or precise location. A valid new workout replaces the previous workout’s saved readings; ending a workout retains its received readings for review. These readings can be incomplete, and recording, background recovery and storage protection are still being tested. Garmin remains your activity record. Older app versions may behave differently.",
+            "The Android implementation uses app-private storage, encrypts saved workout payloads with a key held by Android Keystore and excludes this app data from Android cloud backup and device transfer. These controls have been implemented but have not yet passed the separate physical-device acceptance run. The app reports local save, read and deletion failures. Small local session markers help reject replayed readings; clearing saved readings does not remove those markers. Full chart series are not added to the optional compact completed-activity backup.",
+            "This Android disclosure does not establish iPhone storage behavior. Complete current/last-workout persistence on iPhone is not verified by this release; iPhone behavior and newer versions will be described separately once their exact builds are accepted. Do not rely on Motion Relay as your permanent workout record.",
             "On iPhone, optional Apple Health access is read-only and requires permission. It can provide resting heart rate, heart-rate variability, VO2 max and current-day active energy. Motion Relay does not write Health data or request workout routes. You can revoke access in Apple settings."
           ],
           "links": []
@@ -63,7 +65,7 @@
         {
           "title": "Your choices",
           "paragraphs": [
-            "You can leave sharing off, stop sending new readings, revoke optional Apple Health permission, withdraw optional backup consent where offered, or request account deletion. Stopping sharing is different from deleting data already sent. A future phone-local workout store will need its own deletion control before it is offered.",
+            "You can leave sharing off, stop sending new readings, revoke optional Apple Health permission, withdraw optional backup consent where offered, clear saved local workout readings in Android test version 0.3.0 (version code 6), or request account deletion. Clearing a local workout, signing out, stopping sharing and deleting the service account are separate actions. Wait for the actual result and check for a reported error; a failed or offline operation is not confirmation that deletion completed. Physical recovery and end-to-end account deletion remain under test.",
             "For privacy questions or requests concerning access, correction or deletion, contact us. We need to verify ownership before acting on account records. Do not email account credentials."
           ],
           "links": [
@@ -100,7 +102,7 @@
           "paragraphs": [
             "Motion Relay receives compatible activity measurements and, when you allow sharing, makes eligible readings available to an assistant you separately authorize. Availability depends on your watch, sensors, phone, permissions, network and independent services.",
             "The preview can contain errors, gaps and interruptions. Readings and assistant responses may be inaccurate, stale, incomplete or unavailable. Check your source device and use independent judgment. A successful connection does not guarantee continuous background delivery.",
-            "A complete phone-local current or last workout saved across restarts is planned, not part of this preview. Optional compact completed-activity backup, where offered with separate consent, is a different feature. Neither replaces Garmin’s activity record."
+            "Android test version 0.3.0 (version code 6) includes experimental current/last-workout review. Its saved readings may be missing or incomplete, and recovery after interruption is not guaranteed. This is a testing feature, not an accepted permanent activity record. Availability depends on verified access and the exact installed version. Optional compact completed-activity backup, where offered with separate consent, is a different feature. Neither replaces Garmin’s activity record. This Android release does not verify iPhone persistence."
           ],
           "links": []
         },
@@ -197,7 +199,8 @@
         {
           "title": "Data and services with separate controls",
           "paragraphs": [
-            "Stopping sharing stops new uploads; it does not erase an assistant conversation. Turning off compact backup stops future backup, not earlier summaries. The planned complete phone-local workout store is not part of this preview and is not covered by a working local deletion control today.",
+            "Stopping sharing stops new uploads; it does not erase an assistant conversation. Turning off compact backup stops future backup, not earlier summaries. Complete local workout retention in Android test version 0.3.0 (version code 6) is separate from both services.",
+            "Android test version 0.3.0 (version code 6): successfully clearing a saved workout removes that workout’s local readings. Small local session markers remain to reject replayed readings. Signing out, stopping sharing and deleting the service account are separate actions. Wait for the actual result and check for a reported error. Do not assume that opening a screen, sending a request or disconnecting a watch completed deletion. Physical recovery and end-to-end account deletion remain under test.",
             "Garmin activity records, Apple/Google store records and ChatGPT/OpenAI conversation or account history must be managed through those services. Cancel a store subscription separately. Provider backups, security records and support communications have separate retention controls; do not assume uninstalling the phone app erases them."
           ],
           "links": []
@@ -222,12 +225,25 @@
     },
     "support": {
       "title": "Motion Relay support",
-      "intro": "Get help with Motion Relay by Netherwood Data Partners, LLC, and the Motion Connect Garmin data field. The public preview is intended for United States adults age 18 or older.",
+      "intro": "Get help with Motion Relay by Netherwood Data Partners, LLC, and the Motion Relay Garmin data field. The public preview is intended for United States adults age 18 or older.",
       "sections": [
+        {
+          "title": "Android internal testing",
+          "paragraphs": [
+            "Android 0.3.0 (version code 6) was made available to existing authorized Google Play internal testers on October 10, 2026. This is a limited internal test, not a public production release. Use the Google account already on the tester list. The link does not automatically grant testing access; Google Play may display a temporary unreviewed app name. Physical installation and recovery acceptance are still pending.",
+            "Android test version 0.3.0 (version code 6): successfully clearing a saved workout removes that workout’s local readings. Small local session markers remain to reject replayed readings. Signing out, stopping sharing and deleting the service account are separate actions. Wait for the actual result and check for a reported error. Do not assume that opening a screen, sending a request or disconnecting a watch completed deletion. Physical recovery and end-to-end account deletion remain under test."
+          ],
+          "links": [
+            {
+              "label": "Google Play internal test — existing authorized testers only",
+              "href": "https://play.google.com/apps/internaltest/4701563079402699379"
+            }
+          ]
+        },
         {
           "title": "Before contacting us",
           "paragraphs": [
-            "Check that Garmin Connect can see your intended watch, Bluetooth is on, and Motion Connect is added to the activity’s data screen. Start the activity timer on your watch. For an initial test, keep Motion Relay open on your phone.",
+            "Check that Garmin Connect can see your intended watch, Bluetooth is on, and the Motion Relay data field is added to the activity’s data screen. Start the activity timer on your watch. For an initial test, keep Motion Relay open on your phone.",
             "Phone reception and assistant authorization are separate steps. An assistant connection does not establish that new workout readings are arriving. Check the update time before relying on an answer. Background reception has not been verified for this preview."
           ],
           "links": [
