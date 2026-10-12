@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-10",
-  "updated": "October 10, 2026",
+  "version": "2026-10-11",
+  "updated": "October 11, 2026",
   "pages": {
     "privacy": {
       "title": "Motion Relay privacy policy",
@@ -20,7 +20,7 @@
             "Android test version 0.3.0 (version code 6) includes experimental phone-local storage of one current or last workout for users with verified Metrics access. It saves eligible numeric readings received from the watch, along with timing, device/session association and interruption markers. It does not store GPS tracks or precise location. A valid new workout replaces the previous workout’s saved readings; ending a workout retains its received readings for review. These readings can be incomplete, and recording, background recovery and storage protection are still being tested. Garmin remains your activity record. Older app versions may behave differently.",
             "The Android implementation uses app-private storage, encrypts saved workout payloads with a key held by Android Keystore and excludes this app data from Android cloud backup and device transfer. These controls have been implemented but have not yet passed the separate physical-device acceptance run. The app reports local save, read and deletion failures. Small local session markers help reject replayed readings; clearing saved readings does not remove those markers. Full chart series are not added to the optional compact completed-activity backup.",
             "This Android disclosure does not establish iPhone storage behavior. Complete current/last-workout persistence on iPhone is not verified by this release; iPhone behavior and newer versions will be described separately once their exact builds are accepted. Do not rely on Motion Relay as your permanent workout record.",
-            "On iPhone, optional Apple Health access is read-only and requires permission. It can provide resting heart rate, heart-rate variability, VO2 max and current-day active energy. Motion Relay does not write Health data or request workout routes. You can revoke access in Apple settings."
+            "Apple Health integration is being disabled in the next iPhone release. Updated builds will not request Health access, read Health data or share a Health summary. Older installed builds may still have local read access until updated; you can revoke it in iPhone Settings. Motion Relay does not write Health data or request workout routes. Garmin watch measurements and assistant sharing remain separate."
           ],
           "links": []
         },
@@ -65,7 +65,7 @@
         {
           "title": "Your choices",
           "paragraphs": [
-            "You can leave sharing off, stop sending new readings, revoke optional Apple Health permission, withdraw optional backup consent where offered, clear saved local workout readings in Android test version 0.3.0 (version code 6), or request account deletion. Clearing a local workout, signing out, stopping sharing and deleting the service account are separate actions. Wait for the actual result and check for a reported error; a failed or offline operation is not confirmation that deletion completed. Physical recovery and end-to-end account deletion remain under test.",
+            "You can leave sharing off, stop sending new readings, revoke Apple Health permission granted to an older iPhone build, withdraw optional backup consent where offered, clear saved local workout readings in Android test version 0.3.0 (version code 6), or request account deletion. Clearing a local workout, signing out, stopping sharing and deleting the service account are separate actions. Wait for the actual result and check for a reported error; a failed or offline operation is not confirmation that deletion completed. Physical recovery and end-to-end account deletion remain under test.",
             "For privacy questions or requests concerning access, correction or deletion, contact us. We need to verify ownership before acting on account records. Do not email account credentials."
           ],
           "links": [
@@ -125,7 +125,7 @@
         {
           "title": "Sharing, backup and independent services",
           "paragraphs": [
-            "Assistant sharing, optional Apple Health access and compact completed-activity backup are separate choices. Read the privacy policy for their data boundaries. Garmin, Apple, Google and OpenAI/ChatGPT have their own terms and controls. Your assistant account history is outside Motion Relay’s deletion controls."
+            "Assistant sharing and compact completed-activity backup are separate choices. Apple Health integration is being disabled in the next iPhone release; older installed builds may retain previously granted local access until updated. Read the privacy policy for their data boundaries. Garmin, Apple, Google and OpenAI/ChatGPT have their own terms and controls. Your assistant account history is outside Motion Relay’s deletion controls."
           ],
           "links": [
             {
