@@ -17,6 +17,7 @@ export type Product = {
   name: string;
   shortName: string;
   headline?: string;
+  tagline?: string;
   status: ProductStatus;
   category: string;
   summary: string;
@@ -132,12 +133,13 @@ export const products: Product[] = [
     slug: "garmin-ai-connector",
     name: "Motion Relay",
     shortName: "Motion Relay",
-    headline: "Your Garmin workout, live on your phone.",
+    headline: "Your Garmin metrics. Relayed live.",
+    tagline: "Same watch. A whole new view.",
     status: "Beta",
     category: "Live workout metrics",
-    summary: "Motion Relay brings Garmin workout readings to a readable phone dashboard with activity-aware metrics and workout displays.",
+    summary: "Bring your live Garmin readings right to your phone and Lock Screen. Choose the metrics you want to see and talk with ChatGPT about your workout as it happens.",
     description: [
-      "See your workout on app Home, explore your readings in Metrics, and choose the information you want within reach.",
+      "Keep your live metrics in view without the wrist check. Use app Home for a quick glance, explore your readings in Metrics, and choose the information you want within reach.",
       "Personalize your iPhone Lock Screen and Dynamic Island, or keep your workout in view through Android’s ongoing notification. Garmin records the activity while Motion Relay brings the readings to your phone.",
       "Connect your ChatGPT account to ask about your workout in a voice conversation. Account connection and sharing are separate choices you control."
     ],

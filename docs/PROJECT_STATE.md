@@ -1,3 +1,14 @@
+## Approved live-metrics headline — October 16 follow-up
+
+Lead public Motion Relay marketing with “Your Garmin metrics. Relayed live.”
+and “Same watch. A whole new view.” The owner approved this combination and
+publication. Supporting copy emphasizes live phone/Lock Screen readings and
+the separate ChatGPT conversation feature. This supersedes the old “Your Garmin
+workout, live on your phone” headline and prior mandated lead sentence below.
+Keep the established public/tester document separation, one Beta marker,
+compatibility/update pages, access links and genuine screenshot gates.
+This is copy only; no instant/zero-latency or generic Home Screen widget claim.
+
 ## Motion Relay release documentation — October 16, 2026
 
 The owner approved polished public documentation and its production publication,

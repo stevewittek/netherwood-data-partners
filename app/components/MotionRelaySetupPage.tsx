@@ -9,7 +9,7 @@ export function MotionRelaySetupPage() {
       <SiteHeader currentPage="products" />
       <section className="products-hero studio-wrap">
         <div><p className="eyebrow">Motion Relay · Beta</p><h1 id="main-content" tabIndex={-1}>Connect your watch<br />and phone.</h1></div>
-        <div className="products-hero-copy"><p>Connect your Garmin, install Motion Relay on your phone and choose your workout display.</p><a className="button button-primary" href={motionRelayRoutes.access}>Get Motion Relay <span aria-hidden="true">↗</span></a><p><a href={motionRelayRoutes.product}>Explore Motion Relay</a></p></div>
+        <div className="products-hero-copy"><p>Bring your live Garmin metrics into view. Connect your watch, install Motion Relay on your phone and choose your workout display.</p><a className="button button-primary" href={motionRelayRoutes.access}>Get Motion Relay <span aria-hidden="true">↗</span></a><p><a href={motionRelayRoutes.product}>Explore Motion Relay</a></p></div>
       </section>
       <section className="product-detail-overview studio-wrap">
         <div><p className="eyebrow">Watch</p><h2>Add Motion Relay.</h2></div>

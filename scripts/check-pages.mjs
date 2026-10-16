@@ -182,10 +182,10 @@ for (const route of expected) {
       assert.ok(accessHtml.includes('name="chatgpt_voice_available"'));
       assert.ok(html.includes(`href="${motionRelayRoutes.access}"`), "Access link replaces store-home placeholders");
       assert.ok(html.includes('aria-label="Motion Relay apps"'));
-      for (const claim of ['Your Garmin workout, live on your phone.',
+      for (const claim of ['Your Garmin metrics. Relayed live.',
         'Your workout on app Home', 'iPhone Lock Screen and Dynamic Island',
         'Android workout notification', 'Optional ChatGPT connection',
-        'Motion Relay brings Garmin workout readings to a readable phone dashboard with activity-aware metrics and workout displays.', 'Get Motion Relay']) {
+        'Same watch. A whole new view.', 'Bring your live Garmin readings right to your phone and Lock Screen.', 'Get Motion Relay']) {
         assert.ok(html.includes(claim), 'Motion Relay display/access claim: ' + claim);
       }
       assert.ok(html.indexOf('Your readings, where you need them.') < html.indexOf('Optional ChatGPT connection'),
