@@ -225,7 +225,7 @@ export function ProductsIndex() {
             <h2>Running data and database tools.</h2>
           </div>
           <p>
-            Motion Relay brings Garmin workout readings to your phone. QueryVault and PageMover support database investigation.
+            Motion Relay relays live Garmin metrics right to your phone. QueryVault and PageMover support database investigation.
           </p>
         </div>
         <ProductGrid />
@@ -277,6 +277,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           {product.namingNote && (
             <p className="product-name-note">{product.namingNote}</p>
           )}
+          {product.tagline && <p className="product-detail-summary"><strong>{product.tagline}</strong></p>}
           <p className="product-detail-summary">{product.summary}</p>
           <ProductBadges product={product} />
           <ProductLinks product={product} includeDetail={false} />

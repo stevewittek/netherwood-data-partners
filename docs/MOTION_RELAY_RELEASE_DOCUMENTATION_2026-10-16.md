@@ -1,3 +1,16 @@
+## Owner-approved headline follow-up
+
+The owner selected “Your Garmin metrics. Relayed live.” with “Same watch.
+A whole new view.” and explicitly authorized this public-copy revision and
+publication. Supporting text now emphasizes live readings on the phone and
+Lock Screen, metric choice and separate ChatGPT workout conversation. The old
+headline and dashboard lead are superseded for public marketing. No global
+style, access, privacy, tester material or app behavior changes are included.
+Repeat the repository-required lint/build/static-route checks and responsive
+copy preview, record the exact PR/Pages receipts in #19/#239/#217, and preserve
+source0065d873da87bfe25f5e6073fcb80e8a23fb9b6d/run38963014323 as the preceding
+published documentation rollback point.
+
 # Motion Relay release documentation — October 16, 2026
 
 ## Owner direction and tracking
