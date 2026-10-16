@@ -10,6 +10,7 @@ import { ProductDetailPage, ProductsIndex } from "./components/ProductPages";
 import PrivacyPage from "./components/PrivacyPage";
 import { MotionRelayPrivacyPage, MotionRelayDeletionPage } from "./components/MotionRelayPrivacyPage";
 import { MotionRelayTermsPage } from "./components/MotionRelayTermsPage";
+import { MotionRelayDocumentsPage } from "./components/MotionRelayDocumentsPage";
 import { MotionRelaySetupPage } from "./components/MotionRelaySetupPage";
 import { MotionRelaySupportPage } from "./components/MotionRelaySupportPage";
 
@@ -37,6 +38,9 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   if (pathname === "/privacy/motion-relay") return <MotionRelayPrivacyPage />;
   if (pathname === "/privacy/motion-relay/delete") return <MotionRelayDeletionPage />;
   if (pathname === "/terms/motion-relay") return <MotionRelayTermsPage />;
+  if (pathname === "/motionrelay/access") return <MotionRelayDocumentsPage kind="access" />;
+  if (pathname === "/motionrelay/compatibility") return <MotionRelayDocumentsPage kind="compatibility" />;
+  if (pathname === "/motionrelay/releases") return <MotionRelayDocumentsPage kind="updates" />;
   if (pathname === "/motionrelay/setup") return <MotionRelaySetupPage />;
   if (pathname === "/support/motion-relay") return <MotionRelaySupportPage />;
   if (pathname === "/migration-intake") return <MigrationIntakePage />;

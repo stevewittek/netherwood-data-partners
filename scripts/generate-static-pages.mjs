@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { readArticleSnapshot } from "../backend/src/article-snapshot.ts";
 import { services, servicesMetadata } from "../app/content/services.ts";
+import { motionRelayDocuments } from "../app/content/motion-relay.ts";
 import { products, productsMetadata } from "../app/content/products.ts";
 import {
   homeMetadata,
@@ -259,6 +260,12 @@ await page(
   }),
 );
 
+for (const document of motionRelayDocuments) {
+  await page(document.path, metaPage({ title: document.title, description: document.description,
+    canonical: `${siteUrl}/${document.path}/`, schemaId: "motion-document-structured-data",
+    structured: { "@context": "https://schema.org", "@type": "WebPage", name: document.title, url: `${siteUrl}/${document.path}/` } }));
+}
+
 await page(
   "products",
   metaPage({
@@ -424,6 +431,7 @@ const rootSitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>${siteUrl}/about/</loc></url>
 ${marketingPages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
   <url><loc>${siteUrl}/motionrelay/setup/</loc></url>
+${motionRelayDocuments.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
 ${productSitemapUrls}
 ${articleUrls.join("\n")}
 </urlset>

@@ -8,7 +8,16 @@ export const motionRelayRoutes = {
   product: "/products/garmin-ai-connector/",
   betaSignup: "/products/garmin-ai-connector/#beta-signup",
   setup: "/motionrelay/setup/",
+  access: "/motionrelay/access/",
+  compatibility: "/motionrelay/compatibility/",
+  updates: "/motionrelay/releases/",
   privacy: "/privacy/motion-relay/",
   deletion: "/privacy/motion-relay/delete/",
   support: "/support/motion-relay/",
 } as const;
+
+export const motionRelayDocuments = [
+  { key: "access", path: "motionrelay/access", title: "Get Motion Relay | Netherwood Data Partners", description: "Request an installation invitation for your iPhone or Android phone and connect your Garmin." },
+  { key: "compatibility", path: "motionrelay/compatibility", title: "Motion Relay compatibility | Netherwood Data Partners", description: "Find the watch, phone, workout and assistant requirements for Motion Relay." },
+  { key: "updates", path: "motionrelay/releases", title: "Motion Relay updates and known issues | Netherwood Data Partners", description: "Find update instructions, version information and current known issues for Motion Relay." },
+] as const;
