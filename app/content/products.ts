@@ -26,6 +26,7 @@ export type Product = {
   slug: string;
   name: string;
   shortName: string;
+  headline?: string;
   status: ProductStatus;
   category: string;
   summary: string;
@@ -141,12 +142,14 @@ export const products: Product[] = [
     slug: "garmin-ai-connector",
     name: "Motion Relay",
     shortName: "Motion Relay",
-    status: "Active development",
-    category: "Live workout conversations",
-    summary: "Bring live Garmin watch metrics into real-time conversations with ChatGPT Voice. Ask about your pace, effort and progress while you move. No need to look at your watch. Just ask.",
+    headline: "Your Garmin workout, live on your phone.",
+    status: "Development preview",
+    category: "Live workout metrics",
+    summary: "Choose the Garmin readings that matter and see your current workout on your phone. Keep selected readings within reach with iPhone Live Activities and supported Android workout notifications.",
     description: [
-      "Data and running are two of my interests. While using ChatGPT to get work done during a run, I wanted the conversation to include readings from my Garmin.",
-      "That became Motion Relay: a way to talk through an active workout with live metrics in the conversation. Keep moving, ask a question and explore what your numbers mean for the goals you share."
+      "Motion Relay’s private phone preview puts your current Garmin workout in the app’s Home view, with readable metrics and your choice of readings. The app Home view is your workout dashboard; it is separate from a phone Home Screen widget.",
+      "Choose readings for the app, and independently personalize the iPhone Lock Screen and Dynamic Island regions. Android uses an ongoing workout notification where supported. Your testing invitation confirms the available phone setup.",
+      "Data and running are two of my interests. While using ChatGPT during a run, I wanted the conversation to include readings from my Garmin. An authorized ChatGPT connection remains another way to ask about the readings available to you."
     ],
     platforms: [
       "Garmin Connect IQ",
@@ -156,7 +159,7 @@ export const products: Product[] = [
     productUrl: "/products/garmin-ai-connector/",
     openSource: false,
     featured: true,
-    featureHeading: "Live metrics. A conversation that keeps up.",
+    featureHeading: "Your readings, where you need them.",
     downloadExperience: "motion-relay",
     image: {
       src: "/images/motion-relay/motion-connect-watch.webp",
@@ -166,19 +169,19 @@ export const products: Product[] = [
     },
     features: [
       {
-        title: "Watch data field",
-        detail: "Your Garmin data field sends available live readings, including pace, heart rate and distance, to the phone companion."
+        title: "Your workout on app Home",
+        detail: "Glance at the current workout in the phone app and choose the readings and order that suit you. Running, treadmill and cycling views use the measurements your watch actually supplies."
       },
       {
-        title: "Phone companion",
-        detail: "The phone companion carries and organizes those readings for sharing you authorize."
+        title: "iPhone Lock Screen and Dynamic Island",
+        detail: "Select Lock Screen readings and independent compact, expanded and minimal Island choices on supported iPhones. iOS controls when and how these surfaces appear; opening the app may require unlock."
       },
       {
-        title: "ChatGPT Voice",
-        detail: "Talk about your active workout and ask follow-up questions using the readings shared through your supported ChatGPT connection."
+        title: "Android workout notification",
+        detail: "Keep selected workout readings in an ongoing notification on supported Android phones. Notification permission, lock-screen privacy, battery settings and the phone’s system behavior affect visibility and updates."
       }
     ],
-    availabilityNote: `The Garmin listing is MotionRelay — Beta Preview. ${phoneAvailability} Confirm the supported phone and assistant setup before installing.`,
+    availabilityNote: `The Garmin listing is MotionRelay — Beta Preview. ${phoneAvailability} Phone apps remain in private testing; an invitation confirms supported devices and features. ChatGPT access is a separate setup.`,
     privacy: [
       "The current product direction is not to sell personal Garmin, running, health, fitness or activity data and not to use that data for targeted advertising.",
       "Any sharing is intended to be limited to services needed for the application to function. A product-specific notice will be published before release and will describe the implementation, data access, storage, retention and sharing accurately."

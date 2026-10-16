@@ -1,3 +1,17 @@
+## Motion Relay phone-first page — October15,2026
+
+The owner now directs Motion Relay product messaging to lead with live Garmin
+workout readings on the phone, app Home/current-workout choices and supported
+Lock Screen/Island/Android notification surfaces. ChatGPT/Voice is supporting
+and limited to authorized supported testing setups. This supersedes the
+October7 conversation-led hierarchy below. Preserve stable product routes,
+branding/style, existing store-placeholder labels, signup eligibility and
+independent article publication. Website issue34 / MotionRelay239/217 track
+the focused candidate and authorized publication; see
+[MOTION_RELAY_PHONE_FIRST_2026-10-15.md](MOTION_RELAY_PHONE_FIRST_2026-10-15.md)
+for exact scope/provenance/checks/rollback. Candidate is not live until the
+issue records the successful Pages run and actual public readback.
+
 ## Motion Relay live workout messaging — October 7, 2026
 
 Lead product copy with live Garmin watch metrics, real-time ChatGPT Voice

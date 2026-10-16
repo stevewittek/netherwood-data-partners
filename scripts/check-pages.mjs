@@ -178,8 +178,14 @@ for (const route of expected) {
       assert.ok(html.includes('name="chatgpt_voice_available"'));
       assert.ok(html.includes(motionRelayRoutes.betaSignup));
       assert.ok(html.includes('aria-label="Motion Relay apps"'));
-      assert.ok(html.includes('ChatGPT Voice'));
-      assert.ok(html.includes('Just ask.'));
+      for (const claim of ['Your Garmin workout, live on your phone.',
+        'Your workout on app Home', 'iPhone Lock Screen and Dynamic Island',
+        'Android workout notification', 'Optional ChatGPT connection',
+        'Phone apps remain in private testing', 'freshness limits']) {
+        assert.ok(html.includes(claim), 'Motion Relay display/access claim: ' + claim);
+      }
+      assert.ok(html.indexOf('Your readings, where you need them.') < html.indexOf('Optional ChatGPT connection'),
+        'Phone display story leads optional ChatGPT setup');
       for (const platform of Object.values(motionRelayDownloads)) {
         if (platform.available && platform.url) assert.ok(html.includes(`href="${platform.url}"`));
         else {

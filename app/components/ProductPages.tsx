@@ -121,8 +121,8 @@ function MotionRelayDownloads() {
     <section className="product-downloads studio-wrap" aria-labelledby="motion-downloads-title">
       <div>
         <p className="eyebrow motion-download-brand"><img src="/images/motion-relay/motion-relay-icon.webp" alt="" width="40" height="40" loading="lazy" />Get Motion Relay</p>
-        <h2 id="motion-downloads-title">Your watch. Your phone. One conversation.</h2>
-        <p>The Garmin data field is available on Connect IQ. iPhone and Android access requires a beta invitation, which confirms your supported ChatGPT Voice setup.</p>
+        <h2 id="motion-downloads-title">Your watch. Your phone. Your workout.</h2>
+        <p>The Garmin data field is available on Connect IQ. The iPhone and Android companions are in private testing; request an invitation to confirm the supported phone setup and available features.</p>
       </div>
       <MotionRelayPlatformLinks />
       <p className="product-download-note">Phone listings are pending; the store links open their homepages. <a href={motionRelayRoutes.betaSignup}>Request beta access</a> or <a href={motionRelayRoutes.setup}>read setup instructions</a>.</p>
@@ -140,8 +140,8 @@ function MotionRelayQuestions() {
     "Give me a quick check-in: my pace, distance and progress toward my goal."
   ];
   return <section className="product-detail-overview studio-wrap motion-questions">
-    <div><p className="eyebrow">Just ask.</p><h2>Turn your workout into a conversation.</h2></div>
-    <div className="product-prose"><p>Start with a question. Follow up as your workout unfolds.</p>
+    <div><p className="eyebrow">Optional ChatGPT connection</p><h2>Another way to check in.</h2></div>
+    <div className="product-prose"><p>ChatGPT and Voice are supporting features for authorized testing setups. Ask about available workout readings and follow up. Availability depends on your ChatGPT account and supported connection; your beta invitation confirms the setup.</p>
       <ul>{questions.map(question => <li key={question}>“{question}”</li>)}</ul>
       <p className="motion-question-note">Example prompts for a supported beta setup. Share your race distance, target pace or climbing goal in the conversation. Answers depend on the live readings your watch provides and the connection; climbing means recorded ascent toward your target, not a prediction of the terrain ahead.</p>
     </div>
@@ -226,7 +226,7 @@ export function ProductsIndex() {
             <h2>Running data and database tools.</h2>
           </div>
           <p>
-            Motion Relay brings live workouts into the conversation. QueryVault and PageMover support database investigation.
+            Motion Relay brings Garmin workout readings to your phone. QueryVault and PageMover support database investigation.
           </p>
         </div>
         <ProductGrid />
@@ -274,7 +274,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
             <span>{product.name}</span>
           </nav>
           <p className="eyebrow">{product.category}</p>
-          <h1 id="main-content" tabIndex={-1}>{product.name}</h1>
+          <h1 id="main-content" tabIndex={-1}>{product.headline ?? product.name}</h1>
           {product.namingNote && (
             <p className="product-name-note">{product.namingNote}</p>
           )}
@@ -302,9 +302,6 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           )}
         </div>
       </section>
-      {product.downloadExperience === "motion-relay" && <MotionRelayQuestions />}
-      {product.downloadExperience === "motion-relay" && <MotionRelayDownloads />}
-      {product.downloadExperience === "motion-relay" && <MotionRelayBetaSignup />}
       {product.features.length > 0 && (
         <section className="product-detail-features">
           <div className="studio-wrap">
@@ -326,6 +323,17 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
       )}
+      {product.downloadExperience === "motion-relay" && <section className="product-detail-overview studio-wrap">
+        <div><p className="eyebrow">Know what you’re seeing</p><h2>Readings with context.</h2></div>
+        <div className="product-prose">
+          <p>Pace, distance and heart rate depend on the watch and activity. Cycling can show speed and cadence, with power when a compatible source supplies it. Optional readings are not available on every device or in every workout.</p>
+          <p>Eligible totals and averages may show the latest watch observation. Current readings have freshness limits; pause, delay and unavailable states stay distinct. A connected phone does not mean every reading is fresh.</p>
+          <p>Lock Screen and Island displays follow system space, privacy and activity limits. Expand the Island with supported system gestures; it is not a movable overlay or an always-expanded panel. Background updates depend on the phone and connection.</p>
+        </div>
+      </section>}
+      {product.downloadExperience === "motion-relay" && <MotionRelayQuestions />}
+      {product.downloadExperience === "motion-relay" && <MotionRelayDownloads />}
+      {product.downloadExperience === "motion-relay" && <MotionRelayBetaSignup />}
       {product.setup && product.setup.notes.length > 0 && (
         <section className="product-detail-overview studio-wrap">
           <div>
