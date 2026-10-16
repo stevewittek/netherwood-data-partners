@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { motionRelayDownloads } from "../app/content/motion-relay.ts";
+import { motionRelayDownloads, motionRelayRoutes } from "../app/content/motion-relay.ts";
 
 const { chromium } = await import(process.env.NDP_PLAYWRIGHT_MODULE || "playwright");
 const base = process.env.NDP_QA_URL || "http://127.0.0.1:4175";
@@ -23,7 +23,8 @@ try {
     for (const [route, name] of [
       ["/", "home"], ["/products/", "products"],
       ["/products/garmin-ai-connector/", "motion-connect"],
-      ["/motionrelay/setup/", "setup"], ["/about/", "about"],
+      ["/motionrelay/setup/", "setup"], ["/motionrelay/access/", "access"],
+      ["/motionrelay/compatibility/", "compatibility"], ["/motionrelay/releases/", "updates"], ["/about/", "about"],
       ["/articles/", "articles"],
     ]) {
       const response = await page.goto(base + route, { waitUntil: "networkidle" });
@@ -47,11 +48,16 @@ try {
   }
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await page.goto(base + "/products/garmin-ai-connector/", { waitUntil: "networkidle" });
-  assert.equal(await page.getByRole("link", { name: "Get the Garmin watch app" }).getAttribute("href"), motionRelayDownloads.garmin.url);
-  const unavailable = page.getByRole("button", { name: "Not available yet" });
-  assert.equal(await unavailable.count(), [motionRelayDownloads.iphone, motionRelayDownloads.android].filter((entry) => !entry.available || !entry.url).length);
-  for (const button of await unavailable.all()) assert.equal(await button.isEnabled(), false);
-  await page.getByRole("link", { name: "Sign up to help test Motion Relay" }).click();
+  for (const link of await page.getByRole("link", { name: "Garmin Connect IQ — Motion Relay", exact: true }).all())
+    assert.equal(await link.getAttribute("href"), motionRelayDownloads.garmin.url);
+  for (const platform of ["iPhone", "Android"])
+    for (const link of await page.getByRole("link", { name: `${platform} — request Motion Relay access`, exact: true }).all())
+      assert.equal(await link.getAttribute("href"), motionRelayRoutes.access);
+  const text = await page.locator("body").innerText();
+  assert.equal((text.match(/\bbeta\b/gi) || []).length, 1, "One visible product status marker");
+  assert.ok(!/missing sensor|missing metric|free during|private phone preview|freshness limits/i.test(text), "Product page uses public release copy");
+  await page.getByRole("link", { name: /^Get Motion Relay/ }).first().click();
+  await page.waitForURL(base + motionRelayRoutes.access);
   assert.equal(await page.locator("#beta-signup").count(), 1);
   assert.equal(await page.getByLabel("Phone platform").getAttribute("required"), "");
   assert.equal(await page.getByLabel("Garmin watch model").getAttribute("required"), "");
@@ -67,8 +73,8 @@ try {
   await page.getByLabel("Garmin watch model").fill("Synthetic Garmin Model");
   await page.getByLabel(/Voice is available/).check();
   await page.getByLabel(/pre-release testing/).check();
-  await page.getByRole("button", { name: "Request beta access" }).click();
-  await page.getByText(/Your beta tester request has been received/).waitFor();
+  await page.getByRole("button", { name: "Request an invitation" }).click();
+  await page.getByText(/Your request has been received/).waitFor();
   assert.equal(betaPayload.source, "Motion Relay beta tester signup");
   assert.equal(betaPayload.phone_platform, "Android");
   assert.equal(betaPayload.garmin_watch_model, "Synthetic Garmin Model");
@@ -82,7 +88,7 @@ try {
   assert.equal(await page.locator(":focus").getAttribute("id"), "main-content");
   await page.close();
   const noJs = await browser.newPage({ javaScriptEnabled: false });
-  for (const route of ["/products/garmin-ai-connector/", "/motionrelay/setup/"]) {
+  for (const route of ["/products/garmin-ai-connector/", "/motionrelay/setup/", "/motionrelay/access/", "/motionrelay/compatibility/", "/motionrelay/releases/"]) {
     await noJs.goto(base + route);
     assert.equal(await noJs.locator("h1").count(), 1);
   }

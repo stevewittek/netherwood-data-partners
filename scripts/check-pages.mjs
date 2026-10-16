@@ -38,6 +38,9 @@ const expected = [
   "/terms/motion-relay/",
   "/support/motion-relay/",
   "/motionrelay/setup/",
+  "/motionrelay/access/",
+  "/motionrelay/compatibility/",
+  "/motionrelay/releases/",
   "/migration-intake/",
   "/migration-readiness/",
   ...serviceSlugs.map((slug) => `/services/${slug}/`),
@@ -173,15 +176,16 @@ for (const route of expected) {
       assert.ok(html.includes(`href="${motionRelayRoutes.setup}"`), "Motion setup remains reachable");
       assert.ok(html.includes(motionRelayDownloads.garmin.url));
       assert.ok(html.includes('id="beta-signup"'));
-      assert.ok(html.includes('name="phone_platform"'));
-      assert.ok(html.includes('name="garmin_watch_model"'));
-      assert.ok(html.includes('name="chatgpt_voice_available"'));
-      assert.ok(html.includes(motionRelayRoutes.betaSignup));
+      const accessHtml = documents.get(motionRelayRoutes.access);
+      assert.ok(accessHtml.includes('name="phone_platform"'));
+      assert.ok(accessHtml.includes('name="garmin_watch_model"'));
+      assert.ok(accessHtml.includes('name="chatgpt_voice_available"'));
+      assert.ok(html.includes(`href="${motionRelayRoutes.access}"`), "Access link replaces store-home placeholders");
       assert.ok(html.includes('aria-label="Motion Relay apps"'));
       for (const claim of ['Your Garmin workout, live on your phone.',
         'Your workout on app Home', 'iPhone Lock Screen and Dynamic Island',
         'Android workout notification', 'Optional ChatGPT connection',
-        'Phone apps remain in private testing', 'freshness limits']) {
+        'Motion Relay brings Garmin workout readings to a readable phone dashboard with activity-aware metrics and workout displays.', 'Get Motion Relay']) {
         assert.ok(html.includes(claim), 'Motion Relay display/access claim: ' + claim);
       }
       assert.ok(html.indexOf('Your readings, where you need them.') < html.indexOf('Optional ChatGPT connection'),
@@ -189,8 +193,8 @@ for (const route of expected) {
       for (const platform of Object.values(motionRelayDownloads)) {
         if (platform.available && platform.url) assert.ok(html.includes(`href="${platform.url}"`));
         else {
-          assert.ok(html.includes(`homepage — Motion Relay listing pending"`));
-          assert.ok(html.includes(`href="${platform.storeHome}"`));
+          assert.ok(html.includes(`request Motion Relay access"`));
+          assert.ok(html.includes(`href="${motionRelayRoutes.access}"`));
           assert.ok(!html.includes('href="null"'));
         }
       }

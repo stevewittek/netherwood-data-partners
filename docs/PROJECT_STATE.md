@@ -1,3 +1,20 @@
+## Motion Relay release documentation — October 16, 2026
+
+The owner approved polished public documentation and its production publication,
+while retaining one Beta marker in the title or main description. Lead with:
+“Motion Relay brings Garmin workout readings to a readable phone dashboard with
+activity-aware metrics and workout displays.” Tester invitations and setup
+instructions now have a dedicated access page; compatibility and updates/known
+issues have their own pages. This supersedes the earlier preview wording,
+store-home placeholders and embedded product-page signup arrangement below.
+The legacy beta-signup anchor remains reachable through the access link.
+
+Website #19 and Motion Relay #239/#216/#217 track this documentation-only change.
+It does not release a phone/watch/backend candidate or attest provider/privacy
+acceptance. Genuine app screenshots remain pending; existing artwork is retained.
+See [MOTION_RELAY_RELEASE_DOCUMENTATION_2026-10-16.md](MOTION_RELAY_RELEASE_DOCUMENTATION_2026-10-16.md)
+for checks, provenance, publication and rollback boundaries.
+
 ## Motion Relay phone-first page — October15,2026
 
 The owner now directs Motion Relay product messaging to lead with live Garmin

@@ -7,7 +7,7 @@ export function MotionRelayBetaSignup() {
     <section className="product-beta-signup" id="beta-signup">
       <div className="studio-wrap product-beta-signup-layout">
         <div>
-          <p className="eyebrow">Beta testing</p>
+          <p className="eyebrow">Testing invitations</p>
           <h2>Help test the Motion Relay phone apps.</h2>
           <p>Use a Garmin watch and want to help test Motion Relay? Tell me your watch and phone models.</p>
           <p>This group requires ChatGPT mobile Voice access. Voice alone does not establish Motion compatibility; your invitation will confirm the supported setup.</p>
@@ -16,7 +16,7 @@ export function MotionRelayBetaSignup() {
         <div className="contact-copy">
           <InquiryForm
             source="Motion Relay beta tester signup"
-            submitLabel="Request beta access"
+            submitLabel="Request an invitation"
             successMessage="Your request has been received. If approved, you will receive an email with the installation link and next steps."
           >
             <div className="contact-form-grid">

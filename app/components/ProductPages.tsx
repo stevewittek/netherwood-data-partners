@@ -7,7 +7,6 @@ import {
 } from "../content/products";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import { motionRelayDownloads, motionRelayRoutes } from "../content/motion-relay";
-import { MotionRelayBetaSignup } from "./MotionRelayBetaSignup";
 import "../products.css";
 
 function ProductVisual({ product }: { product: Product }) {
@@ -107,10 +106,10 @@ function MotionRelayPlatformLinks() {
     {Object.entries(motionRelayDownloads).map(([platform, entry]) => {
       const available = entry.available && entry.url;
       const label = platform === "garmin" ? "Garmin" : platform === "iphone" ? "iPhone" : "Android";
-      return <li key={platform}><a href={available ? entry.url! : "storeHome" in entry ? entry.storeHome : motionRelayRoutes.betaSignup}
-        aria-label={available ? "Garmin Connect IQ — Motion Relay" : `${label} ${platform === "iphone" ? "App Store" : "Google Play"} homepage — Motion Relay listing pending`}
+      return <li key={platform}><a href={available ? entry.url! : motionRelayRoutes.access}
+        aria-label={available ? "Garmin Connect IQ — Motion Relay" : `${label} — request Motion Relay access`}
         target="_blank" rel="noreferrer">
-        <PlatformMark platform={platform} /><span><strong>{label}</strong>{" "}<small>{available ? "Connect IQ" : platform === "iphone" ? "App Store" : "Google Play"}</small></span>
+        <PlatformMark platform={platform} /><span><strong>{label}</strong>{" "}<small>{available ? platform === "garmin" ? "Connect IQ" : platform === "iphone" ? "App Store" : "Google Play" : "Request access"}</small></span>
       </a></li>;
     })}
   </ul>;
@@ -122,10 +121,10 @@ function MotionRelayDownloads() {
       <div>
         <p className="eyebrow motion-download-brand"><img src="/images/motion-relay/motion-relay-icon.webp" alt="" width="40" height="40" loading="lazy" />Get Motion Relay</p>
         <h2 id="motion-downloads-title">Your watch. Your phone. Your workout.</h2>
-        <p>The Garmin data field is available on Connect IQ. The iPhone and Android companions are in private testing; request an invitation to confirm the supported phone setup and available features.</p>
+        <p>Add the Garmin data field to your activity and install Motion Relay on your phone. Use the links below to get started.</p>
       </div>
       <MotionRelayPlatformLinks />
-      <p className="product-download-note">Phone listings are pending; the store links open their homepages. <a href={motionRelayRoutes.betaSignup}>Request beta access</a> or <a href={motionRelayRoutes.setup}>read setup instructions</a>.</p>
+      <p className="product-download-note"><a href={motionRelayRoutes.access}>Get an installation link</a> or <a href={motionRelayRoutes.setup}>follow the setup guide</a>.</p>
     </section>
   );
 }
@@ -141,9 +140,9 @@ function MotionRelayQuestions() {
   ];
   return <section className="product-detail-overview studio-wrap motion-questions">
     <div><p className="eyebrow">Optional ChatGPT connection</p><h2>Another way to check in.</h2></div>
-    <div className="product-prose"><p>ChatGPT and Voice are supporting features for authorized testing setups. Ask about available workout readings and follow up. Availability depends on your ChatGPT account and supported connection; your beta invitation confirms the setup.</p>
+    <div className="product-prose"><p>Connect your ChatGPT account and ask about your workout in a voice conversation. Start with a question, then follow up as your workout progresses.</p>
       <ul>{questions.map(question => <li key={question}>“{question}”</li>)}</ul>
-      <p className="motion-question-note">Example prompts for a supported beta setup. Share your race distance, target pace or climbing goal in the conversation. Answers depend on the live readings your watch provides and the connection; climbing means recorded ascent toward your target, not a prediction of the terrain ahead.</p>
+      <p className="motion-question-note">Share your race distance, target pace or climbing goal in the conversation. For climbing questions, use your recorded ascent and the target you set. See the connection requirements in the compatibility guide.</p>
     </div>
   </section>;
 }
@@ -171,7 +170,7 @@ export function ProductCard({
             <li key={platform}>{platform}</li>
           ))}
         </ul>}
-        {product.downloadExperience === "motion-relay" && <p className="motion-store-note">Phone listings pending. <a href={motionRelayRoutes.betaSignup}>Request beta access</a>.</p>}
+        {product.downloadExperience === "motion-relay" && <p className="motion-store-note"><a href={motionRelayRoutes.access}>Get Motion Relay</a>.</p>}
         <ProductLinks product={product} />
       </div>
     </article>
@@ -281,14 +280,14 @@ export function ProductDetailPage({ slug }: { slug: string }) {
           <p className="product-detail-summary">{product.summary}</p>
           <ProductBadges product={product} />
           <ProductLinks product={product} includeDetail={false} />
-          {product.downloadExperience === "motion-relay" && <div className="product-links"><a className="product-link-primary" href={motionRelayRoutes.betaSignup}>Request beta access <span aria-hidden="true">↗</span></a><a href={motionRelayRoutes.setup}>Setup and help <span aria-hidden="true">↗</span></a></div>}
+          {product.downloadExperience === "motion-relay" && <div className="product-links"><a className="product-link-primary" href={motionRelayRoutes.access}>Get Motion Relay <span aria-hidden="true">↗</span></a><a href={motionRelayRoutes.setup}>Setup and help <span aria-hidden="true">↗</span></a></div>}
         </div>
         <ProductVisual product={product} />
       </section>
       <section className="product-detail-overview studio-wrap">
         <div>
           <p className="eyebrow">Overview</p>
-          <h2>Why I’m building it.</h2>
+          <h2>{product.downloadExperience === "motion-relay" ? "Made for your workout." : "Why I’m building it."}</h2>
         </div>
         <div className="product-prose">
           {product.description.map((paragraph) => (
@@ -324,16 +323,16 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         </section>
       )}
       {product.downloadExperience === "motion-relay" && <section className="product-detail-overview studio-wrap">
-        <div><p className="eyebrow">Know what you’re seeing</p><h2>Readings with context.</h2></div>
+        <div><p className="eyebrow">Make it yours</p><h2>Choose your workout view.</h2></div>
         <div className="product-prose">
-          <p>Pace, distance and heart rate depend on the watch and activity. Cycling can show speed and cadence, with power when a compatible source supplies it. Optional readings are not available on every device or in every workout.</p>
-          <p>Eligible totals and averages may show the latest watch observation. Current readings have freshness limits; pause, delay and unavailable states stay distinct. A connected phone does not mean every reading is fresh.</p>
-          <p>Lock Screen and Island displays follow system space, privacy and activity limits. Expand the Island with supported system gestures; it is not a movable overlay or an always-expanded panel. Background updates depend on the phone and connection.</p>
+          <p>Set your preferred readings and display order in Settings. Use app Home for a quick glance and Metrics for a closer look at the workout readings received.</p>
+          <p>Keep your activity’s readings nearby through iPhone Live Activities and Android workout notifications.</p>
+          <p><a href={motionRelayRoutes.compatibility}>Explore watch and phone compatibility</a> or <a href={motionRelayRoutes.updates}>read updates and known issues</a>.</p>
         </div>
       </section>}
       {product.downloadExperience === "motion-relay" && <MotionRelayQuestions />}
       {product.downloadExperience === "motion-relay" && <MotionRelayDownloads />}
-      {product.downloadExperience === "motion-relay" && <MotionRelayBetaSignup />}
+      {product.downloadExperience === "motion-relay" && <section className="product-detail-overview studio-wrap" id="beta-signup"><div><h2>Get started.</h2></div><div className="product-prose"><p>Choose your phone and request an installation link.</p><a className="studio-text-link" href={motionRelayRoutes.access}>Get Motion Relay</a></div></section>}
       {product.setup && product.setup.notes.length > 0 && (
         <section className="product-detail-overview studio-wrap">
           <div>
