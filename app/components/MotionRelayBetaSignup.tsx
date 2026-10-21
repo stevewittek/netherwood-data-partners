@@ -1,6 +1,7 @@
 "use client";
 
 import { InquiryForm } from "./ContactForm";
+import { motionRelayRoutes } from "../content/motion-relay";
 
 export function MotionRelayBetaSignup() {
   return (
@@ -10,6 +11,7 @@ export function MotionRelayBetaSignup() {
           <p className="eyebrow">Testing invitations</p>
           <h2>Help test the Motion Relay phone apps.</h2>
           <p>Use a Garmin watch and want to help test Motion Relay? Tell me your watch and phone models.</p>
+          <p>You need a compatible Garmin watch and an iPhone with iOS 17 or later, or an Android phone with Android 8 or later. Check the <a className="studio-text-link" href={motionRelayRoutes.compatibility}>watch and phone requirements</a> before requesting an invitation; your installation channel may have additional requirements.</p>
           <p>Start with live Garmin readings on your phone. ChatGPT is optional; assistant testing needs a separately supported connection. Your invitation will confirm the setup available to you.</p>
           <p>The preview is for United States residents age 18 or older. Leave out passwords, health details and workout data. Invitations are not guaranteed. Approved testers receive installation instructions by email.</p>
         </div>
