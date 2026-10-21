@@ -60,6 +60,20 @@ export default function AboutPage() {
         <div className="founder-experience-heading"><p className="eyebrow">Professional background</p><h2>Experience behind the software.</h2><p>Examples from my engineering work and personal projects. These are not a list of Netherwood clients.</p></div>
         <div className="founder-experience-list">{experience.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><div><p>{item.body}</p><p className="founder-tools">{item.tools}</p></div></article>)}</div>
       </div></section>
+      <section className="about-section studio-wrap" id="engineering-portfolio">
+        <div>
+          <p className="eyebrow">Selected engineering work</p>
+          <h2>Built to solve<br />real database problems.</h2>
+        </div>
+        <div className="long-form">
+          <p><strong>QueryVault</strong> began with a straightforward problem: a load-test database could be refreshed, or Query Store could clean up older history, before the team finished benchmarking its work. QueryVault captures selected, completed Query Store periods in a separate SQL Server archive so baseline and follow-up workloads can be compared long after the original source period disappears.</p>
+          <p>That makes it possible to investigate whether a quarter of tuning, indexing, and application changes improved CPU, logical reads, plans, and waits, provided the compared test windows represent similar workloads.</p>
+          <a className="studio-text-link" href="https://github.com/stevewittek/Databases">Explore QueryVault, Grafana screenshots and validation evidence <span aria-hidden="true">↗</span></a>
+          <p><strong>PageMover</strong> is a local SQL Server index and heap analysis utility with a familiar visual page map. The developer preview emphasizes read-only diagnosis, explicit maintenance approval, and measured results. Its source remains private pending publication review.</p>
+          <a className="studio-text-link" href="/products/sql-server-index-maintenance-visualizer/">See the PageMover product overview <span aria-hidden="true">↗</span></a>
+          <p><strong>More engineering work:</strong> SQL Server observability, automation, recovery and database tooling. My public source is on <a href="https://github.com/stevewittek">GitHub</a>; my professional background is on <a href="https://www.linkedin.com/in/steven-wittek-64956965">LinkedIn</a>.</p>
+        </div>
+      </section>
       <section className="about-section studio-wrap">
         <div><p className="eyebrow">Consulting</p><h2>Focused work.<br />Direct involvement.</h2></div>
         <div className="long-form"><p>I also work with businesses on database performance, migrations and integrations. We agree on scope, fees and availability before starting, then define how to check the result.</p><p>You work directly with me. I explain findings, document changes and discuss vendor responsibilities or additional expertise when needed.</p><a className="studio-text-link" href="/services/">View consulting services <span aria-hidden="true">↗</span></a></div>
