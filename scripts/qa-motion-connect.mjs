@@ -26,6 +26,8 @@ try {
       ["/motionrelay/setup/", "setup"], ["/motionrelay/access/", "access"],
       ["/motionrelay/compatibility/", "compatibility"], ["/motionrelay/releases/", "updates"], ["/about/", "about"],
       ["/articles/", "articles"],
+      ["/privacy/motion-relay/", "privacy"], ["/terms/motion-relay/", "terms"],
+      ["/privacy/motion-relay/delete/", "deletion"], ["/support/motion-relay/", "support"],
     ]) {
       const response = await page.goto(base + route, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200, route);
@@ -61,7 +63,7 @@ try {
   assert.equal(await page.locator("#beta-signup").count(), 1);
   assert.equal(await page.getByLabel("Phone platform").getAttribute("required"), "");
   assert.equal(await page.getByLabel("Garmin watch model").getAttribute("required"), "");
-  assert.equal(await page.getByLabel(/Voice is available/).getAttribute("required"), "");
+  assert.equal(await page.getByLabel(/Optional: I can also test ChatGPT Voice/).getAttribute("required"), null);
   let betaPayload;
   await page.route("https://submit-form.com/**", async (route) => {
     betaPayload = route.request().postDataJSON();
@@ -71,16 +73,16 @@ try {
   await page.getByLabel("Email").fill("beta-tester@example.invalid");
   await page.getByLabel("Phone platform").selectOption("Android");
   await page.getByLabel("Garmin watch model").fill("Synthetic Garmin Model");
-  await page.getByLabel(/Voice is available/).check();
   await page.getByLabel(/pre-release testing/).check();
   await page.getByRole("button", { name: "Request an invitation" }).click();
   await page.getByText(/Your request has been received/).waitFor();
   assert.equal(betaPayload.source, "Motion Relay beta tester signup");
   assert.equal(betaPayload.phone_platform, "Android");
   assert.equal(betaPayload.garmin_watch_model, "Synthetic Garmin Model");
-  assert.equal(betaPayload.chatgpt_voice_available, "confirmed");
+  assert.equal(betaPayload.chatgpt_voice_available, undefined, "Phone-only testers can request access without Voice");
   assert.equal(betaPayload.beta_testing_acknowledged, "confirmed");
   assert.equal(await page.getByLabel("Email").inputValue(), "");
+  assert.equal(await page.getByLabel(/United States resident age 18/).getAttribute("required"), "");
   await page.goto(base + "/products/garmin-ai-connector/", { waitUntil: "networkidle" });
   await page.keyboard.press("Tab");
   assert.equal((await page.locator(":focus").textContent()).trim(), "Skip to content");

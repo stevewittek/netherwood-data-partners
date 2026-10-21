@@ -10,8 +10,8 @@ export function MotionRelayBetaSignup() {
           <p className="eyebrow">Testing invitations</p>
           <h2>Help test the Motion Relay phone apps.</h2>
           <p>Use a Garmin watch and want to help test Motion Relay? Tell me your watch and phone models.</p>
-          <p>This group requires ChatGPT mobile Voice access. Voice alone does not establish Motion compatibility; your invitation will confirm the supported setup.</p>
-          <p>Leave out passwords, health details and workout data. Invitations are not guaranteed. Approved testers receive installation instructions by email.</p>
+          <p>Start with live Garmin readings on your phone. ChatGPT is optional; assistant testing needs a separately supported connection. Your invitation will confirm the setup available to you.</p>
+          <p>The preview is for United States residents age 18 or older. Leave out passwords, health details and workout data. Invitations are not guaranteed. Approved testers receive installation instructions by email.</p>
         </div>
         <div className="contact-copy">
           <InquiryForm
@@ -81,13 +81,12 @@ export function MotionRelayBetaSignup() {
               <input
                 id="beta-chatgpt-voice"
                 name="chatgpt_voice_available"
-                required
                 type="checkbox"
                 value="confirmed"
               />
               <span>
-                I have a ChatGPT account and Voice is available in my official
-                ChatGPT mobile app.
+                Optional: I can also test ChatGPT Voice in the official mobile app.
+                My invitation will confirm assistant compatibility.
               </span>
             </label>
 
@@ -100,12 +99,14 @@ export function MotionRelayBetaSignup() {
                 value="confirmed"
               />
               <span>
-                I understand this is pre-release testing and I may be invited
+                I am a United States resident age 18 or older. I understand this is
+                pre-release testing and I may be invited
                 to install a TestFlight or Google Play testing build and report
                 problems.
               </span>
             </label>
           </InquiryForm>
+          <p>Prefer email? <a href="mailto:contact@netherwooddatapartners.com?subject=Motion%20Relay%20testing">Contact Netherwood</a> with your watch and phone models.</p>
         </div>
       </div>
     </section>

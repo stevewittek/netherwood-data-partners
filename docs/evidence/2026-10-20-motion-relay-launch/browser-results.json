@@ -1,0 +1,319 @@
+{
+  "renders": [
+    {
+      "route": "/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/setup/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/access/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/compatibility/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/releases/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/articles/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 1440,
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/setup/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/access/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/compatibility/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/releases/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/articles/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 768,
+      "viewport": 768,
+      "scrollWidth": 768,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/products/garmin-ai-connector/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/setup/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/access/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/compatibility/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/motionrelay/releases/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/about/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/articles/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/terms/motion-relay/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/privacy/motion-relay/delete/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    },
+    {
+      "route": "/support/motion-relay/",
+      "width": 390,
+      "viewport": 390,
+      "scrollWidth": 390,
+      "headings": 1,
+      "brokenImages": []
+    }
+  ],
+  "controls": "passed",
+  "keyboard": "passed",
+  "noJavaScript": "passed"
+}
