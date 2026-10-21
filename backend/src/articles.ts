@@ -108,6 +108,7 @@ export function sanitizeArticleHtml(html: string): string {
     allowedSchemesByTag: { img: ["http", "https"] },
     allowProtocolRelative: false,
     disallowedTagsMode: "discard",
+    nonTextTags: ["script", "style", "textarea", "option", "noscript"],
     enforceHtmlBoundary: true,
     transformTags: {
       a: (_tagName, attributes) => {

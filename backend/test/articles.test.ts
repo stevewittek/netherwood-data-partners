@@ -23,6 +23,14 @@ test("article HTML sanitizer preserves technical formatting and removes scriptab
   assert.doesNotMatch(html, /onclick|onerror|javascript:|data:text|script|iframe|callout-evil/);
 });
 
+test("article sanitizer discards hidden noscript bodies and excludes refresh or SMIL markup", () => {
+  const hidden = sanitizeArticleHtml('<p>Visible</p><div><noscript></div><img src="https://beacon.example.invalid/hidden.png"></noscript>');
+  assert.match(hidden, /Visible/);
+  assert.doesNotMatch(hidden, /<img|beacon\.example|noscript/);
+  const scriptable = sanitizeArticleHtml('<meta http-equiv="refresh" content="0;url=javascript:alert(1)"><svg><animate attributeName="href" values="javascript:alert(1)" /></svg><p>Article</p>');
+  assert.equal(scriptable, "<p>Article</p>");
+});
+
 test("article input is normalized and searchable plain text is derived", () => {
   const article = parseArticleInput({
     title: "  Query Store Notes  ",
