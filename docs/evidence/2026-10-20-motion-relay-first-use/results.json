@@ -1,0 +1,52 @@
+{
+  "renders": [
+    {
+      "path": "/motionrelay/access/",
+      "width": 1440,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/compatibility/",
+      "width": 1440,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/setup/",
+      "width": 1440,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/access/",
+      "width": 768,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/compatibility/",
+      "width": 768,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/setup/",
+      "width": 768,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/access/",
+      "width": 390,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/compatibility/",
+      "width": 390,
+      "status": 200
+    },
+    {
+      "path": "/motionrelay/setup/",
+      "width": 390,
+      "status": 200
+    }
+  ],
+  "form": "one local interception; zero external submissions",
+  "voice": "optional",
+  "eligibility": "required"
+}

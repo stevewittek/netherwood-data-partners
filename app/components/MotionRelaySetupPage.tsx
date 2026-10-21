@@ -17,7 +17,7 @@ export function MotionRelaySetupPage() {
       </section>
       <section className="product-detail-overview studio-wrap">
         <div><p className="eyebrow">Phone and assistant</p><h2>Complete the connection.</h2></div>
-        <div className="product-prose"><p>4. Use your phone’s installation link, open Motion Relay and select your paired watch.</p><p>5. Complete the account steps shown. If you use ChatGPT, follow its separate connection and sharing instructions.</p><p>6. Start, pause, resume and save the activity on your watch. In Settings, choose your Home and Lock Screen readings and preferred display size.</p></div>
+        <div className="product-prose"><p>4. Use your phone’s installation link, open Motion Relay and select your paired watch.</p><p>5. Complete the account steps shown. If you use ChatGPT, follow its separate connection and sharing instructions.</p><p>6. Start the activity on your watch and keep Motion Relay open nearby for the first check. Confirm that available current readings appear on Home before continuing. If no readings arrive, use <a className="studio-text-link" href={motionRelayRoutes.support}>connection help</a>; selecting a watch does not verify a received reading.</p><p>7. Pause, resume and save the activity on your watch. In Settings, choose your Home and Lock Screen readings and preferred display size.</p></div>
       </section>
       <section className="product-support studio-wrap">
         <div><p className="eyebrow">Troubleshooting</p><h2>Check each connection.</h2></div>
