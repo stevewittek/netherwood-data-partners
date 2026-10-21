@@ -66,10 +66,10 @@ export const products: Product[] = [
     shortName: "QueryVault",
     status: "Active development",
     category: "Database engineering tool",
-    summary: "Archive SQL Server Query Store history for longer-term performance investigation.",
+    summary: "Preserve selected SQL Server Query Store baselines across retention cleanup and database refreshes, then compare workload performance over time.",
     description: [
-      "Query Store history can age out as retention and storage limits are reached. QueryVault copies that history into a separate archive for later analysis.",
-      "Review the source and test it outside business-critical environments before use."
+      "When a load-test database is refreshed or Query Store history is removed, an important performance baseline can disappear. QueryVault archives selected completed Query Store periods before that happens, preserving evidence for later investigation.",
+      "Compare comparable archived windows before and after release cycles, indexing changes, or a quarter-long technical-debt initiative. Runtime statistics, execution plans, logical reads and waits remain available through a stable reporting contract and Grafana dashboards. Validate the source and deployment outside business-critical environments before use."
     ],
     platforms: [
       "SQL Server",
@@ -86,11 +86,11 @@ export const products: Product[] = [
     features: [
       {
         title: "Historical Query Store archive",
-        detail: "Copies Query Store entities into a centralized archive for longer-term performance analysis."
+        detail: "Captures completed Query Store intervals into a separate SQL Server archive, retaining selected performance baselines beyond the source database's retention window."
       },
       {
         title: "Retention controls",
-        detail: "Tracks archive runs, retention dates and protected runs that should not be removed automatically."
+        detail: "Tracks archive periods and retention, protects important baseline runs, and enables RunID-aware maintenance."
       }
     ],
     availabilityNote: "The source repository is public for review. The current archive workflow targets databases on the same SQL Server instance. No packaged download or supported production release is advertised, and no open-source license has been selected.",
