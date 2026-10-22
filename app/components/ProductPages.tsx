@@ -351,7 +351,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         <section className="product-screenshots studio-wrap">
           <div>
             <p className="eyebrow">Screenshots</p>
-            <h2>Watch preview.</h2>
+            <h2>{product.id === "queryvault" ? "Retained performance evidence." : product.id === "index-maintenance-visualizer" ? "Offline application demonstration." : "Watch preview."}</h2>
           </div>
           <div className="product-screenshot-grid">
             {product.screenshots.map((screenshot) => (

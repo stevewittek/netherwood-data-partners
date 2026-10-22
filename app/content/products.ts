@@ -125,6 +125,21 @@ export const products: Product[] = [
         detail: "Review the SQL plan before enabling maintenance and inspect measured before-and-after results."
       }
     ],
+    image: {
+      src: "https://raw.githubusercontent.com/stevewittek/Toolkit/main/assets/pagemover-demo.png",
+      alt: "Actual PageMover interface showing a synthetic SQL Server index page map",
+      width: 1365,
+      height: 950
+    },
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/stevewittek/Toolkit/main/assets/pagemover-demo.png",
+        alt: "PageMover classic defragmenter-style offline demonstration interface",
+        width: 1365,
+        height: 950,
+        caption: "Actual application screenshot with entirely synthetic demonstration data. No live database measurements."
+      }
+    ],
     availabilityNote: "Development preview. There is no public repository, release date or download listed at this time.",
     support: "Contact me with questions about the preview."
   },
