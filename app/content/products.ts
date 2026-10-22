@@ -93,6 +93,28 @@ export const products: Product[] = [
         detail: "Tracks archive periods and retention, protects important baseline runs, and enables RunID-aware maintenance."
       }
     ],
+    image: {
+      src: "https://raw.githubusercontent.com/stevewittek/Databases/master/docs/images/grafana-overview-period.jpg",
+      alt: "Actual QueryVault Grafana view of archived Query Store metrics from a sample SQL Server lab",
+      width: 1362,
+      height: 768
+    },
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/stevewittek/Databases/master/docs/images/grafana-overview-period.jpg",
+        alt: "QueryVault archived-period performance overview in Grafana",
+        width: 1362,
+        height: 768,
+        caption: "Actual September 2026 SQL Server lab capture with the WideWorldImporters sample database."
+      },
+      {
+        src: "https://raw.githubusercontent.com/stevewittek/Databases/master/docs/images/grafana-period-comparison.jpg",
+        alt: "Comparison of two retained QueryVault Query Store periods in Grafana",
+        width: 1362,
+        height: 768,
+        caption: "Actual archived-period comparison from a controlled lab. Not a claimed customer improvement."
+      }
+    ],
     availabilityNote: "The source repository is public for review. The current archive workflow targets databases on the same SQL Server instance. No packaged download or supported production release is advertised, and no open-source license has been selected.",
     support: "Contact me about QueryVault or a SQL Server question."
   },
@@ -123,6 +145,21 @@ export const products: Product[] = [
       {
         title: "Review before maintenance",
         detail: "Review the SQL plan before enabling maintenance and inspect measured before-and-after results."
+      }
+    ],
+    image: {
+      src: "https://raw.githubusercontent.com/stevewittek/Toolkit/main/assets/pagemover-demo.png",
+      alt: "Actual PageMover interface showing a synthetic SQL Server index page map",
+      width: 1365,
+      height: 950
+    },
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/stevewittek/Toolkit/main/assets/pagemover-demo.png",
+        alt: "PageMover classic defragmenter-style offline demonstration interface",
+        width: 1365,
+        height: 950,
+        caption: "Actual application screenshot with entirely synthetic demonstration data. No live database measurements."
       }
     ],
     availabilityNote: "Development preview. There is no public repository, release date or download listed at this time.",
