@@ -1,3 +1,17 @@
+## Approved engineering experience — November 3, 2026
+
+Keep the business website's services and products positioning. Career stories
+are first-person founder experience from previous employment and consulting,
+with historical organizations anonymized. Preserve the distinction between
+individual ownership, shared engineering work, and the wider organization's
+scale. Use database engineer for the role and SQL Server for the actual platform.
+Approved corrections: a two-hour report process reduced to under three minutes,
+150GB+ indexes, a full-time nonprofit role, and database cutover engineering in
+an approximately 160-store live POS program. Payment-terminal compatibility and
+security explain the retail modernization without an unconfirmed TLS mandate.
+Current AI-assisted development belongs to independent work; do not imply its
+use in historical employment. These owner-approved stories may be published.
+
 ## Homepage refinement — October 7, 2026
 
 The company, services and products lead Home. Keep the owner's name on About

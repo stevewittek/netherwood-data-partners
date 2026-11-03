@@ -1,4 +1,5 @@
 import ChatWidget from "./ChatWidget";
+import { HomeEngineeringExperience } from "./components/EngineeringExperience";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { motionRelayRoutes } from "./content/motion-relay";
@@ -37,6 +38,7 @@ export default function Home() {
         <div className="community-services">{services.map((service, index) => <article key={service.title} id={service.id}><span className="community-service-number">{String(index + 1).padStart(2, "0")}</span><h3>{service.title}</h3><p>{service.text}</p><a href={service.href} aria-label={`View service: ${service.title}`}>View service <span aria-hidden="true">↗</span></a></article>)}</div>
         <div className="studio-actions"><a className="studio-text-link" href="/services/">All services <span aria-hidden="true">↗</span></a></div>
       </section>
+      <HomeEngineeringExperience />
       <section className="community-people-band" id="products">
         <div className="community-section studio-wrap community-working">
           <div><p className="eyebrow">Products</p><h2>Apps and database tools.</h2><p>Explore the software, check current availability and find setup or testing information on each product page.</p><a className="studio-text-link" href="/products/">Browse products <span aria-hidden="true">↗</span></a></div>

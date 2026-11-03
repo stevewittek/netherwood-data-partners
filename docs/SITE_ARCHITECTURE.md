@@ -1,3 +1,18 @@
+## Engineering experience — November 3, 2026
+
+`/case-studies/` and seven `/case-studies/{slug}/` routes share public content
+from `app/content/experience.ts` and rendering in
+`app/components/EngineeringExperience.tsx`. The index also contains current
+independent development at `#modern-engineering`. Home, About, Services and
+shared navigation link the relevant stories. Existing product URLs remain the
+product destinations; no competing projects catalog is added.
+
+Both the static router/generator and Vinext routes consume the same content and
+schema helpers. Static output includes collection/article metadata, breadcrumbs,
+canonicals, Open Graph/Twitter tags and sitemap entries. Readable narrative HTML
+and ordinary links require no runtime backend or AI. Private source/review files
+are not copied into the repository or served public directory.
+
 # Netherwood Data Partners site architecture
 
 ## Motion Connect download update — October 1, 2026

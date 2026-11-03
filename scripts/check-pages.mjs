@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { products } from "../app/content/products.ts";
+import { engineeringStories, storyPath } from "../app/content/experience.ts";
 import { motionRelayDownloads, motionRelayRoutes } from "../app/content/motion-relay.ts";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
@@ -32,6 +33,8 @@ const expected = [
   "/articles/",
   "/services/",
   "/products/",
+  "/case-studies/",
+  ...engineeringStories.map(storyPath),
   "/privacy/",
   "/privacy/motion-relay/",
   "/privacy/motion-relay/delete/",
@@ -207,6 +210,24 @@ for (const route of expected) {
   }
   for (const [, value] of html.matchAll(/(?:src|href)="([^"]+)"/g))
     await checkUrl(value, route);
+  if (route.startsWith("/case-studies/")) {
+    const data = JSON.parse(/<script[^>]+id="experience-structured-data"[^>]*>(.*?)<\/script>/s.exec(html)?.[1]);
+    assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
+    assert.equal(data["@graph"][0].url, `${origin}${route}`);
+    assert.doesNotMatch(html, /MSCI|Burgiss|Caissa|Agadia|Modell|University of Maryland|Jewish Federation|Vermont Oxford|private-review|approval-draft|story-evidence/i, `Anonymized public experience ${route}`);
+    const story = engineeringStories.find((item) => storyPath(item) === route);
+    if (story) {
+      assert.equal(data["@graph"][0]["@type"], "Article");
+      assert.ok(html.includes(escape(story.ownership)), `Contribution ${route}`);
+      assert.ok(html.includes(escape(story.outcome)), `Outcome ${route}`);
+      for (const paragraph of story.paragraphs) assert.ok(html.includes(escape(paragraph)), `Complete approved narrative ${route}`);
+    } else {
+      assert.equal(data["@graph"][0]["@type"], "CollectionPage");
+      assert.ok(html.includes("2-hour report process") && html.includes("under 3 minutes"), "Corrected reporting result");
+      assert.ok(html.includes("150GB+ indexes"), "Uncapped index scale");
+      assert.ok(html.includes('id="modern-engineering"'), "Current independent development");
+    }
+  }
   const article = snapshot.articles.find(
     (a) => route === `/articles/${a.slug}/`,
   );
