@@ -1,3 +1,13 @@
+## Engineering experience — November 3, 2026
+
+Owner-approved stories use the existing Manrope/DM Sans typography, forest/paper
+palette, gutters, open rows and shared controls. New layouts are scoped in
+`app/experience.css`. Shared navigation adds Experience; the only existing CSS
+change is a narrow-phone navigation gap below 360px. No general redesign,
+font, global token, article layout, product artwork or contact-form change.
+Before/after evidence at 1440/768/390 and 320px checks are recorded in
+`ENGINEERING_EXPERIENCE_2026-11-03.md` and local `outputs/experience-qa/`.
+
 ## Homepage refinement — October 7, 2026
 
 The company, services and products lead Home. Keep the owner's name on About

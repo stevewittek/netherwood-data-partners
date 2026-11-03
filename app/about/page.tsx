@@ -59,6 +59,7 @@ export default function AboutPage() {
       <section className="founder-experience" id="professional-experience"><div className="studio-wrap">
         <div className="founder-experience-heading"><p className="eyebrow">Professional background</p><h2>Experience behind the software.</h2><p>Examples from my engineering work and personal projects. These are not a list of Netherwood clients.</p></div>
         <div className="founder-experience-list">{experience.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><div><p>{item.body}</p><p className="founder-tools">{item.tools}</p></div></article>)}</div>
+        <div className="studio-actions"><a className="studio-text-link" href="/case-studies/">Explore my engineering experience and success stories <span aria-hidden="true">↗</span></a></div>
       </div></section>
       <section className="about-section studio-wrap" id="engineering-portfolio">
         <div>

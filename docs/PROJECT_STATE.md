@@ -1,3 +1,24 @@
+## Engineering experience release — November 3, 2026
+
+The owner approved the revised engineering stories and explicitly authorized
+publication. The focused `codex/engineering-experience-release` branch starts
+from public main `6e4f784` and preserves the company/product positioning. It adds
+an Engineering Experience index, seven anonymized career stories, current
+AI-assisted development context, Home/About entry points, and relevant service
+links. The separate employment-focused portfolio candidate remains untouched.
+
+Public content is centralized in `app/content/experience.ts`; private employer
+mappings and research notes are not in this repository or public build. The
+approved reporting result is two hours to under three minutes; index scale is
+150GB+. Nonprofit reporting is described as a full-time role. Retail describes
+an approximately 160-store program with the founder's contribution limited to
+the late-stage database cutover, scripts and synchronization.
+
+See `ENGINEERING_EXPERIENCE_2026-11-03.md` for scope, checks and rollback. Remote
+CI, merge and deployed-source verification must complete before calling the
+candidate live. Existing article content, contact transport, product availability,
+publishing workflows and backend boundaries remain intact.
+
 ## Approved live-metrics headline — October 16 follow-up
 
 Lead public Motion Relay marketing with “Your Garmin metrics. Relayed live.”

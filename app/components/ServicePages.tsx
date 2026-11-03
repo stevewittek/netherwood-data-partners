@@ -1,5 +1,6 @@
 import { getService, services, type Service } from "../content/services";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
+import { RelatedEngineeringExperience } from "./EngineeringExperience";
 import "../services.css";
 
 function ServiceContact({ assessment = false }: { assessment?: boolean }) {
@@ -76,7 +77,7 @@ export function ServicesIndex() {
       </section>
       <section className="services-band"><div className="studio-wrap services-split"><div><p className="eyebrow">The process</p><h2>Investigate. Agree. Check.</h2></div><div className="services-prose"><p>Each project starts with the evidence, an agreed scope and a way to check the result. You receive findings and handover notes for the agreed scope.</p><p>Your existing software provider remains involved where its access or product knowledge is needed.</p><a className="studio-text-link" href="/about/">About Netherwood <span aria-hidden="true">↗</span></a></div></div></section>
       <section className="studio-wrap services-section services-split"><div><p className="eyebrow">Planning a move</p><h2>Check what needs preparation.</h2></div><div className="services-prose"><p>The migration self-check highlights questions to investigate. Results are available without contact details.</p><a className="studio-text-link" href="/migration-readiness/">Check migration readiness <span aria-hidden="true">↗</span></a><br /><a className="studio-text-link" href="/migration-intake/">Describe a migration</a></div></section>
-      <ServiceContact /><SiteFooter />
+      <RelatedEngineeringExperience /><ServiceContact /><SiteFooter />
     </main>
   );
 }
@@ -224,6 +225,7 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         ))}
       </section>
 
+      <RelatedEngineeringExperience serviceSlug={service.slug} />
       <section
         className="studio-wrap services-section"
         aria-labelledby="services-related-heading"

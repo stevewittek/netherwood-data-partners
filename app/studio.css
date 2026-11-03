@@ -998,6 +998,9 @@
   }
 }
 @media (max-width: 359px) {
+  .studio-header nav {
+    column-gap: 6px;
+  }
   .studio-header.site-header {
     column-gap: 9px;
   }

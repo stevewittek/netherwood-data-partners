@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { readArticleSnapshot } from "../backend/src/article-snapshot.ts";
 import { services, servicesMetadata } from "../app/content/services.ts";
+import { engineeringStories, experienceMetadata, experienceSchema, storyMetadata } from "../app/content/experience.ts";
 import { motionRelayDocuments } from "../app/content/motion-relay.ts";
 import { products, productsMetadata } from "../app/content/products.ts";
 import {
@@ -169,6 +170,20 @@ await page(
     },
   }),
 );
+const experiencePages = [
+  { path: "case-studies", ...experienceMetadata, story: undefined },
+  ...engineeringStories.map((story) => ({ path: `case-studies/${story.id}`, ...storyMetadata(story), story })),
+];
+for (const entry of experiencePages) {
+  await page(entry.path, metaPage({
+    title: entry.title,
+    description: entry.description,
+    canonical: `${siteUrl}/${entry.path}/`,
+    type: entry.story ? "article" : "website",
+    structured: experienceSchema(entry.story),
+    schemaId: "experience-structured-data",
+  }));
+}
 const marketingPages = [
   { path: "services", ...servicesMetadata },
   { path: "migration-intake", ...intakeMetadata },
@@ -433,6 +448,7 @@ ${marketingPages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></ur
   <url><loc>${siteUrl}/motionrelay/setup/</loc></url>
 ${motionRelayDocuments.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
 ${productSitemapUrls}
+${experiencePages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
 ${articleUrls.join("\n")}
 </urlset>
 `;

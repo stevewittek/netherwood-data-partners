@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Home from "./page";
+import { EngineeringExperienceIndex, EngineeringStoryPage } from "./components/EngineeringExperience";
 import { ArticlePage, ArticlesIndex } from "./articles/Articles";
 import ArticlesAdmin from "./admin/ArticlesAdmin";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
@@ -32,6 +33,9 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   const pathname =
     requestedPath.replace(/\/index\.html$/, "/").replace(/\/+$/, "") || "/";
   if (pathname === "/") return <Home />;
+  if (pathname === "/case-studies") return <EngineeringExperienceIndex />;
+  const storyMatch = pathname.match(/^\/case-studies\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
+  if (storyMatch) return <EngineeringStoryPage slug={storyMatch[1]} />;
   if (pathname === "/services") return <ServicesIndex />;
   if (pathname === "/products") return <ProductsIndex />;
   if (pathname === "/privacy") return <PrivacyPage />;
