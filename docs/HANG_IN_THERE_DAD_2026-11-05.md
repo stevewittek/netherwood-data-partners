@@ -17,7 +17,8 @@ keywords, collection entry and sitemap follow the existing two-build workflow.
 ## Assets and provenance
 
 All sources are existing Hang in There Dad game assets in `stevewittek/reddit-games`.
-Files were copied from the November 4 free-mobile release checkout; no new art
+Files were copied from the November 4 free-mobile release checkout and original
+game animation documentation; no new art
 or reconstructed game screenshots were generated.
 
 | Website asset under `public/images/hang-in-there-dad/` | Game source | Use |
@@ -26,13 +27,17 @@ or reconstructed game screenshots were generated.
 | `game-banner.png` | `games/hang-in-there-dad/marketing/launch/game-tile.png` | Original branded social banner; 560 × 256, 67 KB |
 | `splash-390.webp` | `games/hang-in-there-dad/docs/launch-2026-11-04/free-rescue-splash-390.png` | Genuine local release-source browser screenshot; 390 × 620, 104 KB |
 | `puzzle-390.webp` | `games/hang-in-there-dad/docs/launch-2026-11-04/free-rescue-game-390.png` | Genuine local release-source browser screenshot including letter keyboard; 390 × 650, 94 KB |
+| `ball-pit-scene.webp` | `games/hang-in-there-dad/docs/phase-1/ball-pit-hoist.png` | Actual renderer capture of Dad entering the indoor soft-play tunnel; 362 × 204 |
+| `playground-scene.webp` | `games/hang-in-there-dad/docs/playground/win.png` | Actual renderer capture of the playground rescue; 362 × 204 |
 
-The two screenshot conversions are lossless WebP with no crop or visual changes.
-Their source README explicitly identifies them as local Chromium captures, not
-physical-device or hosted-version acceptance. The website labels them as screens
-from the latest game preview. The older outdoor playground capture does not meet
-the requested indoor ball-pit view and is omitted. Further approved indoor-scene
-captures can be added later; no placeholder image is shipped.
+All four screenshot conversions are lossless WebP with no crop or visual changes.
+The two phone screenshots’ source README explicitly identifies them as local Chromium captures, not
+physical-device or hosted-version acceptance. The scene captures are documented
+in `PHASE-1-ANIMATION.md` and `PLAYGROUND-ANIMATION.md` as actual local Chrome
+renderer screenshots. The gallery is labeled as game previews and scenes. These
+are authentic artwork captures, not evidence of a specific hosted game version.
+The indoor ball-pit artwork was found in the animation archive during the initial
+publication delay and added in a focused follow-up. No placeholder image is shipped.
 
 ## Reddit link and embedding decision
 
@@ -75,6 +80,16 @@ requirements. Use the verified external play link; no iframe or embed script.
 - Existing backend dependency audit reports high-severity advisories for the
   transitive `@azure/msal-node` and `@azure/identity` packages. This showcase does
   not change or deploy the backend; dependency remediation is separate work.
+
+## Initial publication attempt
+
+Commit `5a9cd29215f171827acd7a05420d300d65017f95` passed CI and all release checks.
+Run `42071440925` timed out in GitHub's `updating_pages` state and canceled its
+Pages deployment. The public manifest remained on `82f09a4`. A clean existing-
+workflow retry, `42073612683`, was started after cancellation. An active GitHub
+Actions incident was reported at https://www.githubstatus.com/incidents/t89g2q1800fr;
+its relationship to this Pages delay is not confirmed. Preserve workflow and
+hosting settings; final publication must be verified separately.
 
 ## Publication and rollback
 

@@ -30,10 +30,12 @@ export function HangInThereDadPage() {
       </section>
       <section className="hang-dad-section studio-wrap" aria-labelledby="game-gallery-title">
         <p className="eyebrow">A look at the game</p><h2 id="game-gallery-title">A cat to rescue. A punchline to guess.</h2>
-        <p className="hang-dad-hint">Screens from the latest game preview.</p>
+        <p className="hang-dad-hint">Game previews and scenes from Dad’s adventures.</p>
         <div className="hang-dad-gallery">
           <figure><a href="/images/hang-in-there-dad/splash-390.webp" aria-label="View the full game opening screen"><img src="/images/hang-in-there-dad/splash-390.webp" alt="Game opening screen with Dad hanging from the tree, Oreo above, and the ladder tipping away." width="390" height="620" loading="lazy" decoding="async" /></a><figcaption>Oreo’s Great Escape: an ordinary afternoon gets out of hand.</figcaption></figure>
           <figure><a href="/images/hang-in-there-dad/puzzle-390.webp" aria-label="View the full letter-guessing game screen"><img src="/images/hang-in-there-dad/puzzle-390.webp" alt="A dad-joke puzzle with missing punchline letters, guesses remaining, and the on-screen letter keyboard below Dad and Oreo." width="390" height="650" loading="lazy" decoding="async" /></a><figcaption>Read the joke, choose a letter, and see how Dad gets on.</figcaption></figure>
+          <figure><a href="/images/hang-in-there-dad/ball-pit-scene.webp" aria-label="View the full indoor ball-pit scene"><img src="/images/hang-in-there-dad/ball-pit-scene.webp" alt="Dad hoists himself into a soft-play tunnel while his daughters watch beside the indoor ball pit." width="362" height="204" loading="lazy" decoding="async" /></a><figcaption>Dad vs. the Ball Pit: the kids make it look so easy.</figcaption></figure>
+          <figure><a href="/images/hang-in-there-dad/playground-scene.webp" aria-label="View the full playground scene"><img src="/images/hang-in-there-dad/playground-scene.webp" alt="Dad balances beneath the playground monkey bars while children celebrate around him." width="362" height="204" loading="lazy" decoding="async" /></a><figcaption>Playground Takeover: still on duty, even after the rescue.</figcaption></figure>
         </div>
       </section>
       <section className="hang-dad-section studio-wrap" aria-labelledby="favorite-jokes-title">
