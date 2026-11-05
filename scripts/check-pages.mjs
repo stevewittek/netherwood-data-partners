@@ -1,3 +1,4 @@
+import { gamePath, gameMetadata, gameBanner, redditGameUrl } from "../app/content/hang-in-there-dad.ts";
 import assert from "node:assert/strict";
 import { products } from "../app/content/products.ts";
 import { engineeringStories, storyPath } from "../app/content/experience.ts";
@@ -33,6 +34,7 @@ const expected = [
   "/articles/",
   "/services/",
   "/products/",
+  gamePath,
   "/case-studies/",
   ...engineeringStories.map(storyPath),
   "/privacy/",
@@ -227,6 +229,15 @@ for (const route of expected) {
       assert.ok(html.includes("150GB+ indexes"), "Uncapped index scale");
       assert.ok(html.includes('id="modern-engineering"'), "Current independent development");
     }
+  }
+  if (route === gamePath) {
+    assert.equal(title, escape(gameMetadata.title));
+    assert.ok(html.includes(`property="og:image" content="${origin}${gameBanner}"`), "Actual game social banner");
+    assert.ok(html.includes(`href="${redditGameUrl}"`), "Configured public Reddit play link");
+    assert.equal([...html.matchAll(/<details>/g)].length, 4, "Four native joke disclosures");
+    assert.doesNotMatch(html, /<details[^>]*\bopen\b/, "Punchlines start closed");
+    assert.doesNotMatch(html, /<iframe/i, "Game stays on Reddit");
+    assert.ok(documents.get("/products/").includes(`href="${gamePath}"`), "Game discoverable from products");
   }
   const article = snapshot.articles.find(
     (a) => route === `/articles/${a.slug}/`,

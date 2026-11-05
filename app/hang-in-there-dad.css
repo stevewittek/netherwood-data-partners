@@ -1,0 +1,52 @@
+.hang-dad-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  padding-block: 80px 96px;
+}
+.hang-dad-hero .eyebrow { margin-top: 36px; }
+.hang-dad-hero h1 {
+  margin: 20px 0 28px;
+  font-size: clamp(46px, 5.5vw, 78px);
+  font-weight: 550;
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+}
+.hang-dad-art { margin: 0; }
+.hang-dad-art img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.hang-dad-page figcaption { margin-top: 14px; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
+.hang-dad-section { padding-block: 76px; border-top: 1px solid var(--line); }
+.hang-dad-story { display: grid; grid-template-columns: 0.7fr 1fr; gap: 70px; }
+.hang-dad-story .product-prose p + p { margin-top: 22px; }
+.hang-dad-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 40px 0 0; }
+.hang-dad-steps span { color: var(--moss); font-size: 13px; font-weight: 700; }
+.hang-dad-steps p { line-height: 1.7; color: var(--ink-soft); }
+.hang-dad-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 390px)); gap: 40px; margin-top: 40px; }
+.hang-dad-gallery figure { min-width: 0; margin: 0; }
+.hang-dad-gallery a { display: block; border-radius: 4px; }
+.hang-dad-gallery img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.hang-dad-hint { margin-top: 22px; color: var(--ink-soft); }
+.hang-dad-jokes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-top: 30px; align-items: start; }
+.hang-dad-jokes details { border-block: 1px solid var(--line); margin-top: -1px; }
+.hang-dad-jokes summary { padding: 24px 4px; cursor: pointer; font-weight: 600; line-height: 1.6; }
+.hang-dad-jokes details > p { margin: 0; padding: 0 4px 24px; line-height: 1.7; color: var(--ink-soft); }
+.hang-dad-jokes summary::marker { color: var(--moss); }
+.hang-dad-jokes summary:focus-visible, .hang-dad-gallery a:focus-visible { outline: 3px solid var(--moss); outline-offset: 4px; }
+.hang-dad-play > p { max-width: 640px; margin-block: 24px; line-height: 1.75; color: var(--ink-soft); }
+.hang-dad-play .hang-dad-closing { margin-top: 48px; font-size: 15px; }
+@media (max-width: 980px) {
+  .hang-dad-hero { gap: 32px; }
+  .hang-dad-story { gap: 40px; grid-template-columns: 0.6fr 1fr; }
+  .hang-dad-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .hang-dad-hero { grid-template-columns: 1fr; padding-block: 48px 60px; gap: 36px; }
+  .hang-dad-section { padding-block: 52px; }
+  .hang-dad-story, .hang-dad-jokes { grid-template-columns: 1fr; gap: 24px; }
+  .hang-dad-jokes { gap: 0; }
+  .hang-dad-steps { grid-template-columns: 1fr; gap: 14px; }
+  .hang-dad-steps li { display: flex; gap: 18px; align-items: baseline; }
+  .hang-dad-steps p { margin: 0; }
+  .hang-dad-gallery { grid-template-columns: minmax(0, 390px); gap: 32px; }
+}

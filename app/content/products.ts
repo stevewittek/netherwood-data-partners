@@ -1,6 +1,7 @@
 import { motionRelayRoutes } from "./motion-relay.ts";
 
 export type ProductStatus =
+  | "Free to Play"
   | "Beta"
   | "Active development"
   | "Development preview"

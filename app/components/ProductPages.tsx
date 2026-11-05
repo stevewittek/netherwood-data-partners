@@ -1,3 +1,4 @@
+import { hangDadProduct } from "../content/hang-in-there-dad";
 import ChatWidget from "../ChatWidget";
 import {
   featuredProducts,
@@ -229,6 +230,13 @@ export function ProductsIndex() {
           </p>
         </div>
         <ProductGrid />
+      </section>
+      <section className="products-list studio-wrap" id="fun-projects" aria-labelledby="fun-projects-title">
+        <div className="products-section-heading">
+          <div><p className="eyebrow">Just for fun</p><h2 id="fun-projects-title">Fun Projects</h2></div>
+          <p>Not everything we build has to solve a business problem. Sometimes it&apos;s just about making something fun.</p>
+        </div>
+        <div className="product-grid"><ProductCard product={hangDadProduct} /></div>
       </section>
       <section className="products-contact studio-wrap">
         <p>Developed by Netherwood Data Partners</p>

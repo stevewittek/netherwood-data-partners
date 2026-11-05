@@ -1,3 +1,4 @@
+import { gamePath, gameMetadata, gameBanner, hangDadProduct } from "../app/content/hang-in-there-dad.ts";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { readArticleSnapshot } from "../backend/src/article-snapshot.ts";
@@ -56,6 +57,7 @@ function removeMeta(html, attribute, value) {
 function metaPage({
   title,
   description,
+  keywords,
   canonical,
   type = "website",
   image = defaultImage,
@@ -73,6 +75,7 @@ function metaPage({
   );
   for (const name of [
     "description",
+    "keywords",
     "robots",
     "twitter:card",
     "twitter:title",
@@ -100,6 +103,7 @@ function metaPage({
       "",
     );
   const additions = [
+    keywords ? `<meta name="keywords" content="${escapeHtml(keywords)}" />` : "",
     `<meta name="description" content="${escapeHtml(description)}" />`,
     `<meta name="robots" content="${noindex ? "noindex, nofollow, noarchive" : "index, follow"}" />`,
     `<meta property="og:type" content="${escapeHtml(type)}" />`,
@@ -295,7 +299,7 @@ await page(
       url: siteUrl + "/products/",
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: products.map((product, index) => ({
+        itemListElement: [...products, hangDadProduct].map((product, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: product.name,
@@ -305,6 +309,12 @@ await page(
     },
   }),
 );
+
+await page(gamePath.slice(1, -1), metaPage({
+  ...gameMetadata,
+  canonical: siteUrl + gamePath,
+  image: siteUrl + gameBanner,
+}));
 
 for (const product of products) {
   const canonical = siteUrl + product.productUrl;
@@ -448,6 +458,7 @@ ${marketingPages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></ur
   <url><loc>${siteUrl}/motionrelay/setup/</loc></url>
 ${motionRelayDocuments.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
 ${productSitemapUrls}
+  <url><loc>${siteUrl}${gamePath}</loc></url>
 ${experiencePages.map((entry) => `  <url><loc>${siteUrl}/${entry.path}/</loc></url>`).join("\n")}
 ${articleUrls.join("\n")}
 </urlset>

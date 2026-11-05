@@ -1,3 +1,16 @@
+## Hang in There, Dad! showcase — November 5, 2026
+
+The owner requested and authorized publication of a focused game showcase.
+`/products/#fun-projects` reuses the existing product card, and
+`/games/hang-in-there-dad/` contains the approved personal story, instructions,
+authentic artwork and preview screenshots, native joke disclosures and the
+verified public Reddit post link. Static and Vinext routes, metadata and sitemap
+are integrated. Global theme, homepage, other products, navigation, backend and
+publication configuration are unchanged. Local builds/checks and four-width
+browser verification passed; the existing release workflow and public source
+readback must succeed before reporting live. See
+`HANG_IN_THERE_DAD_2026-11-05.md` for provenance, checks and limitations.
+
 ## Engineering experience release — November 3, 2026
 
 The owner approved the revised engineering stories and explicitly authorized

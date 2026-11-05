@@ -1,3 +1,4 @@
+import { HangInThereDadPage } from "./components/HangInThereDadPage";
 import { useEffect } from "react";
 import Home from "./page";
 import { EngineeringExperienceIndex, EngineeringStoryPage } from "./components/EngineeringExperience";
@@ -37,6 +38,7 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
   const storyMatch = pathname.match(/^\/case-studies\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
   if (storyMatch) return <EngineeringStoryPage slug={storyMatch[1]} />;
   if (pathname === "/services") return <ServicesIndex />;
+  if (pathname === "/games/hang-in-there-dad") return <HangInThereDadPage />;
   if (pathname === "/products") return <ProductsIndex />;
   if (pathname === "/privacy") return <PrivacyPage />;
   if (pathname === "/privacy/motion-relay") return <MotionRelayPrivacyPage />;
