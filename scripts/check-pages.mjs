@@ -1,7 +1,6 @@
 import { gamePath, gameMetadata, gameBanner, redditGameUrl } from "../app/content/hang-in-there-dad.ts";
 import assert from "node:assert/strict";
 import { products } from "../app/content/products.ts";
-import { engineeringStories, storyPath } from "../app/content/experience.ts";
 import { motionRelayDownloads, motionRelayRoutes } from "../app/content/motion-relay.ts";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve, sep } from "node:path";
@@ -35,8 +34,6 @@ const expected = [
   "/services/",
   "/products/",
   gamePath,
-  "/case-studies/",
-  ...engineeringStories.map(storyPath),
   "/privacy/",
   "/privacy/motion-relay/",
   "/privacy/motion-relay/delete/",
@@ -58,6 +55,12 @@ assert.deepEqual(
   locations.sort(),
   expected.map((path) => `${origin}${path}`).sort(),
 );
+await assert.rejects(stat(resolve(root, "case-studies")), { code: "ENOENT" });
+for (const bundle of await readdir(resolve(root, "assets"))) {
+  if (!bundle.endsWith(".js")) continue;
+  const source = await readFile(resolve(root, "assets", bundle), "utf8");
+  assert.doesNotMatch(source, /institutional-investment-platform|retail-register-cutover|business-processing-after-recovery|my daughter[’']s daily jokes/, `Retired stories absent from ${bundle}`);
+}
 const articleSitemap = await readFile(
   resolve(root, "articles-sitemap.xml"),
   "utf8",
@@ -79,6 +82,9 @@ const documents = new Map(
     ]),
   ),
 );
+for (const [route, html] of documents) {
+  assert.doesNotMatch(html, /href="[^"]*\/case-studies(?:[/"?#])|my daughter[’']s daily jokes/i, `Retired content absent from ${route}`);
+}
 function escape(value) {
   return value
     .replaceAll("&", "&amp;")
@@ -212,24 +218,6 @@ for (const route of expected) {
   }
   for (const [, value] of html.matchAll(/(?:src|href)="([^"]+)"/g))
     await checkUrl(value, route);
-  if (route.startsWith("/case-studies/")) {
-    const data = JSON.parse(/<script[^>]+id="experience-structured-data"[^>]*>(.*?)<\/script>/s.exec(html)?.[1]);
-    assert.equal(data["@graph"][1]["@type"], "BreadcrumbList");
-    assert.equal(data["@graph"][0].url, `${origin}${route}`);
-    assert.doesNotMatch(html, /MSCI|Burgiss|Caissa|Agadia|Modell|University of Maryland|Jewish Federation|Vermont Oxford|private-review|approval-draft|story-evidence/i, `Anonymized public experience ${route}`);
-    const story = engineeringStories.find((item) => storyPath(item) === route);
-    if (story) {
-      assert.equal(data["@graph"][0]["@type"], "Article");
-      assert.ok(html.includes(escape(story.ownership)), `Contribution ${route}`);
-      assert.ok(html.includes(escape(story.outcome)), `Outcome ${route}`);
-      for (const paragraph of story.paragraphs) assert.ok(html.includes(escape(paragraph)), `Complete approved narrative ${route}`);
-    } else {
-      assert.equal(data["@graph"][0]["@type"], "CollectionPage");
-      assert.ok(html.includes("2-hour report process") && html.includes("under 3 minutes"), "Corrected reporting result");
-      assert.ok(html.includes("150GB+ indexes"), "Uncapped index scale");
-      assert.ok(html.includes('id="modern-engineering"'), "Current independent development");
-    }
-  }
   if (route === gamePath) {
     assert.equal(title, escape(gameMetadata.title));
     assert.ok(html.includes(`property="og:image" content="${origin}${gameBanner}"`), "Actual game social banner");
