@@ -110,7 +110,9 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         <a className="services-back" href="/services/">
           ← All services
         </a>
-        <p className="eyebrow">{service.title}</p>
+        {service.title !== service.headline && (
+          <p className="eyebrow">{service.title}</p>
+        )}
         <h1 id="main-content" tabIndex={-1}>{service.headline}</h1>
         <p className="services-lede">{service.intro}</p>
         <div className="studio-actions">

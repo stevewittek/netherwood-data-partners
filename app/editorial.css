@@ -19,3 +19,9 @@
 .editorial-home .community-people-band .community-working li > span {
   color: #51715c;
 }
+
+@media (max-width: 390px) {
+  .editorial-home .community-hero h1 {
+    font-size: clamp(38px, 11.5vw, 46px);
+  }
+}

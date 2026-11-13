@@ -9,7 +9,7 @@ const services = [
   { title: "Business software troubleshooting", text: "Trace errors, slow screens and mismatched records across the applications you use every day.", href: "/services/software-systems-support/" },
   { id: "business-systems", title: "Software and data conversions", text: "Move records, history and relationships into the software you choose. Rehearse the import and reconcile what moved.", href: "/services/business-software-migration/" },
   { title: "Reporting and integrations", text: "Rebuild reports, automate recurring imports and keep records in sync during a rollout.", href: "/services/workflow-automation/" },
-  { id: "database-services", title: "SQL Server performance and recovery", text: "Investigate slow reports, database locking and failed transactions. Review backups and test recovery options.", href: "/services/database-engineering/" },
+  { id: "database-services", title: "SQL Server Performance Tuning & Support", text: "Investigate slow reports, database locking and failed transactions. Review backups and test recovery options.", href: "/services/database-engineering/" },
 ];
 
 export default function Home() {
@@ -19,16 +19,24 @@ export default function Home() {
       <section className="community-hero" id="top">
         <div className="community-hero-copy">
           <p className="eyebrow"><span className="location-dot" />Software and database consulting · New Jersey</p>
-          <h1 id="main-content" tabIndex={-1}>Business software<br /><span>giving you trouble?</span></h1>
-          <p className="community-lede">Get help fixing the software you use or moving to a new system.</p>
-          <p className="community-hero-body">Netherwood Data Partners helps local businesses and software teams investigate application errors, sales and accounting mismatches, and slow SQL Server workloads. If you’re replacing a system, we can also move your data and test the switch.</p>
+          <h1 id="main-content" tabIndex={-1}>Business software <span>troubleshooting</span></h1>
+          <p className="community-lede">Get help with application errors, SQL Server performance tuning, and software migrations.</p>
+          <p className="community-hero-body">Netherwood helps local businesses and software teams trace issues such as sales and accounting mismatches, slow reports, and failed imports.</p>
           <div className="studio-actions">
-            <a className="button button-primary" href="#contact">Tell us what’s happening <span aria-hidden="true">↗</span></a>
+            <a className="button button-primary" href="#contact">Ask about a software problem <span aria-hidden="true">↗</span></a>
             <a className="studio-text-link" href="/services/business-software-migration/">Planning a software move? <span aria-hidden="true">↗</span></a>
           </div>
         </div>
         <figure className="community-hero-visual editorial-company-visual" id="community">
-          <img src="/images/community/netherwood-station.webp" alt="Netherwood station in Plainfield, New Jersey" width={1536} height={1020} fetchPriority="high" />
+          <img
+            src="/images/community/netherwood-station.webp"
+            srcSet="/images/community/netherwood-station-512.webp 512w, /images/community/netherwood-station-768.webp 768w, /images/community/netherwood-station-1152.webp 1152w, /images/community/netherwood-station.webp 1536w"
+            sizes="(max-width: 700px) calc(100vw - 96px), 1536px"
+            alt="Netherwood station in Plainfield, New Jersey"
+            width={1536}
+            height={1020}
+            fetchPriority="high"
+          />
           <figcaption>Netherwood, New Jersey. <a href="https://commons.wikimedia.org/wiki/File:NETHERWOOD_STATION,_UNION_COUNTY,_NJ.jpg">Photo: Jerrye &amp; Roy Klotz MD</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Resized for display.</figcaption>
         </figure>
       </section>

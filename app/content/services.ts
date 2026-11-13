@@ -275,10 +275,10 @@ export const services: Service[] = [
   },
   {
     slug: "database-engineering",
-    title: "Database engineering",
-    description: "SQL Server performance investigations, recovery reviews, upgrades and reporting.",
-    headline: "Investigate SQL Server performance and reliability.",
-    intro: "I work with execution plans, waits, blocking and workload history to understand database problems. My work also covers recovery reviews, upgrades and reporting.",
+    title: "SQL Server Performance Tuning & Support",
+    description: "Get help with slow SQL Server queries, blocking, timeouts and database health checks. Netherwood investigates the cause and tests changes against your workload.",
+    headline: "SQL Server Performance Tuning & Support",
+    intro: "Get help finding the cause of slow queries, blocking and application timeouts in SQL Server or Azure SQL. A database health check can also review performance, backups and recovery readiness.",
     situation: "When a database needs closer investigation",
     situations: [
       "Queries or reports are slow, and the cause is unclear.",
