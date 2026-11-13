@@ -2,7 +2,7 @@ export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
   title: "Netherwood Data Partners",
   description:
-    "Software conversions, legacy application modernization and SQL Server troubleshooting for businesses. Move your data, reports and workflows to the system you choose.",
+    "Business software troubleshooting, SQL Server performance tuning and software conversions. Get help with application errors, sales and accounting mismatches, and data migrations.",
 };
 export const aboutMetadata = {
   title: "About Steven Wittek | Netherwood Data Partners",

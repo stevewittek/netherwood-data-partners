@@ -228,11 +228,11 @@ export default function ContactForm() {
           <label htmlFor="contact-service">Inquiry topic</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
+            <option value="Software or systems support">
+              Business software troubleshooting
+            </option>
             <option value="Data migration or software change">
               Software conversion or data migration
-            </option>
-            <option value="Software or systems support">
-              Software or systems support
             </option>
             <option value="Legacy systems and migration assessment">
               Legacy systems and migration assessment
@@ -271,8 +271,8 @@ export default function ContactForm() {
           rows={6}
         />
         <p className="contact-field-hint" id="contact-message-hint">
-          A short description is enough. Include the current software, what you
-          need help with and any target date. Leave out passwords and private records.
+          Include the software name, what happens or needs to change, and any error
+          message or target date. Leave out passwords and private records.
         </p>
       </div>
     </InquiryForm>

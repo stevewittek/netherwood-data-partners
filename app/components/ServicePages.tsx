@@ -65,8 +65,8 @@ export function ServicesIndex() {
     <main className="services-page community-services-index">
       <SiteHeader currentPage="services" />
       <section className="studio-wrap services-hero">
-        <p className="eyebrow">Consulting</p><h1 id="main-content" tabIndex={-1}>Software conversions<br />and SQL Server help.</h1>
-        <p className="services-lede">Get help moving to new software, rebuilding reports and integrations, or troubleshooting an application you already use. Netherwood can take on the database and conversion work alongside your staff or software vendor.</p>
+        <p className="eyebrow">Consulting</p><h1 id="main-content" tabIndex={-1}>Software troubleshooting<br />and conversions.</h1>
+        <p className="services-lede">Get help investigating a business application, tuning SQL Server or switching to new software. Netherwood can work alongside your staff, IT team or software provider.</p>
         <div className="studio-actions"><a className="button button-primary" href="/#contact">Discuss a project <span aria-hidden="true">↗</span></a><a className="studio-text-link" href="/services/business-software-migration/">Explore software conversions <span aria-hidden="true">↗</span></a></div>
         <p className="services-location">New Jersey · Meetings by appointment</p>
       </section>
