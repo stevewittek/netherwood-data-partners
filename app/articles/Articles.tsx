@@ -27,6 +27,10 @@ export type PublicArticle = {
 type Snapshot = { generatedAt: string | null; articles: PublicArticle[] };
 const staticSnapshot = snapshot as Snapshot;
 const indexDescription = "Notes on SQL Server performance, recovery and data migrations.";
+const sqlTuningArticles = new Set([
+  "why-sql-server-databases-slow-down-over-time",
+  "query-store-finding-the-queries-that-are-breaking-your-database",
+]);
 
 function isArticle(value: unknown): value is PublicArticle {
   if (!value || typeof value !== "object") return false;
@@ -339,7 +343,11 @@ export function ArticlePage({ slug }: { slug: string }) {
       ) : null}
       <section className="article-cta">
         <div><p className="eyebrow">Working through a similar problem?</p><h2>Discuss your database question.</h2></div>
-        <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">Start a conversation</a>
+        {sqlTuningArticles.has(article.slug) ? (
+          <a className="button button-light" href="/services/database-engineering/">Explore SQL Server tuning and support</a>
+        ) : (
+          <a className="button button-light" href="mailto:contact@netherwooddatapartners.com">Start a conversation</a>
+        )}
       </section>
       <SiteFooter />
       <ChatWidget />
