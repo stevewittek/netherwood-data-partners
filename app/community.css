@@ -260,7 +260,8 @@
   color: #536258;
   line-height: 1.8;
 }
-.community-working ol {
+.community-working ol,
+.community-troubleshooting-list {
   list-style: none;
   padding: 0;
   margin: 0;

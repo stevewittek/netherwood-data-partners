@@ -35,7 +35,7 @@ export default function AboutPage() {
           <h1 id="main-content" tabIndex={-1}>Steven Wittek.</h1>
           <p className="about-role">SQL Server engineer.<br />Database developer.<br />Software consultant.</p>
           <div className="long-form about-intro">
-            <p>Netherwood Data Partners is an independent New Jersey consultancy for software conversions, reporting and SQL Server troubleshooting.</p>
+            <p>Netherwood Data Partners is an independent New Jersey consultancy for business software troubleshooting, SQL Server performance and software conversions.</p>
             <p>You work directly with me to define the job, coordinate with your software provider and check the result with the people who use the system.</p>
           </div>
           <a className="button button-primary" href="/#contact">Discuss your project <span aria-hidden="true">↗</span></a>

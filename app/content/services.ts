@@ -17,19 +17,20 @@ export type Service = {
 export const servicesMetadata = {
   title: "Database & Software Consulting | Netherwood Data Partners",
   description:
-    "Get help with software conversions, data migration, legacy applications, reporting and SQL Server performance from Netherwood Data Partners.",
+    "Get help troubleshooting business applications, tuning SQL Server, fixing reporting and integration issues, or moving to new software.",
 };
 
 export const services: Service[] = [
   {
     slug: "software-systems-support",
-    title: "Software & systems support",
-    description: "Application troubleshooting, reporting issues and technical evidence for your software provider.",
-    headline: "Investigate the application problem.",
-    intro: "I help trace application errors, inconsistent reports and broken data flows. We agree what I can address and what needs your software provider.",
+    title: "Business software troubleshooting",
+    description: "Investigate application errors, point-of-sale and accounting mismatches, broken imports and recurring software problems.",
+    headline: "Find out why your business software is failing.",
+    intro: "I trace problems across the application, its reports, and the systems it exchanges data with. That can mean a local business with a register and accounting mismatch or a software team with an error it can’t reproduce reliably.",
     situation: "When an application interrupts the work",
     situations: [
-      "Staff keep working around the same application problem.",
+      "A register records the sales, but the daily totals don’t match accounting.",
+      "Staff see recurring errors, slow screens or transactions that never finish.",
       "Your software vendor needs technical details nobody has time to gather.",
       "A report or integration is producing inconsistent information.",
       "You need help after a software change, without hiring a full-time specialist."
@@ -37,11 +38,11 @@ export const services: Service[] = [
     approach: [
       {
         title: "Reproduce the issue",
-        detail: "Gather an example and inspect the application, database and data flow."
+        detail: "Work through the failing steps and review available logs, settings, exports or database activity to narrow down the cause."
       },
       {
         title: "Agree the change",
-        detail: "Confirm scope, access and recovery steps before making changes."
+        detail: "Confirm what can be changed safely. Make the agreed fix where access permits, or give your provider the steps and evidence they need to investigate."
       },
       {
         title: "Check and document",
@@ -53,8 +54,8 @@ export const services: Service[] = [
       "Agreed application or database fixes",
       "Technical evidence for a vendor support case"
     ],
-    technical: "SQL Server, reporting, imports and integrations are the foundation of this work.",
-    boundary: "Netherwood is an independent consultancy, not the software vendor. Product licensing, proprietary code changes and vendor-only fixes remain with the provider. Support hours, access and response expectations are agreed for each engagement; no 24/7 coverage is implied.",
+    technical: "SQL Server is a specialty. For hosted software, the investigation can start with the settings, logs, exports and integration records your team can access.",
+    boundary: "The available fixes depend on your access, the software’s features and your vendor’s responsibilities. We agree on scope and availability before work starts.",
     questions: [
       {
         question: "Can we start with one issue?",
@@ -62,7 +63,7 @@ export const services: Service[] = [
       },
       {
         question: "Can you work with our software company?",
-        answer: "Yes. Netherwood can help gather technical evidence, explain data and system dependencies, and coordinate agreed work with your existing provider. That does not imply a formal vendor partnership."
+        answer: "Yes. I can document how to reproduce the problem, explain which systems are involved and coordinate the agreed work with your provider."
       }
     ],
     related: [

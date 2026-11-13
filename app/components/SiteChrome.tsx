@@ -69,7 +69,7 @@ export function SiteFooter() {
       <div className="studio-footer-top">
         <div>
           <Brand />
-          <p>Software conversions, reporting and SQL Server consulting.</p>
+          <p>Business software troubleshooting, SQL Server tuning and conversions.</p>
         </div>
         <div className="studio-footer-links">
           <a href="/products/">Products</a>
