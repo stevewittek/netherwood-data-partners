@@ -1,6 +1,5 @@
 import { getService, services, type Service } from "../content/services";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
-import { RelatedEngineeringExperience } from "./EngineeringExperience";
 import "../services.css";
 
 function ServiceContact({ assessment = false }: { assessment?: boolean }) {
@@ -16,7 +15,7 @@ function ServiceContact({ assessment = false }: { assessment?: boolean }) {
             Discuss a data or software problem.
           </h2>
           <p>
-            Describe the issue, the system and the result you need.
+            Tell us which system you use, what needs to change and when.
           </p>
         </div>
         <div className="services-contact-actions">
@@ -28,7 +27,7 @@ function ServiceContact({ assessment = false }: { assessment?: boolean }) {
           >
             {assessment
               ? "Request a systems assessment"
-              : "Send an inquiry"}
+              : "Discuss your project"}
             <span aria-hidden="true">↗</span>
           </a>
           <a href="mailto:contact@netherwooddatapartners.com">
@@ -66,18 +65,18 @@ export function ServicesIndex() {
     <main className="services-page community-services-index">
       <SiteHeader currentPage="services" />
       <section className="studio-wrap services-hero">
-        <p className="eyebrow">Consulting</p><h1 id="main-content" tabIndex={-1}>Database and<br />software expertise.</h1>
-        <p className="services-lede">Netherwood helps businesses investigate SQL Server problems, move data and connect applications. Work is scoped around a specific problem or change.</p>
-        <div className="studio-actions"><a className="button button-primary" href="/#contact">Discuss a project <span aria-hidden="true">↗</span></a><a className="studio-text-link" href="/products/">Explore products <span aria-hidden="true">↗</span></a></div>
+        <p className="eyebrow">Consulting</p><h1 id="main-content" tabIndex={-1}>Software conversions<br />and SQL Server help.</h1>
+        <p className="services-lede">Get help moving to new software, rebuilding reports and integrations, or troubleshooting an application you already use. Netherwood can take on the database and conversion work alongside your staff or software vendor.</p>
+        <div className="studio-actions"><a className="button button-primary" href="/#contact">Discuss a project <span aria-hidden="true">↗</span></a><a className="studio-text-link" href="/services/business-software-migration/">Explore software conversions <span aria-hidden="true">↗</span></a></div>
         <p className="services-location">New Jersey · Meetings by appointment</p>
       </section>
       <section className="studio-wrap services-section" aria-labelledby="services-list-heading">
-        <div className="services-section-heading"><div><p className="eyebrow">Areas of work</p><h2 id="services-list-heading">Databases, migrations<br />and integrations.</h2></div><p>Choose the area closest to your question. Scope, fees and availability are agreed before work begins.</p></div>
+        <div className="services-section-heading"><div><p className="eyebrow">Areas of work</p><h2 id="services-list-heading">Find help for<br />your project.</h2></div><p>Choose the area closest to your question. Scope, fees and availability are agreed before work begins.</p></div>
         <div className="services-list">{services.map((service,index)=><ServiceLink key={service.slug} service={service} index={index} />)}</div>
       </section>
-      <section className="services-band"><div className="studio-wrap services-split"><div><p className="eyebrow">The process</p><h2>Investigate. Agree. Check.</h2></div><div className="services-prose"><p>Each project starts with the evidence, an agreed scope and a way to check the result. You receive findings and handover notes for the agreed scope.</p><p>Your existing software provider remains involved where its access or product knowledge is needed.</p><a className="studio-text-link" href="/about/">About Netherwood <span aria-hidden="true">↗</span></a></div></div></section>
+      <section className="services-band"><div className="studio-wrap services-split"><div><p className="eyebrow">The process</p><h2>Investigate. Agree. Check.</h2></div><div className="services-prose"><p>For a conversion, we agree which records and workflows need to carry over, who handles each import step, and how to check the results. For a production problem, we agree what to investigate and how to verify the fix.</p><p>Your existing software provider remains involved where its access or product knowledge is needed.</p><a className="studio-text-link" href="/about/">About Netherwood <span aria-hidden="true">↗</span></a></div></div></section>
       <section className="studio-wrap services-section services-split"><div><p className="eyebrow">Planning a move</p><h2>Check what needs preparation.</h2></div><div className="services-prose"><p>The migration self-check highlights questions to investigate. Results are available without contact details.</p><a className="studio-text-link" href="/migration-readiness/">Check migration readiness <span aria-hidden="true">↗</span></a><br /><a className="studio-text-link" href="/migration-intake/">Describe a migration</a></div></section>
-      <RelatedEngineeringExperience /><ServiceContact /><SiteFooter />
+      <ServiceContact /><SiteFooter />
     </main>
   );
 }
@@ -225,7 +224,6 @@ export function ServiceDetailPage({ slug }: { slug: string }) {
         ))}
       </section>
 
-      <RelatedEngineeringExperience serviceSlug={service.slug} />
       <section
         className="studio-wrap services-section"
         aria-labelledby="services-related-heading"

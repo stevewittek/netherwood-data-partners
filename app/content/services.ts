@@ -17,7 +17,7 @@ export type Service = {
 export const servicesMetadata = {
   title: "Database & Software Consulting | Netherwood Data Partners",
   description:
-    "Focused SQL Server, data migration, integration and application work from Netherwood Data Partners.",
+    "Get help with software conversions, data migration, legacy applications, reporting and SQL Server performance from Netherwood Data Partners.",
 };
 
 export const services: Service[] = [
@@ -124,13 +124,13 @@ export const services: Service[] = [
   {
     slug: "legacy-application-modernization",
     title: "Legacy application modernization",
-    description: "Review older Access, SQL Server and Windows applications before repairing, replacing or retiring them.",
+    description: "Review older Access, FileMaker, SQL Server and Windows applications before repairing, replacing or retiring them.",
     headline: "Decide what to keep, repair or replace.",
     intro: "I investigate older applications and the data, reports and business rules they contain. That gives you a basis for deciding their next stage.",
     situation: "When an essential application is hard to maintain",
     situations: [
       "Your Microsoft Access database became mission-critical years ago, and its original author has retired.",
-      "An old Windows application or custom SQL Server system has little documentation and limited support.",
+      "An older FileMaker, Windows or SQL Server application has little documentation and limited support.",
       "A spreadsheet now controls jobs, pricing, inventory or reporting for the whole business.",
       "The vendor is discontinuing your software, or you cannot confidently retire its server."
     ],
@@ -173,16 +173,16 @@ export const services: Service[] = [
   },
   {
     slug: "business-software-migration",
-    title: "Business software migration",
+    title: "Business software conversions",
     description: "Prepare records for new business software and coordinate import responsibilities with your vendor.",
-    headline: "Connect your existing data to your chosen software.",
-    intro: "If you have selected a new business platform, I can help prepare its imports and work through data questions with your provider.",
+    headline: "Move to new software with your data and workflows.",
+    intro: "If you have chosen a new platform, I can work with your staff and provider to extract and map records, rehearse imports, and check that key reports and workflows still work.",
     situation: "When the new platform is chosen but the data is not ready",
     situations: [
       "Your new provider supplied an import template, but nobody owns the extraction or cleanup.",
       "The standard migration includes basic contacts, while you also need history, documents and relationships.",
       "You need someone who can speak with both your staff and the vendor’s technical team.",
-      "The replacement is selected, but the production move, downtime and final checks remain unplanned."
+      "The replacement is selected, but you still need a plan for the final import, records created during the switch and what to do if the import fails."
     ],
     approach: [
       {
@@ -195,15 +195,16 @@ export const services: Service[] = [
       },
       {
         title: "Check the working result",
-        detail: "Reconcile agreed records and totals, test everyday tasks and document cutover responsibilities."
+        detail: "Reconcile records and totals, test everyday tasks with your staff, and agree who handles final imports, any data entered during the switch and fallback."
       }
     ],
     deliverables: [
       "Customer/vendor/Netherwood responsibility map",
       "Source-to-destination field and relationship mappings",
-      "Cleaned import files or an agreed API migration process"
+      "Cleaned import files or an agreed API migration process",
+      "Reconciliation checks and a cutover plan"
     ],
-    technical: "The work connects your source data to the destination’s supported imports or APIs.",
+    technical: "The work connects your source data to the destination’s supported imports or APIs. We check relationships and business totals as well as record counts.",
     boundary: "Your platform. Your data. Your choice. Netherwood provides professional migration services; you choose and license the destination separately. Vendor import capabilities and the scope of their own implementation service are confirmed for each project.",
     questions: [
       {
@@ -319,15 +320,15 @@ export const services: Service[] = [
   },
   {
     slug: "workflow-automation",
-    title: "Workflow automation",
-    description: "Connect applications, imports and reports, with error handling and human review where needed.",
-    headline: "Connect the systems behind a repeated task.",
-    intro: "I help replace repeated data entry, manual exports and fragile reporting steps with a defined integration or workflow.",
-    situation: "When people keep moving the same information",
+    title: "Reporting and integrations",
+    description: "Rebuild reports, connect applications and automate recurring imports or exports.",
+    headline: "Rebuild reports and keep systems in sync.",
+    intro: "I rebuild reports and the SQL behind them, and connect the systems your team uses. That can include recreating a legacy report, replacing manual exports or synchronizing records during a software rollout.",
+    situation: "When a report or data handoff needs to change",
     situations: [
       "A customer or job must be entered into two different systems.",
       "Someone downloads, cleans and uploads the same report every week.",
-      "Documents arrive in a shared folder and need to be matched to business records.",
+      "The replacement system lacks reports staff rely on for billing, inventory or month-end close.",
       "Your new cloud application needs to exchange information with an existing database or reporting process."
     ],
     approach: [
@@ -341,7 +342,7 @@ export const services: Service[] = [
       },
       {
         title: "Test the exceptions",
-        detail: "Check retries, errors and review steps, then document ownership and recovery."
+        detail: "Compare report totals and filters with the old output, or test retries and exceptions for an integration. Document who handles problems after handoff."
       }
     ],
     deliverables: [

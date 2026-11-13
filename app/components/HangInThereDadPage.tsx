@@ -1,5 +1,5 @@
 import { SiteFooter, SiteHeader } from "./SiteChrome";
-import { favoriteJokes, gameSteps, gameStory, hangDadProduct, redditGameUrl } from "../content/hang-in-there-dad";
+import { favoriteJokes, gameSteps, hangDadProduct, redditGameUrl } from "../content/hang-in-there-dad";
 import "../products.css";
 import "../hang-in-there-dad.css";
 
@@ -19,10 +19,6 @@ export function HangInThereDadPage() {
           <img src={hangDadProduct.image!.src} alt={hangDadProduct.image!.alt} width="870" height="520" fetchPriority="high" />
           <figcaption>Dad’s rescue mission. Oreo’s afternoon entertainment.</figcaption>
         </figure>
-      </section>
-      <section className="hang-dad-section hang-dad-story studio-wrap" aria-labelledby="game-story-title">
-        <div><p className="eyebrow">The story behind the game</p><h2 id="game-story-title">How It Started</h2></div>
-        <div className="product-prose">{gameStory.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
       </section>
       <section className="hang-dad-section studio-wrap" aria-labelledby="how-to-play-title">
         <p className="eyebrow">One letter at a time</p><h2 id="how-to-play-title">How to Play</h2>
@@ -47,7 +43,6 @@ export function HangInThereDadPage() {
         <h2 id="game-play-title">Dad could use a hand.</h2>
         <p>Hang in There, Dad! is free to play directly on Reddit. No separate app to install.</p>
         <a className="button button-primary" href={redditGameUrl}>Play Free on Reddit <span aria-hidden="true">↗</span></a>
-        <p className="hang-dad-closing">Built for laughs, inspired by our school-morning conversations, and probably responsible for a few more eye rolls than I&apos;d like to admit.</p>
       </section>
       <SiteFooter />
     </main>

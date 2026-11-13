@@ -228,11 +228,11 @@ export default function ContactForm() {
           <label htmlFor="contact-service">Inquiry topic</label>
           <select defaultValue="" id="contact-service" name="service">
             <option value="">Choose one (optional)</option>
+            <option value="Data migration or software change">
+              Software conversion or data migration
+            </option>
             <option value="Software or systems support">
               Software or systems support
-            </option>
-            <option value="Data migration or software change">
-              Data migration or software change
             </option>
             <option value="Legacy systems and migration assessment">
               Legacy systems and migration assessment
@@ -247,10 +247,10 @@ export default function ContactForm() {
               Database engineering or SQL Server support
             </option>
             <option value="Workflow automation or integrations">
-              Workflow automation or integrations
+              Reporting, integrations or automation
             </option>
             <option value="Practical AI or reporting">
-              Practical AI or reporting
+              Practical AI
             </option>
             <option value="Ongoing support">Ongoing support</option>
             <option value="Something else">Something else</option>
@@ -271,8 +271,8 @@ export default function ContactForm() {
           rows={6}
         />
         <p className="contact-field-hint" id="contact-message-hint">
-          Describe your app question or business project. Please leave out
-          passwords and private customer, patient or activity records.
+          A short description is enough. Include the current software, what you
+          need help with and any target date. Leave out passwords and private records.
         </p>
       </div>
     </InquiryForm>

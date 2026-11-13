@@ -19,11 +19,10 @@ export const metadata: Metadata = {
   },
 };
 
-const experience = [
-  { number: "01", title: "Database performance", body: "I have developed and tuned SQL for financial reporting and analytics. I investigate execution plans, workload patterns, waits and blocking to understand what changed before choosing a fix.", tools: "SQL Server · T-SQL · Query Store" },
-  { number: "02", title: "Recovery and reliability", body: "My experience includes availability groups, geographic replicas, backups, encryption and restore testing. Recovery planning starts with how much downtime and data loss the business can accept.", tools: "Always On · Backup & restore · Recovery planning" },
-  { number: "03", title: "Controlled changes", body: "I have used Git, Azure DevOps and database projects to make changes reviewable and traceable. That includes capturing existing database objects to establish a dependable source baseline.", tools: "Git · Azure DevOps · DACPAC" },
-  { number: "04", title: "Tools and metrics", body: "I build reporting and investigation tools to make systems easier to understand. QueryVault preserves Query Store history for longer-term performance analysis.", tools: "QueryVault · Monitoring · Extended Events" },
+const capabilities = [
+  { number: "01", title: "Software conversions", body: "Extract and map legacy records, resolve exceptions with your staff, and prepare trial imports with your vendor.", tools: "Access · FileMaker · SQL Server" },
+  { number: "02", title: "Reporting and integrations", body: "Rebuild reports and the SQL behind them, reconcile key totals and automate recurring transfers between systems.", tools: "T-SQL · SSRS · Data imports and exports" },
+  { number: "03", title: "SQL Server performance and recovery", body: "Trace slow reports and blocked transactions, validate proposed fixes, and review whether backups can support your recovery plan.", tools: "Query Store · Execution plans · Restore testing" },
 ];
 
 export default function AboutPage() {
@@ -34,12 +33,12 @@ export default function AboutPage() {
         <div>
           <p className="eyebrow">The person behind Netherwood</p>
           <h1 id="main-content" tabIndex={-1}>Steven Wittek.</h1>
-          <p className="about-role">Data professional.<br />Independent developer.<br />Runner.</p>
+          <p className="about-role">SQL Server engineer.<br />Database developer.<br />Software consultant.</p>
           <div className="long-form about-intro">
-            <p>I build apps, work with databases and connect information between systems. SQL Server and database engineering are the foundation of my work.</p>
-            <p>Netherwood Data Partners is my independent data and software business. My focus is building products that make data useful, from database investigation tools to a connection for live running readings.</p>
+            <p>Netherwood Data Partners is an independent New Jersey consultancy for software conversions, reporting and SQL Server troubleshooting.</p>
+            <p>You work directly with me to define the job, coordinate with your software provider and check the result with the people who use the system.</p>
           </div>
-          <a className="button button-primary" href="/products/">Explore my software <span aria-hidden="true">↗</span></a>
+          <a className="button button-primary" href="/#contact">Discuss your project <span aria-hidden="true">↗</span></a>
         </div>
         <figure className="community-about-visual">
           <img src="/images/community/netherwood-station.webp" alt="Netherwood station in Plainfield, New Jersey" width={1536} height={1020} fetchPriority="high" />
@@ -47,39 +46,16 @@ export default function AboutPage() {
         </figure>
       </section>
       <div className="founder-facts"><div className="studio-wrap"><span><strong>Since 2009</strong>Technology experience</span><span><strong>New Jersey</strong>Independently owned</span><span><strong>Direct contact</strong>Work with the developer</span></div></div>
-      <section className="about-section studio-wrap">
-        <div><p className="eyebrow">Why I build</p><h2>Follow the data.<br />Understand the system.</h2></div>
-        <div className="long-form">
-          <p>I’m interested in how systems behave: where information comes from, how it moves, and what the measurements tell us. That curiosity runs through my database work and app development.</p>
-          <p>QueryVault began with a database problem: keeping query history available for later investigation. Motion Relay began while I was using ChatGPT during a run and wanted the conversation to include readings from my Garmin.</p>
-          <p>The questions are different, but the work has something in common: connect the right information, make its limits clear, and check what actually improves.</p>
-          <a className="studio-text-link" href="/products/garmin-ai-connector/">The Motion story <span aria-hidden="true">↗</span></a>
-        </div>
-      </section>
       <section className="founder-experience" id="professional-experience"><div className="studio-wrap">
-        <div className="founder-experience-heading"><p className="eyebrow">Professional background</p><h2>Experience behind the software.</h2><p>Examples from my engineering work and personal projects. These are not a list of Netherwood clients.</p></div>
-        <div className="founder-experience-list">{experience.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><div><p>{item.body}</p><p className="founder-tools">{item.tools}</p></div></article>)}</div>
-        <div className="studio-actions"><a className="studio-text-link" href="/case-studies/">Explore my engineering experience and success stories <span aria-hidden="true">↗</span></a></div>
+        <div className="founder-experience-heading"><p className="eyebrow">Capabilities</p><h2>What Netherwood can do for you.</h2></div>
+        <div className="founder-experience-list">{capabilities.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><div><p>{item.body}</p><p className="founder-tools">{item.tools}</p></div></article>)}</div>
+        <div className="studio-actions"><a className="studio-text-link" href="/services/">Explore consulting services <span aria-hidden="true">↗</span></a></div>
       </div></section>
-      <section className="about-section studio-wrap" id="engineering-portfolio">
-        <div>
-          <p className="eyebrow">Selected engineering work</p>
-          <h2>Built to solve<br />real database problems.</h2>
-        </div>
-        <div className="long-form">
-          <p><strong>QueryVault</strong> began with a straightforward problem: a load-test database could be refreshed, or Query Store could clean up older history, before the team finished benchmarking its work. QueryVault captures selected, completed Query Store periods in a separate SQL Server archive so baseline and follow-up workloads can be compared long after the original source period disappears.</p>
-          <p>That makes it possible to investigate whether a quarter of tuning, indexing, and application changes improved CPU, logical reads, plans, and waits, provided the compared test windows represent similar workloads.</p>
-          <a className="studio-text-link" href="https://github.com/stevewittek/Databases">Explore QueryVault, Grafana screenshots and validation evidence <span aria-hidden="true">↗</span></a>
-          <p><strong>PageMover</strong> is a local SQL Server index and heap analysis utility with a familiar visual page map. The developer preview emphasizes read-only diagnosis, explicit maintenance approval, and measured results. Its source remains private pending publication review.</p>
-          <a className="studio-text-link" href="/products/sql-server-index-maintenance-visualizer/">See the PageMover product overview <span aria-hidden="true">↗</span></a>
-          <p><strong>More engineering work:</strong> SQL Server observability, automation, recovery and database tooling. My public source is on <a href="https://github.com/stevewittek">GitHub</a>; my professional background is on <a href="https://www.linkedin.com/in/steven-wittek-64956965">LinkedIn</a>.</p>
-        </div>
-      </section>
       <section className="about-section studio-wrap">
         <div><p className="eyebrow">Consulting</p><h2>Focused work.<br />Direct involvement.</h2></div>
-        <div className="long-form"><p>I also work with businesses on database performance, migrations and integrations. We agree on scope, fees and availability before starting, then define how to check the result.</p><p>You work directly with me. I explain findings, document changes and discuss vendor responsibilities or additional expertise when needed.</p><a className="studio-text-link" href="/services/">View consulting services <span aria-hidden="true">↗</span></a></div>
+        <div className="long-form"><p>A project can start with a vendor’s import template, an aging database or a report that suddenly takes too long. We agree on scope, fees and availability, and define how we’ll check the result.</p><p>You work directly with me. I explain findings, document changes and discuss vendor responsibilities or additional expertise when needed.</p><a className="studio-text-link" href="/services/">View consulting services <span aria-hidden="true">↗</span></a></div>
       </section>
-      <section className="founder-contact"><div className="studio-wrap"><div><p className="eyebrow">Contact</p><h2>Questions about an app<br />or a data project?</h2></div><div><p>Product feedback, testing inquiries and local business questions are welcome.</p><a className="button button-light" href="/#contact">Contact Steven <span aria-hidden="true">↗</span></a><p className="founder-appointment">New Jersey · Meetings by appointment</p></div></div></section>
+      <section className="founder-contact"><div className="studio-wrap"><div><p className="eyebrow">Contact</p><h2>Have a project<br />in mind?</h2></div><div><p>Tell me what you’re replacing, fixing or trying to connect.</p><a className="button button-light" href="/#contact">Contact Steven <span aria-hidden="true">↗</span></a><p className="founder-appointment">New Jersey · Meetings by appointment</p></div></div></section>
       <SiteFooter /><ChatWidget />
     </main>
   );

@@ -2,12 +2,12 @@ export const siteUrl = "https://netherwooddatapartners.com";
 export const homeMetadata = {
   title: "Netherwood Data Partners",
   description:
-    "Apps, database tools and connected systems from Netherwood Data Partners. Explore software products and services for data integration, SQL Server and business applications.",
+    "Software conversions, legacy application modernization and SQL Server troubleshooting for businesses. Move your data, reports and workflows to the system you choose.",
 };
 export const aboutMetadata = {
   title: "About Steven Wittek | Netherwood Data Partners",
   description:
-    "Meet Steven Wittek, the independent developer and data professional behind Netherwood’s apps, database tools and consulting work.",
+    "Meet Steven Wittek, the SQL Server engineer and independent developer behind Netherwood’s software conversions, reporting and production troubleshooting.",
 };
 export const intakeMetadata = {
   title: "Discuss a Data Migration | Netherwood Data Partners",

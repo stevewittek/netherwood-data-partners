@@ -3,7 +3,6 @@ import { CampaignAttributionCapture } from "./CampaignAttributionCapture";
 type SiteHeaderProps = {
   skipTarget?: string;
   currentPage?:
-    | "experience"
     | "home"
     | "about"
     | "articles"
@@ -34,22 +33,16 @@ export function SiteHeader({ currentPage = "home", skipTarget = "main-content" }
       <Brand />
       <nav aria-label="Primary navigation">
         <a
-          href="/products/"
-          aria-current={currentPage === "products" ? "page" : undefined}
-        >
-          Products
-        </a>
-        <a
           href="/services/"
           aria-current={currentPage === "services" ? "page" : undefined}
         >
           Services
         </a>
         <a
-          href="/case-studies/"
-          aria-current={currentPage === "experience" ? "page" : undefined}
+          href="/products/"
+          aria-current={currentPage === "products" ? "page" : undefined}
         >
-          Experience
+          Products
         </a>
         <a
           href="/articles/"
@@ -76,12 +69,11 @@ export function SiteFooter() {
       <div className="studio-footer-top">
         <div>
           <Brand />
-          <p>Independent software and data engineering.</p>
+          <p>Software conversions, reporting and SQL Server consulting.</p>
         </div>
         <div className="studio-footer-links">
           <a href="/products/">Products</a>
           <a href="/services/">Services</a>
-          <a href="/case-studies/">Engineering experience</a>
           <a href="/articles/">Articles</a>
           <a href="/about/">About</a>
           <a href="/#contact">Contact</a>
