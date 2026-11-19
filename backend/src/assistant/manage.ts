@@ -20,14 +20,14 @@ if (command === "setup") {
       title: "About Netherwood Data Partners",
       approved: true,
       url: "/about/",
-      text: "Netherwood Data Partners LLC is Steven Wittek’s independent software and data engineering business. SQL Server is a specialty. Services include database engineering, migration planning and execution, business software troubleshooting, software conversions, reporting, integrations and workflow automation. Steven is the point of contact. Scope, access, availability and fees must be agreed before work begins. Do not offer guarantees, unverified prices or current availability. The business is not hiring staff or seeking vendors, recruiters or additional team members. Genuine project inquiries are welcome through the website contact form. This is an AI assistant, not Steven speaking live.",
+      text: "Netherwood Data Partners LLC is an independent software and data engineering business. SQL Server is a specialty. Services include database engineering, migration planning and execution, business software troubleshooting, software conversions, reporting, integrations and workflow automation. Contact Netherwood Data Partners through the website. Scope, access, availability and fees must be agreed before work begins. Do not offer guarantees, unverified prices or current availability. The business is not hiring staff or seeking vendors, recruiters or additional team members. Genuine project inquiries are welcome through the website contact form. This is an AI assistant, not a person speaking live.",
     },
     {
       id: "steven-wittek",
-      title: "Steven Wittek",
+      title: "Netherwood Data Partners capabilities",
       approved: true,
       url: "/about/",
-      text: "Steven Wittek is a SQL Server engineer, database developer and software consultant based in New Jersey, with technology experience since 2009. Visitors work directly with Steven. Capabilities include Access, FileMaker and SQL Server conversions, extracting and mapping legacy records, trial imports, T-SQL, SSRS, Query Store, execution plan analysis and restore testing. He coordinates with software providers and checks results with the people who use the system. Meetings are by appointment. No staffing, employer history or customer outcomes are asserted by this source.",
+      text: "Netherwood Data Partners provides SQL Server engineering, database development and software consulting from New Jersey. The documented engineering experience behind the business dates to 2009. Visitors work directly with the engineer. Capabilities include Access, FileMaker and SQL Server conversions, extracting and mapping legacy records, trial imports, T-SQL, SSRS, Query Store, execution plan analysis and restore testing. The business coordinates with software providers and checks results with the people who use the system. Meetings are by appointment. No staffing, employer history or customer outcomes are asserted by this source.",
     },
     ...services.map((s) => ({
       id: s.slug,

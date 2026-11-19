@@ -832,3 +832,10 @@ Owner authorized launch, inquiry email notifications and removal of the thick te
 The Pages workflow reads `NDP_PUBLIC_CHAT_ENABLED` (default false) and `NDP_ASSISTANT_API_URL` (HTTPS origin). Config changes trigger a release even without a new content/source commit. The generated manifest records the matching public configuration. Keep the flag false until the stable gateway and public-origin checks pass. Rollback: set the flag false and dispatch Publish website; stop the independent assistant container to halt paid calls. Do not reset the spending ledger.
 
 Validation: lint, publication tests, 95 backend tests, strict backend TypeScript, Vinext build and the 38-route Pages checks passed. Desktop, 768px and 390px focused-field checks and Escape focus return passed. The dedicated Cloudflare route is approved and active at `chat.netherwooddatapartners.com`, restricted to `^/api/assistant/.*$` with a 404 fallback. Public availability, origin denial, private-file denial and exhausted-allocation shutdown were verified. The final Pages deployment and browser check are tracked in the release PR.
+
+
+### 2026-11-19 chatbot company-only wording correction
+
+All chatbot-facing copy refers to Netherwood Data Partners, including the welcome description, inquiry consent, confirmation and privacy copy. Model instructions and approved profile excerpts use the business identity. A deterministic company-voice filter covers generated answers, citations, cached replies, restored assistant history and read-aloud output. Visitor-authored messages are preserved. The existing biography page is outside this chatbot correction.
+
+The independent runtime uses the same private credit ledger, credentials and inquiry storage. Company-voice regression coverage verifies new model answers and older cached/history responses.
