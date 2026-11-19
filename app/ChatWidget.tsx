@@ -183,7 +183,7 @@ export default function ChatWidget() {
           ? "Chat is busy or has reached its limit. Please use the contact form."
           : r.status === 401
             ? "This conversation has expired. Start a new chat."
-            : "Chat is temporarily unavailable. You can still contact Steven using the link below.",
+            : "Chat is temporarily unavailable. You can still contact Netherwood Data Partners using the link below.",
       );
     }
     return result;
@@ -576,7 +576,7 @@ export default function ChatWidget() {
               >
                 Leave an inquiry
               </button>
-              <a href={theme.contactUrl}>Contact Steven ↗</a>
+              <a href={theme.contactUrl} onClick={close}>{theme.contactLabel} ↗</a>
             </div>
             <p>
               AI can make mistakes. Chats are kept privately for up to 30 days

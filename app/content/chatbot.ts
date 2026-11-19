@@ -12,4 +12,5 @@ export const chatbotTheme = {
   paper: "#f8f7f1",
   prompts: ["Explore services", "Plan a migration", "SQL Server help"],
   contactUrl: "/#contact",
+  contactLabel: "Contact Netherwood Data Partners",
 };
