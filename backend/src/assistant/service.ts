@@ -24,6 +24,7 @@ export type Credit = {
   dailyMicroUsd: number;
   expiresAt: string;
   verifiedAt: string;
+  verifiedThrough?: string;
 };
 const hash = (s: string) => createHash("sha256").update(s).digest("hex");
 const day = (now: number) => new Date(now).toISOString().slice(0, 10);
@@ -33,11 +34,19 @@ export class AssistantService {
   model: ModelCall;
   keyPresent: boolean;
   clock: () => number;
-  constructor(root: string, key: string, model?: ModelCall, clock = Date.now) {
+  notificationsEnabled: boolean;
+  constructor(
+    root: string,
+    key: string,
+    model?: ModelCall,
+    clock = Date.now,
+    notificationsEnabled = false,
+  ) {
     this.store = new AssistantStore(root);
     this.keyPresent = Boolean(key);
     this.model = model ?? createAnswerModel(key);
     this.clock = clock;
+    this.notificationsEnabled = notificationsEnabled;
   }
   async credit(): Promise<Credit> {
     const path = join(this.store.root, "credit.json");
@@ -48,6 +57,9 @@ export class AssistantService {
     const now = this.clock();
     const verified = Date.parse(c.verifiedAt);
     const expiry = Date.parse(c.expiresAt);
+    // A reviewed prepaid grant can be allocated through its actual expiry.
+    // No calendar reset and no automatic renewal based on a presumed new grant.
+    const verifiedThrough = c.verifiedThrough === undefined ? verified + 86400_000 : Date.parse(c.verifiedThrough);
     if (
       !/^[a-zA-Z0-9-]{1,80}$/.test(c.id) ||
       !Number.isSafeInteger(c.limitMicroUsd) ||
@@ -58,7 +70,10 @@ export class AssistantService {
       c.dailyMicroUsd > c.limitMicroUsd ||
       !Number.isFinite(verified) ||
       verified > now ||
-      now - verified > 86400_000 ||
+      !Number.isFinite(verifiedThrough) ||
+      verifiedThrough <= now ||
+      verifiedThrough - verified > 31 * 86400_000 ||
+      (c.verifiedThrough !== undefined && verifiedThrough > expiry) ||
       !Number.isFinite(expiry) ||
       expiry <= now
     )
@@ -183,7 +198,11 @@ export class AssistantService {
       if (redirect) {
         session.count++;
         session.updated = now;
-        session.requests[id] = { status: "done", answer: redirect, sources: [] };
+        session.requests[id] = {
+          status: "done",
+          answer: redirect,
+          sources: [],
+        };
         // Do not persist rejected input: it might contain a pasted credential.
         return { cached: { answer: redirect, sources: [] } };
       }
@@ -283,7 +302,12 @@ export class AssistantService {
       const found = state.inquiries.find(
         (item) => item.session === hash(token) && item.submission === id,
       );
-      if (found) return { saved: true, reference: found.id };
+      if (found)
+        return {
+          saved: true,
+          reference: found.id,
+          notificationQueued: Boolean(found.notification),
+        };
       if (
         state.inquiries.length >= 1000 ||
         state.inquiries.filter((item) => item.session === hash(token)).length >=
@@ -301,8 +325,21 @@ export class AssistantService {
         message: message.trim(),
         topic: session.topic,
         status: "new",
+        ...(this.notificationsEnabled
+          ? {
+              notification: {
+                status: "pending" as const,
+                attempts: 0,
+                nextAttempt: this.clock(),
+              },
+            }
+          : {}),
       });
-      return { saved: true, reference };
+      return {
+        saved: true,
+        reference,
+        notificationQueued: this.notificationsEnabled,
+      };
     });
   }
 }

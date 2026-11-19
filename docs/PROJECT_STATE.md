@@ -823,3 +823,12 @@ backup, and any approved public API ingress remain post-launch work.
 ### 2026-11-19 — Chat discovery and human handoff refinement
 
 Owner feedback: ask for relevant missing details and lead to Netherwood for Steven's personal review, rather than long generic checklists or claims that the AI can investigate systems. Updated the assistant instructions to ask one useful question at a time, use existing context, and offer a human handoff after brief discovery or immediately on request. Renamed the configurable contact action to **Contact Netherwood Data Partners**, including the offline fallback; choosing it closes the overlay to expose the contact form. Footer links wrap on narrow screens. Live three-turn troubleshooting test passed, including the exact reported slow/crashing-system scenario and an explicit request for personal help. Earlier saved replies are historical and are not rewritten. Scope remains local preview; no public release.
+
+
+### 2026-11-19 assistant release preparation
+
+Owner authorized launch, inquiry email notifications and removal of the thick textarea focus outline. The focused composer now uses a thin outer border with a forced-colors fallback. New consented inquiries use a durable Formspark outbox; real mailbox receipt was verified before launch. The independent container keeps its key, ledger and approved knowledge outside the public artifact. Reviewed prepaid grants may be allocated until actual expiry (maximum 31 days), with conservative reservations, daily/total caps and quota shutdown. They never renew automatically.
+
+The Pages workflow reads `NDP_PUBLIC_CHAT_ENABLED` (default false) and `NDP_ASSISTANT_API_URL` (HTTPS origin). Config changes trigger a release even without a new content/source commit. The generated manifest records the matching public configuration. Keep the flag false until the stable gateway and public-origin checks pass. Rollback: set the flag false and dispatch Publish website; stop the independent assistant container to halt paid calls. Do not reset the spending ledger.
+
+Validation: lint, publication tests, 95 backend tests, strict backend TypeScript, Vinext build and the 38-route Pages checks passed. Desktop, 768px and 390px focused-field checks and Escape focus return passed. Stable public gateway is still awaiting account sign-in; these notes do not claim public chatbot launch.

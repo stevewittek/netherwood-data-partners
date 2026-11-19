@@ -1,3 +1,4 @@
+import { chatbotRelease } from "./chatbot-release.mjs";
 import { gamePath, gameMetadata, gameBanner, redditGameUrl } from "../app/content/hang-in-there-dad.ts";
 import assert from "node:assert/strict";
 import { products } from "../app/content/products.ts";
@@ -14,7 +15,9 @@ const manifest = JSON.parse(
 );
 assert.equal(snapshot.contentDigest, manifest.contentDigest);
 assert.equal(snapshot.articles.length, manifest.articleCount);
-assert.equal(manifest.chatEnabled, false);
+const expectedChat = chatbotRelease();
+assert.equal(manifest.chatEnabled, expectedChat.chatEnabled);
+assert.equal(manifest.assistantApiUrl, expectedChat.assistantApiUrl);
 const origin = "https://netherwooddatapartners.com";
 const serviceSlugs = [
   "software-systems-support",

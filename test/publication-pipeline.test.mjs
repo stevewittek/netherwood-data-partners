@@ -33,3 +33,16 @@ test('deployed release check permits first publication but fails closed on outag
   globalThis.fetch = async () => Response.json(manifest);
   assert.deepEqual(await deployedPublication(), manifest);
 });
+
+
+test('chat rollout and rollback configuration trigger a release with unchanged source and articles', async () => {
+  const { chatbotRelease } = await import('../scripts/chatbot-release.mjs');
+  const off = chatbotRelease({});
+  const on = chatbotRelease({ VITE_PUBLIC_CHAT_ENABLED: 'true', VITE_ASSISTANT_API_URL: 'https://chat.example.com' });
+  const current = { contentDigest: 'same', sourceCommit: 'same', ...off };
+  assert.equal(releaseNeedsUpdate(current, current, 'same', off), false);
+  assert.equal(releaseNeedsUpdate(current, current, 'same', on), true);
+  assert.equal(releaseNeedsUpdate({ ...current, ...on }, current, 'same', off), true);
+  for (const value of ['', 'http://localhost:8787', 'https://user:secret@example.com', 'https://example.com/?token=x'])
+    assert.throws(() => chatbotRelease({ VITE_PUBLIC_CHAT_ENABLED: 'true', VITE_ASSISTANT_API_URL: value }));
+});

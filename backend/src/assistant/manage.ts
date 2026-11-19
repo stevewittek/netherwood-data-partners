@@ -58,7 +58,8 @@ if (command === "setup") {
   );
 } else if (command === "credit") {
   // Owner-only operation. Pass SAME grant ID when renewing verification; never reset the ledger.
-  const [id, dollars, daily, expiry] = args;
+  const [id, dollars, daily, expiry, prepaid] = args;
+  if (prepaid && (prepaid !== "--prepaid-grant" || Date.parse(expiry) - Date.now() > 31 * 86400_000)) throw new Error("Invalid prepaid grant verification window");
   const limitMicroUsd = Math.round(Number(dollars) * 1e6),
     dailyMicroUsd = Math.round(Number(daily) * 1e6);
   if (
@@ -77,9 +78,10 @@ if (command === "setup") {
     dailyMicroUsd,
     expiresAt: expiry,
     verifiedAt: new Date().toISOString(),
+    ...(prepaid === "--prepaid-grant" ? { verifiedThrough: expiry } : {}),
   });
   console.log(
-    "Credit verification saved for at most 24 hours. Spending ledger preserved.",
+    "Credit allocation saved. Grant expiry and spending ledger are preserved.",
   );
 } else if (command === "inbox") {
   await store.purge(Date.now());

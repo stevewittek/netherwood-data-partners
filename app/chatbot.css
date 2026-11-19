@@ -33,6 +33,18 @@
   outline: 3px solid #7a993f;
   outline-offset: 3px;
 }
+.ndp-chat .ndp-chat-compose textarea:focus-visible {
+  outline: none;
+}
+.ndp-chat-compose > div:focus-within {
+  border-color: #466d56;
+  box-shadow: 0 0 0 1px #466d56;
+}
+@media (forced-colors: active) {
+  .ndp-chat-compose > div:focus-within {
+    outline: 2px solid Highlight;
+  }
+}
 .ndp-chat button {
   border: 0;
 }

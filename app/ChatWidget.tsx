@@ -31,22 +31,20 @@ type Entry = {
 const safeSources = (value: unknown): Source[] =>
   !Array.isArray(value)
     ? []
-    : value
-        .slice(0, 10)
-        .flatMap((s) =>
-          s && typeof s.title === "string"
-            ? [
-                {
-                  title: s.title.slice(0, 200),
-                  url:
-                    typeof s.url === "string" &&
-                    /^\/(?!\/)[a-zA-Z0-9/#?=_-]*$/.test(s.url)
-                      ? s.url
-                      : undefined,
-                },
-              ]
-            : [],
-        );
+    : value.slice(0, 10).flatMap((s) =>
+        s && typeof s.title === "string"
+          ? [
+              {
+                title: s.title.slice(0, 200),
+                url:
+                  typeof s.url === "string" &&
+                  /^\/(?!\/)[a-zA-Z0-9/#?=_-]*$/.test(s.url)
+                    ? s.url
+                    : undefined,
+              },
+            ]
+          : [],
+      );
 function Mark() {
   return (
     <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
@@ -77,6 +75,7 @@ export default function ChatWidget() {
   const [error, setError] = useState("");
   const [contact, setContact] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [notificationQueued, setNotificationQueued] = useState(false);
   const [canSpeak, setCanSpeak] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const token = useRef("");
@@ -332,8 +331,10 @@ export default function ChatWidget() {
         message: data.get("message"),
         consent: data.get("consent") === "on",
       });
-      if (result.saved === true) setSaved(true);
-      else throw new Error("Unable to save. Please use the contact form.");
+      if (result.saved === true) {
+        setSaved(true);
+        setNotificationQueued(result.notificationQueued === true);
+      } else throw new Error("Unable to save. Please use the contact form.");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unable to save.");
     } finally {
@@ -400,8 +401,13 @@ export default function ChatWidget() {
                 <div role="status">
                   <h3>Inquiry saved.</h3>
                   <p>
-                    Your message is in Steven’s private inquiry inbox. This
-                    confirms it was saved; a reply time has not been promised.
+                    Your message is in Netherwood Data Partners’ private inquiry
+                    inbox.{" "}
+                    {notificationQueued
+                      ? "An email notification is queued for Steven. "
+                      : ""}
+                    This confirms it was saved; a reply time has not been
+                    promised.
                   </p>
                   <button type="button" onClick={() => setContact(false)}>
                     Back to chat
@@ -442,7 +448,8 @@ export default function ChatWidget() {
                   />
                   <label className="ndp-chat-consent">
                     <input name="consent" type="checkbox" required />I agree to
-                    save these details for Steven to review and respond.
+                    save these details and send them through Formspark to notify
+                    Netherwood Data Partners for Steven to review and respond.
                     Inquiries are kept for up to 90 days.
                   </label>
                   <button className="ndp-chat-primary" disabled={busy}>
@@ -576,7 +583,9 @@ export default function ChatWidget() {
               >
                 Leave an inquiry
               </button>
-              <a href={theme.contactUrl} onClick={close}>{theme.contactLabel} ↗</a>
+              <a href={theme.contactUrl} onClick={close}>
+                {theme.contactLabel} ↗
+              </a>
             </div>
             <p>
               AI can make mistakes. Chats are kept privately for up to 30 days

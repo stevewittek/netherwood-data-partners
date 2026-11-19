@@ -1,6 +1,6 @@
 # Chatbot API implementation review — 2026-11-19
 
-Owner direction: build the Netherwood website assistant using the supplied dedicated OpenAI key; preserve the site; restrict scope to business/technical discovery; use available credits and stop when unavailable. This work adds an independent service; existing SQL/Ollama/API consumers are preserved. Local key reuse and build were explicitly reconfirmed by the owner. No additional credential permissions, publication or spending plan was enabled.
+Owner direction: build the Netherwood website assistant using the supplied dedicated OpenAI key; preserve the site; restrict scope to business/technical discovery; use available credits and stop when unavailable. This work adds an independent service; existing SQL/Ollama/API consumers are preserved. Local key reuse and build were explicitly reconfirmed by the owner. No additional credential permissions were enabled. The owner subsequently authorized public release, bounded use of verified credits and inquiry notifications.
 
 | Guidance | Applicability and decision | Implementation/evidence |
 |---|---|---|
@@ -38,4 +38,4 @@ Owner direction: build the Netherwood website assistant using the supplied dedic
 
 Official references checked: [gpt-5.4-mini model and pricing](https://developers.openai.com/api/docs/models/gpt-5.4-mini), [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs), [API data controls](https://platform.openai.com/docs/guides/your-data).
 
-Remaining release work: approved HTTPS hosting/gateway, renewable credit verification, public-origin end-to-end checks, manual VoiceOver/NVDA/mobile keyboard checks, owner notification destination and delivery validation. The local build is not a production deployment. No broader provider migration is proposed.
+Release progress (2026-11-19): isolated private runtime deployed; live Responses reply verified; new consented inquiry notification accepted by the existing Formspark form and confirmed in the owner mailbox. Budget uses a reviewed prepaid-grant expiry with no automatic renewal. Public HTTPS gateway authentication and public-site end-to-end checks remain pending. Manual VoiceOver/NVDA and physical mobile keyboard checks are not claimed. No broader provider migration is proposed.

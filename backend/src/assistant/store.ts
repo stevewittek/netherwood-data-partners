@@ -30,6 +30,13 @@ export type Inquiry = {
   message: string;
   topic: string;
   status: "new" | "reviewed" | "closed";
+  notification?: {
+    status: "pending" | "sending" | "accepted" | "failed";
+    attempts: number;
+    nextAttempt: number;
+    lastAttempt?: number;
+    acceptedAt?: number;
+  };
 };
 export type State = {
   version: 1;
