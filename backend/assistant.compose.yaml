@@ -1,0 +1,31 @@
+services:
+  assistant:
+    image: netherwood-website-assistant:${NDP_ASSISTANT_RELEASE:?Set an immutable release label}
+    build:
+      context: .
+      dockerfile: Assistant.Dockerfile
+    init: true
+    restart: unless-stopped
+    read_only: true
+    user: "1000:1000"
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    cpus: 0.5
+    pids_limit: 64
+    ports:
+      - "127.0.0.1:18887:8787"
+    volumes:
+      - ${NDP_ASSISTANT_PRIVATE_DIR:?Set the private directory}/data:/data
+      - ${NDP_ASSISTANT_PRIVATE_DIR:?Set the private directory}/runtime.env:/run/secrets/runtime.env:ro
+    tmpfs: ["/tmp:size=8m,mode=1777"]
+    logging:
+      driver: json-file
+      options:
+        max-size: "2m"
+        max-file: "2"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/api/assistant/availability',{headers:{Origin:'https://netherwooddatapartners.com'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

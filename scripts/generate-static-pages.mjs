@@ -1,3 +1,4 @@
+import { chatbotRelease } from "./chatbot-release.mjs";
 import { gamePath, gameMetadata, gameBanner, hangDadProduct } from "../app/content/hang-in-there-dad.ts";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -489,6 +490,6 @@ await writeFile(
     runUrl: process.env.GITHUB_RUN_ID
       ? `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
       : null,
-    chatEnabled: false,
+    ...chatbotRelease(),
   })}\n`,
 );

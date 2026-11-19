@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import ChatWidget from "../ChatWidget";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import snapshot from "../../pages-site/articles-snapshot.json";
 
@@ -274,7 +273,7 @@ export function ArticlesIndex() {
         ) : null}
       </section>
       <SiteFooter />
-      <ChatWidget />
+
     </main>
   );
 }
@@ -350,7 +349,7 @@ export function ArticlePage({ slug }: { slug: string }) {
         )}
       </section>
       <SiteFooter />
-      <ChatWidget />
+
     </main>
   );
 }

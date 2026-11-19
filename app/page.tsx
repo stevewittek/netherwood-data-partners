@@ -1,4 +1,3 @@
-import ChatWidget from "./ChatWidget";
 import ContactForm from "./components/ContactForm";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 import { motionRelayRoutes } from "./content/motion-relay";
@@ -90,7 +89,7 @@ export default function Home() {
         <div><p className="eyebrow">Contact</p><h2>Tell us about<br /><span>your project.</span></h2><p className="studio-contact-intro">Tell us which software you use and what goes wrong or needs to change. If there’s an error or a deadline, include it. Product questions are welcome. For testing invitations, use the <a href={motionRelayRoutes.betaSignup}>Motion beta signup</a>.</p><div className="studio-contact-details"><span>New Jersey · Meetings by appointment</span><a href="mailto:contact@netherwooddatapartners.com">contact@netherwooddatapartners.com</a></div></div>
         <div className="contact-copy"><ContactForm /></div>
       </section>
-      <SiteFooter /><ChatWidget />
+      <SiteFooter />
     </main>
   );
 }

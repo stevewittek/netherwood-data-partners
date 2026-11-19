@@ -12,7 +12,11 @@
     "typecheck": "tsc -p tsconfig.json",
     "articles:export": "node --experimental-strip-types src/export-articles.ts",
     "knowledge:ingest": "node --experimental-strip-types src/ingest-knowledge.ts",
-    "verify:rag": "node --experimental-strip-types src/verify-rag.ts"
+    "verify:rag": "node --experimental-strip-types src/verify-rag.ts",
+    "assistant:start": "node --env-file-if-exists=.env.local --experimental-strip-types src/assistant/server.ts",
+    "assistant:setup": "node --experimental-strip-types src/assistant/manage.ts setup",
+    "assistant:inbox": "node --experimental-strip-types src/assistant/manage.ts inbox",
+    "assistant:manage": "node --experimental-strip-types src/assistant/manage.ts"
   },
   "dependencies": {
     "html-to-text": "10.0.1",

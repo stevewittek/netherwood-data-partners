@@ -32,7 +32,8 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       VITE_VOYAGER_API_URL: ''
-      VITE_PUBLIC_CHAT_ENABLED: 'false'
+      VITE_PUBLIC_CHAT_ENABLED: ${{ vars.NDP_PUBLIC_CHAT_ENABLED || 'false' }}
+      VITE_ASSISTANT_API_URL: ${{ vars.NDP_ASSISTANT_API_URL || '' }}
     steps:
       - name: Check out trusted website source
         uses: actions/checkout@v5

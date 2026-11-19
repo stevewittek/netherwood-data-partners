@@ -1,4 +1,3 @@
-import ChatWidget from "../ChatWidget";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import { MotionRelayBetaSignup } from "./MotionRelayBetaSignup";
 import { motionRelayDownloads, motionRelayRoutes } from "../content/motion-relay";
@@ -17,6 +16,6 @@ export function MotionRelayDocumentsPage({ kind }: { kind: "access" | "compatibi
       <section className="product-detail-overview studio-wrap"><div><h2>Install an update.</h2></div><div className="product-prose"><p>Use the same installation channel that supplied your phone app. Follow its update instructions, then open Help → App version to check the installed version and build. Updates for the Garmin data field are delivered through Connect IQ.</p><p>Release information applies to the version available through that channel. An update is listed as released only after it is available there.</p></div></section>
       <section className="product-detail-overview studio-wrap"><div><h2>Current known issues.</h2></div><div className="product-prose"><p>October 16, 2026: reports of workout time or distance stopping during some workouts remain under investigation. Corrected candidates are being validated; this page does not announce their release.</p><p>Keep the watch recording, reopen Motion Relay and check the selected watch and connection. Include the app version, watch and phone models, activity and approximate time in a support report. Do not restart a workout solely to refresh a reading.</p><p>Charts contain the observations received by the phone; an interrupted interval can remain a gap. See <a href={motionRelayRoutes.support}>support</a> for reporting instructions.</p></div></section>
     </>}
-    <SiteFooter /><ChatWidget />
+    <SiteFooter />
   </main>;
 }

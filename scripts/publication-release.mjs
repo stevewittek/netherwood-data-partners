@@ -1,11 +1,12 @@
+import { chatbotRelease } from "./chatbot-release.mjs";
 import { readFile } from "node:fs/promises";
 
 export function assertCaptureOrder(previous, candidate) {
   if (previous && Date.parse(candidate.generatedAt) < Date.parse(previous.generatedAt)) throw new Error('Older export cannot replace a newer publication capture');
 }
 
-export function releaseNeedsUpdate(current, candidate, sourceCommit) {
-  return current?.contentDigest !== candidate.contentDigest || current?.sourceCommit !== sourceCommit;
+export function releaseNeedsUpdate(current, candidate, sourceCommit, chat) {
+  return current?.contentDigest !== candidate.contentDigest || current?.sourceCommit !== sourceCommit || (chat !== undefined && (Boolean(current?.chatEnabled) !== chat.chatEnabled || (current?.assistantApiUrl ?? null) !== chat.assistantApiUrl));
 }
 
 export async function deployedPublication(url = "https://netherwooddatapartners.com/publication.json") {
@@ -20,5 +21,5 @@ export async function deployedPublication(url = "https://netherwooddatapartners.
 if (process.argv[2] === "check") {
   const snapshot = JSON.parse(await readFile("pages-site/articles-snapshot.json", "utf8"));
   const current = await deployedPublication();
-  console.log(releaseNeedsUpdate(current, snapshot, process.env.GITHUB_SHA) ? "true" : "false");
+  console.log(releaseNeedsUpdate(current, snapshot, process.env.GITHUB_SHA, chatbotRelease()) ? "true" : "false");
 }

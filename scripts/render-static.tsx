@@ -1,3 +1,4 @@
+import ChatWidget from "../app/ChatWidget";
 import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
 import SiteRouter from "../app/SiteRouter";
@@ -13,7 +14,7 @@ export function renderPage(path: string) {
   return renderToString(
     <StrictMode>
       {normalized === "/about" ? (
-        <AboutPage />
+        <><AboutPage /><ChatWidget /></>
       ) : (
         <SiteRouter path={normalized} />
       )}

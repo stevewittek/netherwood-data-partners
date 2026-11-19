@@ -1,3 +1,4 @@
+import ChatWidget from "./ChatWidget";
 import type { Metadata } from "next";
 import "./globals.css";
 import "./studio.css";
@@ -45,6 +46,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );

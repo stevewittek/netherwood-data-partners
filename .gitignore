@@ -55,3 +55,6 @@ yarn-error.log*
 # Private marketing data and local test outbox
 /marketing/data/
 /marketing/node_modules/
+
+# Private chatbot documents, credits, and conversations
+/backend/.private-chatbot/

@@ -1,0 +1,25 @@
+# Add to assistant.compose.yaml only after the dedicated Cloudflare tunnel is approved.
+# The public route must be chat.netherwooddatapartners.com/api/assistant/*
+# -> http://assistant:8787, with all unmatched routes returning 404.
+services:
+  tunnel:
+    image: cloudflare/cloudflared@sha256:072c067d25ccbe61d46e18f0d0723255f2bb5304f7317caa95b27031520ff92c
+    command: ["tunnel", "--no-autoupdate", "--loglevel", "warn", "run", "--token-file", "/run/secrets/tunnel-token"]
+    user: "1000:1000"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    cpus: 0.5
+    pids_limit: 64
+    volumes:
+      - ${NDP_ASSISTANT_PRIVATE_DIR:?Set the private directory}/tunnel-token:/run/secrets/tunnel-token:ro
+    depends_on:
+      assistant:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "2m"
+        max-file: "2"
