@@ -5,7 +5,7 @@ export const chatbotTheme = {
   welcome:
     "Hi, I’m the Netherwood Data Partners AI assistant. What are you working on?",
   description:
-    "Explore services, talk through a migration, or find the right next step with Steven.",
+    "Explore services, talk through a migration, or find the right next step with Netherwood Data Partners.",
   portraitUrl: null as string | null,
   color: "#203c32",
   accent: "#d0e79f",
@@ -14,3 +14,8 @@ export const chatbotTheme = {
   contactUrl: "/#contact",
   contactLabel: "Contact Netherwood Data Partners",
 };
+
+/** Keep older restored assistant replies consistent with the company-only voice. */
+export function companyVoice(text: string): string {
+  return text.replace(/\b(?:Steven|Steve)(?:\s+Wittek)?\b|\bWittek\b/gi, "Netherwood Data Partners");
+}

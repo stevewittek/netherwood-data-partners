@@ -7,7 +7,7 @@ import {
   type CSSProperties,
   type FormEvent,
 } from "react";
-import { chatbotTheme as theme } from "./content/chatbot";
+import { chatbotTheme as theme, companyVoice } from "./content/chatbot";
 import "./chatbot.css";
 
 const configured = (
@@ -35,7 +35,7 @@ const safeSources = (value: unknown): Source[] =>
         s && typeof s.title === "string"
           ? [
               {
-                title: s.title.slice(0, 200),
+                title: companyVoice(s.title.slice(0, 200)),
                 url:
                   typeof s.url === "string" &&
                   /^\/(?!\/)[a-zA-Z0-9/#?=_-]*$/.test(s.url)
@@ -404,7 +404,7 @@ export default function ChatWidget() {
                     Your message is in Netherwood Data Partners’ private inquiry
                     inbox.{" "}
                     {notificationQueued
-                      ? "An email notification is queued for Steven. "
+                      ? "An email notification is queued for Netherwood Data Partners. "
                       : ""}
                     This confirms it was saved; a reply time has not been
                     promised.
@@ -419,7 +419,7 @@ export default function ChatWidget() {
                     ← Back to chat
                   </button>
                   <h3>Leave a project inquiry</h3>
-                  <p>Share only the details you want Steven to review.</p>
+                  <p>Share only the details you want Netherwood Data Partners to review.</p>
                   <label htmlFor={`${id}-name`}>Name</label>
                   <input
                     ref={contactName}
@@ -449,7 +449,7 @@ export default function ChatWidget() {
                   <label className="ndp-chat-consent">
                     <input name="consent" type="checkbox" required />I agree to
                     save these details and send them through Formspark to notify
-                    Netherwood Data Partners for Steven to review and respond.
+                    Netherwood Data Partners to review and respond.
                     Inquiries are kept for up to 90 days.
                   </label>
                   <button className="ndp-chat-primary" disabled={busy}>
@@ -498,7 +498,7 @@ export default function ChatWidget() {
                     <span className="ndp-chat-speaker">
                       {entry.role === "user" ? "You" : "Netherwood AI"}
                     </span>
-                    <p>{entry.text}</p>
+                    <p>{entry.role === "assistant" ? companyVoice(entry.text) : entry.text}</p>
                     {Boolean(entry.sources?.length) && (
                       <ul className="ndp-chat-sources">
                         {entry.sources?.map((s, i) => (
@@ -512,7 +512,7 @@ export default function ChatWidget() {
                       <button
                         className="ndp-chat-read"
                         type="button"
-                        onClick={() => speak(entry.text)}
+                        onClick={() => speak(companyVoice(entry.text))}
                       >
                         {speaking ? "Stop reading" : "Read aloud"}
                       </button>

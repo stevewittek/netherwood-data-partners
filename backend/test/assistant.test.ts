@@ -459,3 +459,20 @@ test('prepaid verification cannot extend beyond the actual grant or 31 days', as
   const c = JSON.parse(await readFile(path, 'utf8')); c.verifiedThrough = new Date(Date.now() + 40 * 86400_000).toISOString();
   await privateWrite(path, c); assert.equal(await s.available(), false);
 });
+
+
+test("company voice covers new answers, source titles, cached replies and restored history", async (t) => {
+  const s = await fixture(t, async () => ({ ...answer, answer: "Steven Wittek can review this. Contact Steve.", topic: "Steven review" }));
+  await privateWrite(join(s.store.root, "knowledge.json"), [{ ...profile, title: "Steven Wittek experience" }]);
+  const { token } = await s.start();
+  const reply = await s.message(token, "company-voice-01", "Can I get help with SQL Server?");
+  assert.doesNotMatch(JSON.stringify(reply), /Steven|Steve|Wittek/i);
+  assert.match(reply.answer, /Netherwood Data Partners/);
+  await s.store.change(state => {
+    const session = Object.values(state.sessions)[0];
+    session.turns.push({ role: "assistant", content: "Steven can help." });
+    session.requests["old-reply-01"] = { status: "done", answer: "Ask Steve Wittek.", sources: [{ title: "Steven Wittek", url: "/about/" }] };
+  });
+  assert.doesNotMatch(JSON.stringify(await s.history(token)), /Steven|Steve|Wittek/i);
+  assert.doesNotMatch(JSON.stringify(await s.message(token, "old-reply-01", "Can I get help?")), /Steven|Steve|Wittek/i);
+});

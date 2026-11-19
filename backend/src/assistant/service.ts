@@ -8,7 +8,7 @@ import {
   type Session,
 } from "./store.ts";
 import { readKnowledge, retrieve } from "./knowledge.ts";
-import { scopeReply } from "./scope.ts";
+import { scopeReply, companyVoice } from "./scope.ts";
 import {
   createAnswerModel,
   INPUT_RATE,
@@ -153,7 +153,7 @@ export class AssistantService {
         session.requests = {};
         session.corpus = knowledge.digest;
       }
-      return { turns: session.turns };
+      return { turns: session.turns.map(turn => turn.role === "assistant" ? { ...turn, content: companyVoice(turn.content) } : turn) };
     });
   }
   async message(token: string, id: string, message: string) {
@@ -179,7 +179,7 @@ export class AssistantService {
       const existing = session.requests[id];
       if (existing?.status === "done")
         return {
-          cached: { answer: existing.answer!, sources: existing.sources! },
+          cached: { answer: companyVoice(existing.answer!), sources: existing.sources!.map(source => ({ ...source, title: companyVoice(source.title) })) },
         };
       if (existing)
         throw new AssistantError(
@@ -226,6 +226,8 @@ export class AssistantService {
         sources,
         safetyId: hash(token),
       });
+      result.answer = companyVoice(result.answer);
+      result.topic = companyVoice(result.topic);
       if (
         !Number.isSafeInteger(result.inputTokens) ||
         result.inputTokens < 0 ||
@@ -241,7 +243,7 @@ export class AssistantService {
         knowledge.digest;
       const citations = sources
         .filter((source) => result.sourceIds.includes(source.id))
-        .map(({ title, url }) => ({ title, url }));
+        .map(({ title, url }) => ({ title: companyVoice(title), url }));
       await this.store.change((state) => {
         state.budgets[credit.id] += actual - prepared.reserved;
         state.budgets[dailyKey] += actual - prepared.reserved;
