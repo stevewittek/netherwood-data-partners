@@ -1,3 +1,4 @@
+import ChatWidget from "./ChatWidget";
 import { HangInThereDadPage } from "./components/HangInThereDadPage";
 import { useEffect } from "react";
 import Home from "./page";
@@ -15,7 +16,7 @@ import { MotionRelayDocumentsPage } from "./components/MotionRelayDocumentsPage"
 import { MotionRelaySetupPage } from "./components/MotionRelaySetupPage";
 import { MotionRelaySupportPage } from "./components/MotionRelaySupportPage";
 
-export default function SiteRouter({ path }: { path?: string } = {}) {
+function PageRoutes({ path }: { path?: string } = {}) {
   // On a direct /#contact (or cross-page CTA), the static shell has no anchor
   // until React mounts. Apply that initial fragment after its target exists.
   useEffect(() => {
@@ -74,4 +75,8 @@ export default function SiteRouter({ path }: { path?: string } = {}) {
       <SiteFooter />
     </main>
   );
+}
+
+export default function SiteRouter(props: { path?: string } = {}) {
+  return <><PageRoutes {...props} /><ChatWidget /></>;
 }

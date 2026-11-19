@@ -7,6 +7,7 @@ export default defineConfig({
   base: "/",
   publicDir: "../public",
   plugins: [react()],
+  server: { fs: { deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "**/.private-chatbot/**", "**/backend/**"] } },
   build: {
     outDir: "../pages-dist",
     emptyOutDir: true,

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ChatWidget from "../ChatWidget";
 import { aboutMetadata } from "../content/site";
 import "../community.css";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
@@ -56,7 +55,7 @@ export default function AboutPage() {
         <div className="long-form"><p>A project can start with a vendor’s import template, an aging database or a report that suddenly takes too long. We agree on scope, fees and availability, and define how we’ll check the result.</p><p>You work directly with me. I explain findings, document changes and discuss vendor responsibilities or additional expertise when needed.</p><a className="studio-text-link" href="/services/">View consulting services <span aria-hidden="true">↗</span></a></div>
       </section>
       <section className="founder-contact"><div className="studio-wrap"><div><p className="eyebrow">Contact</p><h2>Have a project<br />in mind?</h2></div><div><p>Tell me what you’re replacing, fixing or trying to connect.</p><a className="button button-light" href="/#contact">Contact Steven <span aria-hidden="true">↗</span></a><p className="founder-appointment">New Jersey · Meetings by appointment</p></div></div></section>
-      <SiteFooter /><ChatWidget />
+      <SiteFooter />
     </main>
   );
 }

@@ -1,4 +1,3 @@
-import ChatWidget from "../ChatWidget";
 import { motionRelayDownloads, motionRelayRoutes } from "../content/motion-relay";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 import "../products.css";
@@ -23,7 +22,7 @@ export function MotionRelaySetupPage() {
         <div><p className="eyebrow">Troubleshooting</p><h2>Check each connection.</h2></div>
         <div><p>Keep Garmin Connect paired with the watch selected in Motion Relay. Add the data field to each activity you use.</p><p>Use Home to check your connection and Metrics to explore your workout. For device requirements and connection help, visit the <a href={motionRelayRoutes.compatibility}>compatibility guide</a> and <a href={motionRelayRoutes.updates}>updates and known issues</a>.</p><a href={motionRelayRoutes.support}>Contact support</a><br /><a href={motionRelayRoutes.privacy}>Privacy information</a></div>
       </section>
-      <SiteFooter /><ChatWidget />
+      <SiteFooter />
     </main>
   );
 }

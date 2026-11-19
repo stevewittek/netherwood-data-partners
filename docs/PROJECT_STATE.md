@@ -809,3 +809,13 @@ backup, and any approved public API ingress remain post-launch work.
   rules in `AGENTS.md` and `.github/copilot-instructions.md`. No product code,
   CSS, content, backend, infrastructure, or production configuration was
   changed by the governance task.
+
+## 2026-11-19 — Dedicated website chatbot, local review build
+
+- Branch: `codex/netherwood-chatbot-20261119`, isolated from the existing dirty software-conversions checkout.
+- Working local OpenAI assistant uses the dedicated owner-authorized key in ignored `backend/.env.local`; no key is in browser code, static output or Git. GitHub Pages publication still has chat disabled.
+- One floating widget across public routes, configurable theme/portrait, server-owned multi-turn sessions, restored tab history, source links, explicit-consent inquiry saving and optional local-device read-aloud. Original Home/About/Articles/Contact layout and fallback remain intact.
+- Dedicated loopback backend stores reviewed knowledge, recent conversations and inquiries privately. Word/PDF/text draft-and-approve workflow and terminal owner inbox are implemented. No SQL migration, DNS/tunnel/firewall change, email send or public deployment occurred.
+- Persistent spending reservations, daily/grant limits, verified-credit expiry, quota shutdown and failure-safe launcher behavior are implemented. Current local testing allocation is $95 from the verified November 17 grant with a $1/day test cap, with at most 24-hour verification. OpenAI billing showed $103 available and auto-reload OFF. This is not an automatic live balance feed; do not claim permanent zero-overdraft enforcement or automatic renewal.
+- Validation: 90 backend tests pass; strict backend typecheck, lint, Vinext build, static Pages build, 38-route audit and diff checks pass. Live key/model answers and scope redirects checked; inquiry confirmed in private storage; denied private-file paths return 403. Browser checks at 1440/768/390, cross-page history, focus/Escape, read-aloud controls, and offline website fallback passed. Evidence is under ignored `outputs/chatbot-qa/`.
+- Remaining release gates: approved persistent host and HTTPS gateway, automatic credit verification/renewal design, owner notification channel, public-origin end-to-end verification, VoiceOver/NVDA and physical mobile keyboard checks. Custom audio recording is not implemented. See `backend/src/assistant/README.md` and `docs/CHATBOT_API_REVIEW.md`.

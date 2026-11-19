@@ -1,3 +1,4 @@
+import ChatWidget from "../../app/ChatWidget";
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import AboutPage from "../../app/about/page";
@@ -7,7 +8,7 @@ import "../../app/studio.css";
 const root = document.getElementById("root")!;
 const application = (
   <StrictMode>
-    <AboutPage />
+    <AboutPage /><ChatWidget />
   </StrictMode>
 );
 if (root.hasChildNodes()) hydrateRoot(root, application);

@@ -1,5 +1,4 @@
 import { hangDadProduct } from "../content/hang-in-there-dad";
-import ChatWidget from "../ChatWidget";
 import {
   featuredProducts,
   getProduct,
@@ -248,7 +247,7 @@ export function ProductsIndex() {
         </div>
       </section>
       <SiteFooter />
-      <ChatWidget />
+
     </main>
   );
 }
@@ -442,7 +441,7 @@ export function ProductDetailPage({ slug }: { slug: string }) {
         </div>
       </section>
       <SiteFooter />
-      <ChatWidget />
+
     </main>
   );
 }
